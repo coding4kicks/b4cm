@@ -25,6 +25,41 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
+
+    <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="">
+          <a class="brand" href="/">B4CM</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav pull-right" ng-show="name">
+              <li class="">
+              <a>Welcome {{name}}</a>
+              </li>
+              <li class="">
+                <p> || </p>
+              </li>
+              <li class="">
+                <a ng-click="signout()">Sign Out</a>
+              </li>
+            </ul>
+            <ul class="nav pull-right" ng-hide="name">
+              <li class="">
+                <a ng-click="openLogin()">Sign In</a>
+              </li>
+              <li class="">
+                <p> || </p>
+              </li>
+              <li class="">
+                <a ng-href="#/signup">Sign Up</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container" ng-view></div>
 
     <script src="components/angular/angular.js"></script>
