@@ -1,5 +1,32 @@
 @import "compass_twitter_bootstrap";
 
+
+/******************
+*** COLORS
+*******************/
+
+// Complements (aqua & red)
+$comp1-light: #37a5a5;
+$comp1-dark: #376e6e;
+$comp2-light: #dc3737;
+$comp2-dark: #a53737;
+
+// Accents (grey)
+$acc-light: #dcdcdc;
+$acc-dark: #6e6e6e;
+
+// Highlight (yellow)
+$high-bright: #fafa37;
+$high-pastel: #dcdc6e;
+
+// Crowd Factor (aqua, grey, red)
+$cf-empty: #6edcdc;
+$cf-few: #6ea5a5;
+$cf-ave: #a5a5a5;
+$cf-crowd: #a56e6e;
+$cf-herd: #dc6e6e;
+
+
 /******************
 *** NAVBAR
 *******************/
