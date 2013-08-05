@@ -26,15 +26,18 @@ $cf-ave: #a5a5a5;
 $cf-crowd: #a56e6e;
 $cf-herd: #dc6e6e;
 
+
 /******************
 *** MIXINS
 *******************/
 
 // page width/centering 
 @mixin page-container {
-  width: 940px;
   margin: 0 auto;
+  padding: 0 20px;
+  width: 900px;
 }
+
 
 /******************
 *** NAVBAR
@@ -43,6 +46,7 @@ $cf-herd: #dc6e6e;
 .navbar-inner {
   @include page-container;
 }
+
 
 /******************
 *** HEADER
@@ -61,6 +65,7 @@ $cf-herd: #dc6e6e;
     background: black;
   }
 }
+
 
 /******************
 *** FOOTER
