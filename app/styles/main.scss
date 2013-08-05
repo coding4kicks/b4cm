@@ -86,10 +86,10 @@ $cf-herd: #dc6e6e;
 
 #main-page {
   @include page-container;
+  text-align: center;
 
   .spot-types {
     @include page-container;
-    text-align: center;
 
     .arrow {
       background: black;
@@ -113,6 +113,19 @@ $cf-herd: #dc6e6e;
       background: black;
       height: 60px;
       width: 60px;
+    }
+  }
+
+  .nearby {
+
+    h3 {
+      display: inline;
+    }
+
+    input {
+      margin: -10px 0 0 10px;
+      text-align: center;
+      width: 150px;
     }
   }
 }
