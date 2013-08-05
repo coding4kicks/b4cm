@@ -62,3 +62,17 @@ $cf-herd: #dc6e6e;
   }
 }
 
+/******************
+*** FOOTER
+*******************/
+
+.footer {
+  @include page-container;
+  text-align: center;
+
+  li {
+    display: inline;
+    padding: 40px;
+  }
+
+}
