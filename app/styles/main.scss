@@ -26,14 +26,22 @@ $cf-ave: #a5a5a5;
 $cf-crowd: #a56e6e;
 $cf-herd: #dc6e6e;
 
+/******************
+*** MIXINS
+*******************/
+
+// page width/centering 
+@mixin page-container {
+  width: 940px;
+  margin: 0 auto;
+}
 
 /******************
 *** NAVBAR
 *******************/
 
 .navbar-inner {
-  width: 940px;
-  margin: 0 auto;
+  @include page-container;
 }
 
 /******************
@@ -41,8 +49,7 @@ $cf-herd: #dc6e6e;
 *******************/
 
 .header {
-  width: 940px;
-  margin: 0 auto;
+  @include page-container;
 
   div {
     display: inline-block;
