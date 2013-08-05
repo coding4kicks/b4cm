@@ -35,3 +35,23 @@ $cf-herd: #dc6e6e;
   width: 940px;
   margin: 0 auto;
 }
+
+/******************
+*** HEADER
+*******************/
+
+.header {
+  width: 940px;
+  margin: 0 auto;
+
+  div {
+    display: inline-block;
+  }
+
+  .logo {
+    height: 60px;
+    width: 60px;
+    background: black;
+  }
+}
+
