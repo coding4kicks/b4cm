@@ -41,7 +41,6 @@ $cf-herd: #dc6e6e;
 /******************
 *** NAVBAR
 *******************/
-
 .navbar-inner {
   @include page-container;
 }
@@ -50,7 +49,6 @@ $cf-herd: #dc6e6e;
 /******************
 *** HEADER
 *******************/
-
 .header {
   @include page-container;
 
@@ -69,7 +67,6 @@ $cf-herd: #dc6e6e;
 /******************
 *** FOOTER
 *******************/
-
 .footer {
   @include page-container;
   text-align: center;
@@ -83,7 +80,6 @@ $cf-herd: #dc6e6e;
 /******************
 *** MAIN PAGE 
 *******************/
-
 #main-page {
   @include page-container;
   text-align: center;
@@ -128,4 +124,88 @@ $cf-herd: #dc6e6e;
       width: 150px;
     }
   }
+}
+
+/******************
+*** Crowd Factor 
+*******************/
+.crowd-factor {
+
+  h2, h4 {
+    display: inline-block;
+    padding: 0 20px; 
+  }
+
+  .timeslot {
+    display: inline-block;
+    margin-left: -27px;
+    position: relative;
+    text-align: left;
+    
+    &:first-of-type {
+      z-index: 50;
+      margin-left: 0;
+    }
+
+    &:nth-child(2) {
+      z-index: 40;
+
+      td {
+        background: red;
+      }
+    }
+
+    &:nth-child(3) {
+      z-index: 30;
+    }
+
+    &:nth-child(4) {
+      z-index: 20;
+    }
+
+  }
+
+  h5 {
+    margin: 10px 0 0 0;
+  }
+
+  td {
+    background: blue;
+    border: 1px solid black;
+    height: 20px;
+    text-align: center;
+    width: 20px;
+  }
+
+  .labels {
+    margin: 0 0 0 26%;
+    width: 600px;
+
+    h5 {
+      display: inline-block;
+    }
+
+    .row1, .row2 {
+      text-align: left;
+
+      &>div {
+        width: 160px;
+        display: inline-block;
+      }
+    }
+
+    .color {
+      display: inline-block;
+      height: 15px;
+      width: 15px;
+      background: black;
+    }
+
+    .row2 {
+      margin-top: -20px;
+      padding-left: 15%;
+    }
+
+  }
+
 }
