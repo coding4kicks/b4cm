@@ -118,6 +118,11 @@ $cf-herd: #dc6e6e;
       display: inline;
     }
 
+    select {
+      margin: -10px 0 0 10px;
+      width: 80px;
+    }
+
     input {
       margin: -10px 0 0 10px;
       text-align: center;
