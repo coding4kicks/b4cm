@@ -37,6 +37,15 @@ $cf-herd: #dc6e6e;
   width: 940px;
 }
 
+/******************
+*** Global 
+*******************/
+.type-icon {
+      background: black;
+      display: inline-block;
+      height: 60px;
+      width: 60px;
+    }
 
 /******************
 *** NAVBAR
@@ -103,12 +112,6 @@ $cf-herd: #dc6e6e;
 
     h2 {
       display: inline-block;
-    }
-
-    .icon {
-      background: black;
-      height: 60px;
-      width: 60px;
     }
   }
 
