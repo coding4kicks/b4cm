@@ -40,6 +40,13 @@ $cf-herd: #dc6e6e;
 /******************
 *** Global 
 *******************/
+
+// Overide span margin left 20px;
+[class*="span"] {
+  margin: 0 !important;
+}
+
+// Food, Social, Study Icons
 .type-icon {
       background: black;
       display: inline-block;
@@ -53,7 +60,6 @@ $cf-herd: #dc6e6e;
 .navbar-inner {
   @include page-container;
 }
-
 
 /******************
 *** HEADER
@@ -138,6 +144,55 @@ $cf-herd: #dc6e6e;
   }
 }
 
+
+/******************
+*** Listings Page 
+*******************/
+#listings-page {
+
+  .title-bar {
+
+    h2 {
+      display: inline-block;
+      padding: 0 0 0 20px;
+    }
+
+    h3 {
+      float: right;
+      padding: 0 20px 0 0;
+    }
+
+    h4 {
+      display: inline-block;
+    }
+
+    .ad {
+      background: gray;
+      height: 100px;
+      text-align: center;
+      padding-top: 50px;
+      width: 250px;
+    }
+
+    select {
+      margin: -10px 0 0 10px;
+      width: 80px;
+    }
+
+    input {
+      margin: -10px 0 0 10px;
+      text-align: center;
+      width: 150px;
+    }
+
+    button {
+      margin: -10px 0 0 10px;
+    }
+
+  }
+}
+
+
 /******************
 *** Crowd Factor 
 *******************/
@@ -218,3 +273,4 @@ $cf-herd: #dc6e6e;
     }
   }
 }
+
