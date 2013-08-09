@@ -46,6 +46,19 @@ $cf-herd: #dc6e6e;
   margin: 0 !important;
 }
 
+
+.logo {
+  background: black;
+  height: 60px;
+  width: 60px;
+}
+
+.icon {
+  background: black;
+  height: 60px;
+  width: 60px;
+}
+
 // Food, Social, Study Icons
 .type-icon {
   background: black;
@@ -97,12 +110,6 @@ $cf-herd: #dc6e6e;
 
   div {
     display: inline-block;
-  }
-
-  .logo {
-    background: black;
-    height: 60px;
-    width: 60px;
   }
 }
 
@@ -295,6 +302,16 @@ $cf-herd: #dc6e6e;
     }
   }
 
+}
+
+/******************
+*** Sign Up Page 
+*******************/
+#sign-up {
+  
+  .login-method {
+    display: inline-block;
+  }
 }
 
 /******************
