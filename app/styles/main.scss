@@ -193,8 +193,48 @@ $cf-herd: #dc6e6e;
       float: right;
       margin: 0 20px 0 0;
     }
-
   }
+
+  
+  .listing {
+
+    .rank, .info, .stars, .review-count,
+    .crowd-bar, .watchers, .box {
+      display: inline-block;
+    }
+
+    .rank {
+      float: left;
+    }
+
+    .info {
+      padding: 0 0 0 5px;
+    }
+
+    .review-count, .watchers {
+      margin: 0 0 0 5px;
+    }
+
+    .address {
+      margin: -10px 0 0 0;
+    }
+
+    .crowd-rank {
+      margin: 5px 0 0 0;
+    }
+
+    .box {
+      background: black;
+      height: 30px;
+      width: 30px;
+    }
+
+    .watchers {
+      float: right;
+      margin: 5px 0 0 10px;
+    }
+  }
+
 }
 
 
