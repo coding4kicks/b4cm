@@ -39,13 +39,17 @@ angular.module('b4cmApp', [])
         templateUrl: 'views/contact.html',
         controller: 'ContactCtrl'
       })
+      .when('/advertise', {
+        templateUrl: 'views/advertise.html',
+        controller: 'AdvertiseCtrl'
+      })
       .when('/signup', {
         templateUrl: 'views/signup.html',
         controller: 'SignupCtrl'
       })
-      .when('/advertise', {
-        templateUrl: 'views/advertise.html',
-        controller: 'AdvertiseCtrl'
+      .when('/signin', {
+        templateUrl: 'views/signin.html',
+        controller: 'SigninCtrl'
       })
       .otherwise({
         redirectTo: '/'
