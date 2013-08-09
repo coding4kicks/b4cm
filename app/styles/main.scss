@@ -198,6 +198,9 @@ $cf-herd: #dc6e6e;
   
   .listing {
 
+    margin: 0 0 10px 0;
+    padding: 0 10px;
+
     .rank, .info, .stars, .review-count,
     .crowd-bar, .watchers, .box {
       display: inline-block;
@@ -233,6 +236,14 @@ $cf-herd: #dc6e6e;
       float: right;
       margin: 5px 0 0 10px;
     }
+  }
+
+  .map {
+    background: gray;
+    height: 150px;
+    width: 250px;
+    text-align: center;
+    padding-top: 50px;
   }
 
 }
