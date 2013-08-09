@@ -48,11 +48,31 @@ $cf-herd: #dc6e6e;
 
 // Food, Social, Study Icons
 .type-icon {
-      background: black;
-      display: inline-block;
-      height: 60px;
-      width: 60px;
-    }
+  background: black;
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+}
+
+.map {
+  background: gray;
+  height: 150px;
+  width: 250px;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.rating {
+
+  .stars {
+    display: inline-block;
+  }
+
+  .review-count {
+    display: inline-block;
+    margin: 0 0 0 5px;
+  }
+}
 
 /******************
 *** NAVBAR
@@ -201,8 +221,7 @@ $cf-herd: #dc6e6e;
     margin: 0 0 10px 0;
     padding: 0 10px;
 
-    .rank, .info, .stars, .review-count,
-    .crowd-bar, .watchers, .box {
+    .rank, .info, .crowd-bar, .watchers, .box {
       display: inline-block;
     }
 
@@ -214,7 +233,7 @@ $cf-herd: #dc6e6e;
       padding: 0 0 0 5px;
     }
 
-    .review-count, .watchers {
+    .watchers {
       margin: 0 0 0 5px;
     }
 
@@ -243,17 +262,19 @@ $cf-herd: #dc6e6e;
     margin: -20px 0 0 0;
     padding: 0 10px 0 0;
   }
+}
 
-  .map {
-    background: gray;
-    height: 150px;
-    width: 250px;
-    text-align: center;
-    padding-top: 50px;
+/******************
+*** Spot Page
+*******************/
+#spot-page {
+
+  .type {
+    display: inline-block;
+    padding: 10px;
   }
 
 }
-
 
 /******************
 *** Crowd Factor 
