@@ -62,6 +62,14 @@ $cf-herd: #dc6e6e;
   padding-top: 50px;
 }
 
+.ad {
+  background: gray;
+  height: 100px;
+  text-align: center;
+  padding-top: 50px;
+  width: 250px;
+}
+
 .rating {
 
   .stars {
@@ -186,14 +194,6 @@ $cf-herd: #dc6e6e;
       display: inline-block;
     }
 
-    .ad {
-      background: gray;
-      height: 100px;
-      text-align: center;
-      padding-top: 50px;
-      width: 250px;
-    }
-
     select {
       margin: -10px 0 0 10px;
       width: 80px;
@@ -285,6 +285,14 @@ $cf-herd: #dc6e6e;
   .add-review {
     float: right;
     margin-top: -25px;
+  }
+
+  .nearby-type {
+    
+    div, h3 {
+      display: inline-block;
+      margin: 10px;
+    }
   }
 
 }
