@@ -19,6 +19,14 @@ angular.module('b4cmApp', [])
         templateUrl: 'views/addSpot.html',
         controller: 'AddSpotCtrl'
       })
+      .when('/addReview', {
+        templateUrl: 'views/addReview.html',
+        controller: 'AddReviewCtrl'
+      })
+      .when('/addWatch', {
+        templateUrl: 'views/addWatch.html',
+        controller: 'AddWatchCtrl'
+      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
