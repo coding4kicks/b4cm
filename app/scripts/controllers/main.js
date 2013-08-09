@@ -9,8 +9,8 @@ angular.module('b4cmApp')
     ];
 
     $scope.findListings = function() {
-      alert('here');
-      //$location.path("#/listings");
-      //$scope.$apply();
+      $location.path("/listings");
+      // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
+      if(!$scope.$$phase) { $scope.$apply(); }
     };
   });
