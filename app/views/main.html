@@ -13,19 +13,19 @@
       </div>
     </div>
     <div class="spots">
-      <div class="spot food">
+      <div class="spot food" ng-click="findListings()">
         <div class="type-icon">
         </div>
         <h2>Food</h2>
         <h4>Get a table<br>and a good meal</h4>
       </div>
-      <div class="spot study">
+      <div class="spot study" ng-click="findListings()">
         <div class="type-icon">
         </div>
         <h2>Study</h2>
         <h4>Study or work<br>without distractions</h4>
       </div>
-      <div class="spot social">
+      <div class="spot social" ng-click="findListings()">
         <div class="type-icon">
         </div>
         <h2>Social</h2>
@@ -45,7 +45,7 @@
         <option>All</option>
       </select>
       <input type="text" class="form-control" placeholder="City or Zip">
-      <button class="btn">Search</button>
+      <button class="btn" ng-click="findListings()">Search</button>
     </form>
     <hr>
   </div>
