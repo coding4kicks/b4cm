@@ -581,13 +581,38 @@ button {
       display: inline-block;
       height: 15px;
       width: 15px;
-      background: black;
     }
 
     .row2 {
       margin-top: -20px;
       padding-left: 15%;
     }
+  }
+
+  .empty-square {
+    background-color: $cf-empty;
+  }
+
+  .few-square {
+    background-color: $cf-few;
+  }
+
+  .ave-square {
+    background-color: $cf-ave;
+
+  }
+
+  .crowded-square {
+    background-color: $cf-crowd;
+  }
+
+  .herd-square {
+    background-color: $cf-herd;
+
+  }
+
+  .closed-square {
+    background-color: #111111;
   }
 }
 
