@@ -340,6 +340,21 @@ button {
     @include page-container;
     background-color: $acc-light;
     border-radius: 10px;
+    padding: 20px 0;
+
+    .visualize-tagline {
+      text-align: left;
+      margin: 0 auto;
+    }
+
+    h2 {
+      margin: 0 0 0 16%;
+    }
+
+    h2:nth-child(2) {
+      margin: 0 0 0 26%;
+    }
+
   }
 }
 
@@ -496,7 +511,7 @@ button {
 
   text-align: center;
 
-  h2, h4 {
+  h3, h4 {
     display: inline-block;
     padding: 0 20px; 
   }
