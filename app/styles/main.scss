@@ -213,11 +213,22 @@ hr {
   @include page-container;
   background-color: $acc-light;
   border-radius: 10px;
+  padding: 11px 0 4px 0;
   text-align: center;
 
   li {
     display: inline;
-    padding: 40px;
+    padding: 50px;
+
+    a {
+      color: $acc-dark;
+      font-size: 16px;
+
+      &:hover {
+        color: $cf-few;
+        text-decoration: none; 
+      }
+    }
   }
 }
 
