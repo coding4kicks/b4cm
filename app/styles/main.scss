@@ -310,17 +310,27 @@ hr {
     }
 
     select {
-      margin: -10px 0 0 10px;
+      //margin: -10px 0 0 10px;
       width: 80px;
     }
 
     input {
-      margin: -10px 0 0 10px;
-      text-align: center;
       width: 150px;
     }
 
+    input, select {
+      background-color: $acc-dark;
+      border: 1px solid $comp1-dark;
+      color: $text-light;
+      margin: -10px 0 0 10px;
+      text-align: center;
+      //width: 150px;
+    }
+
     button {
+      background-color: $comp1-dark;
+      background-image: linear-gradient(to bottom, $comp1-light, $comp1-dark);
+      color: $high-bright;
       margin: -10px 0 0 10px;
     }
   }
