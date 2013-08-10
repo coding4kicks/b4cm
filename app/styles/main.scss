@@ -178,6 +178,7 @@ button {
   @include page-container;
   background-color: $acc-light;
   border-radius: 0 0 10px 10px;
+  padding: 5px 0;
 
   .logo {
     margin-top: -44px;
