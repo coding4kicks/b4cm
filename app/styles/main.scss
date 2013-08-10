@@ -240,13 +240,12 @@ hr {
 *** MAIN PAGE 
 *******************/
 #main-page {
-  @include page-container;
-  background-color: $acc-light;
-  border-radius: 10px;
   text-align: center;
 
   .spot-types {
     @include page-container;
+    background-color: $acc-light;
+    border-radius: 10px;
     padding: 10px 0;
 
     .spots {
@@ -293,6 +292,10 @@ hr {
   }
 
   .nearby {
+    @include page-container;
+    background-color: $acc-light;
+    border-radius: 10px;
+    padding: 25px 0;
 
     h3 {
       display: inline;
@@ -312,6 +315,12 @@ hr {
     button {
       margin: -10px 0 0 10px;
     }
+  }
+
+  .visualize {
+    @include page-container;
+    background-color: $acc-light;
+    border-radius: 10px;
   }
 }
 
