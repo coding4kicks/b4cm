@@ -53,8 +53,8 @@ body {
 
 
 .logo {
-  background: black;
   height: 60px;
+  padding: 0 8px 0 10px;
   width: 60px;
 }
 
@@ -108,7 +108,7 @@ body {
 }
 .navbar-inner {
   @include page-container;
-  background-color: $acc-dark;
+  background-color: $acc-dark !important;
   padding: 0;
   background-image: linear-gradient(to bottom, $acc-dark, #7e7e7e) !important;
   background-repeat: repeat-x;
@@ -122,6 +122,33 @@ body {
   @include page-container;
   background-color: $acc-light;
   border-radius: 0 0 10px 10px;
+
+  .logo {
+    margin-top: -44px;
+  }
+
+  .before {
+    color: $comp1-dark;
+    margin: 0;
+  }
+
+  .criticalmass {
+    color: $comp2-dark;
+    margin: -10px 0 4px 0;
+  }
+
+  .tag-line {
+    float: right;
+    padding: 15px 485px 0 0;
+  }
+
+  .yelp {
+    margin: 0;
+  }
+
+  .hate {
+    margin: 0 0 0 24px;
+  }
 
   div {
     display: inline-block;
