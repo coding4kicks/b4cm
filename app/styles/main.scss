@@ -73,11 +73,11 @@ hr {
   width: 60px;
 }
 
-.icon {
-  background: black;
-  height: 60px;
-  width: 60px;
+.b4cm-icon {
+  height: 75px;
+  width: 75px;
 }
+
 
 // Food, Social, Study Icons
 .type-icon {
@@ -247,6 +247,11 @@ hr {
 
   .spot-types {
     @include page-container;
+    padding: 10px 0;
+
+    .spots {
+      padding: 0 0 0 10px;
+    }
 
     .arrow-side {
       height: 50px;
@@ -261,15 +266,29 @@ hr {
     }
 
     .spot {
+      display: inline-block;
       padding: 20px;
+      margin: 0 10px;
     }
 
-    div {
+    .b4cm-icon {
+      margin-top: -10px;
+    }
+
+    .center {
       display: inline-block;
     }
 
-    h2 {
-      margin: 30px 0 5px 0;
+    h3 {
+      display: inline-block;
+    }
+
+    .type-blurb {
+      text-align: left;
+
+      h4:nth-child(2) {
+        margin: -10px 0 0 30px;
+      }
     }
   }
 
