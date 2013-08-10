@@ -41,6 +41,11 @@ $cf-herd: #dc6e6e;
 *** Global 
 *******************/
 
+body {
+  background-image:url('../images/wavegrid.png');
+  background-repeat:repeat;
+}
+
 // Overide span margin left 20px;
 [class*="span"] {
   margin: 0 !important;
