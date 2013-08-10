@@ -51,6 +51,12 @@ body {
   color: #373737;
 }
 
+hr {
+  border: 1px solid $acc-dark;
+  margin: 0 auto;
+  width: 930px;
+}
+
 // Overide span margin left 20px;
 [class*="span"] {
   margin: 0 !important;
