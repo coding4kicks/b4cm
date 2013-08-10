@@ -26,6 +26,10 @@ $cf-ave: #a5a5a5;
 $cf-crowd: #a56e6e;
 $cf-herd: #dc6e6e;
 
+// Text
+$text-dark: #373737;
+$text-light: #fafafa;
+
 
 /******************
 *** MIXINS
@@ -44,6 +48,7 @@ $cf-herd: #dc6e6e;
 body {
   background-image:url('../images/wavegrid.png');
   background-repeat:repeat;
+  color: #373737;
 }
 
 // Overide span margin left 20px;
