@@ -250,6 +250,10 @@ hr {
 
     .spots {
       padding: 0 0 0 10px;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     .arrow-side {
