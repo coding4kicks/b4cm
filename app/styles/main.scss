@@ -57,6 +57,10 @@ hr {
   width: 930px;
 }
 
+.emphasize {
+  color: $comp2-dark;
+}
+
 // Overide span margin left 20px;
 [class*="span"] {
   margin: 0 !important;
@@ -244,10 +248,16 @@ hr {
   .spot-types {
     @include page-container;
 
-    .arrow {
-      background: black;
-      height: 20px;
-      width: 20px;
+    .arrow-side {
+      height: 50px;
+      margin-top: -25px;
+      padding: 0 5px 0 5px;
+      width: 60px;
+    }
+
+    .arrow-center {
+      height: 35px;
+      width: 10px
     }
 
     .spot {
@@ -259,7 +269,7 @@ hr {
     }
 
     h2 {
-      display: inline-block;
+      margin: 30px 0 5px 0;
     }
   }
 
