@@ -114,10 +114,44 @@ body {
 .navbar-inner {
   @include page-container;
   background-color: $acc-dark !important;
-  padding: 0;
   background-image: linear-gradient(to bottom, $acc-dark, #7e7e7e) !important;
   background-repeat: repeat-x;
   border-color: #252525;
+  color: $text-dark;
+  padding: 0;
+
+  .brand {
+    color: $comp2-dark;
+    margin-left: -8px;
+
+    .letter-b {
+      color: $comp1-dark;
+    }
+
+    .num-four {
+      color: $high-bright;
+    }
+
+    &:hover {
+      color: $cf-few;
+
+      .num-four, .letter-b {
+        color: $cf-few;
+      }
+    }
+  }
+
+  .nav > li > a {
+    color: $text-light;
+  }
+
+  .nav > li > a:hover {
+    color: $cf-few;
+  }
+
+  .or {
+    margin-top: 9px;
+  }
 }
 
 /******************
