@@ -103,8 +103,16 @@ body {
 /******************
 *** NAVBAR
 *******************/
+.navbar {
+  background-color: $acc-dark;
+}
 .navbar-inner {
   @include page-container;
+  background-color: $acc-dark;
+  padding: 0;
+  background-image: linear-gradient(to bottom, $acc-dark, #7e7e7e) !important;
+  background-repeat: repeat-x;
+  border-color: #252525;
 }
 
 /******************
@@ -112,6 +120,8 @@ body {
 *******************/
 .header {
   @include page-container;
+  background-color: $acc-light;
+  border-radius: 0 0 10px 10px;
 
   div {
     display: inline-block;
@@ -124,6 +134,8 @@ body {
 *******************/
 .footer {
   @include page-container;
+  background-color: $acc-light;
+  border-radius: 10px;
   text-align: center;
 
   li {
@@ -137,6 +149,8 @@ body {
 *******************/
 #main-page {
   @include page-container;
+  background-color: $acc-light;
+  border-radius: 10px;
   text-align: center;
 
   .spot-types {
