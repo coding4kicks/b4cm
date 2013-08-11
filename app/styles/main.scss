@@ -23,8 +23,9 @@ $high-pastel: #dcdc6e;
 $cf-empty: #6edcdc;
 $cf-few: #6ea5a5;
 $cf-ave: #a5a5a5;
-$cf-crowd: #a56e6e;
+$cf-crowded: #a56e6e;
 $cf-herd: #dc6e6e;
+$cf-closed: #111111;
 
 // Text
 $text-dark: #373737;
@@ -596,12 +597,29 @@ button {
     }
   }
 
+  .marker {
+    height: 18px;
+    width: 18px;
+  }
+
+  .empty {
+    color: $cf-empty;
+  }
+
   .empty-square {
     background-color: $cf-empty;
   }
 
+  .few {
+    color: $cf-few;
+  }
+
   .few-square {
     background-color: $cf-few;
+  }
+
+  .ave {
+    color: $cf-ave;
   }
 
   .ave-square {
@@ -609,8 +627,16 @@ button {
 
   }
 
+  .crowded {
+    color: $cf-crowded;
+  }
+
   .crowded-square {
-    background-color: $cf-crowd;
+    background-color: $cf-crowded;
+  }
+
+  .herd {
+    color: $cf-herd;
   }
 
   .herd-square {
@@ -618,8 +644,12 @@ button {
 
   }
 
+  .closed {
+    closed: $cf-closed;
+  }
+
   .closed-square {
-    background-color: #111111;
+    background-color: $cf-closed;
   }
 
   .empty-square, .few-square, .ave-square,
