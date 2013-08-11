@@ -86,7 +86,6 @@ button {
   width: 75px;
 }
 
-
 // Food, Social, Study Icons
 .type-icon {
   background: black;
@@ -120,6 +119,32 @@ button {
   .review-count {
     display: inline-block;
     margin: 0 0 0 5px;
+  }
+}
+
+.find-spot {
+  margin: 0;
+
+  h3 {
+    display: inline;
+  }
+
+  select {
+    //margin: -10px 0 0 10px;
+    width: 80px;
+  }
+
+  input {
+    width: 150px;
+  }
+
+  input, select {
+    background-color: $acc-dark;
+    border: 1px solid $comp1-dark;
+    color: $text-light;
+    margin: -10px 0 0 10px;
+    text-align: center;
+    //width: 150px;
   }
 }
 
@@ -313,32 +338,6 @@ button {
     background-color: $acc-light;
     border-radius: 10px;
     padding: 25px 0;
-
-    h3 {
-      display: inline;
-    }
-
-    form {
-      margin: 0;
-    }
-
-    select {
-      //margin: -10px 0 0 10px;
-      width: 80px;
-    }
-
-    input {
-      width: 150px;
-    }
-
-    input, select {
-      background-color: $acc-dark;
-      border: 1px solid $comp1-dark;
-      color: $text-light;
-      margin: -10px 0 0 10px;
-      text-align: center;
-      //width: 150px;
-    }
   }
 
   .visualize {
