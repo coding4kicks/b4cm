@@ -102,12 +102,33 @@ button {
   padding-top: 50px;
 }
 
-.ad {
-  background: gray;
-  height: 100px;
+.ad-book {
+  background: $acc-dark;
+  border-radius: 10px;
+  height: 200px;
+  padding: 5px;
   text-align: center;
-  padding-top: 50px;
-  width: 250px;
+  width: 200px;
+
+  a {
+    text-decoration: none;
+  }
+
+  &:hover {
+    h6 {
+      color: $comp1-dark;
+    }
+  }
+
+  h6 {
+    color: $text-light;
+    line-height: 15px;
+  }
+
+  img {
+    margin-top: 5px;
+    width: 100px;
+  }
 }
 
 .rating {
@@ -371,7 +392,17 @@ button {
   .title-bar {
     background-color: $acc-light;
     border-radius: 10px;
-    padding: 20px 10px;
+    padding: 5px 10px;
+
+    .main-col {
+      display: inline-block;
+      width: 70%;
+    }
+
+    .side-col {
+      display: inline-block;
+      float: right;
+    }
 
     h2 {
       display: inline-block;
