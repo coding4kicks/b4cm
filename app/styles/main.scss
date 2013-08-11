@@ -524,6 +524,7 @@ button {
   h3, h4 {
     display: inline-block;
     padding: 0 20px; 
+    margin: 10px 0 0 0;
   }
 
   .timeslot {
@@ -567,7 +568,8 @@ button {
   }
 
   .labels {
-    margin: 0 0 0 26%;
+    margin: 0 0 0 20%;
+    padding: 10px 0;
     width: 600px;
 
     h5 {
@@ -584,11 +586,12 @@ button {
     }
 
     .color {
-      display: inline-block;
-      height: 15px;
-      width: 15px;
       border: .5px solid black;
       border-radius: 5px;
+      display: inline-block;
+      height: 15px;
+      margin-bottom: -3px;
+      width: 15px;
     }
 
     .row2 {
@@ -598,8 +601,8 @@ button {
   }
 
   .marker {
-    height: 18px;
-    width: 18px;
+    height: 17px;
+    width: 17px;
   }
 
   .empty {
