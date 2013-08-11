@@ -370,6 +370,9 @@ button {
 #listings-page {
 
   .title-bar {
+    background-color: $acc-light;
+    border-radius: 10px;
+    padding: 20px 10px;
 
     h2 {
       display: inline-block;
@@ -406,6 +409,11 @@ button {
     }
   }
 
+ .page {
+    background-color: $acc-light;
+    border-radius: 10px;
+    padding: 20px 10px;
+  }
   
   .listing {
 
