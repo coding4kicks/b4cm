@@ -540,7 +540,7 @@ button {
       z-index: 40;
 
       td {
-        background: red;
+        //background: red;
       }
     }
 
@@ -558,8 +558,8 @@ button {
   }
 
   td {
-    background: blue;
-    border: 1px solid black;
+    //background: blue;
+    //border: 1px solid black;
     height: 20px;
     text-align: center;
     width: 20px;
@@ -620,6 +620,15 @@ button {
 
   .closed-square {
     background-color: #111111;
+  }
+
+  .empty-square, .few-square, .ave-square,
+  .crowded-square, .herd-square, .closed-square {
+    border: 1px solid black;
+  }
+
+  .saturday-row {
+    border-top: 2px solid $high-bright;
   }
 }
 
