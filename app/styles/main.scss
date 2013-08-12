@@ -103,8 +103,7 @@ a {
 }
 
 .map {
-  background: gray;
-  height: 150px;
+  height: 250px;
   width: 250px;
   text-align: center;
   padding-top: 50px;
@@ -449,10 +448,6 @@ a {
       float: right;
       margin: 74px 22px 0 0;
     }
-
-    h6 {
-      //margin-top: 74px;
-    }
   }
 
  .page {
@@ -461,6 +456,13 @@ a {
     padding: 20px 10px;
   }
   
+  .listings {
+    
+    h6 {
+      margin-top: -40px;
+    }
+  }
+
   .listing {
 
     margin: 0 0 10px 0;
