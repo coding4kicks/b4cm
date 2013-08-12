@@ -65,6 +65,14 @@ button {
   margin: -10px 0 0 10px;
 }
 
+a {
+  text-decoration: none;
+  
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 .emphasize {
   color: $comp2-dark;
 }
@@ -108,7 +116,7 @@ button {
   height: 200px;
   padding: 5px;
   text-align: center;
-  width: 200px;
+  width: 220px;
 
   a {
     text-decoration: none;
@@ -389,20 +397,20 @@ button {
 *******************/
 #listings-page {
 
+  .main-col {
+    display: inline-block;
+    width: 70%;
+  }
+
+  .side-col {
+    display: inline-block;
+    float: right;
+  }
+
   .title-bar {
     background-color: $acc-light;
     border-radius: 10px;
-    padding: 5px 10px;
-
-    .main-col {
-      display: inline-block;
-      width: 70%;
-    }
-
-    .side-col {
-      display: inline-block;
-      float: right;
-    }
+    padding: 10px 15px;
 
     h2 {
       display: inline-block;
@@ -410,8 +418,12 @@ button {
     }
 
     h3 {
-      float: right;
-      padding: 0 20px 0 0;
+      display: inline-block;
+      margin-left: 50px;
+    }
+
+    form {
+      margin: -10px 0 0 100px;
     }
 
     h4 {
@@ -435,7 +447,11 @@ button {
 
     .add-spot {
       float: right;
-      margin: 0 20px 0 0;
+      margin: 74px 22px 0 0;
+    }
+
+    h6 {
+      //margin-top: 74px;
     }
   }
 
@@ -449,6 +465,10 @@ button {
 
     margin: 0 0 10px 0;
     padding: 0 10px;
+
+    h4, h5 {
+      margin: 0px;
+    }
 
     .rank, .info, .crowd-bar, .watchers, .box {
       display: inline-block;
@@ -466,10 +486,6 @@ button {
       margin: 0 0 0 5px;
     }
 
-    .address {
-      margin: -10px 0 0 0;
-    }
-
     .crowd-rank {
       margin: 5px 0 0 0;
     }
@@ -484,12 +500,24 @@ button {
       float: right;
       margin: 5px 0 0 10px;
     }
+
+    hr {
+      margin-top: 15px;
+      width: 640px;
+    }
   }
 
   .more {
-    float: right;
-    margin: -20px 0 0 0;
-    padding: 0 10px 0 0;
+    margin: -10px 0 0 0;
+
+    a { 
+      color: $text-dark;
+
+      &:hover {
+        color: $comp1-dark;
+        cursor: pointer;
+      }
+    }
   }
 }
 
