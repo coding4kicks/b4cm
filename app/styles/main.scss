@@ -112,7 +112,7 @@ a {
 .ad-book {
   background: $acc-dark;
   border-radius: 10px;
-  height: 200px;
+  height: 180px;
   padding: 5px;
   text-align: center;
   width: 220px;
@@ -133,8 +133,8 @@ a {
   }
 
   img {
-    margin-top: 5px;
-    width: 100px;
+    margin-top: 10px;
+    width: 80px;
   }
 }
 
@@ -399,6 +399,7 @@ a {
   .main-col {
     display: inline-block;
     width: 70%;
+    margin-top: 5px;
   }
 
   .side-col {
@@ -422,7 +423,7 @@ a {
     }
 
     form {
-      margin: -10px 0 0 100px;
+      margin: 10px 0 0 100px;
     }
 
     h4 {
@@ -446,7 +447,7 @@ a {
 
     .add-spot {
       float: right;
-      margin: 74px 22px 0 0;
+      margin: 30px 22px 0 0;
     }
   }
 
@@ -459,7 +460,7 @@ a {
   .listings {
     
     h6 {
-      margin-top: -40px;
+      margin-top: -25px;
     }
   }
 
