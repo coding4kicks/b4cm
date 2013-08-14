@@ -76,7 +76,6 @@ a {
 .main-col {
   display: inline-block;
   width: 70%;
-  margin-top: 5px;
 }
 
 .side-col {
@@ -460,7 +459,7 @@ a {
   .listings {
     
     h6 {
-      margin-top: -25px;
+      margin-top: -40px;
     }
   }
 
@@ -574,7 +573,11 @@ a {
     background-color: $acc-light;
     border-radius: 10px;
     padding: 10px 15px;
-    margin: 30px 0 0 0;
+
+    hr {
+      margin-top: 15px;
+      width: 640px;
+    }
   }
 
   .review-nums {
@@ -583,7 +586,7 @@ a {
 
   .add-review {
     float: right;
-    margin-top: -25px;
+    margin-top: -20px;
   }
 
   .nearby-type {
