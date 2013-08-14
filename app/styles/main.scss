@@ -615,6 +615,17 @@ a {
     }
   }
 
+  .more {
+
+    a { 
+      color: $text-dark;
+
+      &:hover {
+        color: $comp1-dark;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 /******************
