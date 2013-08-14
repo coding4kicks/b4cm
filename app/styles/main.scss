@@ -81,6 +81,7 @@ a {
 .side-col {
   display: inline-block;
   float: right;
+  width: 30%;
 }
 
 .emphasize {
@@ -124,6 +125,7 @@ a {
   border-radius: 10px;
   height: 180px;
   padding: 5px;
+  margin-left: 40px;
   text-align: center;
   width: 220px;
 
@@ -572,7 +574,7 @@ a {
   .reviews {
     background-color: $acc-light;
     border-radius: 10px;
-    padding: 10px 15px;
+    padding: 20px 15px;
 
     hr {
       margin-top: 15px;
@@ -589,11 +591,27 @@ a {
     margin-top: -20px;
   }
 
+  .find-nearby {
+    padding: 0 0 0 40px;
+    margin: 0 0 10px 0;
+
+    h3 {
+      display: inline-block;
+      margin: 0;
+    }
+  }
+
   .nearby-type {
-    
-    div, h3 {
+    padding: 0 0 5px 20px;
+
+    div, h4 {
       display: inline-block;
       margin: 10px;
+    }
+
+    .b4cm-icon {
+      height: 50px;
+      width: 50px;
     }
   }
 
