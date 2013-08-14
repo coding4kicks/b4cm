@@ -528,12 +528,21 @@ a {
 *******************/
 #spot-page {
 
+  .title-bar {
+    background-color: $acc-light;
+    border-radius: 10px;
+    padding: 10px 15px;
+  }
+
   .type {
     display: inline-block;
     padding: 10px;
   }
 
   .reviews {
+    background-color: $acc-light;
+    border-radius: 10px;
+    padding: 10px 15px;
     margin: 30px 0 0 0;
   }
 
