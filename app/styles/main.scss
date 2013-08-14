@@ -536,7 +536,30 @@ a {
 
   .type {
     display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
     padding: 10px;
+    text-align: center;
+  }
+
+  .type:nth-child(2) {
+    .b4cm-icon {
+      height:  50px;
+      width: 50px;
+    }
+    .type-text {
+      font-size: 10px;
+    }
+  }
+
+  .type:nth-child(3) {
+    .b4cm-icon {
+      height:  25px;
+      width: 25px;
+    }
+    .type-text {
+      font-size: 6px;
+    }
   }
 
   .reviews {
