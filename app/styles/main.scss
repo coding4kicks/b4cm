@@ -73,6 +73,17 @@ a {
   }
 }
 
+.main-col {
+  display: inline-block;
+  width: 70%;
+  margin-top: 5px;
+}
+
+.side-col {
+  display: inline-block;
+  float: right;
+}
+
 .emphasize {
   color: $comp2-dark;
 }
@@ -102,6 +113,7 @@ a {
 }
 
 .map {
+  background: black;
   height: 250px;
   width: 250px;
   text-align: center;
@@ -394,17 +406,6 @@ a {
 *** Listings Page 
 *******************/
 #listings-page {
-
-  .main-col {
-    display: inline-block;
-    width: 70%;
-    margin-top: 5px;
-  }
-
-  .side-col {
-    display: inline-block;
-    float: right;
-  }
 
   .title-bar {
     background-color: $acc-light;
