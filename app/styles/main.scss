@@ -188,6 +188,10 @@ a {
   }
 }
 
+textarea:focus,
+input[type='text']:focus {
+  border-color: $comp1-dark;
+}
 /******************
 *** NAVBAR
 *******************/
