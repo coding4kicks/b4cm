@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('b4cmApp')
-  .controller('ListingsCtrl', function ($scope, $location) {
+  .controller('ListingsCtrl', function ($scope, $log, $location) {
 
     $scope.findSpot = function() {
       $location.path("/spot");
@@ -29,7 +29,7 @@ angular.module('b4cmApp')
     },
       
     /** the initial zoom level of the map */
-    zoomProperty: 4,
+    zoomProperty: 10,
       
     /** list of markers to put in the map */
     markersProperty: [ {

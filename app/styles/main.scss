@@ -76,14 +76,14 @@ a {
 
 .main-col {
   display: inline-block;
-  width: 70%;
+  width: 67%;
 }
 
 .side-col {
   display: inline-block;
   float: right;
   padding: 0 5px;
-  width: 28%;
+  width: 31%;
 }
 
 .emphasize {
@@ -106,6 +106,11 @@ a {
   width: 75px;
 }
 
+.google-map {
+  img {
+    max-width: none;
+  }
+}
 // Food, Social, Study Icons
 .type-icon {
   background: black;
@@ -517,7 +522,7 @@ input[type='text']:focus {
 
     hr {
       margin-top: 15px;
-      width: 640px;
+      width: 100%;
     }
   }
 
