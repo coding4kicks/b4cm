@@ -17,25 +17,35 @@ angular.module('b4cmApp')
     
     position: {
       coords: {
-      latitude: 45,
-      longitude: -73
+      latitude: 37.447365,
+      longitude: -122.160248
       }
     },
     
     /** the initial center of the map */
     centerProperty: {
-      latitude: 45,
-      longitude: -73
+      latitude: 37.447365,
+      longitude: -122.160248
     },
       
     /** the initial zoom level of the map */
-    zoomProperty: 10,
+    zoomProperty: 14,
       
     /** list of markers to put in the map */
-    markersProperty: [ {
-      latitude: 45,
-      longitude: -74
-    }],
+    markersProperty: [
+      { latitude: 37.447365,
+        longitude: -122.160248,
+        infoWindow: "Peet's Coffee and Tea"
+      },
+      { latitude: 37.441838 ,
+        longitude: -122.161675,
+        infoWindow: "Philz Coffee"
+      },
+      { latitude: 37.446252,
+        longitude: -122.164073,
+        infoWindow: "Coupa Cafe"
+      }
+    ],
       
     // These 2 properties will be set when clicking on the map
     clickedLatitudeProperty: null,	
