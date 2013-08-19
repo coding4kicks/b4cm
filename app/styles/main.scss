@@ -862,57 +862,6 @@ input[type='text']:focus {
     color: $cf-empty;
   }
 
-  .empty-square {
-    background-color: $cf-empty;
-  }
-
-  .few {
-    color: $cf-few;
-  }
-
-  .few-square {
-    background-color: $cf-few;
-  }
-
-  .ave {
-    color: $cf-ave;
-  }
-
-  .ave-square {
-    background-color: $cf-ave;
-
-  }
-
-  .crowded {
-    color: $cf-crowded;
-  }
-
-  .crowded-square {
-    background-color: $cf-crowded;
-  }
-
-  .herd {
-    color: $cf-herd;
-  }
-
-  .herd-square {
-    background-color: $cf-herd;
-
-  }
-
-  .closed {
-    closed: $cf-closed;
-  }
-
-  .closed-square {
-    background-color: $cf-closed;
-  }
-
-  .empty-square, .few-square, .ave-square,
-  .crowded-square, .herd-square, .closed-square {
-    border: 1px solid black;
-  }
-
   .saturday-row {
     border-top: 2px solid $high-bright;
   }
