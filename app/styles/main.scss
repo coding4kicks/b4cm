@@ -14,6 +14,7 @@ $comp2-dark: #a53737;
 // Accents (grey)
 $acc-light: #dcdcdc;
 $acc-dark: #6e6e6e;
+$acc-med: #999999;
 
 // Highlight (yellow)
 $high-bright: #fafa37;
@@ -121,7 +122,8 @@ a {
 }
 
 .ad-book {
-  background: $acc-dark;
+  background: $acc-med;
+  border: 1px solid;
   border-radius: 10px;
   height: 180px;
   padding: 5px;
@@ -697,8 +699,8 @@ input[type='text']:focus {
   }
 
   .current-time {
-    background: #999999;
-    border: 1px solid black;
+    background: $acc-med;
+    border: 1px solid;
     border-radius: 5px;
     padding: 5px;
   }
