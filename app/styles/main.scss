@@ -200,6 +200,62 @@ textarea:focus,
 input[type='text']:focus {
   border-color: $comp1-dark;
 }
+
+.empty {
+  color: $cf-empty;
+}
+
+.empty-square {
+  background-color: $cf-empty;
+}
+
+.few {
+  color: $cf-few;
+}
+
+.few-square {
+  background-color: $cf-few;
+}
+
+.ave {
+  color: $cf-ave;
+}
+
+.ave-square {
+  background-color: $cf-ave;
+
+}
+
+.crowded {
+  color: $cf-crowded;
+}
+
+.crowded-square {
+  background-color: $cf-crowded;
+}
+
+.herd {
+  color: $cf-herd;
+}
+
+.herd-square {
+  background-color: $cf-herd;
+
+}
+
+.closed {
+  closed: $cf-closed;
+}
+
+.closed-square {
+  background-color: $cf-closed;
+}
+
+.empty-square, .few-square, .ave-square,
+.crowded-square, .herd-square, .closed-square {
+  border: 1px solid black;
+}
+
 /******************
 *** NAVBAR
 *******************/
@@ -493,6 +549,12 @@ input[type='text']:focus {
       float: left;
     }
 
+    .spot-pic {
+      display: inline-block;
+      padding: 0 5px;
+      margin-top: -95px;
+    }
+
     .info {
       padding: 0 0 0 5px;
 
@@ -510,7 +572,7 @@ input[type='text']:focus {
     }
 
     .box {
-      background: black;
+      //background: black;
       height: 30px;
       width: 30px;
     }
