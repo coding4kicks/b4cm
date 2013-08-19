@@ -135,9 +135,18 @@
     </div>
 
     <div class="side-col">
-      <div class="map">
-        Map
-      </div>
+	    <div class="google-map"
+        center="position.coords"
+        zoom="zoomProperty"
+        markers="markersProperty"
+        latitude="clickedLatitudeProperty"
+        longitude="clickedLongitudeProperty"
+        mark-click="true"
+        draggable="true"
+        fit="false"
+        events="eventsProperty"
+        style="height: 240px; width: 100%; border: 1px solid;">
+      </div> 
     </div>
   </div>
 </div>

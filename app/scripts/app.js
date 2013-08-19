@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('b4cmApp', [])
+angular.module('b4cmApp', ["google-maps"])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
