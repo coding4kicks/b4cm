@@ -697,7 +697,8 @@ input[type='text']:focus {
   }
 
   .current-time {
-    background: $acc-dark;
+    background: #999999;
+    border: 1px solid black;
     border-radius: 5px;
     padding: 5px;
   }
