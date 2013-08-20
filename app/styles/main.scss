@@ -638,11 +638,54 @@ input[type='text']:focus {
 
     .details-left {
       display: inline-block;
+
+      h2 {
+        margin-bottom: 10px;
+      }
+
+      h4 {
+        margin-left: 10px;
+      }
+
+      .rating {
+        margin-top: 20px;
+      }
     }
 
     .details-right {
       display: inline-block;
-      margin: 0 0 20px 20px;
+      margin: 0 0 0 20px;
+
+      h3 {
+        margin-bottom: 0;
+      }
+
+      .spot-types {
+        margin: 0 0 0 10px;
+      }
+    }
+
+    .text-ad {
+      background-color: $acc-med;
+      margin-top: 22px;
+      width: 100%;
+      
+      a {
+        color: $text-light;
+      }
+
+      h6 {
+        float: right;
+        padding-right: 10px;
+      }
+
+      h5 {
+        padding: 10px;
+      }
+
+      .author {
+        margin: -20px 0 0 40px;
+      }
     }
   }
 
