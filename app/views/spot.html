@@ -2,39 +2,59 @@
 
   <div class="title-bar clearfix">
     <div class="main-col">
-      <h2>Philz Coffee</h2>
-      <h4>101 Forest Ave.</h4>
-      <h4>Palo Alto, CA 94301</h4>
-      <div class="rating">
-        <div class="stars">
-          <img src="images/star-icon.png">
-          <img src="images/star-icon.png">
-          <img src="images/star-icon.png">
-          <img src="images/star-icon-half.png">
-          <img src="images/star-icon-empty.png">
+      <div class="details-left">
+        <h2>Philz Coffee</h2>
+        <h4>101 Forest Ave.</h4>
+        <h4>Palo Alto, CA 94301</h4>
+        <div class="rating">
+          <div class="stars">
+            <img src="images/star-icon.png">
+            <img src="images/star-icon.png">
+            <img src="images/star-icon.png">
+            <img src="images/star-icon-half.png">
+            <img src="images/star-icon-empty.png">
+          </div>
+          <div class="review-count">75 Reviews</div>
         </div>
-        <div class="review-count">75 Reviews</div>
       </div>
-      <div class="spot-types">
-        <div class="type">
-          <img class="b4cm-icon" src="../images/b4cm-icon-study.png">
-          <div class="type-text">Study</div>
+      <div class="details-right">
+        <div class="current-status">
+          <h4>Current Status:</h4>
+          <h3 class="status empty">Empty</h3>
         </div>
-        <div class="type">
-          <img class="b4cm-icon" src="../images/b4cm-icon-food.png">
-          <div class="type-text">Food</div>
+        <div class="spot-types">
+          <div class="type">
+            <img class="b4cm-icon" src="../images/b4cm-icon-study.png">
+            <div class="type-text">Study</div>
+          </div>
+          <div class="type">
+            <img class="b4cm-icon" src="../images/b4cm-icon-food.png">
+            <div class="type-text">Food</div>
+          </div>
+          <div class="type">
+            <img class="b4cm-icon" src="../images/b4cm-icon-social.png">
+            <div class="type-text">Social</div>
+          </div>
         </div>
-        <div class="type">
-          <img class="b4cm-icon" src="../images/b4cm-icon-social.png">
-          <div class="type-text">Social</div>
-        </div>
+      </div>
+      <div class="text-add">
+        Ad
       </div>
     </div>
 
     <div class="side-col">
-      <div class="map">
-        Map
-      </div>
+	    <div class="google-map"
+        center="position.coords"
+        zoom="zoomProperty"
+        markers="markersProperty"
+        latitude="clickedLatitudeProperty"
+        longitude="clickedLongitudeProperty"
+        mark-click="true"
+        draggable="true"
+        fit="false"
+        events="eventsProperty"
+        style="height: 300px; width: 280; border: 1px solid;">
+      </div> 
     </div>
   </div>
 

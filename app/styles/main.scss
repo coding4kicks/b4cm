@@ -635,6 +635,15 @@ input[type='text']:focus {
     background-color: $acc-light;
     border-radius: 10px;
     padding: 10px 15px;
+
+    .details-left {
+      display: inline-block;
+    }
+
+    .details-right {
+      display: inline-block;
+      margin: 0 0 20px 20px;
+    }
   }
 
   .type {
