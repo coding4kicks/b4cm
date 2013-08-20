@@ -537,9 +537,12 @@ input[type='text']:focus {
   }
 
   .listing {
-
     margin: 0 0 10px 0;
     padding: 0 10px;
+
+    &:hover {
+      cursor: pointer;
+    }
 
     h4, h5 {
       margin: 0px;
@@ -561,10 +564,6 @@ input[type='text']:focus {
 
     .info {
       padding: 0 0 0 5px;
-
-      &:hover {
-        cursor: pointer;
-      }
     }
 
     .watchers {
