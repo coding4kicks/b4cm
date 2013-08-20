@@ -727,6 +727,7 @@ input[type='text']:focus {
   .reviews {
     background-color: $acc-light;
     border-radius: 10px;
+    min-height: 400px;
     padding: 20px 15px;
 
     hr {
@@ -760,7 +761,7 @@ input[type='text']:focus {
   }
 
   .find-nearby {
-    padding: 0 0 0 40px;
+    padding: 0 0 0 70px;
     margin: 0 0 10px 0;
 
     h3 {
