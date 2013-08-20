@@ -576,9 +576,15 @@ input[type='text']:focus {
     }
 
     .box {
-      //background: black;
       height: 30px;
       width: 30px;
+
+      h6 {
+        display: inline;
+        float: left;
+        font-size: 10px;
+        margin: 15px 0 0 2px;
+      }
     }
 
     .watchers {
