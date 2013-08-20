@@ -11,15 +11,15 @@ angular.module('b4cmApp')
     
     position: {
       coords: {
-      latitude: 37.447365,
-      longitude: -122.160248
+      latitude: 37.441838 ,
+      longitude: -122.161675
       }
     },
     
     /** the initial center of the map */
     centerProperty: {
-      latitude: 37.447365,
-      longitude: -122.160248
+      latitude: 37.441838 ,
+      longitude: -122.161675
     },
       
     /** the initial zoom level of the map */

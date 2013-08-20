@@ -739,6 +739,21 @@ input[type='text']:focus {
     margin-bottom: -10px;
   }
 
+  .review {
+
+    .user {
+      display: inline-block;
+      margin: 10px 0 0 0;
+    }
+
+    .info {
+      display: inline-block;
+      float: right;
+      padding: 8px 10px 0 0;
+      width: 85%;
+    }
+  }
+
   .add-review {
     float: right;
     margin-top: -20px;
