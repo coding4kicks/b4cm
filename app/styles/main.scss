@@ -852,10 +852,6 @@ input[type='text']:focus {
     margin-bottom: 0;
   }
 
-  select {
-    width: 100px;
-  }
-
   .clickable {
     color: $comp2-dark;
     padding-left: 5px;
@@ -865,10 +861,21 @@ input[type='text']:focus {
       color: $comp1-dark; 
     }
   }
-  //.add-rev-btn {
-  //  margin-bottom: 0;
-  //  padding: 0 0 10px 0;
-  //}
+}
+
+#add-review-page {
+  select {
+    width: 50px;
+  }
+}
+
+#add-watch-page {
+
+}
+#add-spot-page {
+  select {
+    width: 100px;
+  }
 }
 
 /******************
