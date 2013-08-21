@@ -42,8 +42,34 @@ angular.module('b4cmApp')
             }
           },
           {
+            'author': {
+              'id': '1235',
+              'name': 'Jack O.',
+              'pic': '../images/peeps2.jpg'
+            },
+            'date': 'Tuesday, June 10th, 2013',
+            'rating': 3.5,
+            'writeup': 'The only coffee shop were ordering a black coffee is seen as a faux paus.',
+            'type': {
+              'food': 0,
+              'study': 1,
+              'social': 0
+            }
           },
           {
+            'author': {
+              'id': '1234',
+              'name': 'Whiny B.',
+              'pic': '../images/peeps3.jpg'
+            },
+            'date': 'Tuesday, Jul 10th, 2012',
+            'rating': 3.5,
+            'writeup': 'Worth the hyp. Mint leaves in my mint coffe make me happy. Afterwards I get a coffee headache.',
+            'type': {
+              'food': 1,
+              'study': 0,
+              'social': 0
+            }
           }
         ],
         'crowdfactor': {
