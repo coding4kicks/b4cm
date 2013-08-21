@@ -10,19 +10,24 @@ angular.module('b4cmApp')
 
     // Public API here
     return {
+      addReview: function () {
+        return false;
+      },
+      addWatch: function () {
+        return false;
+      },
       create: function () {
         return false;
       },
       edit: function () {
         return false;
       },
-      remove: function () {
-        return false;
-      },
       get: function () {
         return false;
+      },
+      remove: function () {
+        return false;
       }
-
      
 
       //someMethod: function () {
