@@ -6,7 +6,6 @@ angular.module('b4cmApp')
     // ...
 
     var spot = {};
-    //var meaningOfLife = 42;
 
     // Public API here
     return {
@@ -28,11 +27,5 @@ angular.module('b4cmApp')
       remove: function () {
         return false;
       }
-     
-
-      //someMethod: function () {
-      //  return meaningOfLife;
-      //}
-      
     };
   });

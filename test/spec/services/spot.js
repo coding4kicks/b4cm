@@ -11,8 +11,28 @@ describe('Service: spot', function () {
     spot = _spot_;
   }));
 
-  it('should do something', function () {
-    expect(!!spot).toBe(true);
+  it('addReview should return false', function () {
+    expect(spot.create()).toBe(false);
   });
 
+  it('addWatch should return false', function () {
+    expect(spot.create()).toBe(false);
+  });
+  
+  it('create should return false', function () {
+    expect(spot.create()).toBe(false);
+  });
+
+  it('edit should return false', function () {
+    expect(spot.create()).toBe(false);
+  });
+
+  it('get should return false', function () {
+    expect(spot.create()).toBe(false);
+  });
+
+  it('remove should return false', function () {
+    expect(spot.create()).toBe(false);
+  });
+  
 });
