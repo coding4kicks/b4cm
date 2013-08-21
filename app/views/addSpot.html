@@ -9,6 +9,13 @@
       </div>
     </div>
     <div class="control-group">
+      <label class="control-label" for="inputYelpId">Yelp ID</label>
+      <div class="controls">
+        <input type="text" id="inputYelpId" placeholder="Yelp ID">
+        <a class="clickable" ng-click="yelpIdHelp()">What's This?</a>
+      </div>
+    </div>
+    <div class="control-group">
       <label class="control-label" for="inputAddress">Address</label>
       <div class="controls">
         <input type="text" id="inputAddress" placeholder="Address">
@@ -160,7 +167,7 @@
           <option>11:00 pm</option>
           <option>11:30 pm</option>
         </select>
-        <button class="btn">Add Hours</button>        
+        <a class="clickable" ng-click="addHours()">Add Hours</a>        
       </div>
     </div>
 

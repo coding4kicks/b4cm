@@ -2,6 +2,13 @@
 
 angular.module('b4cmApp')
   .controller('SpotCtrl', function ($scope) {
+  
+  $scope.addWatch = function() {
+    $location.path("/addWatch");
+    // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
+    if(!$scope.$$phase) { $scope.$apply(); }
+  };
+
 
   // Enable the new Google Maps visuals until it gets enabled by default.
   // See http://googlegeodevelopers.blogspot.ca/2013/05/a-fresh-new-look-for-maps-api-for-all.html

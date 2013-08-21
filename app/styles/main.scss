@@ -818,12 +818,14 @@ input[type='text']:focus {
 }
 
 /******************
-*** Add Review Page 
+*** Add Review/Watch/Spot Page 
 *******************/
-#add-review-page {
+#add-review-page,
+#add-watch-page,
+#add-spot-page {
   background-color: $acc-light;
   border-radius: 10px;
-  padding: 10px 0 0 20px;
+  padding: 10px 0 10px 20px;
 
   h3 {
     margin: 0;
@@ -841,6 +843,32 @@ input[type='text']:focus {
   textarea {
     width: 600px;
   }
+
+  form {
+    margin-bottom: 0;
+  }
+
+  .control-group:last-of-type {
+    margin-bottom: 0;
+  }
+
+  select {
+    width: 100px;
+  }
+
+  .clickable {
+    color: $comp2-dark;
+    padding-left: 5px;
+
+    &:hover {
+      cursor: pointer;
+      color: $comp1-dark; 
+    }
+  }
+  //.add-rev-btn {
+  //  margin-bottom: 0;
+  //  padding: 0 0 10px 0;
+  //}
 }
 
 /******************
