@@ -2,9 +2,17 @@
 
 angular.module('b4cmApp')
   .controller('AddSpotCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+
+    $scope.addHours = function() {
+      alert("here");
+    };
+
+    $scope.addSpot = function() {
+      alert("here");
+    };
+
+    $scope.yelpIdHelp = function() {
+      alert("here");
+    };
+
   });
