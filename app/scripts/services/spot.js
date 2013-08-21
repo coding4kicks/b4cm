@@ -5,16 +5,29 @@ angular.module('b4cmApp')
     // Service logic
     // ...
 
-    //var spot = {};
-    var meaningOfLife = 42;
+    var spot = {};
+    //var meaningOfLife = 42;
 
     // Public API here
     return {
-
-
-      someMethod: function () {
-        return meaningOfLife;
+      create: function () {
+        return false;
+      },
+      edit: function () {
+        return false;
+      },
+      remove: function () {
+        return false;
+      },
+      get: function () {
+        return false;
       }
+
+     
+
+      //someMethod: function () {
+      //  return meaningOfLife;
+      //}
       
     };
   });
