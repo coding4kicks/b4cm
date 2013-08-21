@@ -16,4 +16,6 @@ describe('Controller: MainCtrl', function () {
     });
   }));
 
+  it('expect nothing', function () { 
+  });
 });

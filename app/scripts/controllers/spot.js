@@ -12,7 +12,11 @@ angular.module('b4cmApp')
 
   // Enable the new Google Maps visuals until it gets enabled by default.
   // See http://googlegeodevelopers.blogspot.ca/2013/05/a-fresh-new-look-for-maps-api-for-all.html
-  google.maps.visualRefresh = true;
+  // Add test for existance so doesn't blow up unit tests
+  if (typeof google !== "undefined") {
+    google.maps.visualRefresh = true;
+  }
+
 
   angular.extend($scope, {
     
