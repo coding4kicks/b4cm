@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('b4cmApp')
-  .controller('SpotCtrl', function ($scope) {
+  .controller('SpotCtrl', function ($scope, $location) {
   
   $scope.addWatch = function() {
     $location.path("/addWatch");

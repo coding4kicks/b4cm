@@ -836,7 +836,7 @@ input[type='text']:focus {
   }
 
   .control-label {
-    width: 80px;
+    width: 90px;
     margin: 0 10px 0 0;
   }
 
@@ -870,8 +870,15 @@ input[type='text']:focus {
 }
 
 #add-watch-page {
+  select {
+    width: 100px;
+  }
 
+  input[type="text"] {
+    width: 50px;
+  }
 }
+
 #add-spot-page {
   select {
     width: 100px;
