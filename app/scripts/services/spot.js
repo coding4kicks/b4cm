@@ -148,7 +148,7 @@ angular.module('b4cmApp')
         return false;
       },
       get: function () {
-        return false;
+        return fakeSpot;
       },
       remove: function () {
         return false;

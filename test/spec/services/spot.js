@@ -12,11 +12,11 @@ describe('Service: spot', function () {
   }));
 
   it('addReview should return false', function () {
-    expect(spot.create()).toBe(false);
+    expect(spot.addReview()).toBe(false);
   });
 
   it('addWatch should return false', function () {
-    expect(spot.create()).toBe(false);
+    expect(spot.addWatch()).toBe(false);
   });
   
   it('create should return false', function () {
@@ -24,15 +24,15 @@ describe('Service: spot', function () {
   });
 
   it('edit should return false', function () {
-    expect(spot.create()).toBe(false);
+    expect(spot.edit()).toBe(false);
   });
 
   it('get should return false', function () {
-    expect(spot.create()).toBe(false);
+    expect(spot.get().id).toBe('123');
   });
 
   it('remove should return false', function () {
-    expect(spot.create()).toBe(false);
+    expect(spot.remove()).toBe(false);
   });
   
 });

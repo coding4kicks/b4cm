@@ -3,16 +3,12 @@
   <div class="title-bar clearfix">
     <div class="main-col">
       <div class="details-left">
-        <h2>Philz Coffee</h2>
-        <h4>101 Forest Ave.</h4>
-        <h4>Palo Alto, CA 94301</h4>
+        <h2>{{spot.name}}</h2>
+        <h4>{{spot.location.address}}</h4>
+        <h4>{{spot.location.city}}, {{spot.location.state_code}} {{spot.location.postal_code}}</h4>
         <div class="rating">
           <div class="stars">
-            <img src="images/star-icon.png">
-            <img src="images/star-icon.png">
-            <img src="images/star-icon.png">
-            <img src="images/star-icon-half.png">
-            <img src="images/star-icon-empty.png">
+            <img ng-repeat="star in stars" ng-src="{{star}}">
           </div>
           <div class="review-count">75 Reviews</div>
         </div>
