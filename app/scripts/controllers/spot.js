@@ -35,7 +35,6 @@ angular.module('b4cmApp')
     font = Math.sqrt(total_font_size * ($scope.spot.type.social/total_count));
     $scope.types.push(["../images/b4cm-icon-social.png", "Social", size, font]);
     $scope.types.sort(function(a, b) {return b[2] - a[2]});
-    console.log($scope.types);
 
     // Enable the new Google Maps visuals until it gets enabled by default.
     // See http://googlegeodevelopers.blogspot.ca/2013/05/a-fresh-new-look-for-maps-api-for-all.html
@@ -43,46 +42,43 @@ angular.module('b4cmApp')
     if (typeof google !== "undefined") {
       google.maps.visualRefresh = true;
     }
-
-    angular.extend($scope, {
-      
-      position: {
-        coords: {
-        latitude: 37.441838 ,
-        longitude: -122.161675
-        }
-      },
-      
-      /** the initial center of the map */
-      centerProperty: {
-        latitude: 37.441838 ,
-        longitude: -122.161675
-      },
-        
-      /** the initial zoom level of the map */
-      zoomProperty: 14,
-        
-      /** list of markers to put in the map */
-      markersProperty: [
-        { latitude: 37.441838 ,
-          longitude: -122.161675,
-          infoWindow: "Philz Coffee",
-          icon : {url: "../images/marker-icon1.png"}
-        },
-      ],
-        
-      // These 2 properties will be set when clicking on the map
-      clickedLatitudeProperty: null,	
-      clickedLongitudeProperty: null,
-        
-      eventsProperty: {
-        click: function (mapModel, eventName, originalEventArgs) {	
-          // 'this' is the directive's scope
-          $log.log("user defined event on map directive with scope", this);
-          $log.log("user defined event: " + eventName, mapModel, originalEventArgs);
-        }
+    
+    $scope.position = {
+      'coords': {
+        'latitude': $scope.spot.location.latitude,
+        'longitude': $scope.spot.location.longitude
       }
-    });
+    };
+
+    /** the initial center of the map */
+    $scope.centerProperty = {
+      'latitude': $scope.spot.location.latitude,
+      'longitude': $scope.spot.location.longitude
+    };
+
+    /** the initial zoom level of the map */
+    $scope.zoomProperty = 14;
+
+    /** list of markers to put in the map */
+    $scope.markersProperty = [
+      { 'latitude': $scope.spot.location.latitude,
+        'longitude': $scope.spot.location.longitude,
+        'infoWindow': $scope.spot.name,
+        'icon' : {'url': "../images/marker-icon1.png"}
+      },
+    ];
+        
+    // These 2 properties will be set when clicking on the map
+    $scope.clickedLatitudeProperty = null;
+    $scope.clickedLongitudeProperty = null;
+        
+    $scope.eventsProperty = {
+      'click': function (mapModel, eventName, originalEventArgs) {	
+        // 'this' is the directive's scope
+        $log.log("user defined event on map directive with scope", this);
+        $log.log("user defined event: " + eventName, mapModel, originalEventArgs);
+      }
+    };
 
     /**
      * @name addWatch
