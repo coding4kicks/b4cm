@@ -10,6 +10,8 @@ angular.module('b4cmApp')
    */ 
   .controller('SpotCtrl', function ($scope, $location, spot) {
 
+    var cfLabels = ['Empty', 'Few', 'Average', 'Crowded', 'Herd'];
+
     $scope.spot = spot.get(); // Load spot information
 
     $scope.stars = []; // Array of URLs for rating visuals
@@ -40,12 +42,30 @@ angular.module('b4cmApp')
     var current_date = new Date(),
         weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     
+    // Get current time info
     $scope.current_day = weekday[current_date.getDay()];
     $scope.current_hour = current_date.getHours() % 12;
     if ($scope.current_hour === 0) {$scope.current_hour = 12};
     $scope.current_meridiem = (current_date.getHours - 12 < 0) ? 'am' : 'pm';
     $scope.current_minutes = current_date.getMinutes();
-    
+
+    // Get status
+    var time_delta = (current_date.getTime() - $scope.spot.crowdfactor.most_recent.time) / 60 / 1000;
+    if (time_delta < 60) {
+      $scope.current_status = Math.round(time_delta) + ' minutes ago';
+      $scope.current_cflabel = cfLabels[$scope.spot.crowdfactor.most_recent.score - 1];
+    }
+    else {
+      $scope.current_status = 'historical';
+      var time_label = $scope.current_hour + $scope.current_meridiem,
+          count = $scope.spot.crowdfactor.days[$scope.current_day.toLowerCase()][time_label].count,
+          score = $scope.spot.crowdfactor.days[$scope.current_day.toLowerCase()][time_label].score;
+      if (count === -1){ $scope.current_cflabel = 'Closed' }
+      else {
+        $scope.current_cflabel = cfLabels[Math.round(score/count) - 1];
+      }
+    }
+        
     /**
      * GOOGLE MAPS
      */

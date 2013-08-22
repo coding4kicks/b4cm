@@ -18,7 +18,8 @@
 
       <div class="details-right">
         <div class="current-status">
-          <h3>Current Status: <span class="status empty">Empty</span></h3>
+          <h3>Current Status: <span class="status {{current_cflabel | lowercase}}">{{current_cflabel}}</span></h3>
+          <h5>({{current_status}})</h5>
         </div>
         <div class="spot-types">
           <div class="type" ng-repeat="type in types">
