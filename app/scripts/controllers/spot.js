@@ -58,8 +58,8 @@ angular.module('b4cmApp')
     else {
       $scope.current_status = 'historical';
       var time_label = $scope.current_hour + $scope.current_meridiem,
-          count = $scope.spot.crowdfactor.days[$scope.current_day.toLowerCase()][time_label].count,
-          score = $scope.spot.crowdfactor.days[$scope.current_day.toLowerCase()][time_label].score;
+          count = $scope.spot.crowdfactor.day[$scope.current_day.toLowerCase()][time_label].count,
+          score = $scope.spot.crowdfactor.day[$scope.current_day.toLowerCase()][time_label].score;
       if (count === -1){ $scope.current_cflabel = 'Closed' }
       else {
         $scope.current_cflabel = cfLabels[Math.round(score/count) - 1];

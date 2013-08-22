@@ -76,7 +76,7 @@ angular.module('b4cmApp')
           'total': 732,
           'most_recent': {'time': 1377150514232, 'score': 4},
           'blocks': {'morning':true, 'afternoon':true, 'evening':true, 'latenight':false},
-          'days': { 
+          'day': { 
             'monday': {
               '12am': {'count': -1, 'score': -1},
               '1am': {'count': -1, 'score': -1},
