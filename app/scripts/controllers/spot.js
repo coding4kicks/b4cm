@@ -36,6 +36,20 @@ angular.module('b4cmApp')
     $scope.types.push(["../images/b4cm-icon-social.png", "Social", size, font]);
     $scope.types.sort(function(a, b) {return b[2] - a[2]});
 
+    // Hack: should use GMT and Timezone, vice users machine.
+    var current_date = new Date(),
+        weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    
+    $scope.current_day = weekday[current_date.getDay()];
+    $scope.current_hour = current_date.getHours() % 12;
+    if ($scope.current_hour === 0) {$scope.current_hour = 12};
+    $scope.current_meridiem = (current_date.getHours - 12 < 0) ? 'am' : 'pm';
+    $scope.current_minutes = current_date.getMinutes();
+    
+    /**
+     * GOOGLE MAPS
+     */
+
     // Enable the new Google Maps visuals until it gets enabled by default.
     // See http://googlegeodevelopers.blogspot.ca/2013/05/a-fresh-new-look-for-maps-api-for-all.html
     // Add test for existance so doesn't blow up unit tests
