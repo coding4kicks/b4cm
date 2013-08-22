@@ -10,17 +10,32 @@ angular.module('b4cmApp')
    */ 
   .controller('SpotCtrl', function ($scope, $location, spot) {
 
-    // Load spot information
-    $scope.spot = spot.get();
+    $scope.spot = spot.get(); // Load spot information
 
-    // Create star array for rating visual
-    $scope.stars = [];
+    $scope.stars = []; // Array of URLs for rating visuals
     for (var i = 1; i <= 5; i++) {
       if (i < $scope.spot.rating) {$scope.stars.push("images/star-icon.png")}
       else if (0.25 < (i - $scope.spot.rating) && (i - $scope.spot.rating) < 0.75) {
         $scope.stars.push("images/star-icon-half.png")}
       else {$scope.stars.push("images/star-icon-empty.png")}
     }
+
+    $scope.types = []; // Array of types/weighting for this spot
+    var total_icon_size = 5625, // 75 x 75 max icon size
+        total_font_size = 324, // 18 max font size
+        total_count = $scope.spot.type.food + $scope.spot.type.study + $scope.spot.type.social,
+        size, font;
+    size = Math.sqrt(total_icon_size * ($scope.spot.type.food/total_count));
+    font = Math.sqrt(total_font_size * ($scope.spot.type.food/total_count));
+    $scope.types.push(["../images/b4cm-icon-food.png", "Food", size, font]);
+    size = Math.sqrt(total_icon_size * ($scope.spot.type.study/total_count));
+    font = Math.sqrt(total_font_size * ($scope.spot.type.study/total_count));
+    $scope.types.push(["../images/b4cm-icon-study.png", "Study", size, font]);
+    size = Math.sqrt(total_icon_size * ($scope.spot.type.social/total_count));
+    font = Math.sqrt(total_font_size * ($scope.spot.type.social/total_count));
+    $scope.types.push(["../images/b4cm-icon-social.png", "Social", size, font]);
+    $scope.types.sort(function(a, b) {return b[2] - a[2]});
+    console.log($scope.types);
 
     // Enable the new Google Maps visuals until it gets enabled by default.
     // See http://googlegeodevelopers.blogspot.ca/2013/05/a-fresh-new-look-for-maps-api-for-all.html
@@ -68,7 +83,6 @@ angular.module('b4cmApp')
         }
       }
     });
-
 
     /**
      * @name addWatch
