@@ -1,9 +1,20 @@
 'use strict';
 
 angular.module('b4cmApp')
-  .controller('ListingsCtrl', function ($scope, $log, $location) {
+  .controller('ListingsCtrl', function ($scope, $log, $location, listings, spot) {
 
-   // Initialize google maps parameters for listings page
+    // Get listings
+    $scope.listings = listings.get();
+    var spots = [];
+    $scope.listings.spots.forEach(function(geohash) {
+      var spot_id = geohash[Object.keys(geohash)[0]],
+          spot_obj = spot.get(spot_id);
+      spots.push(spot_obj);
+    });
+    console.log(spots);
+    
+
+    // Initialize google maps parameters for listings page
     _initializeGoogleMapsListings($scope);
 
     /**
@@ -40,11 +51,6 @@ function _initializeGoogleMapsListings($scope) {
   if (typeof google !== "undefined") {
     google.maps.visualRefresh = true;
   }
-
-  $scope.listings = {};
-  $scope.listings.location = {};
-  $scope.listings.location.latitude = 37.447365;
-  $scope.listings.location.longitude =-122.160248;
 
   $scope.listings.spots = [];
   var spot1 = {},

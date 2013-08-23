@@ -20,7 +20,7 @@ describe('Service: listings', function () {
   });
 
   it('get should return false', function () {
-    expect(listings.get().length).toBe(0);
+    expect(listings.get().spots.length).toBe(3);
   });
 
   it('remove should return false', function () {
