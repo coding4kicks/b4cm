@@ -3,9 +3,16 @@
 angular.module('b4cmApp')
   .controller('ListingsCtrl', function ($scope, $log, $location) {
 
-    _initializeGoogleMaps($scope);
+   // Initialize google maps parameters for listings page
+    _initializeGoogleMapsListings($scope);
 
-    $scope.findSpot = function() {
+    /**
+     * @name getSpot
+     * @function
+     *
+     * @description Redirects to spot-page.
+     */ 
+    $scope.getSpot = function() {
       $location.path("/spot");
       // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
       if(!$scope.$$phase) { $scope.$apply(); }
@@ -18,14 +25,14 @@ angular.module('b4cmApp')
  ***************/
 
 /**
- * @name _initializeGoogleMaps
+ * @name _initializeGoogleMapsListings
  * @procedure
  *
- * @description Initialize parameters for google maps directive.
+ * @description Initialize parameters for google maps directive on listings-page.
  * @params {object} $scope Controller's scope.
  * @returns {nothing} Procedure has side effects on scope.
  */ 
-function _initializeGoogleMaps($scope) {
+function _initializeGoogleMapsListings($scope) {
 
   // Enable the new Google Maps visuals until it gets enabled by default.
   // See http://googlegeodevelopers.blogspot.ca/2013/05/a-fresh-new-look-for-maps-api-for-all.html
