@@ -20,24 +20,10 @@ angular.module('b4cmApp')
       $scope.spot.reviews[j].stars = _calculateStars($scope.spot.reviews[j].rating);
     }
 
+    // Calculate weighting for each type of spot
     $scope.types = _weightTypes($scope.spot.type.food,
                                 $scope.spot.type.study,
                                 $scope.spot.type.social);
-   // $scope.types = []; // Array of types/weighting for this spot
-   // var total_icon_size = 5625, // 75 x 75 max icon size
-   //     total_font_size = 324, // 18 max font size
-   //     total_count = $scope.spot.type.food + $scope.spot.type.study + $scope.spot.type.social,
-   //     size, font;
-   // size = Math.sqrt(total_icon_size * ($scope.spot.type.food/total_count));
-   // font = Math.sqrt(total_font_size * ($scope.spot.type.food/total_count));
-   // $scope.types.push(["../images/b4cm-icon-food.png", "Food", size, font]);
-   // size = Math.sqrt(total_icon_size * ($scope.spot.type.study/total_count));
-   // font = Math.sqrt(total_font_size * ($scope.spot.type.study/total_count));
-   // $scope.types.push(["../images/b4cm-icon-study.png", "Study", size, font]);
-   // size = Math.sqrt(total_icon_size * ($scope.spot.type.social/total_count));
-   // font = Math.sqrt(total_font_size * ($scope.spot.type.social/total_count));
-   // $scope.types.push(["../images/b4cm-icon-social.png", "Social", size, font]);
-   // $scope.types.sort(function(a, b) {return b[2] - a[2]});
 
     $scope.blocks = [] // Datastructure to display crowd factor.
     var BLOCK_HOURS = {'morning': ['5am', '6am', '7am', '8am', '9am', '10am'],
@@ -224,8 +210,8 @@ angular.module('b4cmApp')
  * @description Calculates an array of URLs to star pictures.
  *              URL is based upon the passed in rating.
  *              URL points to either full, half or empty star.
- * @param {float} rating Reviews star rating
- * @returns {array} Array of URLs to star pictures
+ * @param {float} rating Review's star rating.
+ * @returns {array} Array of URLs to star pictures.
  */ 
 function _calculateStars(rating) {
   var stars = [];
@@ -238,21 +224,46 @@ function _calculateStars(rating) {
   return stars;
 }
 
+/**
+ * @name _weightTypes
+ * @function
+ *
+ * @description Determines what percent of total each type represents.
+ *              Used to adjust type icon and text size.
+ * @param {integer} food Number of votes for food type.
+ * @param {integer} study Number of votes for study type.
+ * @param {integer} social Number of votes for social type.
+ * @returns {array} Sorted array of icon URLs, type name, icon size, and font size.
+ */ 
 function _weightTypes(food, study, social) {
-  var types = [], // Array of types/weighting for this spot
-      total_icon_size = 5625, // 75 x 75 max icon size
-      total_font_size = 324, // 18 max font size
-      total_count = food + study + social,
-      size, font;
-  size = Math.sqrt(total_icon_size * (food/total_count));
-  font = Math.sqrt(total_font_size * (food/total_count));
-  types.push(["../images/b4cm-icon-food.png", "Food", size, font]);
-  size = Math.sqrt(total_icon_size * (study/total_count));
-  font = Math.sqrt(total_font_size * (study/total_count));
-  types.push(["../images/b4cm-icon-study.png", "Study", size, font]);
-  size = Math.sqrt(total_icon_size * (social/total_count));
-  font = Math.sqrt(total_font_size * (social/total_count));
-  types.push(["../images/b4cm-icon-social.png", "Social", size, font]);
+  var types = [],
+      total_count = food + study + social;
+  types.push(_calculateTypeWeight(food, 'Food', total_count));
+  types.push(_calculateTypeWeight(study, 'Study', total_count));
+  types.push(_calculateTypeWeight(social, 'Social', total_count));
   types.sort(function(a, b) {return b[2] - a[2]});
   return types;
 }
+
+/**
+ * @name _calculateTypeWeights
+ * @function
+ *
+ * @description Determine the weight for a single type.
+ *              Construct array of type display parameters.
+ * @param {integer} count Count for a particular type.
+ * @param {string} label Name of type.
+ * @param {integer} total Sum of counts for all types.
+ * @returns {array} Array of type parameters: URL, type name, icon size, and font size.
+ */ 
+function _calculateTypeWeight(count, label, total) {
+  var total_icon_size = 5625, // 75 x 75 max icon size
+      total_font_size = 324, // 18 max font size
+      url, size, font;
+  url = "../images/b4cm-icon-" + label.toLowerCase() + ".png";
+  size = Math.sqrt(total_icon_size * (count/total));
+  font = Math.sqrt(total_font_size * (count/total));
+  return [url, label, size, font];
+}
+
+
