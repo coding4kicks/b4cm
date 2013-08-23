@@ -129,10 +129,10 @@
 
       <div class="review-list">
 
-        <div class="review">
+        <div class="review" ng-repeat="review in spot.reviews">
           <div class="user">
-            <img src="../images/peeps1.jpg">
-            <h5 class="title">Steve S.</h5>
+            <img src="{{review.author.pic}}">
+            <h5 class="title">{{review.author.name}}</h5>
           </div>
           <div class="info"> 
             <div class="rating">
@@ -144,47 +144,7 @@
                 <img src="images/star-icon-empty.png">
               </div>
             </div>
-            <p>Tesora = King of Coffee</p>
-          </div>
-          <hr>
-        </div>
-
-        <div class="review">
-          <div class="user"> 
-            <img src="../images/peeps2.jpg">
-            <h5 class="title">Jack O.</h5>
-          </div>
-          <div class="info">
-            <div class="rating">
-              <div class="stars">
-                <img src="images/star-icon.png">
-                <img src="images/star-icon.png">
-                <img src="images/star-icon.png">
-                <img src="images/star-icon-half.png">
-                <img src="images/star-icon-empty.png">
-              </div>
-            </div>
-            <p>The only coffee shop were ordering a black coffee is seen as a faux paus.</p>
-          </div>
-          <hr>
-        </div>
-
-        <div class="review">
-          <div class="user">
-            <img src="../images/peeps3.jpg">
-            <h5 class="title">Whiny B.</h5>
-          </div>
-          <div class="info"> 
-            <div class="rating">
-              <div class="stars">
-                <img src="images/star-icon.png">
-                <img src="images/star-icon.png">
-                <img src="images/star-icon.png">
-                <img src="images/star-icon-half.png">
-                <img src="images/star-icon-empty.png">
-              </div>
-            </div>
-            <p>Worth the hyp.  Mint leaves in my mint coffe make me happy.  Afterwards I get a coffee headache.</p>
+            <p>{{review.writeup}}</p>
           </div>
           <hr>
         </div>
