@@ -25,48 +25,51 @@ angular.module('b4cmApp')
                                 $scope.spot.type.study,
                                 $scope.spot.type.social);
 
-    $scope.blocks = [] // Datastructure to display crowd factor.
-    var BLOCK_HOURS = {'morning': ['5am', '6am', '7am', '8am', '9am', '10am'],
-                       'afternoon': ['11am', '12pm', '1pm', '2pm', '3pm', '4pm'],
-                       'evening': ['5pm', '6pm', '7pm', '8pm', '9pm', '10pm'],
-                       'latenight': ['11pm', '12am', '1am', '2am', '3am', '4am']
-                      },
-        DAYS = {'monday': 'M', 'tuesday': 'T', 'wednesday': 'W', 'thursday': 'Th',
-                'friday': 'F', 'saturday': 'Sa', 'sunday': 'Su'};
-    for (var block_name in $scope.spot.crowdfactor.blocks) {
-      if($scope.spot.crowdfactor.blocks[block_name]) {
-        var block = {};
-        block.name = block_name;
-        block.hours = [];
-        block.days = [];
-        for (var i = 0; i < BLOCK_HOURS[block_name].length; i++) {
-          block.hours.push(BLOCK_HOURS[block_name][i].slice(0,-2));
-        }
-        for (var day_name in DAYS) {
-          var day = {};
-          day.name = day_name;
-          day.label = DAYS[day_name];
-          day.hours = [];
-          for (var i = 0; i < BLOCK_HOURS[block_name].length; i++) {
-            var hour = {},
-                hr = BLOCK_HOURS[block_name][i],
-                spot_info = $scope.spot.crowdfactor.day[day_name][hr],
-                cf_score = spot_info.score / spot_info.count;
-            if (spot_info.score < 0) {hour.cf_status = 'closed'}
-            else if (cf_score < .5) {hour.cf_status = 'empty';} 
-            else if (cf_score < 2.5) {hour.cf_status = 'few';}
-            else if (cf_score < 3.5) {hour.cf_status = 'ave';}
-            else if (cf_score < 4.5) {hour.cf_status = 'crowded';}
-            else if (cf_score <= 5) {hour.cf_status = 'herd';}
-            else {console.log('Error in status update for ' + day_name + ' at ' + hr);}
-            hour.label = hr;
-            day.hours.push(hour);
-          }
-          block.days.push(day);
-        }
-        $scope.blocks.push(block);
-      };
-    }
+    $scope.blocks = _constructCrowdFactor($scope.spot.crowdfactor.blocks,
+                                          $scope.spot.crowdfactor.day);
+
+   // $scope.blocks = [] // Datastructure to display crowd factor.
+   // var BLOCK_HOURS = {'morning': ['5am', '6am', '7am', '8am', '9am', '10am'],
+   //                    'afternoon': ['11am', '12pm', '1pm', '2pm', '3pm', '4pm'],
+   //                    'evening': ['5pm', '6pm', '7pm', '8pm', '9pm', '10pm'],
+   //                    'latenight': ['11pm', '12am', '1am', '2am', '3am', '4am']
+   //                   },
+      var DAYS = {'monday': 'M', 'tuesday': 'T', 'wednesday': 'W', 'thursday': 'Th',
+                  'friday': 'F', 'saturday': 'Sa', 'sunday': 'Su'};
+   // for (var block_name in $scope.spot.crowdfactor.blocks) {
+   //   if($scope.spot.crowdfactor.blocks[block_name]) {
+   //     var block = {};
+   //     block.name = block_name;
+   //     block.hours = [];
+   //     block.days = [];
+   //     for (var i = 0; i < BLOCK_HOURS[block_name].length; i++) {
+   //       block.hours.push(BLOCK_HOURS[block_name][i].slice(0,-2));
+   //     }
+   //     for (var day_name in DAYS) {
+   //       var day = {};
+   //       day.name = day_name;
+   //       day.label = DAYS[day_name];
+   //       day.hours = [];
+   //       for (var i = 0; i < BLOCK_HOURS[block_name].length; i++) {
+   //         var hour = {},
+   //             hr = BLOCK_HOURS[block_name][i],
+   //             spot_info = $scope.spot.crowdfactor.day[day_name][hr],
+   //             cf_score = spot_info.score / spot_info.count;
+   //         if (spot_info.score < 0) {hour.cf_status = 'closed'}
+   //         else if (cf_score < .5) {hour.cf_status = 'empty';} 
+   //         else if (cf_score < 2.5) {hour.cf_status = 'few';}
+   //         else if (cf_score < 3.5) {hour.cf_status = 'ave';}
+   //         else if (cf_score < 4.5) {hour.cf_status = 'crowded';}
+   //         else if (cf_score <= 5) {hour.cf_status = 'herd';}
+   //         else {console.log('Error in status update for ' + day_name + ' at ' + hr);}
+   //         hour.label = hr;
+   //         day.hours.push(hour);
+   //       }
+   //       block.days.push(day);
+   //     }
+   //     $scope.blocks.push(block);
+   //   };
+   // }
 
     $scope.show_marker = {};  // Matrix of boolean values.  True one based on current time.
     for (var day_name in DAYS) {
@@ -246,11 +249,12 @@ function _weightTypes(food, study, social) {
 }
 
 /**
- * @name _calculateTypeWeights
+ * @name _calculateTypeWeight
  * @function
  *
  * @description Determine the weight for a single type.
  *              Construct array of type display parameters.
+ *              Used by _weightTypes function.
  * @param {integer} count Count for a particular type.
  * @param {string} label Name of type.
  * @param {integer} total Sum of counts for all types.
@@ -264,6 +268,52 @@ function _calculateTypeWeight(count, label, total) {
   size = Math.sqrt(total_icon_size * (count/total));
   font = Math.sqrt(total_font_size * (count/total));
   return [url, label, size, font];
+}
+
+function _constructCrowdFactor(cf_blocks, cf_day) {
+  var display_blocks = [], // Datastructure to display crowd factor.
+      BLOCK_HOURS = {'morning': ['5am', '6am', '7am', '8am', '9am', '10am'],
+                     'afternoon': ['11am', '12pm', '1pm', '2pm', '3pm', '4pm'],
+                     'evening': ['5pm', '6pm', '7pm', '8pm', '9pm', '10pm'],
+                     'latenight': ['11pm', '12am', '1am', '2am', '3am', '4am']
+                    },
+      DAYS = {'monday': 'M', 'tuesday': 'T', 'wednesday': 'W', 'thursday': 'Th',
+              'friday': 'F', 'saturday': 'Sa', 'sunday': 'Su'};
+  for (var block_name in cf_blocks) {
+    if(cf_blocks[block_name]) {
+      var block = {};
+      block.name = block_name;
+      block.hours = [];
+      block.days = [];
+      for (var i = 0; i < BLOCK_HOURS[block_name].length; i++) {
+        block.hours.push(BLOCK_HOURS[block_name][i].slice(0,-2));
+      }
+      for (var day_name in DAYS) {
+        var day = {};
+        day.name = day_name;
+        day.label = DAYS[day_name];
+        day.hours = [];
+        for (var i = 0; i < BLOCK_HOURS[block_name].length; i++) {
+          var hour = {},
+              hr = BLOCK_HOURS[block_name][i],
+              spot_info = cf_day[day_name][hr],
+              cf_score = spot_info.score / spot_info.count;
+          if (spot_info.score < 0) {hour.cf_status = 'closed'}
+          else if (cf_score < .5) {hour.cf_status = 'empty';} 
+          else if (cf_score < 2.5) {hour.cf_status = 'few';}
+          else if (cf_score < 3.5) {hour.cf_status = 'ave';}
+          else if (cf_score < 4.5) {hour.cf_status = 'crowded';}
+          else if (cf_score <= 5) {hour.cf_status = 'herd';}
+          else {console.log('Error in status update for ' + day_name + ' at ' + hr);}
+          hour.label = hr;
+          day.hours.push(hour);
+        }
+        block.days.push(day);
+      }
+      display_blocks.push(block);
+    };
+  }
+  return display_blocks;
 }
 
 
