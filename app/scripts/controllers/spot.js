@@ -284,19 +284,21 @@ var _updateStatus = function ($scope, $timeout) {
 
   _calculateCurrentStatus($scope, current_date);
 
+  _updateMarker($scope);
+
   // Update marker display.
-  var time_label;
-  if ($scope.current_marker.day !== $scope.current_day ||
-      $scope.current_marker.hour !== $scope.current_hour) {
-        if ($scope.current_marker.day) {
-          time_label = $scope.current_marker.hour + $scope.current_marker.meridiem
-          $scope.show_marker[$scope.current_marker.day][time_label] = false;
-        }
-        $scope.show_marker[$scope.current_day.toLowerCase()][$scope.current_hour + $scope.current_meridiem] = true;
-        $scope.current_marker.day = $scope.current_day;
-        $scope.current_marker.hour = $scope.current_hour ;
-        $scope.current_marker.meridiem = $scope.current_meridiem;
-    }
+ // var time_label;
+ // if ($scope.current_marker.day !== $scope.current_day ||
+ //     $scope.current_marker.hour !== $scope.current_hour) {
+ //       if ($scope.current_marker.day) {
+ //         time_label = $scope.current_marker.hour + $scope.current_marker.meridiem
+ //         $scope.show_marker[$scope.current_marker.day][time_label] = false;
+ //       }
+ //       $scope.show_marker[$scope.current_day.toLowerCase()][$scope.current_hour + $scope.current_meridiem] = true;
+ //       $scope.current_marker.day = $scope.current_day;
+ //       $scope.current_marker.hour = $scope.current_hour ;
+ //       $scope.current_marker.meridiem = $scope.current_meridiem;
+ //   }
 
   $timeout(function(){_updateStatus($scope, $timeout);}, 60000);
 }
@@ -343,5 +345,21 @@ function _calculateCurrentStatus($scope, current_date) {
     }
   }
 }
+
+function _updateMarker($scope) {
+  var time_label;
+  if ($scope.current_marker.day !== $scope.current_day ||
+      $scope.current_marker.hour !== $scope.current_hour) {
+        if ($scope.current_marker.day) {
+          time_label = $scope.current_marker.hour + $scope.current_marker.meridiem
+          $scope.show_marker[$scope.current_marker.day][time_label] = false;
+        }
+        $scope.show_marker[$scope.current_day.toLowerCase()][$scope.current_hour + $scope.current_meridiem] = true;
+        $scope.current_marker.day = $scope.current_day;
+        $scope.current_marker.hour = $scope.current_hour ;
+        $scope.current_marker.meridiem = $scope.current_meridiem;
+    }
+}
+
 
 
