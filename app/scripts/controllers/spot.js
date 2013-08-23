@@ -70,6 +70,7 @@ angular.module('b4cmApp')
             else if (cf_score < 4.5) {hour.cf_status = 'crowded';}
             else if (cf_score <= 5) {hour.cf_status = 'herd';}
             else {console.log('Error in status update for ' + day_name + ' at ' + hr);}
+            hour.label = hr;
             day.hours.push(hour);
           }
           block.days.push(day);
@@ -78,14 +79,17 @@ angular.module('b4cmApp')
       };
     }
 
-    $scope.showMarker = {};  // Matrix of boolean values.  True one based on current time.
+    $scope.show_marker = {};  // Matrix of boolean values.  True one based on current time.
     for (var day_name in DAYS) {
-      $scope.showMarker[day_name] = {}
+      $scope.show_marker[day_name] = {}
       for (var i = 1; i <= 12; i++) {
-        $scope.showMarker[day_name][i + 'am'] = false;
-        $scope.showMarker[day_name][i + 'pm'] = false;
+        $scope.show_marker[day_name][i + 'am'] = false;
+        $scope.show_marker[day_name][i + 'pm'] = false;
       }
     }
+
+    $scope.current_marker = {'day': '', 'hour': '', meridiem: ''}; // Currently visible marker position
+
     /**
      * GOOGLE MAPS
      */
@@ -156,12 +160,12 @@ angular.module('b4cmApp')
     var _updateStatus = function () {
       // Hack: should use GMT and Timezone, vice users machine.
       var current_date = new Date(),
-          weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
           time_delta = 0,
+          WEEKDAY = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
           CFLABELS = ['Empty', 'Few', 'Average', 'Crowded', 'Herd'];
     
       // Get current time info
-      $scope.current_day = weekday[current_date.getDay()];
+      $scope.current_day = WEEKDAY[current_date.getDay()];
       $scope.current_hour = current_date.getHours() % 12;
       if ($scope.current_hour === 0) {$scope.current_hour = 12};
       $scope.current_meridiem = (current_date.getHours() - 12 < 0) ? 'am' : 'pm';
@@ -184,6 +188,21 @@ angular.module('b4cmApp')
           $scope.current_cflabel = CFLABELS[Math.round(score/count) - 1];
         }
       }
+
+      // Update marker display.
+      var time_label;
+      if ($scope.current_marker.day !== $scope.current_day ||
+          $scope.current_marker.hour !== $scope.current_hour) {
+            if ($scope.current_marker.day) {
+              time_label = $scope.current_marker.hour + $scope.current_marker.meridiem
+              $scope.show_marker[$scope.current_marker.day][time_label] = false;
+            }
+            $scope.show_marker[$scope.current_day.toLowerCase()][$scope.current_hour + $scope.current_meridiem] = true;
+            $scope.current_marker.day = $scope.current_day;
+            $scope.current_marker.hour = $scope.current_hour ;
+            $scope.current_marker.meridiem = $scope.current_meridiem;
+        }
+      console.log($scope.show_marker);
     
       $timeout(function(){_updateStatus();}, 60000);
     }
