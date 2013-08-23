@@ -78,6 +78,14 @@ angular.module('b4cmApp')
       };
     }
 
+    $scope.showMarker = {};  // Matrix of boolean values.  True one based on current time.
+    for (var day_name in DAYS) {
+      $scope.showMarker[day_name] = {}
+      for (var i = 1; i <= 12; i++) {
+        $scope.showMarker[day_name][i + 'am'] = false;
+        $scope.showMarker[day_name][i + 'pm'] = false;
+      }
+    }
     /**
      * GOOGLE MAPS
      */
