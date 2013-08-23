@@ -64,14 +64,14 @@
       <div class="crowd-visuals">
         <div class="timeslot" ng-repeat="block in blocks">
           <h5>{{block.name}}</h5>
-          <table class="{{block.name | lowercase}}-table">
+          <table class="{{block.name}}-table">
             <tr>
               <th></th>
               <th ng-repeat="hour in block.hours">{{hour}}</th>
             </tr>
             <tr ng-repeat="day in block.days" class="{{day.name}}-row">
               <td>{{day.label}}</td>
-              <td ng-repeat="hour in day" class="{{hour.status}}-square"</td>
+              <td ng-repeat="hour in day.hours" class="{{hour.cf_status}}-square"</td>
             </tr>
           </table>
         </div>
