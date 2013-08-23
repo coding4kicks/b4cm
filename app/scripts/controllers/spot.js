@@ -341,15 +341,15 @@ function _updateMarker($scope) {
   var time_label;
   if ($scope.current_marker.day !== $scope.current_day ||
       $scope.current_marker.hour !== $scope.current_hour) {
-        if ($scope.current_marker.day) {
-          time_label = $scope.current_marker.hour + $scope.current_marker.meridiem
-          $scope.show_marker[$scope.current_marker.day][time_label] = false;
-        }
-        $scope.show_marker[$scope.current_day.toLowerCase()][$scope.current_hour + $scope.current_meridiem] = true;
-        $scope.current_marker.day = $scope.current_day;
-        $scope.current_marker.hour = $scope.current_hour ;
-        $scope.current_marker.meridiem = $scope.current_meridiem;
+    if ($scope.current_marker.day) {
+      time_label = $scope.current_marker.hour + $scope.current_marker.meridiem
+      $scope.show_marker[$scope.current_marker.day][time_label] = false;
     }
+    $scope.show_marker[$scope.current_day.toLowerCase()][$scope.current_hour + $scope.current_meridiem] = true;
+    $scope.current_marker.day = $scope.current_day;
+    $scope.current_marker.hour = $scope.current_hour ;
+    $scope.current_marker.meridiem = $scope.current_meridiem;
+  }
 }
 
 
