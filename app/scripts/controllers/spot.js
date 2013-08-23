@@ -284,23 +284,6 @@ var _updateStatus = function ($scope, $timeout) {
 
   _calculateCurrentStatus($scope, current_date);
 
- // // Get status
- // time_delta = (current_date.getTime() - $scope.spot.crowdfactor.most_recent.time) / 60 / 1000;
- // if (time_delta < 60) {
- //   $scope.current_status = Math.round(time_delta) + ' minutes ago';
- //   $scope.current_cflabel = CFLABELS[$scope.spot.crowdfactor.most_recent.score - 1];
- // }
- // else {
- //   $scope.current_status = 'historical';
- //   var time_label = $scope.current_hour + $scope.current_meridiem,
- //       count = $scope.spot.crowdfactor.day[$scope.current_day.toLowerCase()][time_label].count,
- //       score = $scope.spot.crowdfactor.day[$scope.current_day.toLowerCase()][time_label].score;
- //   if (count === -1){ $scope.current_cflabel = 'Closed' }
- //   else {
- //     $scope.current_cflabel = CFLABELS[Math.round(score/count) - 1];
- //   }
- // }
-
   // Update marker display.
   var time_label;
   if ($scope.current_marker.day !== $scope.current_day ||
@@ -335,6 +318,13 @@ function _calculateCurrentTimeInfo($scope, current_date) {
   if ($scope.current_minutes < 10) {$scope.current_minutes = '0' + $scope.current_minutes;}
 }
 
+/**
+ * @name _calculateCurrentStatus
+ * @procedure
+ *
+ * @description Calculates current status: closed, empty, few, average, crowded, herd.
+ * @returns {nothing} Procedure has side effects on scope.
+ */ 
 function _calculateCurrentStatus($scope, current_date) {
   var time_delta = (current_date.getTime() - $scope.spot.crowdfactor.most_recent.time) / 60 / 1000,
       CFLABELS = ['Empty', 'Few', 'Average', 'Crowded', 'Herd'];
