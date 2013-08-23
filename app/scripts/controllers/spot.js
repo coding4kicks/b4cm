@@ -118,6 +118,7 @@ angular.module('b4cmApp')
       if ($scope.current_hour === 0) {$scope.current_hour = 12};
       $scope.current_meridiem = (current_date.getHours() - 12 < 0) ? 'am' : 'pm';
       $scope.current_minutes = current_date.getMinutes();
+      if ($scope.current_minutes < 10) {$scope.current_minutes = '0' + $scope.current_minutes;}
     
       // Get status
       time_delta = (current_date.getTime() - $scope.spot.crowdfactor.most_recent.time) / 60 / 1000;
