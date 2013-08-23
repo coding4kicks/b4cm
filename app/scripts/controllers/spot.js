@@ -278,28 +278,28 @@ function _initializeGoogleMaps($scope) {
  */ 
 var _updateStatus = function ($scope, $timeout) {
   // Hack: should use GMT and Timezone, vice users machine.
-  var current_date = new Date(),
-      time_delta = 0,
-      CFLABELS = ['Empty', 'Few', 'Average', 'Crowded', 'Herd'];
+  var current_date = new Date();
 
   _calculateCurrentTimeInfo($scope, current_date);
 
-  // Get status
-  time_delta = (current_date.getTime() - $scope.spot.crowdfactor.most_recent.time) / 60 / 1000;
-  if (time_delta < 60) {
-    $scope.current_status = Math.round(time_delta) + ' minutes ago';
-    $scope.current_cflabel = CFLABELS[$scope.spot.crowdfactor.most_recent.score - 1];
-  }
-  else {
-    $scope.current_status = 'historical';
-    var time_label = $scope.current_hour + $scope.current_meridiem,
-        count = $scope.spot.crowdfactor.day[$scope.current_day.toLowerCase()][time_label].count,
-        score = $scope.spot.crowdfactor.day[$scope.current_day.toLowerCase()][time_label].score;
-    if (count === -1){ $scope.current_cflabel = 'Closed' }
-    else {
-      $scope.current_cflabel = CFLABELS[Math.round(score/count) - 1];
-    }
-  }
+  _calculateCurrentStatus($scope, current_date);
+
+ // // Get status
+ // time_delta = (current_date.getTime() - $scope.spot.crowdfactor.most_recent.time) / 60 / 1000;
+ // if (time_delta < 60) {
+ //   $scope.current_status = Math.round(time_delta) + ' minutes ago';
+ //   $scope.current_cflabel = CFLABELS[$scope.spot.crowdfactor.most_recent.score - 1];
+ // }
+ // else {
+ //   $scope.current_status = 'historical';
+ //   var time_label = $scope.current_hour + $scope.current_meridiem,
+ //       count = $scope.spot.crowdfactor.day[$scope.current_day.toLowerCase()][time_label].count,
+ //       score = $scope.spot.crowdfactor.day[$scope.current_day.toLowerCase()][time_label].score;
+ //   if (count === -1){ $scope.current_cflabel = 'Closed' }
+ //   else {
+ //     $scope.current_cflabel = CFLABELS[Math.round(score/count) - 1];
+ //   }
+ // }
 
   // Update marker display.
   var time_label;
@@ -334,4 +334,24 @@ function _calculateCurrentTimeInfo($scope, current_date) {
   $scope.current_minutes = current_date.getMinutes();
   if ($scope.current_minutes < 10) {$scope.current_minutes = '0' + $scope.current_minutes;}
 }
+
+function _calculateCurrentStatus($scope, current_date) {
+  var time_delta = (current_date.getTime() - $scope.spot.crowdfactor.most_recent.time) / 60 / 1000,
+      CFLABELS = ['Empty', 'Few', 'Average', 'Crowded', 'Herd'];
+  if (time_delta < 60) {
+    $scope.current_status = Math.round(time_delta) + ' minutes ago';
+    $scope.current_cflabel = CFLABELS[$scope.spot.crowdfactor.most_recent.score - 1];
+  }
+  else {
+    $scope.current_status = 'historical';
+    var time_label = $scope.current_hour + $scope.current_meridiem,
+        count = $scope.spot.crowdfactor.day[$scope.current_day.toLowerCase()][time_label].count,
+        score = $scope.spot.crowdfactor.day[$scope.current_day.toLowerCase()][time_label].score;
+    if (count === -1){ $scope.current_cflabel = 'Closed' }
+    else {
+      $scope.current_cflabel = CFLABELS[Math.round(score/count) - 1];
+    }
+  }
+}
+
 
