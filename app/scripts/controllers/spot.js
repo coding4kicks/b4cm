@@ -30,19 +30,21 @@ angular.module('b4cmApp')
                                           $scope.spot.crowdfactor.day);
 
 
-    var DAYS = {'monday': 'M', 'tuesday': 'T', 'wednesday': 'W', 'thursday': 'Th',
-                'friday': 'F', 'saturday': 'Sa', 'sunday': 'Su'};
+    $scope.show_marker = _initializeShowMarkerMatrix();
 
-    $scope.show_marker = {};  // Matrix of boolean values.  True one based on current time.
-    for (var day_name in DAYS) {
-      $scope.show_marker[day_name] = {}
-      for (var i = 1; i <= 12; i++) {
-        $scope.show_marker[day_name][i + 'am'] = false;
-        $scope.show_marker[day_name][i + 'pm'] = false;
-      }
-    }
+   // var DAYS = {'monday': 'M', 'tuesday': 'T', 'wednesday': 'W', 'thursday': 'Th',
+   //             'friday': 'F', 'saturday': 'Sa', 'sunday': 'Su'};
 
-    $scope.current_marker = {'day': '', 'hour': '', meridiem: ''}; // Currently visible marker position
+   // $scope.show_marker = {};  // Matrix of boolean values.  True one based on current time.
+   // for (var day_name in DAYS) {
+   //   $scope.show_marker[day_name] = {}
+   //   for (var i = 1; i <= 12; i++) {
+   //     $scope.show_marker[day_name][i + 'am'] = false;
+   //     $scope.show_marker[day_name][i + 'pm'] = false;
+   //   }
+   // }
+
+    $scope.current_marker = {'day': '', 'hour': '', 'meridiem': ''}; // Currently visible marker position
 
     /**
      * GOOGLE MAPS
@@ -159,6 +161,7 @@ angular.module('b4cmApp')
     
       $timeout(function(){_updateStatus();}, 60000);
     }
+
     // Start updates
     _updateStatus();
 
@@ -301,5 +304,20 @@ function _setStatus(score) {
   else {console.log('Error in status update for score:' + score);}
   return cf_status;
 }
+
+function _initializeShowMarkerMatrix() {
+  var show_marker = {},  // Matrix of boolean values.  True one based on current time.
+      DAYS = {'monday': 'M', 'tuesday': 'T', 'wednesday': 'W', 'thursday': 'Th',
+              'friday': 'F', 'saturday': 'Sa', 'sunday': 'Su'};
+  for (var day_name in DAYS) {
+    show_marker[day_name] = {}
+    for (var i = 1; i <= 12; i++) {
+      show_marker[day_name][i + 'am'] = false;
+      show_marker[day_name][i + 'pm'] = false;
+    }
+  }
+  return show_marker;
+}
+
 
 
