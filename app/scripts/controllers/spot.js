@@ -284,14 +284,6 @@ var _updateStatus = function ($scope, $timeout) {
 
   _calculateCurrentTimeInfo($scope, current_date);
 
-  // Get current time info
- // $scope.current_day = WEEKDAY[current_date.getDay()];
- // $scope.current_hour = current_date.getHours() % 12;
- // if ($scope.current_hour === 0) {$scope.current_hour = 12};
- // $scope.current_meridiem = (current_date.getHours() - 12 < 0) ? 'am' : 'pm';
- // $scope.current_minutes = current_date.getMinutes();
- // if ($scope.current_minutes < 10) {$scope.current_minutes = '0' + $scope.current_minutes;}
-
   // Get status
   time_delta = (current_date.getTime() - $scope.spot.crowdfactor.most_recent.time) / 60 / 1000;
   if (time_delta < 60) {
@@ -326,6 +318,13 @@ var _updateStatus = function ($scope, $timeout) {
   $timeout(function(){_updateStatus($scope, $timeout);}, 60000);
 }
 
+/**
+ * @name _calculateCurrentTimeInfo
+ * @procedure
+ *
+ * @description Calculates day of week, hours, minutes, and meridiem for display.
+ * @returns {nothing} Procedure has side effects on scope.
+ */ 
 function _calculateCurrentTimeInfo($scope, current_date) {
   var WEEKDAY = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   $scope.current_day = WEEKDAY[current_date.getDay()];
