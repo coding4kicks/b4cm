@@ -20,21 +20,24 @@ angular.module('b4cmApp')
       $scope.spot.reviews[j].stars = _calculateStars($scope.spot.reviews[j].rating);
     }
 
-    $scope.types = []; // Array of types/weighting for this spot
-    var total_icon_size = 5625, // 75 x 75 max icon size
-        total_font_size = 324, // 18 max font size
-        total_count = $scope.spot.type.food + $scope.spot.type.study + $scope.spot.type.social,
-        size, font;
-    size = Math.sqrt(total_icon_size * ($scope.spot.type.food/total_count));
-    font = Math.sqrt(total_font_size * ($scope.spot.type.food/total_count));
-    $scope.types.push(["../images/b4cm-icon-food.png", "Food", size, font]);
-    size = Math.sqrt(total_icon_size * ($scope.spot.type.study/total_count));
-    font = Math.sqrt(total_font_size * ($scope.spot.type.study/total_count));
-    $scope.types.push(["../images/b4cm-icon-study.png", "Study", size, font]);
-    size = Math.sqrt(total_icon_size * ($scope.spot.type.social/total_count));
-    font = Math.sqrt(total_font_size * ($scope.spot.type.social/total_count));
-    $scope.types.push(["../images/b4cm-icon-social.png", "Social", size, font]);
-    $scope.types.sort(function(a, b) {return b[2] - a[2]});
+    $scope.types = _weightTypes($scope.spot.type.food,
+                                $scope.spot.type.study,
+                                $scope.spot.type.social);
+   // $scope.types = []; // Array of types/weighting for this spot
+   // var total_icon_size = 5625, // 75 x 75 max icon size
+   //     total_font_size = 324, // 18 max font size
+   //     total_count = $scope.spot.type.food + $scope.spot.type.study + $scope.spot.type.social,
+   //     size, font;
+   // size = Math.sqrt(total_icon_size * ($scope.spot.type.food/total_count));
+   // font = Math.sqrt(total_font_size * ($scope.spot.type.food/total_count));
+   // $scope.types.push(["../images/b4cm-icon-food.png", "Food", size, font]);
+   // size = Math.sqrt(total_icon_size * ($scope.spot.type.study/total_count));
+   // font = Math.sqrt(total_font_size * ($scope.spot.type.study/total_count));
+   // $scope.types.push(["../images/b4cm-icon-study.png", "Study", size, font]);
+   // size = Math.sqrt(total_icon_size * ($scope.spot.type.social/total_count));
+   // font = Math.sqrt(total_font_size * ($scope.spot.type.social/total_count));
+   // $scope.types.push(["../images/b4cm-icon-social.png", "Social", size, font]);
+   // $scope.types.sort(function(a, b) {return b[2] - a[2]});
 
     $scope.blocks = [] // Datastructure to display crowd factor.
     var BLOCK_HOURS = {'morning': ['5am', '6am', '7am', '8am', '9am', '10am'],
@@ -233,4 +236,23 @@ function _calculateStars(rating) {
     else {stars.push("images/star-icon-empty.png")}
   }
   return stars;
+}
+
+function _weightTypes(food, study, social) {
+  var types = [], // Array of types/weighting for this spot
+      total_icon_size = 5625, // 75 x 75 max icon size
+      total_font_size = 324, // 18 max font size
+      total_count = food + study + social,
+      size, font;
+  size = Math.sqrt(total_icon_size * (food/total_count));
+  font = Math.sqrt(total_font_size * (food/total_count));
+  types.push(["../images/b4cm-icon-food.png", "Food", size, font]);
+  size = Math.sqrt(total_icon_size * (study/total_count));
+  font = Math.sqrt(total_font_size * (study/total_count));
+  types.push(["../images/b4cm-icon-study.png", "Study", size, font]);
+  size = Math.sqrt(total_icon_size * (social/total_count));
+  font = Math.sqrt(total_font_size * (social/total_count));
+  types.push(["../images/b4cm-icon-social.png", "Social", size, font]);
+  types.sort(function(a, b) {return b[2] - a[2]});
+  return types;
 }
