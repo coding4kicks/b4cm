@@ -63,7 +63,7 @@ angular.module('b4cmApp')
                 hr = BLOCK_HOURS[block_name][i],
                 spot_info = $scope.spot.crowdfactor.day[day_name][hr],
                 cf_score = spot_info.score / spot_info.count;
-            if (cf_score < 0) {hour.cf_status = 'close'}
+            if (spot_info.score < 0) {hour.cf_status = 'closed'}
             else if (cf_score < .5) {hour.cf_status = 'empty';} 
             else if (cf_score < 2.5) {hour.cf_status = 'few';}
             else if (cf_score < 3.5) {hour.cf_status = 'ave';}
@@ -202,7 +202,6 @@ angular.module('b4cmApp')
             $scope.current_marker.hour = $scope.current_hour ;
             $scope.current_marker.meridiem = $scope.current_meridiem;
         }
-      console.log($scope.show_marker);
     
       $timeout(function(){_updateStatus();}, 60000);
     }
