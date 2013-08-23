@@ -131,7 +131,7 @@
 
         <div class="review" ng-repeat="review in spot.reviews">
           <div class="user">
-            <img src="{{review.author.pic}}">
+            <img ng-src="{{review.author.pic}}">
             <h5 class="title">{{review.author.name}}</h5>
           </div>
           <div class="info"> 
