@@ -137,11 +137,7 @@
           <div class="info"> 
             <div class="rating">
               <div class="stars">
-                <img src="images/star-icon.png">
-                <img src="images/star-icon.png">
-                <img src="images/star-icon.png">
-                <img src="images/star-icon-half.png">
-                <img src="images/star-icon-empty.png">
+                <img ng-repeat="star in review.stars" ng-src="{{star}}">
               </div>
             </div>
             <p>{{review.writeup}}</p>
