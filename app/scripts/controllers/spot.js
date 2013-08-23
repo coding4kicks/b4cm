@@ -30,7 +30,6 @@ angular.module('b4cmApp')
     $scope.blocks = _constructCrowdFactor($scope.spot.crowdfactor.blocks,
                                           $scope.spot.crowdfactor.day);
 
-
     // Set up crowdfactor current time marker information.
     $scope.show_marker = _initializeShowMarkerMatrix();
     $scope.current_marker = {'day': '', 'hour': '', 'meridiem': ''}; // Currently visible marker position
@@ -148,23 +147,21 @@ function _constructCrowdFactor(cf_blocks, cf_day) {
       block.name = block_name;
       block.hours = [];
       block.days = [];
-      for (var i = 0; i < BLOCK_HOURS[block_name].length; i++) {
-        block.hours.push(BLOCK_HOURS[block_name][i].slice(0,-2));
-      }
+      BLOCK_HOURS[block_name].forEach(function(hour_label) {
+        block.hours.push(hour_label.slice(0,-2));});
       for (var day_name in DAYS) {
         var day = {};
         day.name = day_name;
         day.label = DAYS[day_name];
         day.hours = [];
-        for (var i = 0; i < BLOCK_HOURS[block_name].length; i++) {
+        BLOCK_HOURS[block_name].forEach(function(hour_label) {
           var hour = {},
-              hr = BLOCK_HOURS[block_name][i],
-              spot_info = cf_day[day_name][hr],
+              spot_info = cf_day[day_name][hour_label],
               cf_score = spot_info.score / spot_info.count;
           hour.cf_status = _setStatus(cf_score);
-          hour.label = hr;
+          hour.label = hour_label;
           day.hours.push(hour);
-        }
+        });
         block.days.push(day);
       }
       display_blocks.push(block);
