@@ -73,7 +73,7 @@ angular.module('b4cmApp')
           }
         ],
         'crowdfactor': {
-          'total': 732,
+          'total_watchers': 732,
           'most_recent': {'time': 1377150514232, 'score': 4},
           'blocks': {'morning':true, 'afternoon':true, 'evening':true, 'latenight':false},
           'day': { 

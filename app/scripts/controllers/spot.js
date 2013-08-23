@@ -12,6 +12,8 @@ angular.module('b4cmApp')
 
     $scope.spot = spot.get(); // Load spot information
 
+    $scope.total_watchers = $scope.spot.crowdfactor.total_watchers;
+
     $scope.stars = []; // Array of URLs for rating visuals
     for (var i = 1; i <= 5; i++) {
       if (i < $scope.spot.rating) {$scope.stars.push("images/star-icon.png")}
