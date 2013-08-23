@@ -10,7 +10,8 @@ angular.module('b4cmApp')
    */ 
   .controller('SpotCtrl', function ($scope, $location, $timeout, spot) {
 
-    $scope.spot = spot.get(); // Load spot information
+    // Load spot information
+    $scope.spot = spot.get();
 
     $scope.total_watchers = $scope.spot.crowdfactor.total_watchers;
 
@@ -37,6 +38,9 @@ angular.module('b4cmApp')
     // Initialize google maps parameters
     _initializeGoogleMaps($scope);
    
+    // Start updates
+    _updateStatus($scope, $timeout);
+
     /**
      * @name addWatch
      * @function
@@ -48,9 +52,6 @@ angular.module('b4cmApp')
       // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
       if(!$scope.$$phase) { $scope.$apply(); }
     };
-
-    // Start updates
-    _updateStatus($scope, $timeout);
 
   });
 
@@ -197,11 +198,12 @@ function _setStatus(score) {
  * @function
  *
  * @description Set up boolean matrix of current time markers.
- *              All initially set to false
+ *              All initially set to false.
+ *              One true on will be determined by current time.
  * @returns {object} Boolean matrix, size is days x hours.
  */ 
 function _initializeShowMarkerMatrix() {
-  var show_marker = {},  // Matrix of boolean values.  True one based on current time.
+  var show_marker = {},  
       DAYS = {'monday': 'M', 'tuesday': 'T', 'wednesday': 'W', 'thursday': 'Th',
               'friday': 'F', 'saturday': 'Sa', 'sunday': 'Su'};
   for (var day_name in DAYS) {
@@ -277,29 +279,11 @@ function _initializeGoogleMaps($scope) {
  * @returns {nothing} Procedure has side effects on scope.
  */ 
 var _updateStatus = function ($scope, $timeout) {
-  // Hack: should use GMT and Timezone, vice users machine.
+  // Hack: should use GMT and Timezone, vice users machine time.
   var current_date = new Date();
-
   _calculateCurrentTimeInfo($scope, current_date);
-
   _calculateCurrentStatus($scope, current_date);
-
   _updateMarker($scope);
-
-  // Update marker display.
- // var time_label;
- // if ($scope.current_marker.day !== $scope.current_day ||
- //     $scope.current_marker.hour !== $scope.current_hour) {
- //       if ($scope.current_marker.day) {
- //         time_label = $scope.current_marker.hour + $scope.current_marker.meridiem
- //         $scope.show_marker[$scope.current_marker.day][time_label] = false;
- //       }
- //       $scope.show_marker[$scope.current_day.toLowerCase()][$scope.current_hour + $scope.current_meridiem] = true;
- //       $scope.current_marker.day = $scope.current_day;
- //       $scope.current_marker.hour = $scope.current_hour ;
- //       $scope.current_marker.meridiem = $scope.current_meridiem;
- //   }
-
   $timeout(function(){_updateStatus($scope, $timeout);}, 60000);
 }
 
@@ -346,6 +330,13 @@ function _calculateCurrentStatus($scope, current_date) {
   }
 }
 
+/**
+ * @name _updateMarker
+ * @procedure
+ *
+ * @description Update (if necessary) the position of the current time marker.
+ * @returns {nothing} Procedure has side effects on scope.
+ */ 
 function _updateMarker($scope) {
   var time_label;
   if ($scope.current_marker.day !== $scope.current_day ||
