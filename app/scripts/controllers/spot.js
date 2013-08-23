@@ -22,6 +22,19 @@ angular.module('b4cmApp')
       else {$scope.stars.push("images/star-icon-empty.png")}
     }
 
+    // Add URLs for rating visuals for each review
+    for (var j = 0; j < $scope.spot.reviews.length; j++) {
+      var review = $scope.spot.reviews[j];
+      review.stars = [];
+      console.log($scope.spot.reviews);
+      for (var i = 1; i <= 5; i++) {
+        if (i < review.rating) {review.stars.push("images/star-icon.png")}
+        else if (0.25 < (i - review.rating) && (i - review.rating) < 0.75) {
+          review.stars.push("images/star-icon-half.png")}
+        else {review.stars.push("images/star-icon-empty.png")}
+      }
+    }
+
     $scope.types = []; // Array of types/weighting for this spot
     var total_icon_size = 5625, // 75 x 75 max icon size
         total_font_size = 324, // 18 max font size
