@@ -102,8 +102,6 @@ angular.module('b4cmApp')
      *
      * @description Sets the current time and the current status of a spot.
      *              Calls itself recursively.
-     * @param {object} $scope Scope for the current controller
-     * @param {object} $timeout Angular wrapper of JS timeout function.
      */ 
     var _updateStatus = function () {
       // Hack: should use GMT and Timezone, vice users machine.
