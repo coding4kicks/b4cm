@@ -49,64 +49,8 @@ angular.module('b4cmApp')
       if(!$scope.$$phase) { $scope.$apply(); }
     };
 
-    /**
-     * @name _updateStatus
-     * @function
-     *
-     * @description Sets the current time and the current status of a spot.
-     *              Calls itself recursively.
-     */ 
-    var _updateStatus = function () {
-      // Hack: should use GMT and Timezone, vice users machine.
-      var current_date = new Date(),
-          time_delta = 0,
-          WEEKDAY = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-          CFLABELS = ['Empty', 'Few', 'Average', 'Crowded', 'Herd'];
-    
-      // Get current time info
-      $scope.current_day = WEEKDAY[current_date.getDay()];
-      $scope.current_hour = current_date.getHours() % 12;
-      if ($scope.current_hour === 0) {$scope.current_hour = 12};
-      $scope.current_meridiem = (current_date.getHours() - 12 < 0) ? 'am' : 'pm';
-      $scope.current_minutes = current_date.getMinutes();
-      if ($scope.current_minutes < 10) {$scope.current_minutes = '0' + $scope.current_minutes;}
-    
-      // Get status
-      time_delta = (current_date.getTime() - $scope.spot.crowdfactor.most_recent.time) / 60 / 1000;
-      if (time_delta < 60) {
-        $scope.current_status = Math.round(time_delta) + ' minutes ago';
-        $scope.current_cflabel = CFLABELS[$scope.spot.crowdfactor.most_recent.score - 1];
-      }
-      else {
-        $scope.current_status = 'historical';
-        var time_label = $scope.current_hour + $scope.current_meridiem,
-            count = $scope.spot.crowdfactor.day[$scope.current_day.toLowerCase()][time_label].count,
-            score = $scope.spot.crowdfactor.day[$scope.current_day.toLowerCase()][time_label].score;
-        if (count === -1){ $scope.current_cflabel = 'Closed' }
-        else {
-          $scope.current_cflabel = CFLABELS[Math.round(score/count) - 1];
-        }
-      }
-
-      // Update marker display.
-      var time_label;
-      if ($scope.current_marker.day !== $scope.current_day ||
-          $scope.current_marker.hour !== $scope.current_hour) {
-            if ($scope.current_marker.day) {
-              time_label = $scope.current_marker.hour + $scope.current_marker.meridiem
-              $scope.show_marker[$scope.current_marker.day][time_label] = false;
-            }
-            $scope.show_marker[$scope.current_day.toLowerCase()][$scope.current_hour + $scope.current_meridiem] = true;
-            $scope.current_marker.day = $scope.current_day;
-            $scope.current_marker.hour = $scope.current_hour ;
-            $scope.current_marker.meridiem = $scope.current_meridiem;
-        }
-    
-      $timeout(function(){_updateStatus();}, 60000);
-    }
-
     // Start updates
-    _updateStatus1($scope, $timeout);
+    _updateStatus($scope, $timeout);
 
   });
 
@@ -331,7 +275,7 @@ function _initializeGoogleMaps($scope) {
  * @description Sets the current time and the current status of a spot.
  *              Calls itself recursively.
  */ 
-var _updateStatus1 = function ($scope, $timeout) {
+var _updateStatus = function ($scope, $timeout) {
   // Hack: should use GMT and Timezone, vice users machine.
   var current_date = new Date(),
       time_delta = 0,
@@ -377,6 +321,6 @@ var _updateStatus1 = function ($scope, $timeout) {
         $scope.current_marker.meridiem = $scope.current_meridiem;
     }
 
-  $timeout(function(){_updateStatus1($scope, $timeout);}, 60000);
+  $timeout(function(){_updateStatus($scope, $timeout);}, 60000);
 }
 
