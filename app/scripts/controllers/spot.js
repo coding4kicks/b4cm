@@ -34,8 +34,8 @@ angular.module('b4cmApp')
     $scope.show_marker = _initializeShowMarkerMatrix();
     $scope.current_marker = {'day': '', 'hour': '', 'meridiem': ''}; // Currently visible marker position
 
-    // Initialize google maps parameters
-    _initializeGoogleMaps($scope);
+    // Initialize google maps parameters for spot page
+    _initializeGoogleMapsSpot($scope);
    
     // Start updates
     _updateStatus($scope, $timeout);
@@ -214,14 +214,14 @@ function _initializeShowMarkerMatrix() {
 }
 
 /**
- * @name _initializeGoogleMaps
+ * @name _initializeGoogleMapsSpot
  * @procedure
  *
- * @description Initialize parameters for google maps directive.
+ * @description Initialize parameters for google maps directive for the spot page.
  * @params {object} $scope Controller's scope.
  * @returns {nothing} Procedure has side effects on scope.
  */ 
-function _initializeGoogleMaps($scope) {
+function _initializeGoogleMapsSpot($scope) {
 
   // Enable the new Google Maps visuals until it gets enabled by default.
   // See http://googlegeodevelopers.blogspot.ca/2013/05/a-fresh-new-look-for-maps-api-for-all.html
