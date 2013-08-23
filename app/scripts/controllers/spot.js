@@ -270,13 +270,14 @@ function _constructCrowdFactor(cf_blocks, cf_day) {
               hr = BLOCK_HOURS[block_name][i],
               spot_info = cf_day[day_name][hr],
               cf_score = spot_info.score / spot_info.count;
-          if (spot_info.score < 0) {hour.cf_status = 'closed'}
-          else if (cf_score < .5) {hour.cf_status = 'empty';} 
-          else if (cf_score < 2.5) {hour.cf_status = 'few';}
-          else if (cf_score < 3.5) {hour.cf_status = 'ave';}
-          else if (cf_score < 4.5) {hour.cf_status = 'crowded';}
-          else if (cf_score <= 5) {hour.cf_status = 'herd';}
-          else {console.log('Error in status update for ' + day_name + ' at ' + hr);}
+          hour.cf_status = _setStatus(cf_score);
+         // if (spot_info.score < 0) {hour.cf_status = 'closed'}
+         // else if (cf_score < .5) {hour.cf_status = 'empty';} 
+         // else if (cf_score < 2.5) {hour.cf_status = 'few';}
+         // else if (cf_score < 3.5) {hour.cf_status = 'ave';}
+         // else if (cf_score < 4.5) {hour.cf_status = 'crowded';}
+         // else if (cf_score <= 5) {hour.cf_status = 'herd';}
+         // else {console.log('Error in status update for ' + day_name + ' at ' + hr);}
           hour.label = hr;
           day.hours.push(hour);
         }
@@ -286,6 +287,18 @@ function _constructCrowdFactor(cf_blocks, cf_day) {
     };
   }
   return display_blocks;
+}
+
+function _setStatus(score) {
+  var cf_status = ""
+  if (score < 0) {cf_status = 'closed'}
+  else if (score < .5) {cf_status = 'empty';} 
+  else if (score < 2.5) {cf_status = 'few';}
+  else if (score < 3.5) {cf_status = 'ave';}
+  else if (score < 4.5) {cf_status = 'crowded';}
+  else if (score <= 5) {cf_status = 'herd';}
+  else {console.log('Error in status update for score:' + score);}
+  return cf_status;
 }
 
 
