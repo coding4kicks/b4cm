@@ -14,25 +14,10 @@ angular.module('b4cmApp')
 
     $scope.total_watchers = $scope.spot.crowdfactor.total_watchers;
 
-    $scope.stars = []; // Array of URLs for rating visuals
-    for (var i = 1; i <= 5; i++) {
-      if (i < $scope.spot.rating) {$scope.stars.push("images/star-icon.png")}
-      else if (0.25 < (i - $scope.spot.rating) && (i - $scope.spot.rating) < 0.75) {
-        $scope.stars.push("images/star-icon-half.png")}
-      else {$scope.stars.push("images/star-icon-empty.png")}
-    }
-
-    // Add URLs for rating visuals for each review
+    // Calculate stars overall and for each review
+    $scope.stars = _calculateStars($scope.spot.rating);
     for (var j = 0; j < $scope.spot.reviews.length; j++) {
-      var review = $scope.spot.reviews[j];
-      review.stars = [];
-      console.log($scope.spot.reviews);
-      for (var i = 1; i <= 5; i++) {
-        if (i < review.rating) {review.stars.push("images/star-icon.png")}
-        else if (0.25 < (i - review.rating) && (i - review.rating) < 0.75) {
-          review.stars.push("images/star-icon-half.png")}
-        else {review.stars.push("images/star-icon-empty.png")}
-      }
+      $scope.spot.reviews[j].stars = _calculateStars($scope.spot.reviews[j].rating);
     }
 
     $scope.types = []; // Array of types/weighting for this spot
@@ -225,4 +210,27 @@ angular.module('b4cmApp')
 
   });
 
+/***************
+ * HELPER FUNCS
+ ***************/
 
+/**
+ * @name _calculateStars
+ * @function
+ *
+ * @description Calculates an array of URLs to star pictures.
+ *              URL is based upon the passed in rating.
+ *              URL points to either full, half or empty star.
+ * @param {float} rating Reviews star rating
+ * @returns {array} Array of URLs to star pictures
+ */ 
+function _calculateStars(rating) {
+  var stars = [];
+  for (var i = 1; i <= 5; i++) {
+    if (i < rating) {stars.push("images/star-icon.png")}
+    else if (0.25 < (i - rating) && (i - rating) < 0.75) {
+      stars.push("images/star-icon-half.png")}
+    else {stars.push("images/star-icon-empty.png")}
+  }
+  return stars;
+}
