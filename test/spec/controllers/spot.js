@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: SpotCtrl', function () {
+describe('Controller: SpotCtrl', function ($timeout) {
 
   // load the controller's module
   beforeEach(module('b4cmApp'));
@@ -17,7 +17,8 @@ describe('Controller: SpotCtrl', function () {
     });
   }));
   
-  it('expect nothing', function () {
+  it('expect nothing', function ($timout) {
+     //$timeout.flush()
   });
 
 });
