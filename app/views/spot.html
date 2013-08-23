@@ -71,7 +71,7 @@
             </tr>
             <tr ng-repeat="day in block.days" class="{{day.name}}-row">
               <td>{{day.label}}</td>
-              <td ng-repeat="hour in day.hours" class="{{hour.cf_status}}-square"><img ng-show="{{show_marker[day.name][hour.label]}}" class="marker" src="../images/star-icon.png"></td>
+              <td ng-repeat="hour in day.hours" class="{{hour.cf_status}}-square"><img ng-show="show_marker[day.name][hour.label]" class="marker" src="../images/star-icon.png"></td>
             </tr>
           </table>
         </div>
