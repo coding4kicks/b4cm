@@ -9,6 +9,7 @@ angular.module('b4cmApp')
     $scope.listings.spots.forEach(function(geohash) {
       var spot_id = geohash[Object.keys(geohash)[0]],
           spot_obj = spot.get(spot_id);
+          spot_obj.stars = _calculateStars(spot_obj.rating);
       $scope.spots.push(spot_obj);
     });
     //console.log(spots);

@@ -63,3 +63,28 @@ angular.module('b4cmApp', ["google-maps"])
         redirectTo: '/'
       });
   });
+
+/***************
+ * HELPER FUNCS
+ ***************/
+
+/**
+ * @name _calculateStars
+ * @function
+ *
+ * @description Calculates an array of URLs to star pictures.
+ *              URL is based upon the passed in rating.
+ *              URL points to either full, half or empty star.
+ * @param {float} rating Review's star rating.
+ * @returns {array} Array of URLs to star pictures.
+ */ 
+function _calculateStars(rating) {
+  var stars = [];
+  for (var i = 1; i <= 5; i++) {
+    if (i < rating) {stars.push("images/star-icon.png")}
+    else if (0.25 < (i - rating) && (i - rating) < 0.75) {
+      stars.push("images/star-icon-half.png")}
+    else {stars.push("images/star-icon-empty.png")}
+  }
+  return stars;
+}

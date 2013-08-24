@@ -40,17 +40,13 @@
         <div class="rank">
           <h4>{{$index + 1}}</h4>
         </div>
-        <img class="spot-pic" src="{{spot.image_url}}">
+        <img class="spot-pic" ng-src="{{spot.image_url}}">
         <div class="info"> 
           <h4 class="title">{{spot.name}}</h4>
           <h5 class="address">{{spot.location.address}}. {{spot.location.city}}</h5>
           <div class="rating">
             <div class="stars">
-              <img src="images/star-icon.png">
-              <img src="images/star-icon.png">
-              <img src="images/star-icon.png">
-              <img src="images/star-icon-half.png">
-              <img src="images/star-icon-empty.png">
+              <img ng-repeat="star in spot.stars" ng-src="{{star}}">
             </div>
             <div class="review-count">75 Reviews</div>
           </div>
