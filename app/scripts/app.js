@@ -110,6 +110,37 @@ function _setStatus(score) {
 }
 
 /**
+ * @name _calculateCurrentStatus1
+ * @procedure
+ *
+ * @description Calculates current status: closed, empty, few, average, crowded, herd.
+ * @returns {nothing} Procedure has side effects on scope.
+ */ 
+function _calculateCurrentStatus1(spot, time) {
+  var cf_status = {},
+      time_delta = (time.getTime() - spot.crowdfactor.most_recent.time) / 60 / 1000,
+      CFLABELS = ['Empty', 'Few', 'Average', 'Crowded', 'Herd'],
+      cf_status_label, cf_status_time;
+  if (time_delta < 60) {
+    cf_status_time = Math.round(time_delta) + ' minutes ago';
+    cf_status_label = CFLABELS[$scope.spot.crowdfactor.most_recent.score - 1];
+  }
+  else {
+    cf_status_time = 'historical';
+    var day = spot.crowdfactor.day[time.getDay().toLowerCase()],
+        count = day[time.getTimeLabel()].count,
+        score = day[time.getTimeLabel()].score;    
+    if (count === -1){ cf_status_label = 'Closed' }
+    else {
+      cf_status_label = CFLABELS[Math.round(score/count) - 1];
+    }
+  }
+  cf_status.label = cf_status_label;
+  cf_status.time = cf_status_time;
+  return cf_status;
+}
+
+/**
  * @name _initializeGoogleMaps
  * @procedure
  *

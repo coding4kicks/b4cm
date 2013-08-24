@@ -52,7 +52,8 @@
         </div>
         <div class="current-status">
           <h4>Current Status:</h4>
-          <h3 class="status {{spot.cf_status}}">{{spot.cf_status_label}}</h3>
+          <h5>({{spot.cf_status_time}})</h5>
+          <h3 class="status {{spot.cf_status_label | lowercase}}">{{spot.cf_status_label}}</h3>
         </div>
         <hr>
       </div>
