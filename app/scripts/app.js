@@ -97,7 +97,7 @@ function _calculateStars(rating) {
  * @params {object} $scope Controller's scope.
  * @returns {nothing} Procedure has side effects on scope.
  */ 
-function _initializeGoogleMaps($scope) {
+function _initializeGoogleMaps($scope, position, spots) {
 
   // Enable the new Google Maps visuals until it gets enabled by default.
   // See http://googlegeodevelopers.blogspot.ca/2013/05/a-fresh-new-look-for-maps-api-for-all.html
@@ -108,28 +108,41 @@ function _initializeGoogleMaps($scope) {
 
   $scope.position = {
     'coords': {
-      'latitude': $scope.spot.location.latitude,
-      'longitude': $scope.spot.location.longitude
+      'latitude': position.latitude,
+      'longitude': position.longitude
     }
   };
 
   /** the initial center of the map */
   $scope.centerProperty = {
-    'latitude': $scope.spot.location.latitude,
-    'longitude': $scope.spot.location.longitude
+    'latitude': position.latitude,
+    'longitude': position.longitude
   };
 
   /** the initial zoom level of the map */
   $scope.zoomProperty = 14;
 
   /** list of markers to put in the map */
-  $scope.markersProperty = [
-    { 'latitude': $scope.spot.location.latitude,
-      'longitude': $scope.spot.location.longitude,
-      'infoWindow': $scope.spot.name,
-      'icon' : {'url': "../images/marker-icon1.png"}
-    },
-  ];   
+  //$scope.markersProperty = [
+  //  { 'latitude': $scope.spot.location.latitude,
+  //    'longitude': $scope.spot.location.longitude,
+  //    'infoWindow': $scope.spot.name,
+  //    'icon' : {'url': "../images/marker-icon1.png"}
+  //  },
+  //];
+
+  /** list of markers to put in the map */
+  $scope.markersProperty = [];
+  for (var i = 0; i < spots.length; i++) {
+    var marker = {},
+        spot = spots[i],
+        url = "../images/marker-icon" + (i + 1) + ".png";
+    marker.latitude = spot.location.latitude;
+    marker.longitude = spot.location.longitude;
+    marker.infoWindow = spot.name;
+    marker.icon = {'url': url};
+    $scope.markersProperty.push(marker);
+  } 
 
   // These 2 properties will be set when clicking on the map
   $scope.clickedLatitudeProperty = null;
