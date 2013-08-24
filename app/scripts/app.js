@@ -64,9 +64,9 @@ angular.module('b4cmApp', ["google-maps"])
       });
   });
 
-/***************
- * HELPER FUNCS
- ***************/
+/*****************************
+ * APPLICATION HELPER FUNCS
+ *****************************/
 
 /**
  * @name _calculateStars
@@ -88,3 +88,58 @@ function _calculateStars(rating) {
   }
   return stars;
 }
+
+/**
+ * @name _initializeGoogleMaps
+ * @procedure
+ *
+ * @description Initialize parameters for google maps directive for the spot page.
+ * @params {object} $scope Controller's scope.
+ * @returns {nothing} Procedure has side effects on scope.
+ */ 
+function _initializeGoogleMaps($scope) {
+
+  // Enable the new Google Maps visuals until it gets enabled by default.
+  // See http://googlegeodevelopers.blogspot.ca/2013/05/a-fresh-new-look-for-maps-api-for-all.html
+  // Add test for existance so doesn't blow up unit tests
+  if (typeof google !== "undefined") {
+    google.maps.visualRefresh = true;
+  }
+
+  $scope.position = {
+    'coords': {
+      'latitude': $scope.spot.location.latitude,
+      'longitude': $scope.spot.location.longitude
+    }
+  };
+
+  /** the initial center of the map */
+  $scope.centerProperty = {
+    'latitude': $scope.spot.location.latitude,
+    'longitude': $scope.spot.location.longitude
+  };
+
+  /** the initial zoom level of the map */
+  $scope.zoomProperty = 14;
+
+  /** list of markers to put in the map */
+  $scope.markersProperty = [
+    { 'latitude': $scope.spot.location.latitude,
+      'longitude': $scope.spot.location.longitude,
+      'infoWindow': $scope.spot.name,
+      'icon' : {'url': "../images/marker-icon1.png"}
+    },
+  ];   
+
+  // These 2 properties will be set when clicking on the map
+  $scope.clickedLatitudeProperty = null;
+  $scope.clickedLongitudeProperty = null;   
+  $scope.eventsProperty = {
+    'click': function (mapModel, eventName, originalEventArgs) {	
+      // 'this' is the directive's scope
+      $log.log("user defined event on map directive with scope", this);
+      $log.log("user defined event: " + eventName, mapModel, originalEventArgs);
+    }
+  };
+}
+

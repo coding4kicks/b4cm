@@ -137,6 +137,7 @@ function _constructCrowdFactor(cf_blocks, cf_day) {
           var hour = {},
               spot_info = cf_day[day_name][hour_label],
               cf_score = spot_info.score / spot_info.count;
+          if(spot_info.score === -1){cf_score = -1};
           hour.cf_status = _setStatus(cf_score);
           hour.label = hour_label;
           day.hours.push(hour);
@@ -158,7 +159,8 @@ function _constructCrowdFactor(cf_blocks, cf_day) {
  * @returns {string} Crowd status (closed, empty, few, ave, crowded, or herd).
  */ 
 function _setStatus(score) {
-  var cf_status = ""
+  var cf_status = "";
+  console.log(score);
   if (score < 0) {cf_status = 'closed'}
   else if (score < .5) {cf_status = 'empty';} 
   else if (score < 2.5) {cf_status = 'few';}
