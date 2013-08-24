@@ -32,7 +32,7 @@ angular.module('b4cmApp')
     $scope.listings.spots.forEach(function(geohash) {
       var spot_id = geohash[Object.keys(geohash)[0]],
           spot_obj = spot.get(spot_id),
-          current_status = _getStatus(spot_obj, current_time);;
+          current_status = _getStatus(spot_obj, current_time);
                 
       // Calculate star rating for spot
       spot_obj.stars = _calculateStars(spot_obj.rating);
@@ -41,7 +41,6 @@ angular.module('b4cmApp')
       spot_obj.cf_status_label = current_status.label;
       spot_obj.cf_status_time = current_status.time;
       spot_obj.cf_status_boxes = _calculateBoxLabels(spot_obj, times)
-
 
       $scope.spots.push(spot_obj);
     });
@@ -66,34 +65,6 @@ angular.module('b4cmApp')
 /***************
  * HELPER FUNCS
  ***************/
-
-/**
- * @name _timeInfo
- * @function
- *
- * @description Closure that maintains time label and day of week info about a given date.
- *              Both can be used as keys to access a spots crowdfactor info.
- * @param {ojbect} date Date to calculate day and label for.
- * @returns {object} getTime() - Returns the getTime() result for the date object.
- *                   getTimeLabel() - Returns the time label.
- *                   getDay() - Returns the day of weeek
- */ 
-function _timeInfo(date) {
-  var WEEKDAY = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], 
-      day = WEEKDAY[date.getDay()],
-      hour24 = date.getHours(),
-      hour = hour24 % 12,
-      meridiem = (hour24 - 12 < 0) ? 'am' : 'pm',
-      timeLabel = '';
-  if (hour === 0) {hour = 12};
-  timeLabel = hour + meridiem;
-
-  return {
-    getTime: function() {return date.getTime();},
-    getTimeLabel: function() {return timeLabel;},
-    getDay: function() {return day;}
-  }
-}
 
 /**
  * @name _calculateBoxLabels
