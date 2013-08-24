@@ -9,9 +9,9 @@ angular.module('b4cmApp')
     fakeListings.location = {'latitude': 37.447365, 'longitude': -122.160248};
     fakeListings.type = 'study';
     fakeListings.spots = [
-      {'geohash1': 'fakeSpot1Id'},
-      {'geohash2': 'fakeSpot2Id'},
-      {'geohash3': 'fakeSpot3Id'}
+      {'geohash1': 'fakeSpot1'},
+      {'geohash2': 'fakeSpot2'},
+      {'geohash3': 'fakeSpot3'}
     ];
 
 

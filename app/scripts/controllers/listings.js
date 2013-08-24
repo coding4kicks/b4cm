@@ -5,13 +5,13 @@ angular.module('b4cmApp')
 
     // Get listings
     $scope.listings = listings.get();
-    var spots = [];
+    $scope.spots = [];
     $scope.listings.spots.forEach(function(geohash) {
       var spot_id = geohash[Object.keys(geohash)[0]],
           spot_obj = spot.get(spot_id);
-      spots.push(spot_obj);
+      $scope.spots.push(spot_obj);
     });
-    console.log(spots);
+    //console.log(spots);
     
 
     // Initialize google maps parameters for listings page
@@ -52,20 +52,6 @@ function _initializeGoogleMapsListings($scope) {
     google.maps.visualRefresh = true;
   }
 
-  $scope.listings.spots = [];
-  var spot1 = {},
-      spot2 = {},
-      spot3 = {};
-  spot1.name = "Philz Coffee";
-  spot1.location = {'latitude': 37.441838, 'longitude': -122.161675};
-  spot2.name = "Peet's Coffee and Tea";
-  spot2.location = {'latitude': 37.441838, 'longitude': -122.160248};
-  spot3.name = "Coupa Cafe";
-  spot3.location = {'latitude': 37.446252, 'longitude': -122.160248};
-  $scope.listings.spots.push(spot1);
-  $scope.listings.spots.push(spot2);
-  $scope.listings.spots.push(spot3);
-
   $scope.position = {
     'coords': {
       'latitude': $scope.listings.location.latitude,
@@ -84,9 +70,9 @@ function _initializeGoogleMapsListings($scope) {
 
   /** list of markers to put in the map */
   $scope.markersProperty = [];
-  for (var i = 0; i < $scope.listings.spots.length; i++) {
+  for (var i = 0; i < $scope.spots.length; i++) {
     var marker = {},
-        spot = $scope.listings.spots[i],
+        spot = $scope.spots[i],
         url = "../images/marker-icon" + (i + 1) + ".png";
     marker.latitude = spot.location.latitude;
     marker.longitude = spot.location.longitude;

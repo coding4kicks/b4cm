@@ -521,7 +521,7 @@ var fakeSpot2 = {
         }
       };
 
-var fakeSpot2 = {
+var fakeSpot3 = {
       'id': '687',
       'name': 'Coupa Cafe',
       'yelp_id': 'coupa-café-palo-alto-3',
@@ -794,6 +794,7 @@ var fakeSpot2 = {
         return false;
       },
       get: function (id) {
+        // TODO: need code to deal with invalid IDs.
         if (id === 'fakeSpot1') {return fakeSpot1;}
         if (id === 'fakeSpot2') {return fakeSpot2;}
         if (id === 'fakeSpot3') {return fakeSpot3;}
