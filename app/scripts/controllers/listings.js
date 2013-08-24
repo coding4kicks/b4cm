@@ -32,7 +32,7 @@ angular.module('b4cmApp')
     $scope.listings.spots.forEach(function(geohash) {
       var spot_id = geohash[Object.keys(geohash)[0]],
           spot_obj = spot.get(spot_id),
-          current_status = _calculateCurrentStatus1(spot_obj, current_time);;
+          current_status = _getStatus(spot_obj, current_time);;
                 
       // Calculate star rating for spot
       spot_obj.stars = _calculateStars(spot_obj.rating);
@@ -112,7 +112,7 @@ function _calculateBoxLabels(spot, times) {
         score = day[time.getTimeLabel()].score,
         cf_score = score / count;
     if(score === -1){cf_score = -1};
-    cf_labels.push(_setStatus(cf_score));
+    cf_labels.push(_calculateStatus(cf_score));
   });
   return cf_labels;
 }

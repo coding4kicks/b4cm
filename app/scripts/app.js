@@ -90,14 +90,14 @@ function _calculateStars(rating) {
 }
 
 /**
- * @name _setStatus
+ * @name _calculateStatus
  * @function
  *
- * @description Determine crowdfactor status based upon crowd score.
+ * @description Calculates crowdfactor status based upon crowd score.
  * @param {float} score Crowd score from 1-5.
  * @returns {string} Crowd status (closed, empty, few, ave, crowded, or herd).
  */ 
-function _setStatus(score) {
+function _calculateStatus(score) {
   var cf_status = "";
   if (score < 0) {cf_status = 'closed'}
   else if (score < .5) {cf_status = 'empty';} 
@@ -110,13 +110,16 @@ function _setStatus(score) {
 }
 
 /**
- * @name _calculateCurrentStatus1
- * @procedure
+ * @name _getStatus
+ * @function
  *
- * @description Calculates current status: closed, empty, few, average, crowded, herd.
- * @returns {nothing} Procedure has side effects on scope.
+ * @description Gets the current status label: closed, empty, few, average, crowded, herd.
+ *              And determine if status is historical or withing the past hour.
+ * @param {object} spot The spot to determine the status for.
+ * @param {object} time The time object to use to determine the status.
+ * @returns {object} cf_status with label property and time property
  */ 
-function _calculateCurrentStatus1(spot, time) {
+function _getStatus(spot, time) {
   var cf_status = {},
       time_delta = (time.getTime() - spot.crowdfactor.most_recent.time) / 60 / 1000,
       CFLABELS = ['Empty', 'Few', 'Average', 'Crowded', 'Herd'],
@@ -172,15 +175,6 @@ function _initializeGoogleMaps($scope, position, spots) {
 
   /** the initial zoom level of the map */
   $scope.zoomProperty = 14;
-
-  /** list of markers to put in the map */
-  //$scope.markersProperty = [
-  //  { 'latitude': $scope.spot.location.latitude,
-  //    'longitude': $scope.spot.location.longitude,
-  //    'infoWindow': $scope.spot.name,
-  //    'icon' : {'url': "../images/marker-icon1.png"}
-  //  },
-  //];
 
   /** list of markers to put in the map */
   $scope.markersProperty = [];
