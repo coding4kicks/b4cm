@@ -274,6 +274,7 @@ input[type='text']:focus {
   .brand {
     color: $comp2-dark;
     margin-left: -8px;
+    margin-top: -12px;
 
     .letter-b {
       color: $comp1-dark;
@@ -292,6 +293,10 @@ input[type='text']:focus {
     }
   }
 
+  .login > ul{
+    margin-top: -15px;
+  }
+
   .nav > li > a {
     color: $text-light;
   }
@@ -302,6 +307,15 @@ input[type='text']:focus {
 
   .or {
     margin-top: 9px;
+  }
+
+  form {
+    margin: 15px 0 -45px 0;
+    width: 50%;
+
+    .btn {
+      margin-top: -10px;
+    }
   }
 }
 

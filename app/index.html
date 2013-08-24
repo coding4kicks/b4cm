@@ -32,7 +32,17 @@
       <div class="navbar-inner">
         <div class="">
           <a class="brand" href="/"><span class="letter-b">C</span>F</a>
-          <div class="nav-collapse collapse">
+          <form class="form-horizontal find-spot">
+            <select class="type">
+              <option>Food</option>
+              <option>Study</option>
+              <option>Social</option>
+              <option>All</option>
+            </select>
+            <input type="text" class="form-control" placeholder="City or Zip">
+            <button class="btn">Search</button>
+          </form>
+          <div class="nav-collapse collapse login">
             <ul class="nav pull-right" ng-show="name">
               <li class="">
               <a>Welcome {{name}}</a>
