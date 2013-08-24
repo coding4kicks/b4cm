@@ -6,7 +6,11 @@ angular.module('b4cmApp')
     // ...
 
     var fakeListings = {};
-    fakeListings.location = {'latitude': 37.447365, 'longitude': -122.160248};
+    fakeListings.location = { 'city': 'Palo Alto',
+                              'state_code': 'CA',
+                              'latitude': 37.447365, 
+                              'longitude': -122.160248
+                            };
     fakeListings.type = 'study';
     fakeListings.spots = [
       {'geohash1': 'fakeSpot1'},
