@@ -9,6 +9,7 @@ angular.module('b4cmApp')
       'id': '123',
       'name': 'Philz Coffee',
       'yelp_id': 'philz-coffee-palo-alto2',
+      'image_url': "../images/spot-philz.jpg",
       'rating': 4.5,
       'wifi': true,
       'type': {
@@ -267,6 +268,7 @@ var fakeSpot2 = {
       'id': '987',
       'name': "Pete's Coffee and Tea",
       'yelp_id': 'peets-coffee-and-tea-palo-alto-2',
+      'image_url': "../images/spot-peets.jpg",
       'rating': 3.5,
       'wifi': true,
       'type': {
@@ -525,6 +527,7 @@ var fakeSpot3 = {
       'id': '687',
       'name': 'Coupa Cafe',
       'yelp_id': 'coupa-café-palo-alto-3',
+      'image_url': "../images/spot-coupa.jpg",
       'rating': 4.0,
       'wifi': true,
       'type': {
