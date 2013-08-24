@@ -48,7 +48,7 @@
             <div class="stars">
               <img ng-repeat="star in spot.stars" ng-src="{{star}}">
             </div>
-            <div class="review-count">75 Reviews</div>
+            <div class="review-count">{{spot.review_count}} Reviews</div>
           </div>
           <div class="crowd-rank">
             <div class="crowd-bar">
@@ -58,7 +58,7 @@
               <div class="box herd-square"></div>
               <div class="box herd-square"><h6>{{plus4_time}}</h6></div>
             </div>
-            <div class="watchers">549 Watchers</div>
+            <div class="watchers">{{spot.watch_count}} Watches</div>
           </div>
         </div>
         <div class="current-status">

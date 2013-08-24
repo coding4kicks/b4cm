@@ -12,6 +12,7 @@ angular.module('b4cmApp')
       'image_url': "../images/spot-philz.jpg",
       'rating': 4.5,
       'wifi': true,
+      'review_count': 175,
       'type': {
         'food': 5,
         'study': 8,
@@ -74,7 +75,7 @@ angular.module('b4cmApp')
           }
         ],
         'crowdfactor': {
-          'total_watchers': 732,
+          'watch_count': 732,
           'most_recent': {'time': 1377150514232, 'score': 4},
           'blocks': {'morning':true, 'afternoon':true, 'evening':true, 'latenight':false},
           'day': { 
@@ -271,6 +272,7 @@ var fakeSpot2 = {
       'image_url': "../images/spot-peets.jpg",
       'rating': 3.5,
       'wifi': true,
+      'review_count': 75,
       'type': {
         'food': 3,
         'study': 10,
@@ -333,7 +335,7 @@ var fakeSpot2 = {
           }
         ],
         'crowdfactor': {
-          'total_watchers': 732,
+          'watch_count': 732,
           'most_recent': {'time': 1377150514232, 'score': 4},
           'blocks': {'morning':true, 'afternoon':true, 'evening':true, 'latenight':false},
           'day': { 
@@ -530,6 +532,7 @@ var fakeSpot3 = {
       'image_url': "../images/spot-coupa.jpg",
       'rating': 4.0,
       'wifi': true,
+      'review_count': 200,
       'type': {
         'food': 8,
         'study': 6,
@@ -592,7 +595,7 @@ var fakeSpot3 = {
           }
         ],
         'crowdfactor': {
-          'total_watchers': 732,
+          'watch_count': 732,
           'most_recent': {'time': 1377150514232, 'score': 4},
           'blocks': {'morning':true, 'afternoon':true, 'evening':true, 'latenight':false},
           'day': { 

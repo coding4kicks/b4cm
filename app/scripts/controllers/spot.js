@@ -13,7 +13,7 @@ angular.module('b4cmApp')
     // Load spot information
     $scope.spot = spot.get();
 
-    $scope.total_watchers = $scope.spot.crowdfactor.total_watchers;
+    $scope.watch_count = $scope.spot.crowdfactor.watch_count;
 
     // Calculate stars overall and for each review.
     $scope.stars = _calculateStars($scope.spot.rating);

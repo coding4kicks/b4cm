@@ -12,7 +12,7 @@
           <div class="stars">
             <img ng-repeat="star in stars" ng-src="{{star}}">
           </div>
-          <div class="review-count">75 Reviews</div>
+          <div class="review-count">{{spot.review_count}} Reviews</div>
         </div>
       </div>
 
@@ -59,8 +59,8 @@
   <div class="visualize">
     <div class="crowd-factor">
       <h3>Current Time: <span class="current-time {{current_cflabel | lowercase}}">{{current_day}}, {{current_hour}}:{{current_minutes}} {{current_meridiem}}</span></h3>
-      <h4>{{total_watchers}}</h4>
-      <button type="button" class="btn" ng-click="addWatch()">Add Herd Watch</button>
+      <h4>{{watch_count}} Watches</h4>
+      <button type="button" class="btn" ng-click="addWatch()">Add Crowd Watch</button>
       <div class="crowd-visuals">
         <div class="timeslot" ng-repeat="block in blocks">
           <h5>{{block.name}}</h5>
