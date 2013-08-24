@@ -496,7 +496,12 @@ input[type='text']:focus {
     padding: 10px 15px;
 
     .main-col {
-      padding-top: 30px;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    .b4cm-icon {
+      margin-top: -5px;
     }
 
     h2 {
@@ -531,10 +536,6 @@ input[type='text']:focus {
     button {
       margin: -10px 0 0 10px;
     }
-
-    .add-spot {
-      margin: 0 0 14px 44px;
-    }
   }
 
  .page {
@@ -548,6 +549,12 @@ input[type='text']:focus {
     h6 {
       margin-top: -40px;
     }
+
+    .add-spot {
+      float: right;
+      margin-top: -55px;
+    }
+
   }
 
   .listing {

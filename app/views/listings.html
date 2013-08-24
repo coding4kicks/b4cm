@@ -4,20 +4,6 @@
       <img class="b4cm-icon" src="../images/b4cm-icon-study.png">
       <h2>{{listings.type}}</h2>
       <h3>{{listings.location.city}}, {{listings.location.state_code}}</h3>
-      <a  ng-href="#/addSpot">
-        <button class="btn add-spot">Add Spot</button>
-      </a>
-      <form class="form-horizontal find-spot">
-        <h4>Search for Spots: </h4>
-        <select class="type">
-          <option>Food</option>
-          <option>Study</option>
-          <option>Social</option>
-          <option>All</option>
-        </select>
-        <input type="text" class="form-control" placeholder="City or Zip">
-        <button class="btn">Search</button>
-      </form>
     </div>
     <div class="side-col">
       <div class="ad-book">
@@ -35,6 +21,9 @@
 
     <div class="listings main-col">
       <h6>1-10 of 100</h6>
+      <a  ng-href="#/addSpot">
+        <button class="btn add-spot">Add Spot</button>
+      </a>
 
       <div class="listing" ng-click="getSpot()" ng-repeat="spot in spots">
         <div class="rank">

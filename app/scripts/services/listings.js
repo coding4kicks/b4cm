@@ -11,7 +11,7 @@ angular.module('b4cmApp')
                               'latitude': 37.447365, 
                               'longitude': -122.160248
                             };
-    fakeListings.type = 'study';
+    fakeListings.type = 'Study';
     fakeListings.spots = [
       {'geohash1': 'fakeSpot1'},
       {'geohash2': 'fakeSpot2'},
