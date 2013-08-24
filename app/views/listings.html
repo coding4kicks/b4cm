@@ -38,7 +38,7 @@
 
       <div class="listing" ng-click="getSpot()" ng-repeat="spot in spots">
         <div class="rank">
-          <h4>{{$index + 1}}</h4>
+          <h4>{{$index + 1}}.</h4>
         </div>
         <img class="spot-pic" ng-src="{{spot.image_url}}">
         <div class="info"> 
@@ -52,18 +52,18 @@
           </div>
           <div class="crowd-rank">
             <div class="crowd-bar">
-              <div class="box ave-square"><h6>{{current_time}}</h6></div>
-              <div class="box few-square"></div>
-              <div class="box crowded-square"><h6>{{plus2_time}}</h6></div>
-              <div class="box herd-square"></div>
-              <div class="box herd-square"><h6>{{plus4_time}}</h6></div>
+              <div class="box {{spot.cf_status}}-square"><h6>{{current_time}}</h6></div>
+              <div class="box {{spot.cf_status1}}-square"></div>
+              <div class="box {{spot.cf_status2}}-square"><h6>{{plus2_time}}</h6></div>
+              <div class="box {{spot.cf_status3}}-square"></div>
+              <div class="box {{spot.cf_status4}}-square"><h6>{{plus4_time}}</h6></div>
             </div>
             <div class="watchers">{{spot.watch_count}} Watches</div>
           </div>
         </div>
         <div class="current-status">
           <h4>Current Status:</h4>
-          <h3 class="status ave">Average</h3>
+          <h3 class="status {{spot.cf_status}}">{{spot.cf_status_label}}</h3>
         </div>
         <hr>
       </div>
@@ -100,78 +100,6 @@
         <div class="current-status">
           <h4>Current Status:</h4>
           <h3 class="status ave">Average</h3>
-        </div>
-        <hr>
-      </div>
-
-      <div class="listing" ng-click="findSpot()">
-        <div class="rank">
-          <h4>2.</h4>
-        </div>
-        <img class="spot-pic" src="../images/spot-peets.jpg">
-        <div class="info"> 
-          <h4 class="title">Peet's Coffee & Tea</h4>
-          <h5 class="address">448 University Ave. Palo Alto</h5>
-          <div class="rating">
-            <div class="stars">
-              <img src="images/star-icon.png">
-              <img src="images/star-icon.png">
-              <img src="images/star-icon.png">
-              <img src="images/star-icon-empty.png">
-              <img src="images/star-icon-empty.png">
-            </div>
-            <div class="review-count">75 Reviews</div>
-          </div>
-          <div class="crowd-rank">
-            <div class="crowd-bar">
-              <div class="box empty-square"><h6>11am</h6></div>
-              <div class="box few-square"></div>
-              <div class="box ave-square"><h6>1pm</h6></div>
-              <div class="box crowded-square"></div>
-              <div class="box herd-square"><h6>3pm</h6></div>
-            </div>
-            <div class="watchers">549 Watchers</div>
-          </div>
-        </div>
-        <div class="current-status">
-          <h4>Current Status:</h4>
-          <h3 class="status empty">Empty</h3>
-        </div>
-        <hr>
-      </div>
-
-      <div class="listing" ng-click="findSpot()">
-        <div class="rank">
-          <h4>3.</h4>
-        </div>
-        <img class="spot-pic" src="../images/spot-coupa.jpg">
-        <div class="info">
-          <h4 class="title">Coupa Cafe</h4>
-          <h5 class="address">638 Ramona St. Palo Alto</h5>
-          <div class="rating">
-            <div class="stars">
-              <img src="images/star-icon.png">
-              <img src="images/star-icon.png">
-              <img src="images/star-icon.png">
-              <img src="images/star-icon-half.png">
-              <img src="images/star-icon-empty.png">
-            </div>
-            <div class="review-count">75 Reviews</div>
-          </div>
-          <div class="crowd-rank">
-            <div class="crowd-bar">
-              <div class="box few-square"><h6>11am</h6></div>
-              <div class="box few-square"></div>
-              <div class="box ave-square"><h6>1pm</h6></div>
-              <div class="box ave-square"></div>
-              <div class="box crowded-square"><h6>3pm</h6></div>
-            </div>
-            <div class="watchers">549 Watchers</div>
-          </div>
-        </div>
-        <div class="current-status">
-          <h4>Current Status:</h4>
-          <h3 class="status few">Few</h3>
         </div>
         <hr>
       </div>
