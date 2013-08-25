@@ -47,11 +47,22 @@ angular.module('b4cmApp')
      * @description Redirects to add-watch-page.
      */ 
     $scope.addWatch = function() {
-      $location.path("/addWatch");
+      $location.path("/addWatch/" + $scope.spot.id);
       // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
       if(!$scope.$$phase) { $scope.$apply(); }
     };
 
+    /**
+     * @name addReview
+     * @function
+     *
+     * @description Redirects to add-review-page.
+     */ 
+    $scope.addReview = function() {
+      $location.path("/addReview/" + $scope.spot.id);
+      // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
+      if(!$scope.$$phase) { $scope.$apply(); }
+    };
   });
 
 /***************

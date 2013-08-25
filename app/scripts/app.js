@@ -19,11 +19,11 @@ angular.module('b4cmApp', ["google-maps"])
         templateUrl: 'views/addSpot.html',
         controller: 'AddSpotCtrl'
       })
-      .when('/addReview', {
+      .when('/addReview/:spotId', {
         templateUrl: 'views/addReview.html',
         controller: 'AddReviewCtrl'
       })
-      .when('/addWatch', {
+      .when('/addWatch/:spotId', {
         templateUrl: 'views/addWatch.html',
         controller: 'AddWatchCtrl'
       })
