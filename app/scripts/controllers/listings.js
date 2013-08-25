@@ -52,10 +52,10 @@ angular.module('b4cmApp')
      * @name getSpot
      * @function
      *
-     * @description Redirects to spot-page.
+     * @description Redirects to spot-page passing spot id.
      */ 
-    $scope.getSpot = function() {
-      $location.path("/spot");
+    $scope.getSpot = function(spot_id) {
+      $location.path("/spot/" + spot_id);
       // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
       if(!$scope.$$phase) { $scope.$apply(); }
     };  

@@ -11,7 +11,7 @@ angular.module('b4cmApp', ["google-maps"])
         templateUrl: 'views/listings.html',
         controller: 'ListingsCtrl'
       })
-      .when('/spot', {
+      .when('/spot/:spotId', {
         templateUrl: 'views/spot.html',
         controller: 'SpotCtrl'
       })

@@ -8,10 +8,10 @@ angular.module('b4cmApp')
    *
    * @description Retrieves and calculates display information for a requested spot (aka. business).
    */ 
-  .controller('SpotCtrl', function ($scope, $location, $timeout, spot) {
+  .controller('SpotCtrl', function ($scope, $location, $timeout, $routeParams, spot) {
 
     // Load spot information
-    $scope.spot = spot.get();
+    $scope.spot = spot.get($routeParams.spotId);
 
     $scope.watch_count = $scope.spot.crowdfactor.watch_count;
 

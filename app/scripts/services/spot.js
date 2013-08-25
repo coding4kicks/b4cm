@@ -6,7 +6,7 @@ angular.module('b4cmApp')
     // ...
 
     var fakeSpot1 = {
-      'id': '123',
+      'id': 'fakeSpot1',
       'name': 'Philz Coffee',
       'yelp_id': 'philz-coffee-palo-alto2',
       'image_url': "../images/spot-philz.jpg",
@@ -266,7 +266,7 @@ angular.module('b4cmApp')
       };
 
 var fakeSpot2 = {
-      'id': '987',
+      'id': 'fakeSpot2',
       'name': "Pete's Coffee and Tea",
       'yelp_id': 'peets-coffee-and-tea-palo-alto-2',
       'image_url': "../images/spot-peets.jpg",
@@ -526,7 +526,7 @@ var fakeSpot2 = {
       };
 
 var fakeSpot3 = {
-      'id': '687',
+      'id': 'fakeSpot3',
       'name': 'Coupa Cafe',
       'yelp_id': 'coupa-café-palo-alto-3',
       'image_url': "../images/spot-coupa.jpg",
