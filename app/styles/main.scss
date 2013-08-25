@@ -131,7 +131,7 @@ a {
   background: $acc-med;
   border: 1px solid;
   border-radius: 10px;
-  height: 180px;
+  height: 125px;
   padding: 5px;
   margin-left: 40px;
   text-align: center;
@@ -149,11 +149,15 @@ a {
 
   h6 {
     color: $text-light;
+    display: inline-block;
+    float: left;
     line-height: 15px;
+    margin: 25px 0 0 15px;
+    width: 80px;
   }
 
   img {
-    margin-top: 10px;
+    display: inline-block;
     width: 80px;
   }
 }
@@ -497,7 +501,7 @@ input[type='text']:focus {
 
     .main-col {
       text-align: center;
-      padding-top: 50px;
+      padding-top: 20px;
     }
 
     .b4cm-icon {
