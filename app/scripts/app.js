@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('b4cmApp', ["google-maps"])
+
   .config(function ($routeProvider) {
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -67,6 +69,15 @@ angular.module('b4cmApp', ["google-maps"])
   
   .run(function ($rootScope, $location) {
 
+    // Spot types for search
+    $rootScope.spotTypes = [
+      {name:'Food', shade:'dark'},
+      {name:'Study', shade:'light'},
+      {name:'Social', shade:'dark'},
+      {name:'All', shade:'dark'}
+    ];
+    $rootScope.spotType = $rootScope.spotTypes[0];
+
     /**
      * @name addWatch
      * @function
@@ -74,9 +85,10 @@ angular.module('b4cmApp', ["google-maps"])
      * @description Redirects to add-watch-page.
      */ 
     $rootScope.searchListings = function() {
+      alert($rootScope.searchLocation);
       $location.path("/listings");
       // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
-      if(!$scope.$$phase) { $scope.$apply(); }
+      if(!$rootScope.$$phase) { $scope.$apply(); }
     };
 
   });
