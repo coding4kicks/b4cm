@@ -23,7 +23,7 @@ $high-pastel: #dcdc6e;
 // Crowd Factor (aqua, grey, red)
 $cf-empty: #6edcdc;
 $cf-few: #6ea5a5;
-$cf-ave: #a5a5a5;
+$cf-average: #a5a5a5;
 $cf-crowded: #a56e6e;
 $cf-herd: #dc6e6e;
 $cf-closed: #111111;
@@ -217,12 +217,12 @@ input[type='text']:focus {
   background-color: $cf-few;
 }
 
-.ave {
-  color: $cf-ave;
+.average {
+  color: $cf-average;
 }
 
-.ave-square {
-  background-color: $cf-ave;
+.average-square {
+  background-color: $cf-average;
 
 }
 
@@ -251,7 +251,7 @@ input[type='text']:focus {
   background-color: $cf-closed;
 }
 
-.empty-square, .few-square, .ave-square,
+.empty-square, .few-square, .average-square,
 .crowded-square, .herd-square, .closed-square {
   border: 1px solid black;
 }
@@ -957,6 +957,10 @@ input[type='text']:focus {
 
     h5 {
       display: inline-block;
+    }
+
+    .average > h5 {
+      color: 	$text-dark;
     }
 
     .row1, .row2 {

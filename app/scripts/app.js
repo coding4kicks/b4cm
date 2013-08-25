@@ -95,14 +95,14 @@ function _calculateStars(rating) {
  *
  * @description Calculates crowdfactor status based upon crowd score.
  * @param {float} score Crowd score from 1-5.
- * @returns {string} Crowd status (closed, empty, few, ave, crowded, or herd).
+ * @returns {string} Crowd status (closed, empty, few, average, crowded, or herd).
  */ 
 function _calculateStatus(score) {
   var cf_status = "";
   if (score < 0) {cf_status = 'closed'}
   else if (score < .5) {cf_status = 'empty';} 
   else if (score < 2.5) {cf_status = 'few';}
-  else if (score < 3.5) {cf_status = 'ave';}
+  else if (score < 3.5) {cf_status = 'average';}
   else if (score < 4.5) {cf_status = 'crowded';}
   else if (score <= 5) {cf_status = 'herd';}
   else {console.log('Error in status update for score:' + score);}
