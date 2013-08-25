@@ -62,6 +62,23 @@ angular.module('b4cmApp', ["google-maps"])
       .otherwise({
         redirectTo: '/'
       });
+
+  })
+  
+  .run(function ($rootScope, $location) {
+
+    /**
+     * @name addWatch
+     * @function
+     *
+     * @description Redirects to add-watch-page.
+     */ 
+    $rootScope.searchListings = function() {
+      $location.path("/listings");
+      // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
+      if(!$scope.$$phase) { $scope.$apply(); }
+    };
+
   });
 
 /*****************************
