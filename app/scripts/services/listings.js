@@ -67,9 +67,9 @@ angular.module('b4cmApp')
       },
       get: function (listingType) {
         if (listingType === 'study') {return fakeListingsStudy;}
-        if (listingType === 'study') {return fakeListingsSocial;}
-        if (listingType === 'study') {return fakeListingsFood;}
-        if (listingType === 'study') {return fakeListingsAll;}
+        if (listingType === 'social') {return fakeListingsSocial;}
+        if (listingType === 'food') {return fakeListingsFood;}
+        if (listingType === 'all') {return fakeListingsAll;}
         return fakeListingsStudy;
       },
       remove: function () {

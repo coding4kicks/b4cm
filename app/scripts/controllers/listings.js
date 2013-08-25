@@ -14,7 +14,7 @@ angular.module('b4cmApp')
         searchLocation = decodeURIComponent($routeParams.searchLocation);
 
     // Get listings
-    $scope.listings = listings.get();
+    $scope.listings = listings.get(spotType);
 
     // Calculate times
     var hour = 60 * 60 * 1000,

@@ -1,7 +1,7 @@
 <div id="listings-page">
   <div class="title-bar clearfix">
     <div class="main-col">
-      <img class="b4cm-icon" src="../images/b4cm-icon-study.png">
+      <img class="b4cm-icon" ng-src="../images/b4cm-icon-{{listings.type | lowercase}}.png">
       <h2>{{listings.type}}</h2>
       <h3>{{listings.location.city}}, {{listings.location.state_code}}</h3>
     </div>
