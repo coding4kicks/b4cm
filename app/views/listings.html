@@ -47,49 +47,13 @@
               <div class="box {{spot.cf_status_boxes[3]}}-square"></div>
               <div class="box {{spot.cf_status_boxes[4]}}-square"><h6>{{plus4_time}}</h6></div>
             </div>
-            <div class="watchers">{{spot.watch_count}} Watches</div>
+            <div class="watchers">{{spot.crowdfactor.watch_count}} Watches</div>
           </div>
         </div>
         <div class="current-status">
           <h4>Current Status:</h4>
           <h5>({{spot.cf_status_time}})</h5>
           <h3 class="status {{spot.cf_status_label | lowercase}}">{{spot.cf_status_label}}</h3>
-        </div>
-        <hr>
-      </div>
-
-      <div class="listing" ng-click="getSpot()">
-        <div class="rank">
-          <h4>1.</h4>
-        </div>
-        <img class="spot-pic" src="../images/spot-philz.jpg">
-        <div class="info"> 
-          <h4 class="title">Philz Coffee</h4>
-          <h5 class="address">101 Forest Ave. Palo Alto</h5>
-          <div class="rating">
-            <div class="stars">
-              <img src="images/star-icon.png">
-              <img src="images/star-icon.png">
-              <img src="images/star-icon.png">
-              <img src="images/star-icon-half.png">
-              <img src="images/star-icon-empty.png">
-            </div>
-            <div class="review-count">75 Reviews</div>
-          </div>
-          <div class="crowd-rank">
-            <div class="crowd-bar">
-              <div class="box ave-square"><h6>11am</h6></div>
-              <div class="box few-square"></div>
-              <div class="box crowded-square"><h6>1pm</h6></div>
-              <div class="box herd-square"></div>
-              <div class="box herd-square"><h6>3pm</h6></div>
-            </div>
-            <div class="watchers">549 Watchers</div>
-          </div>
-        </div>
-        <div class="current-status">
-          <h4>Current Status:</h4>
-          <h3 class="status ave">Average</h3>
         </div>
         <hr>
       </div>
