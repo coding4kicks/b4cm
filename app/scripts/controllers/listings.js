@@ -8,7 +8,10 @@ angular.module('b4cmApp')
    *
    * @description Retrieves and calculates display information for a requested listing.
    */ 
-  .controller('ListingsCtrl', function ($scope, $log, $location, listings, spot) {
+  .controller('ListingsCtrl', function ($scope, $log, $location, $routeParams, listings, spot) {
+
+    var spotType = $routeParams.spotType,
+        searchLocation = decodeURIComponent($routeParams.searchLocation);
 
     // Get listings
     $scope.listings = listings.get();
