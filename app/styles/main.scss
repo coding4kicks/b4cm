@@ -222,7 +222,8 @@ input[type='text']:focus {
 }
 
 .average {
-  color: $cf-average;
+  //color: $cf-average;
+  color: $text-dark;
 }
 
 .average-square {
