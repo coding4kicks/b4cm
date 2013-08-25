@@ -42,14 +42,9 @@
   <div class="nearby">
     <form class="form-horizontal find-spot">
       <h3>Find a place near you:</h3>
-      <select class="type">
-        <option>Food</option>
-        <option selected>Study</option>
-        <option>Social</option>
-        <option>All</option>
-      </select>
-      <input type="text" class="form-control" placeholder="City or Zip">
-      <button class="btn" ng-click="findListings()">Search</button>
+      <select class="type" ng-model="spotType" ng-options="type.name for type in spotTypes"></select>
+      <input type="text" class="form-control" ng-model="searchLocation" placeholder="City or Zip">
+      <button class="btn" ng-click="searchListings(spotType.name, searchLocation)">Search</button>
     </form>
   </div>
 

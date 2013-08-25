@@ -33,10 +33,9 @@
         <div class="">
           <a class="brand" href="/"><span class="letter-b">C</span>F</a>
           <form class="form-horizontal find-spot">
-            <select class="type" ng-model="spotType" ng-options="type.name for type in spotTypes">
-            </select>
+            <select class="type" ng-model="spotType" ng-options="type.name for type in spotTypes"></select>
             <input type="text" class="form-control" ng-model="searchLocation" placeholder="City or Zip">
-            <button class="btn" ng-click="searchListings()">Search</button>
+            <button class="btn" ng-click="searchListings(spotType.name, searchLocation)">Search</button>
           </form>
           <div class="nav-collapse collapse login">
             <ul class="nav pull-right" ng-show="name">

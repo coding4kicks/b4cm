@@ -1,13 +1,15 @@
 'use strict';
 
 angular.module('b4cmApp')
-  .controller('MainCtrl', function ($scope, $location) {
+  .controller('MainCtrl', function ($scope, $rootScope, $location) {
 
-    $scope.findListings = function() {
-      $location.path("/listings");
-      // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
-      if(!$scope.$$phase) { $scope.$apply(); }
-    };
+   // $rootScope.searchLocation = $scope.searchLocation;
+
+   // $scope.findListings = function() {
+   //   $location.path("/listings");
+   //   // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
+   //   if(!$scope.$$phase) { $scope.$apply(); }
+   // };
 
     $scope.addWatch = function() {
       $location.path("/addWatch");

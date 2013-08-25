@@ -84,9 +84,8 @@ angular.module('b4cmApp', ["google-maps"])
      *
      * @description Redirects to add-watch-page.
      */ 
-    $rootScope.searchListings = function() {
-      $location.path("/listings/" + $rootScope.spotType.name.toLowerCase() + "/" + 
-        encodeURIComponent($rootScope.searchLocation));
+    $rootScope.searchListings = function(spotType, searchLocation) {
+      $location.path("/listings/" + spotType.toLowerCase() + "/" + encodeURIComponent(searchLocation));
       // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
       if(!$rootScope.$$phase) { $rootScope.$apply(); }
     };
