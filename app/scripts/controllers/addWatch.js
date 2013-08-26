@@ -1,6 +1,13 @@
 'use strict';
 
 angular.module('b4cmApp')
+
+  /**
+   * @name Add Watch Controller
+   * @controller
+   *
+   * @description Adds a Crowd Watch report to a Spot's crowdfactor.
+   */ 
   .controller('AddWatchCtrl', function ($scope, $routeParams, spot) {
 
     var watch = {},
@@ -20,6 +27,7 @@ angular.module('b4cmApp')
                     {'label': '4'}, {'label': '5'}, {'label': '6'}, {'label': '7'}, 
                     {'label': '8'}, {'label': '9'}, {'label': '10'}, {'label': '11'}],
     $scope.MERIDIEMS = [{'label': 'am'}, {'label': 'pm'}];
+
     $scope.startDay = $scope.WEEKDAYS[current_day];
     $scope.stopDay = $scope.WEEKDAYS[future_day];
     $scope.startHour = $scope.HOURS[current_hour];
@@ -47,6 +55,10 @@ angular.module('b4cmApp')
 
   });
 
+/***************
+ * HELPER FUNCS
+ ***************/
+
 /**
  * @name _calculateWatchTimes
  * @function
@@ -62,8 +74,6 @@ function _calculateWatchTimes(start, stop) {
       current = {'day': start.day, 'hour': start.hour, 'meridiem': start.meridiem},
       WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-  console.log(current);
-  console.log(stop);
   while (current.day !== stop.day ||
          current.hour !== stop.hour ||
          current.meridiem !== stop.meridiem) {
@@ -91,7 +101,7 @@ function _calculateWatchTimes(start, stop) {
     }
     else if (current.hour === 13) {current.hour = 1;}
   }
-  console.log(times);
+  return times
 }
 
 /**

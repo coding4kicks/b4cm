@@ -791,7 +791,7 @@ var fakeSpot3 = {
         return false;
       },
       addWatch: function (newWatch, spotId) {
-        console.log(spotId, newWatch);
+        //console.log(spotId, newWatch);
         return false;
       },
       create: function () {
