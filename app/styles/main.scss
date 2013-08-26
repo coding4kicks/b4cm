@@ -859,7 +859,14 @@ input[type='text']:focus {
 
   form {
     margin-bottom: 0;
+
+    select, textarea, input {
+      background-color: #6E6E6E;
+      border: 1px solid #376E6E;
+      color: #FAFAFA;
+    }
   }
+
 
   .control-group:last-of-type {
     margin-bottom: 0;
