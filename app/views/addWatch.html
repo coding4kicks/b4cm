@@ -9,20 +9,20 @@
     <div class="control-group">
       <label class="control-label">Crowd Factor: </label>
       <div class="controls">
-        <label class="checkbox inline empty">
-          <input type="checkbox" id="inlineCheckbox1" value="empty">Empty
+        <label class="radio inline empty">
+          <input type="radio" name="cf_status" ng-model="cf_status" value="empty">Empty
         </label>
-        <label class="checkbox inline few">
-          <input type="checkbox" id="inlineCheckbox2" value="few">Few
+        <label class="radio inline few">
+          <input type="radio" name="cf_status" ng-model="cf_status" value="few">Few
         </label>
-        <label class="checkbox inline ave">
-          <input type="checkbox" id="inlineCheckbox3" value="average">Average
+        <label class="radio inline ave">
+          <input type="radio" name="cf_status" ng-model="cf_status" value="average">Average
         </label>
-        <label class="checkbox inline crowded">
-          <input type="checkbox" id="inlineCheckbox2" value="crowded">Crowded
+        <label class="radio inline crowded">
+          <input type="radio" name="cf_status" ng-model="cf_status" value="crowded">Crowded
         </label>
-        <label class="checkbox inline herd">
-          <input type="checkbox" id="inlineCheckbox3" value="herd">Herd
+        <label class="radio inline herd">
+          <input type="radio" name="cf_status" ng-model="cf_status" value="herd">Herd
         </label>
       </div>
     </div>
@@ -42,7 +42,7 @@
 
     <div class="control-group">
       <div class="controls">
-        <button type="submit" class="btn">Add Crowd Watch</button>
+        <button type="submit" class="btn" ng-click="addWatch()">Add Crowd Watch</button>
       </div>
     </div>
   </form>

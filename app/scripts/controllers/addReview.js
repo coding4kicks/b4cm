@@ -16,6 +16,12 @@ angular.module('b4cmApp')
     review.writeup = $scope.writeup;
     review.type = {'food': 0, 'study': 0, 'social': 0};
 
+    /**
+     * @name addReview
+     * @function
+     *
+     * @description Adds a review to a spot
+     */     
     $scope.addReview = function() {
       if ($scope.food) {review.type.food = 1};
       if ($scope.study) {review.type.study = 1};

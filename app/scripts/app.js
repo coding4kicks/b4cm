@@ -187,7 +187,7 @@ function _timeInfo(date) {
       day = WEEKDAY[date.getDay()],
       hour24 = date.getHours(),
       hour = hour24 % 12,
-      meridiem = (hour24 - 12 < 0) ? 'am' : 'pm',
+      meridiem = (hour24 < 12) ? 'am' : 'pm',
       timeLabel = '';
   if (hour === 0) {hour = 12};
   timeLabel = hour + meridiem;
