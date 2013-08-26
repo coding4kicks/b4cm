@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('b4cmApp')
-  .controller('AddWatchCtrl', function ($scope, $routeParams) {
+  .controller('AddWatchCtrl', function ($scope, $routeParams, spot) {
 
     var watch = {},
         current_date = new Date(),
@@ -42,12 +42,21 @@ angular.module('b4cmApp')
                   'meridiem': $scope.stopMeridiem.label}
       watch.cf_status = $scope.cf_status;
       watch.time = _calculateWatchTimes(start, stop);
-      //alert($scope.cf_status);
-      //spot.addWatch(watch, $routeParams.spotId);
+      spot.addWatch(watch, $routeParams.spotId);
     };
 
   });
 
+/**
+ * @name _calculateWatchTimes
+ * @function
+ *
+ * @description Given a start and stop times, creates an array of time lables
+ *              used as keys for updating a spot's crowdseer.
+ * @param {object} start The start time. Props: day (int), hour (int), meridiem (string)
+ * @param {object} stop The stop time. Props: day (int), hour (int), meridiem (string)
+ * @return {array} An array of watch time lables i.e {'day': 'monday', 'hour': '11pm'}
+ */ 
 function _calculateWatchTimes(start, stop) {
   var times = [],
       current = {'day': start.day, 'hour': start.hour, 'meridiem': start.meridiem},
@@ -64,7 +73,7 @@ function _calculateWatchTimes(start, stop) {
     var i = 0;
     i = i + 1;
 
-    watch.day = WEEKDAYS[current.day];
+    watch.day = WEEKDAYS[current.day].toLowerCase();
     watch.hour = current.hour + current.meridiem;
     times.push(watch);
 
@@ -82,8 +91,18 @@ function _calculateWatchTimes(start, stop) {
     }
     else if (current.hour === 13) {current.hour = 1;}
   }
+  console.log(times);
 }
 
+/**
+ * @name _dayToNum
+ * @function
+ *
+ * @description Converts a day of the week (i.e. sunday) to a number.
+ *              Capitalization doesn't matter.
+ * @param {string} dayOfWeek The english day of week.
+ * @return {int} A number representing the day of week. Sunday = 0...
+ */  
 function _dayToNum(dayOfWeek) {
   var dayNum = -1;
   switch(dayOfWeek.toLowerCase()) {
