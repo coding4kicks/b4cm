@@ -12,6 +12,7 @@ angular.module('b4cmApp')
         future_hour = future_date.getHours() % 12,
         current_meridiem = (current_date.getHours() < 12) ? '0' : '1',
         future_meridiem = (future_date.getHours() < 12) ? '0' : '1';
+
     $scope.WEEKDAYS = [{'label': 'Sunday'}, {'label': 'Monday'}, {'label': 'Tuesday'}, 
                        {'label': 'Wednesday'}, {'label': 'Thursday'}, {'label': 'Friday'}, 
                        {'label': 'Saturday'}],
@@ -20,9 +21,7 @@ angular.module('b4cmApp')
                     {'label': '8'}, {'label': '9'}, {'label': '10'}, {'label': '11'}],
     $scope.MERIDIEMS = [{'label': 'am'}, {'label': 'pm'}];
     $scope.startDay = $scope.WEEKDAYS[current_day];
-    $scope.startDayNum = current_day;
     $scope.stopDay = $scope.WEEKDAYS[future_day];
-    $scope.stopDayNum = future_day;
     $scope.startHour = $scope.HOURS[current_hour];
     $scope.stopHour = $scope.HOURS[future_hour];
     $scope.startMeridiem = $scope.MERIDIEMS[current_meridiem];
@@ -35,8 +34,12 @@ angular.module('b4cmApp')
      * @description Adds a crowd watch to a spot
      */     
     $scope.addWatch = function() {
-      var start = {'day': $scope.startDayNum, 'hour': $scope.startHour.label, 'meridiem': $scope.startMeridiem.label},
-          stop = {'day': $scope.stopDayNum, 'hour': $scope.stopHour.label, 'meridiem': $scope.stopMeridiem.label}
+      var start = {'day': _dayToNum($scope.startDay.label), 
+                   'hour': parseInt($scope.startHour.label), 
+                   'meridiem': $scope.startMeridiem.label},
+          stop = {'day': _dayToNum($scope.stopDay.label), 
+                  'hour': parseInt($scope.stopHour.label), 
+                  'meridiem': $scope.stopMeridiem.label}
       watch.cf_status = $scope.cf_status;
       watch.time = _calculateWatchTimes(start, stop);
       //alert($scope.cf_status);
@@ -47,13 +50,13 @@ angular.module('b4cmApp')
 
 function _calculateWatchTimes(start, stop) {
   var times = [],
-      current = {'day': start.day, 'hour': parseInt(start.hour), 'meridiem': start.meridiem},
+      current = {'day': start.day, 'hour': start.hour, 'meridiem': start.meridiem},
       WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   console.log(current);
   console.log(stop);
   while (current.day !== stop.day ||
-         current.hour !== parseInt(stop.hour) ||
+         current.hour !== stop.hour ||
          current.meridiem !== stop.meridiem) {
 
     // Add watch to times
@@ -66,13 +69,11 @@ function _calculateWatchTimes(start, stop) {
     times.push(watch);
 
     // Increment current time
-    console.log('current info start');
-    console.log(current.day, current.hour, current.meridiem);
     current.hour = current.hour + 1;
     if (current.hour === 12) {
       if (current.meridiem === 'pm') {
         current.day = current.day + 1;
-        if (current.day > 6) {current.day = 0;}
+        if (current.day === 7) {current.day = 0;}
         current.meridiem = 'am';
       }
       else {
@@ -80,11 +81,19 @@ function _calculateWatchTimes(start, stop) {
       }
     }
     else if (current.hour === 13) {current.hour = 1;}
-    console.log('current info stop');
-    console.log(current.day, current.hour, current.meridiem);
-    if (i > 5) {break;}
   }
+}
 
-
-  //console.log(times);
+function _dayToNum(dayOfWeek) {
+  var dayNum = -1;
+  switch(dayOfWeek.toLowerCase()) {
+    case 'sunday':    dayNum = 0; break;
+    case 'monday':    dayNum = 1; break;
+    case 'tuesday':   dayNum = 2; break;
+    case 'wednesday': dayNum = 3; break;
+    case 'thursday':  dayNum = 4; break;
+    case 'friday':    dayNum = 5; break;
+    case 'satday':    dayNum = 6; break;
+  }
+  return dayNum;
 }
