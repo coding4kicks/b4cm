@@ -4,23 +4,26 @@
   <h4>Philz Coffee</h4>
   <h5>448 Forest Ave, Palo Alto</h5>
   <form class="form-horizontal">
-    
+
+    <div class="control-group">
+      <label class="control-label">Type of Spot</label>
+      <div class="controls">
+        <label class="checkbox inline">
+          <input type="checkbox" id="revTypeFood" ng-model="food" value="food">Food
+        </label>
+        <label class="checkbox inline">
+          <input type="checkbox" id="revTypeStudy" ng-model="study" value="study">Study
+        </label>
+        <label class="checkbox inline">
+          <input type="checkbox" id="revTypeSocial" ng-model="social" value="social">Social
+        </label>
+      </div>
+    </div>
+
     <div class="control-group">
       <label class="control-label" for="inputStars">Stars</label>
       <div class="controls">
-        <select id="stars">
-          <option>0</option>
-          <option>1/2</option>
-          <option>1</option>
-          <option>1 1/2</option>
-          <option>2</option>
-          <option>2 1/2</option>
-          <option>3</option>
-          <option>3 1/2</option>
-          <option>4</option>
-          <option>4 1/2</option>
-          <option>5</option>
-        </select>     
+        <select class="rating-select" ng-model="rating" ng-options="rating.label for rating in RATINGS"></select>     
       </div>
     </div>
 
@@ -33,7 +36,7 @@
 
     <div class="control-group add-rev-btn">
       <div class="controls">
-        <button type="submit" class="btn">Add Review</button>
+        <button type="submit" class="btn" ng-click="addReview()">Add Review</button>
       </div>
     </div>
   </form>

@@ -1,8 +1,25 @@
 'use strict';
 
 angular.module('b4cmApp')
-  .controller('AddReviewCtrl', function ($scope, $routeParams) {
+  .controller('AddReviewCtrl', function ($scope, $routeParams, spot) {
 
-    var id = $routeParams.spotId
+    var author = {'id': '555', 'name': 'Jolly G.', 'pic': '../images/peeps1.jpg'},
+        review = {};
+        
+  
+    $scope.RATINGS = [{'label': 1}, {'label': 2}, {'label': 3}, {'label': 4}, {'label': 5}];
+    $scope.rating = $scope.RATINGS[2];
 
+    review.author = author;
+    review.date = new Date();
+    review.rating = $scope.rating;
+    review.writeup = $scope.writeup;
+    review.type = {'food': 0, 'study': 0, 'social': 0};
+
+    $scope.addReview = function() {
+      if ($scope.food) {review.type.food = 1};
+      if ($scope.study) {review.type.study = 1};
+      if ($scope.social) {review.type.social = 1};
+      spot.addReview(review, $routeParams.spotId);
+    };
   });

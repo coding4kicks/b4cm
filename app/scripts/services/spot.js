@@ -787,7 +787,8 @@ var fakeSpot3 = {
 
     // Public API here
     return {
-      addReview: function () {
+      addReview: function (newReview, spotId) {
+        console.log(spotId, newReview);
         return false;
       },
       addWatch: function () {
