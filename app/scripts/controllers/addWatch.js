@@ -47,35 +47,36 @@ angular.module('b4cmApp')
 
 function _calculateWatchTimes(start, stop) {
   var times = [],
-      current = {'day': start.day, 'hour': start.hour, 'meridiem': start.meridiem},
+      current = {'day': start.day, 'hour': parseInt(start.hour), 'meridiem': start.meridiem},
       WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   console.log(current);
   while (current.day !== stop.day &&
-         current.hour !== stop.hour &&
+         current.hour !== parseInt(stop.hour) &&
          current.meridiem !== stop.meridiem) {
 
     // Add watch to times
-    var watch = {},
-        i = 0;
+    var watch = {};
+
     watch.day = WEEKDAYS[current.day];
     watch.hour = current.hour + current.meridiem;
     times.push(watch);
-    i = i + 1;
+
     // Increment current time
+    console.log(current.day, current.hour, current.meridiem);
     current.hour = current.hour + 1;
-    if (current.hour > 12) {
-      current.hour = 1;
+    if (current.hour > 11) {
       if (current.meridiem === 'pm') {
         current.day = current.day + 1;
         if (current.day > 6) {current.day = 0;}
+        current.meridiem = 'am'
       }
       else {
-        current.meridiem = 'am';
+        current.meridiem = 'pm';
       }
     }
-    if (i > 0) {break;}
+    else if (current.hour > 12) {current.hour = 1;}
+    console.log(current.day, current.hour, current.meridiem);
   }
-  console.log(times);
-
+  //console.log(times);
 }
