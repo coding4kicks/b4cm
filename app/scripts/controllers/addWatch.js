@@ -51,32 +51,40 @@ function _calculateWatchTimes(start, stop) {
       WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   console.log(current);
-  while (current.day !== stop.day &&
-         current.hour !== parseInt(stop.hour) &&
+  console.log(stop);
+  while (current.day !== stop.day ||
+         current.hour !== parseInt(stop.hour) ||
          current.meridiem !== stop.meridiem) {
 
     // Add watch to times
     var watch = {};
+    var i = 0;
+    i = i + 1;
 
     watch.day = WEEKDAYS[current.day];
     watch.hour = current.hour + current.meridiem;
     times.push(watch);
 
     // Increment current time
+    console.log('current info start');
     console.log(current.day, current.hour, current.meridiem);
     current.hour = current.hour + 1;
-    if (current.hour > 11) {
+    if (current.hour === 12) {
       if (current.meridiem === 'pm') {
         current.day = current.day + 1;
         if (current.day > 6) {current.day = 0;}
-        current.meridiem = 'am'
+        current.meridiem = 'am';
       }
       else {
         current.meridiem = 'pm';
       }
     }
-    else if (current.hour > 12) {current.hour = 1;}
+    else if (current.hour === 13) {current.hour = 1;}
+    console.log('current info stop');
     console.log(current.day, current.hour, current.meridiem);
+    if (i > 5) {break;}
   }
+
+
   //console.log(times);
 }
