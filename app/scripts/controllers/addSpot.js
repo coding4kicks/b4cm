@@ -5,6 +5,27 @@ angular.module('b4cmApp')
 
     var newSpot = {};
 
+    $scope.business_hours = [];
+
+    $scope.HOURS = [];
+    for (var i = 1; i <= 12; i++) {
+      var time = {'label': i + ':00', 'hour': i, 'minutes': 0},
+          timeHalf = {'label': i + ':30', 'hour': i, 'minutes': 30};
+      $scope.HOURS.push(time);
+      $scope.HOURS.push(timeHalf);
+    }
+    $scope.WEEKDAYS = [{'label': 'Sunday'}, {'label': 'Monday'}, {'label': 'Tuesday'}, 
+                       {'label': 'Wednesday'}, {'label': 'Thursday'}, {'label': 'Friday'}, 
+                       {'label': 'Saturday'}];
+    $scope.MERIDIEMS = [{'label': 'am'}, {'label': 'pm'}];
+    $scope.openDay = $scope.WEEKDAYS[1];
+    $scope.openHour = $scope.HOURS[12];
+    $scope.openMeridiem = $scope.MERIDIEMS[0];
+    $scope.closeDay = $scope.WEEKDAYS[1];
+    $scope.closeHour = $scope.HOURS[14];
+    $scope.closeMeridiem = $scope.MERIDIEMS[1];
+
+
     //var fakeSpot1 = {
     //  'id': 'fakeSpot1',
     //  'name': 'Philz Coffee',

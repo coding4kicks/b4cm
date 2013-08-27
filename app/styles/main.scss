@@ -902,8 +902,14 @@ input[type='text']:focus {
 }
 
 #add-spot-page {
-  select {
-    width: 100px;
+  .day-select {
+    width: 110px;
+  }
+  .hour-select {
+    width: 80px;
+  }
+  .meridiem-select {
+    width: 60px;
   }
 
   .image-load-control {
