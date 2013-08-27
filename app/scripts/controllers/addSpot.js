@@ -34,6 +34,7 @@ angular.module('b4cmApp')
     //  'rating': 4.5,
     //  'wifi': true,
     //  'review_count': 175,
+    //  'business_hours': {}
     //  'type': {
     //    'food': 5,
     //    'study': 8,
@@ -88,13 +89,14 @@ angular.module('b4cmApp')
       if ($scope.food) {newSpot.type.food = 1};
       if ($scope.study) {newSpot.type.study = 1};
       if ($scope.social) {newSpot.type.social = 1};
+      newSpot.business_hours = $scope.business_hours;
 
       spot.create(newSpot);
       console.log(newSpot);
     };
 
     $scope.yelpIdHelp = function() {
-      alert("here");
+      $scope.yelpHelpShow = !$scope.yelpHelpShow;
     };
 
   });

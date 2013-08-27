@@ -861,9 +861,9 @@ input[type='text']:focus {
     margin-bottom: 0;
 
     select, textarea, input {
-      background-color: #6E6E6E;
-      border: 1px solid #376E6E;
-      color: #FAFAFA;
+      background-color: $acc-dark;
+      border: 1px solid $comp1-dark;
+      color: $text-light;
     }
   }
 
@@ -902,6 +902,32 @@ input[type='text']:focus {
 }
 
 #add-spot-page {
+
+  h3 {
+    margin-bottom: 10px;
+  }
+
+  .yelp-id-info {
+    background-color: $acc-dark;
+    border: 1px solid $comp1-dark;
+    border-radius: 5px 5px 5px 5px;
+    color: $text-light;
+    float: right;
+    margin: -102px 20px -120px;
+    padding: 5px;
+    width: 450px;  
+  }
+
+  .query {
+    color: $high-bright;
+  }
+
+  .url {
+    color: $high-bright;
+    padding-left: 30px;
+  }
+
+
   .day-select {
     width: 110px;
   }
