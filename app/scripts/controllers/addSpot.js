@@ -53,6 +53,11 @@ angular.module('b4cmApp')
         $scope.image2 = {'resized': {'dateURL': null}};
       }
       newSpot.image_url = $scope.image2.resized.dataURL;
+      newSpot.type = {'food': 0, 'study': 0, 'social': 0}
+      if ($scope.food) {newSpot.type.food = 1};
+      if ($scope.study) {newSpot.type.study = 1};
+      if ($scope.social) {newSpot.type.social = 1};
+
       spot.create(newSpot);
       console.log(newSpot);
     };
