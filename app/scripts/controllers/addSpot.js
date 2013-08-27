@@ -1,12 +1,17 @@
 'use strict';
 
 angular.module('b4cmApp')
+
+  /**
+   * @name AddSpot Controller
+   * @controller
+   *
+   * @description Adds a new spot to the database.
+   */ 
   .controller('AddSpotCtrl', function ($scope, spot) {
 
     var newSpot = {};
-
-    $scope.business_hours = [];
-
+    $scope.business_hours = []; // Business's hours of operation
     $scope.HOURS = [];
     for (var i = 1; i <= 12; i++) {
       var time = {'label': i + ':00', 'hour': i, 'minutes': 0},
@@ -25,39 +30,13 @@ angular.module('b4cmApp')
     $scope.closeHour = $scope.HOURS[14];
     $scope.closeMeridiem = $scope.MERIDIEMS[1];
 
-
-    //var fakeSpot1 = {
-    //  'id': 'fakeSpot1',
-    //  'name': 'Philz Coffee',
-    //  'yelp_id': 'philz-coffee-palo-alto2',
-    //  'image_url': "../images/spot-philz.jpg",
-    //  'rating': 4.5,
-    //  'wifi': true,
-    //  'review_count': 175,
-    //  'business_hours': {}
-    //  'type': {
-    //    'food': 5,
-    //    'study': 8,
-    //    'social': 1
-    //    },
-    //  'location': {
-    //    'address': '101 Forest Ave',
-    //    'city': 'Palo Alto',
-    //    'state_code': 'CA',
-    //    'postal_code': '94301',
-    //    'latitude': 37.441838,
-    //    'longitude': -122.161675,
-    //    'geohash': '9q9jh0hdd8kz'
-    //    },
-    //    'reviews':
-    //    'crowdfactor': {
-    //      'watch_count': 732,
-    //      'most_recent': {'time': 1377150514232, 'score': 4},
-    //      'blocks': {'morning':true, 'afternoon':true, 'evening':true, 'latenight':false},
-    //      'day': { 
-    //        'monday': {
-    //          '12am
-
+  /**
+   * @name addHours
+   * @procedure
+   *
+   * @description Adds hours to a business's hours of operations.
+   *              Requires addSpot controllers $scope
+   */ 
     $scope.addHours = function() {
       var times = {'open_day': $scope.openDay, 
                    'open_hour': $scope.openHour, 
@@ -68,10 +47,25 @@ angular.module('b4cmApp')
       $scope.business_hours.push(times);
     };
 
+  /**
+   * @name deleteHours
+   * @procedure
+   *
+   * @description Deletes hours from a business's hours of operations.
+   *              Requires addSpot controllers $scope
+   * @param {int} index The index for the business hours to delete.
+   */ 
     $scope.deleteHour = function(index) {
       $scope.business_hours.splice(index, 1);
     }
 
+  /**
+   * @name addSpot
+   * @procedure
+   *
+   * @description Calls the spot service to add a new spot to the database.
+   *              Requires addSpot controllers $scope
+   */ 
     $scope.addSpot = function() {
       newSpot.name = $scope.name;
       newSpot.yelp_id = $scope.yelp_id;
@@ -92,9 +86,15 @@ angular.module('b4cmApp')
       newSpot.business_hours = $scope.business_hours;
 
       spot.create(newSpot);
-      console.log(newSpot);
     };
 
+  /**
+   * @name yelpIdHelp
+   * @procedure
+   *
+   * @description Toggles the visibility of the yelp id help section.
+   *              Requires addSpot controllers $scope
+   */ 
     $scope.yelpIdHelp = function() {
       $scope.yelpHelpShow = !$scope.yelpHelpShow;
     };
