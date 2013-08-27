@@ -58,8 +58,18 @@ angular.module('b4cmApp')
     //          '12am
 
     $scope.addHours = function() {
-      alert("here");
+      var times = {'open_day': $scope.openDay, 
+                   'open_hour': $scope.openHour, 
+                   'open_meridiem': $scope.openMeridiem,
+                   'close_day': $scope.closeDay, 
+                   'close_hour': $scope.closeHour, 
+                   'close_meridiem': $scope.closeMeridiem};
+      $scope.business_hours.push(times);
     };
+
+    $scope.deleteHour = function(index) {
+      $scope.business_hours.splice(index, 1);
+    }
 
     $scope.addSpot = function() {
       newSpot.name = $scope.name;

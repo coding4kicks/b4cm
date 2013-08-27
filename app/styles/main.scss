@@ -921,6 +921,24 @@ input[type='text']:focus {
       margin: -40px 450px -50px 0;
     }
   }
+
+  .business-hours {
+    margin-left: 100px;
+  }
+
+  h5 {
+    display: inline-block;
+    padding: 0 10px;
+  }
+
+  .to {
+    color: $acc-med;
+    padding: 10px;
+  }
+
+  .add-spot-btn {
+    margin-top: 20px;
+  }
 }
 
 /******************

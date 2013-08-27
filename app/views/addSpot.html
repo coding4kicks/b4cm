@@ -86,9 +86,18 @@
       </div>
     </div>
 
+    <div class="business-hours" ng-repeat="time in business_hours">
+      <h5>
+        {{time.open_day.label}} {{time.open_hour.label}} {{time.open_meridiem.label}} 
+        <span class="to">To</span> 
+        {{time.close_day.label}} {{time.close_hour.label}} {{time.close_meridiem.label}}
+      </h5>
+      <a class="clickable" ng-click="deleteHour($index)">delete</a>
+    </div>
+
     <div class="control-group">
       <div class="controls">
-        <button type="submit" class="btn" ng-click="addSpot()">Add Spot</button>
+        <button type="submit" class="btn add-spot-btn" ng-click="addSpot()">Add Spot</button>
       </div>
     </div>
   </form>
