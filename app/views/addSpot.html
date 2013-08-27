@@ -5,41 +5,50 @@
     <div class="control-group">
       <label class="control-label" for="inputName">Name</label>
       <div class="controls">
-        <input type="text" id="inputName" placeholder="Name">
+        <input type="text" id="inputName" ng-model="name" placeholder="Name">
       </div>
     </div>
     <div class="control-group">
       <label class="control-label" for="inputYelpId">Yelp ID</label>
       <div class="controls">
-        <input type="text" id="inputYelpId" placeholder="Yelp ID">
+        <input type="text" id="inputYelpId" ng-model="yelp_id" placeholder="Yelp ID">
         <a class="clickable" ng-click="yelpIdHelp()">What's This?</a>
       </div>
     </div>
     <div class="control-group">
       <label class="control-label" for="inputAddress">Address</label>
       <div class="controls">
-        <input type="text" id="inputAddress" placeholder="Address">
+        <input type="text" id="inputAddress" ng-model="address" placeholder="Address">
       </div>
     </div>
     <div class="control-group">
       <label class="control-label" for="inputCity">City</label>
       <div class="controls">
-        <input type="text" id="inputCity" placeholder="City">
+        <input type="text" id="inputCity" ng-model="city" placeholder="City">
       </div>
     </div>
     <div class="control-group">
       <label class="control-label" for="inputZip">Zip</label>
       <div class="controls">
-        <input type="text" id="inputZip" placeholder="Zip">
+        <input type="text" id="inputZip" ng-model="postal_code" placeholder="Zip">
       </div>
     </div>
     <div class="control-group">
       <label class="control-label" for="inputState">State</label>
       <div class="controls">
-        <input type="text" id="inputState" placeholder="State">
+        <input type="text" id="inputState" ng-model="state_code" placeholder="State">
       </div>
     </div>
-  
+
+    <div class="control-group">
+      <label class="control-label">Wifi</label>
+      <div class="controls">
+        <label class="checkbox inline">
+          <input type="checkbox" id="revTypeFood" ng-model="wifi" value="food">
+        </label>
+      </div>
+    </div>
+
     <div class="control-group">
       <label class="control-label" for="imageLoader">Upload Picture</label><br/>
       <div class="controls image-load-control">
