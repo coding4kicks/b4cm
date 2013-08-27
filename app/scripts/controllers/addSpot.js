@@ -30,6 +30,9 @@ angular.module('b4cmApp')
     $scope.closeHour = $scope.HOURS[14];
     $scope.closeMeridiem = $scope.MERIDIEMS[1];
 
+    $scope.validForm = {};
+    $scope.validForm.name = 'invalid';
+
   /**
    * @name addHours
    * @procedure

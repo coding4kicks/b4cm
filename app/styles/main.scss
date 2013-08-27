@@ -111,6 +111,7 @@ a {
     max-width: none;
   }
 }
+
 // Food, Social, Study Icons
 .type-icon {
   background: black;
@@ -259,6 +260,12 @@ input[type='text']:focus {
 .empty-square, .few-square, .average-square,
 .crowded-square, .herd-square, .closed-square {
   border: 1px solid black;
+}
+
+// FORMS
+.invalid {
+  border: 1px solid red !important;
+  color: red !important;
 }
 
 /******************
