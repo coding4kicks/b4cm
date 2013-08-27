@@ -67,25 +67,37 @@ angular.module('b4cmApp')
    *              Requires addSpot controllers $scope
    */ 
     $scope.addSpot = function() {
-      newSpot.name = $scope.name;
-      newSpot.yelp_id = $scope.yelp_id;
-      newSpot.location = {};
-      newSpot.location.address = $scope.address;
-      newSpot.location.city = $scope.city;
-      newSpot.location.state_code = $scope.state_code;
-      newSpot.location.postal_code = $scope.postal_code;
-      newSpot.wifi = $scope.wifi;
-      if (typeof $scope.image2 === 'undefined') {
-        $scope.image2 = {'resized': {'dateURL': null}};
-      }
-      newSpot.image_url = $scope.image2.resized.dataURL;
-      newSpot.type = {'food': 0, 'study': 0, 'social': 0}
-      if ($scope.food) {newSpot.type.food = 1};
-      if ($scope.study) {newSpot.type.study = 1};
-      if ($scope.social) {newSpot.type.social = 1};
-      newSpot.business_hours = $scope.business_hours;
+      // validate
+      var errors = []
+      if (typeof $scope.name === 'undefined') {errors.push('Name')};
+      if (typeof $scope.address === 'undefined') {errors.push('Address')};
+      if (typeof $scope.city === 'undefined') {errors.push('City')};
+      if (typeof $scope.zip_code === 'undefined') {errors.push('Zip')};
+      if (typeof $scope.state_code === 'undefined') {errors.push('State')};
+      //if (typeof $scope. === 'undefined') {errors.push('Type')};
 
-      spot.create(newSpot);
+      if (errors.length > 0) {_handleFormErrors(errors);}
+      else {
+        newSpot.name = $scope.name;
+        newSpot.yelp_id = $scope.yelp_id;
+        newSpot.location = {};
+        newSpot.location.address = $scope.address;
+        newSpot.location.city = $scope.city;
+        newSpot.location.state_code = $scope.state_code;
+        newSpot.location.postal_code = $scope.postal_code;
+        newSpot.wifi = $scope.wifi;
+        if (typeof $scope.image2 === 'undefined') {
+          $scope.image2 = {'resized': {'dateURL': null}};
+        }
+        newSpot.image_url = $scope.image2.resized.dataURL;
+        newSpot.type = {'food': 0, 'study': 0, 'social': 0}
+        if ($scope.food) {newSpot.type.food = 1};
+        if ($scope.study) {newSpot.type.study = 1};
+        if ($scope.social) {newSpot.type.social = 1};
+        newSpot.business_hours = $scope.business_hours;
+
+        spot.create(newSpot);
+      }
     };
 
   /**
@@ -99,4 +111,15 @@ angular.module('b4cmApp')
       $scope.yelpHelpShow = !$scope.yelpHelpShow;
     };
 
+
   });
+
+function _handleFormErrors(errors, $scope) {
+  if (errors.length === 1) {
+    alert(errors[0] + " is a required field.");
+  }
+  else {
+    alert(errors.join(', ') + " are required fields.");
+  }
+}
+
