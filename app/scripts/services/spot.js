@@ -5,6 +5,8 @@ angular.module('b4cmApp')
     // Service logic
     // ...
 
+    var createdSpot = {};
+
     var fakeSpot1 = {
       'id': 'fakeSpot1',
       'name': 'Philz Coffee',
@@ -787,21 +789,27 @@ var fakeSpot3 = {
 
     // Public API
     return {
+
       addReview: function (newReview, spotId) {
         return false;
       },
+
       addWatch: function (newWatch, spotId) {
         //console.log(spotId, newWatch);
         return false;
       },
+
       create: function (newSpot) {
         // Should return new spots id.
-        console.log(newSpot)
-        return false;
+        newSpot.id = _constructId(newSpot);
+        createdSpot = newSpot;
+        return createdSpot.id;
       },
+
       edit: function () {
         return false;
       },
+
       get: function (id) {
         // TODO: need code to deal with invalid IDs.
         if (id === 'fakeSpot1') {return fakeSpot1;}
@@ -809,8 +817,26 @@ var fakeSpot3 = {
         if (id === 'fakeSpot3') {return fakeSpot3;}
         return fakeSpot1;
       },
+
       remove: function () {
         return false;
       }
     };
   });
+
+function _constructId(newSpot) {
+
+  if (typeof newSpot.yelp_id !== 'undefined') {
+    //TODO: check valid yelp id
+    //TODO: check id doesn't already exist
+    return newSpot.yelp_id;
+  }
+  else {
+    var id = newSpot.name.toLowerCase() + '-' + newSpot.location.city.toLowerCase();
+    id = id.replace(/ /g,"-"); // swap dash for space;
+    id = encodeURIComponent(id);
+    //TODO: check id doesn't already exist,
+    // add 2, 3, ... to end if exists
+    return id;
+  }
+}
