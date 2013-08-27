@@ -30,8 +30,8 @@ angular.module('b4cmApp')
     $scope.closeHour = $scope.HOURS[14];
     $scope.closeMeridiem = $scope.MERIDIEMS[1];
 
+    // Form Validation
     $scope.validForm = {};
-    $scope.validForm.name = 'invalid';
 
   /**
    * @name addHours
@@ -79,7 +79,7 @@ angular.module('b4cmApp')
       if (typeof $scope.state_code === 'undefined') {errors.push('State')};
       //if (typeof $scope. === 'undefined') {errors.push('Type')};
 
-      if (errors.length > 0) {_handleFormErrors(errors);}
+      if (errors.length > 0) {_handleFormErrors($scope, errors);}
       else {
         newSpot.name = $scope.name;
         newSpot.yelp_id = $scope.yelp_id;
@@ -117,7 +117,14 @@ angular.module('b4cmApp')
 
   });
 
-function _handleFormErrors(errors, $scope) {
+/*****************************
+ * HELPER FUNCS
+ *****************************/
+
+function _handleFormErrors($scope, errors) {
+  errors.forEach(function(error) {
+    $scope.validForm[error.toLowerCase()] = 'invalid';
+  });
   if (errors.length === 1) {
     alert(errors[0] + " is a required field.");
   }

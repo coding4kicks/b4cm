@@ -24,25 +24,25 @@
     <div class="control-group">
       <label class="control-label" for="spotAddress">Address</label>
       <div class="controls">
-        <input type="text" id="spotAddress" ng-model="address" placeholder="Address">
+        <input class="{{validForm.address}}" type="text" id="spotAddress" ng-model="address" placeholder="Address">
       </div>
     </div>
     <div class="control-group">
       <label class="control-label" for="spotCity">City</label>
       <div class="controls">
-        <input type="text" id="spotCity" ng-model="city" placeholder="City">
+        <input class="{{validForm.city}}" type="text" id="spotCity" ng-model="city" placeholder="City">
       </div>
     </div>
     <div class="control-group">
       <label class="control-label" for="spotZip">Zip</label>
       <div class="controls">
-        <input type="text" id="spotZip" ng-model="postal_code" placeholder="Zip">
+        <input class="{{validForm.zip}}" type="text" id="spotZip" ng-model="postal_code" placeholder="Zip">
       </div>
     </div>
     <div class="control-group">
       <label class="control-label" for="spotState">State</label>
       <div class="controls">
-        <input type="text" id="spotState" ng-model="state_code" placeholder="State">
+        <input class="{{validForm.state}}" type="text" id="spotState" ng-model="state_code" placeholder="State">
       </div>
     </div>
 
