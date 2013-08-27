@@ -785,7 +785,7 @@ var fakeSpot3 = {
         }
       };
 
-    // Public API here
+    // Public API
     return {
       addReview: function (newReview, spotId) {
         return false;
@@ -794,7 +794,9 @@ var fakeSpot3 = {
         //console.log(spotId, newWatch);
         return false;
       },
-      create: function () {
+      create: function (newSpot) {
+        // Should return new spots id.
+        console.log(newSpot)
         return false;
       },
       edit: function () {

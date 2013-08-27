@@ -19,8 +19,25 @@ describe('Service: spot', function () {
     expect(spot.addWatch()).toBe(false);
   });
   
-  it('create should return false', function () {
-    expect(spot.create()).toBe(false);
+  it('addSpot should correctly add hours', function () {
+    var testSpot = {'name': 'Test Spot',
+                    'yelp_id': 'test-spot-palo-alto',
+                    'image_url': "../images/spot-peets.jpg",
+                    'wifi': true,
+                    'type': {'food': 1, 'study': 1, 'social': 0},
+                    'location': {
+                      'address': '221 Byron St',
+                      'city': 'Palo Alto',
+                      'state_code': 'CA',
+                      'postal_code': '94301',
+                    }
+                   },
+        spotId = '',
+        newSpot = {};
+    spotId = spot.create(testSpot);
+    newSpot = spot.get(spotId);
+    expect(spot.create(testSpot)).toBe(false);
+
   });
 
   it('edit should return false', function () {
