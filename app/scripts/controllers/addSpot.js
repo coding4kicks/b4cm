@@ -70,7 +70,8 @@ angular.module('b4cmApp')
    *              Requires addSpot controllers $scope
    */ 
     $scope.addSpot = function() {
-      // validate
+
+      // Validate the form
       var errors = []
       if (typeof $scope.name === 'undefined') {errors.push('Name')};
       if (typeof $scope.address === 'undefined') {errors.push('Address')};
@@ -80,8 +81,9 @@ angular.module('b4cmApp')
       if (typeof $scope.food === 'undefined' &&
           typeof $scope.study === 'undefined' &&
           typeof $scope.social === 'undefined') {errors.push('Type')};
-
       if (errors.length > 0) {_handleFormErrors($scope, errors);}
+
+      // Add the spot
       else {
         newSpot.name = $scope.name;
         newSpot.yelp_id = $scope.yelp_id;
@@ -116,13 +118,23 @@ angular.module('b4cmApp')
       $scope.yelpHelpShow = !$scope.yelpHelpShow;
     };
 
-
   });
 
 /*****************************
  * HELPER FUNCS
  *****************************/
 
+/**
+ * @name _handleFormErrors
+ * @procedure
+ *
+ * @description Notifies the user of errors upon form submission.
+ *              Recieves a scope and array of errors that are invalid.
+ *              For each error, the scope's validForm object is switched to
+ *              invalid, triggering the invalid css class for that elelment.
+ * @param {object} $scope The form's controlling scope.
+ * @param {array} errors An array of string names for each error type.
+ */ 
 function _handleFormErrors($scope, errors) {
   errors.forEach(function(error) {
     $scope.validForm[error.toLowerCase()] = 'invalid';
