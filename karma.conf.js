@@ -10,6 +10,7 @@ files = [
   'app/components/angular/angular.js',
   'app/components/angular-mocks/angular-mocks.js',
   'app/components/angular-google-maps.js',
+  'app/components/imageupload.js',
   'app/scripts/*.js',
   'app/scripts/**/*.js',
   'test/mock/**/*.js',

@@ -906,14 +906,14 @@ input[type='text']:focus {
     width: 100px;
   }
 
-  canvas {
-    display: inline-block;
-    float: right;
-    margin: -100px 200px -50px 0;
-  }
-
   .image-load-control {
     margin-top: -10px;
+
+    img {
+      border: 1px solid $acc-dark;
+      float: right;
+      margin: -40px 450px -50px 0;
+    }
   }
 }
 
