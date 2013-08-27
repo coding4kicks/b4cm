@@ -77,7 +77,9 @@ angular.module('b4cmApp')
       if (typeof $scope.city === 'undefined') {errors.push('City')};
       if (typeof $scope.zip_code === 'undefined') {errors.push('Zip')};
       if (typeof $scope.state_code === 'undefined') {errors.push('State')};
-      //if (typeof $scope. === 'undefined') {errors.push('Type')};
+      if (typeof $scope.food === 'undefined' &&
+          typeof $scope.study === 'undefined' &&
+          typeof $scope.social === 'undefined') {errors.push('Type')};
 
       if (errors.length > 0) {_handleFormErrors($scope, errors);}
       else {
