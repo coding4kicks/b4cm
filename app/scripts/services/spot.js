@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('b4cmApp')
-  .factory('spot', function (geolocation) {
+  .factory('spot', function ($q, geolocation) {
     // Service logic
     // ...
 
@@ -834,22 +834,25 @@ var fakeSpot3 = {
        */ 
       create: function (newSpot) {
         // Should return new spots id.
-        newSpot.id = _constructId(newSpot);
-        newSpot.review_count = 0;
-        var locationObj = {'address': newSpot.address,
+        var deferred = $q.defer(),
+            locationObj = {'address': newSpot.address,
                            'city': newSpot.city,
                            'postal_code': newSpot.postal_code, 
                            'state_code': newSpot.state_code };
+
+        newSpot.id = _constructId(newSpot);
+        newSpot.review_count = 0;
         console.log('here');
         geolocation.getLatLong(locationObj).then(function(locationObject) {
           console.log('success');
           console.log(locationObject);
           createdSpot = newSpot;
-          return createdSpot.id;
+          deferred.resolve(createdSpot.id);
         }, function(reason) {
           conosle.log('failed for ' + reason);
-          return 'error';
+          deferred.resolve('error');
         });
+        return deferred.promise;
       },
 
       /**
