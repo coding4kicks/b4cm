@@ -790,11 +790,34 @@ var fakeSpot3 = {
     // Public API
     return {
 
-      addReview: function (newReview, spotId) {
+      /**
+       * @name addReview
+       * @funtion
+       *
+       * @description Adds a review for to a spot.  Recieves a review object
+       *              and a spot id.  The review contains author info, a writup,
+       *              and a rating.  
+       * @param {object} newReview A review to be added to a spot.
+       *                 Properties: author info, writeup, and rating                 .
+       * @returns {object} The spot id if successful otherwise an error code.
+       */ 
+      addReview: function (newReview, id) {
         return false;
       },
 
-      addWatch: function (newWatch, spotId) {
+      /**
+       * @name addWatch
+       * @funtion
+       *
+       * @description Adds crowd watch details for to a spot.  Recieves a watch object
+       *              and a spot id.  The watch object contains contains start and stop
+       *              times and a rating.  This is converted in to an array of hours that
+       *              is used as input to a crowdseer object.
+       * @param {object} newWatch Describes a crowd watch to be entered into a spot.
+       *                 Properties: start and stop times of watch event, a rating.
+       * @returns {object} The spot id if successful otherwise an error code.
+       */ 
+      addWatch: function (newWatch, id) {
         //console.log(spotId, newWatch);
         return false;
       },
@@ -822,7 +845,15 @@ var fakeSpot3 = {
         return createdSpot.id;
       },
 
-      edit: function () {
+      /**
+       * @name edit
+       * @funtion
+       *
+       * @description Edits a spot in the datastore. 
+       * @param {string} id The id of the spot to edit.
+       * @returns {object} The spot id if successful otherwise an error code.
+       */  
+      edit: function (id) {
         return false;
       },
 
@@ -831,7 +862,7 @@ var fakeSpot3 = {
        * @funtion
        *
        * @description Retrieves a spot from the datastore. 
-       * @param {string} id The spot id to get from the datastore.
+       * @param {string} id The id of the spot to get from the datastore.
        * @returns {object} The spot if successful otherwise an error code.
        */       
       get: function (id) {
