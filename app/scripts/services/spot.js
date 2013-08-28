@@ -830,8 +830,17 @@ var fakeSpot3 = {
     };
   });
 
-function _constructId(newSpot) {
+/**
+ * @name _constructId
+ * @function
+ *
+ * @description Constructs the id for a spot object.  If a yelp_id is present, that is added
+ *              as the id, otherwise an id is constructed with the name, location, and possible int. 
+ * @param {object} newSpot A spot with name and city (possibly yelp_id) but no id.
+ * @returns {object} A spot object with an id.
+ */ 
 
+function _constructId(newSpot) {
   if (typeof newSpot.yelp_id !== 'undefined') {
     //TODO: check valid yelp id
     //TODO: check id doesn't already exist
@@ -847,6 +856,16 @@ function _constructId(newSpot) {
   }
 }
 
+/**
+ * @name _getLatLong
+ * @function
+ *
+ * @description Calls a geolocation service to retrieve a lat and long for an address
+ *              included in a location object.  The lat and long are then added to the
+ *              location object. The location object is then returned.
+ * @param {object} locationObj A location with address, city, state_code, and zip_code
+ * @returns {object} The given location object with latitude and longitude parameters added.
+ */ 
 function _getLatLong(locationObj) {
   // call geolocation api
 }
