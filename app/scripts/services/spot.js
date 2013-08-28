@@ -936,6 +936,11 @@ function _getLatLong(locationObj) {
     geocoder.geocode( { 'address': '1600+Amphitheatre+Parkway,+Mountain+View,+CA'}, function(results, status) {
         console.log(results);
         console.log(status);
+        console.log(results[0]);
+        console.log(results[0].geometry);
+        console.log(results[0].geometry.location);
+        console.log(results[0].geometry.location.lat);
+        console.log(results[0].geometry.location.lng());
        // if (status == google.maps.GeocoderStatus.OK) {
        //   $scope.count = results.length;
        //   $scope.mapResults = results;
