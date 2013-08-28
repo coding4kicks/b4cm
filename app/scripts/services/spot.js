@@ -924,5 +924,25 @@ function _constructId(newSpot) {
  * @returns {object} The given location object with latitude and longitude parameters added.
  */ 
 function _getLatLong(locationObj) {
-  // call geolocation api
+
+  // Add test for existance so doesn't blow up unit tests
+  if (typeof google !== "undefined") {  
+
+    // call geolocation api
+    var count = '(waiting for result)',
+        mapResults = [],
+        geocoder = new google.maps.Geocoder();
+
+    geocoder.geocode( { 'address': '1600+Amphitheatre+Parkway,+Mountain+View,+CA'}, function(results, status) {
+        console.log(results);
+        console.log(status);
+       // if (status == google.maps.GeocoderStatus.OK) {
+       //   $scope.count = results.length;
+       //   $scope.mapResults = results;
+       // } else {
+       //   $scope.status = "Geocode was not successful: " + status;
+       // }
+      //$scope.$apply();
+      });
+  }
 }
