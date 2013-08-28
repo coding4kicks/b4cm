@@ -799,6 +799,16 @@ var fakeSpot3 = {
         return false;
       },
 
+      /**
+       * @name create
+       * @funtion
+       *
+       * @description Creates and enters a spot from the datastore. The newSpot
+       *              parameter is a partially constructed spot.  Additional details
+       *              added here, such as the lat and long, the id, and defaults.
+       * @param {object} newSpot The spot to be entered into datastore.
+       * @returns {object} The spot id if successful otherwise an error code.
+       */ 
       create: function (newSpot) {
         // Should return new spots id.
         newSpot.id = _constructId(newSpot);
@@ -816,6 +826,14 @@ var fakeSpot3 = {
         return false;
       },
 
+      /**
+       * @name get
+       * @funtion
+       *
+       * @description Retrieves a spot from the datastore. 
+       * @param {string} id The spot id to get from the datastore.
+       * @returns {object} The spot if successful otherwise an error code.
+       */       
       get: function (id) {
         // TODO: need code to deal with invalid IDs.
         if (id === 'fakeSpot1') {return fakeSpot1;}
@@ -824,7 +842,15 @@ var fakeSpot3 = {
         return fakeSpot1;
       },
 
-      remove: function () {
+      /**
+       * @name remove
+       * @funtion
+       *
+       * @description Removes a spot from the datastore. 
+       * @param {string} id The spot id to remove from the datastore.
+       * @returns {string} The spot id if successful otherwise an error code.
+       */ 
+      remove: function (id) {
         return false;
       }
     };
