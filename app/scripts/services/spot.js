@@ -802,6 +802,12 @@ var fakeSpot3 = {
       create: function (newSpot) {
         // Should return new spots id.
         newSpot.id = _constructId(newSpot);
+        newSpot.review_count = 0;
+        var locationObj = {'address': newSpot.address,
+                           'city': newSpot.city,
+                           'postal_code': newSpot.postal_code, 
+                           'state_code': newSpot.state_code };
+        locationObj = _getLatLong(locationObj);
         createdSpot = newSpot;
         return createdSpot.id;
       },
@@ -839,4 +845,8 @@ function _constructId(newSpot) {
     // add 2, 3, ... to end if exists
     return id;
   }
+}
+
+function _getLatLong(locationObj) {
+  // call geolocation api
 }
