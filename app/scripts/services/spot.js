@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('b4cmApp')
-  .factory('spot', function () {
+  .factory('spot', function (geolocation) {
     // Service logic
     // ...
 
@@ -840,9 +840,16 @@ var fakeSpot3 = {
                            'city': newSpot.city,
                            'postal_code': newSpot.postal_code, 
                            'state_code': newSpot.state_code };
-        locationObj = _getLatLong(locationObj);
-        createdSpot = newSpot;
-        return createdSpot.id;
+        console.log('here');
+        geolocation.getLatLong(locationObj).then(function(locationObject) {
+          console.log('success');
+          console.log(locationObject);
+          createdSpot = newSpot;
+          return createdSpot.id;
+        }, function(reason) {
+          conosle.log('failed for ' + reason);
+          return 'error';
+        });
       },
 
       /**
@@ -910,44 +917,5 @@ function _constructId(newSpot) {
     //TODO: check id doesn't already exist,
     // add 2, 3, ... to end if exists
     return id;
-  }
-}
-
-/**
- * @name _getLatLong
- * @function
- *
- * @description Calls a geolocation service to retrieve a lat and long for an address
- *              included in a location object.  The lat and long are then added to the
- *              location object. The location object is then returned.
- * @param {object} locationObj A location with address, city, state_code, and zip_code
- * @returns {object} The given location object with latitude and longitude parameters added.
- */ 
-function _getLatLong(locationObj) {
-
-  // Add test for existance so doesn't blow up unit tests
-  if (typeof google !== "undefined") {  
-
-    // call geolocation api
-    var count = '(waiting for result)',
-        mapResults = [],
-        geocoder = new google.maps.Geocoder();
-
-    geocoder.geocode( { 'address': '1600+Amphitheatre+Parkway,+Mountain+View,+CA'}, function(results, status) {
-        console.log(results);
-        console.log(status);
-        console.log(results[0]);
-        console.log(results[0].geometry);
-        console.log(results[0].geometry.location);
-        console.log(results[0].geometry.location.lat);
-        console.log(results[0].geometry.location.lng());
-       // if (status == google.maps.GeocoderStatus.OK) {
-       //   $scope.count = results.length;
-       //   $scope.mapResults = results;
-       // } else {
-       //   $scope.status = "Geocode was not successful: " + status;
-       // }
-      //$scope.$apply();
-      });
   }
 }
