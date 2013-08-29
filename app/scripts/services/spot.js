@@ -1,16 +1,7 @@
 'use strict';
 
 angular.module('b4cmApp')
-  .factory('spot', function ($rootScope, $q, angularFire, geolocation) {
-    // Service logic
-    // ...
-
-    $rootScope.spots = {};
-
-    var url = "https://crowd-data.firebaseio.com/spots",
-        promise = angularFire(url, $rootScope, 'spots', {});
-
-    var createdSpot = {};
+  .factory('spot', function ($rootScope, $q, angularFireCollection, geolocation) {
 
     var fakeSpot1 = {
       'id': 'fakeSpot1',
@@ -272,7 +263,7 @@ angular.module('b4cmApp')
         }
       };
 
-var fakeSpot2 = {
+    var fakeSpot2 = {
       'id': 'fakeSpot2',
       'name': "Pete's Coffee and Tea",
       'yelp_id': 'peets-coffee-and-tea-palo-alto-2',
@@ -532,7 +523,7 @@ var fakeSpot2 = {
         }
       };
 
-var fakeSpot3 = {
+    var fakeSpot3 = {
       'id': 'fakeSpot3',
       'name': 'Coupa Cafe',
       'yelp_id': 'coupa-café-palo-alto-3',
@@ -840,22 +831,31 @@ var fakeSpot3 = {
       create: function (newSpot) {
         
         var deferred = $q.defer(),
+            base_url = 'https://crowd-data.firebaseio.com/spots/',
+            spot_url = '',
             locationObj = {'address': newSpot.address,
                            'city': newSpot.city,
                            'postal_code': newSpot.postal_code, 
                            'state_code': newSpot.state_code };
         newSpot.id = _constructId(newSpot);
+        if (typeof newSpot.yelp_id === 'undefined') {newSpot.yelp_id = null};
         newSpot.review_count = 0;
         newSpot.reviews = [];
         newSpot.crowdfactor = _initCrowdSeer(newSpot);
         geolocation.getLatLong(locationObj).then(function(locationObject) {
           
           // Construct Geohash 
+          //console.log(newSpot.id);
+          //console.log($rootScope);
+          //console.log($rootScope.spots);
 
+          //$rootScope.spots[newSpot.id] = newSpot;
+          spot_url = base_url + newSpot.id;
+          var spotLocation = angularFireCollection(new Firebase(spot_url));
+          //spotLocation.add(newSpot);
 
-          $rootScope.spots[newSpot.id] = newSpot;
-
-          deferred.resolve(createdSpot.id);
+          deferred.resolve(newSpot.id);
+          //deferred.resolve(newSpot);
 
         }, function(reason) {
           conosle.log('failed for ' + reason);
@@ -874,6 +874,12 @@ var fakeSpot3 = {
        * @returns {object} The spot id if successful otherwise an error code.
        */  
       edit: function (id) {
+        // test get firebase
+        var base_url = 'https://crowd-data.firebaseio.com/testing',
+            col = angularFireCollection(new Firebase(base_url));
+            col.add({'test': 'tester'});
+            console.log(col);
+
         return false;
       },
 

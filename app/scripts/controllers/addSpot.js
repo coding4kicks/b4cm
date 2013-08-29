@@ -72,7 +72,7 @@ angular.module('b4cmApp')
     $scope.addSpot = function() {
 
       // Validate the form
-      var errors = []
+      var errors = [];
       if (typeof $scope.name === 'undefined') {errors.push('Name')};
       if (typeof $scope.address === 'undefined') {errors.push('Address')};
       if (typeof $scope.city === 'undefined') {errors.push('City')};
@@ -116,6 +116,8 @@ angular.module('b4cmApp')
    */ 
     $scope.yelpIdHelp = function() {
       $scope.yelpHelpShow = !$scope.yelpHelpShow;
+      // just to test
+      spot.edit();
     };
 
   });
