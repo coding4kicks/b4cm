@@ -946,8 +946,8 @@ function _initCrowdSeer(newSpot) {
 
 
   newSpot.business_hours.forEach(function(time) {
-    var current = {'hour': time.open_hour, 'meridiem': time.open_meridiem, 
-                   'day': time.open_day};
+    var current = {'hour': time.open_hour.hour, 'meridiem': time.open_meridiem.label, 
+                   'day': _dayToNum(time.open_day.label)};
         //close = _roundCloseTime(time);
         // round close hour up if
         //close_hour = (time.close_minutes === 0) ? time.close_hour : time.close_hour + 1
@@ -969,3 +969,27 @@ function _initCrowdSeer(newSpot) {
   //  'monday': {
   //    '12am': {'count': -1, 'score': -1},
 }
+
+/**
+ * @name _dayToNum
+ * @function
+ *
+ * @description Converts a day of the week (i.e. sunday) to a number.
+ *              Capitalization doesn't matter.
+ * @param {string} dayOfWeek The english day of week.
+ * @return {int} A number representing the day of week. Sunday = 0...
+ */  
+function _dayToNum(dayOfWeek) {
+  var dayNum = -1;
+  switch(dayOfWeek.toLowerCase()) {
+    case 'sunday':    dayNum = 0; break;
+    case 'monday':    dayNum = 1; break;
+    case 'tuesday':   dayNum = 2; break;
+    case 'wednesday': dayNum = 3; break;
+    case 'thursday':  dayNum = 4; break;
+    case 'friday':    dayNum = 5; break;
+    case 'satday':    dayNum = 6; break;
+  }
+  return dayNum;
+}
+
