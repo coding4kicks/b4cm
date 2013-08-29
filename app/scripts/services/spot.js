@@ -1,9 +1,14 @@
 'use strict';
 
 angular.module('b4cmApp')
-  .factory('spot', function ($q, geolocation) {
+  .factory('spot', function ($rootScope, $q, angularFire, geolocation) {
     // Service logic
     // ...
+
+    $rootScope.spots = {};
+
+    var url = "https://crowd-data.firebaseio.com/spots",
+        promise = angularFire(url, $rootScope, 'spots', {});
 
     var createdSpot = {};
 
@@ -846,7 +851,10 @@ var fakeSpot3 = {
         geolocation.getLatLong(locationObj).then(function(locationObject) {
           
           // Construct Geohash 
-          createdSpot = newSpot;
+
+
+          $rootScope.spots[newSpot.id] = newSpot;
+
           deferred.resolve(createdSpot.id);
 
         }, function(reason) {
