@@ -947,8 +947,8 @@ function _initCrowdSeer(newSpot) {
 
   newSpot.business_hours.forEach(function(time) {
     var current = {'hour': time.open_hour.hour, 'meridiem': time.open_meridiem.label, 
-                   'day': _dayToNum(time.open_day.label)};
-        //close = _roundCloseTime(time);
+                   'day': _dayToNum(time.open_day.label)},
+        close = _roundCloseTime(time);
         // round close hour up if
         //close_hour = (time.close_minutes === 0) ? time.close_hour : time.close_hour + 1
 
@@ -969,6 +969,33 @@ function _initCrowdSeer(newSpot) {
   //  'monday': {
   //    '12am': {'count': -1, 'score': -1},
 }
+
+function _roundCloseTime(time) {
+  var close = {},
+      hour = time.close_hour.hour,
+      minutes = time.close_hour.minutes,
+      day = _dayToNum(time.close_day.label),
+      meridiem = time.close_meridiem.label;
+
+  if (minutes === 30) {
+    hour = hour + 1;
+    if (hour === 12) {
+      if (meridiem === 'pm') {
+        day = day + 1;
+        if (day === 7) {day = 0;}
+        meridiem = 'am';
+      }
+      else {
+        meridiem = 'pm';
+      }
+    }
+    else if (hour === 13) {hour = 1;}
+  }
+
+  close.day = day;
+  close.hour = hour;
+  close.meridiem = meridiem;
+};
 
 /**
  * @name _dayToNum
