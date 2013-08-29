@@ -924,6 +924,16 @@ function _constructId(newSpot) {
   }
 }
 
+/**
+ * @name _initCrowdSeer
+ * @function
+ *
+ * @description Constructs an initial crowdseer object for a spot. All times are set to closed.
+ *              The business hours are then check, and those times are marked as open, with
+ *              0 count and 0 score.  All hours are then checked to determine open blocks.
+ * @param {object} newSpot The spot to construct the crowdseer for.
+ * @returns {object} A crowdseer object.
+ */ 
 function _initCrowdSeer(newSpot) {
   var crowdfactor = {},
       WEEKDAYS = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
@@ -993,8 +1003,22 @@ function _initCrowdSeer(newSpot) {
       }
     }
   }
+
+  return crowdfactor;
 }
 
+/**
+ * @name _roundCloseTime
+ * @function
+ *
+ * @description For any open period during an hour is open, the whole hour in crowdseer
+ *              should appear as open.  For open times the initial hour is include, but 
+ *              for close times the hour needs to be rounded up.  Rounding into a new
+ *              meridiem or day must be taken into acount. This function performs this 
+ *              rounding.
+ * @param {object} time The time object to check for round. Props: hour, minutes, day, meridiem.
+ * @returns {object} A close times object with day, hour, and meridiem.
+ */ 
 function _roundCloseTime(time) {
   var close = {},
       hour = time.close_hour.hour,
