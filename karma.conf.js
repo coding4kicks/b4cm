@@ -9,6 +9,8 @@ files = [
   JASMINE_ADAPTER,
   'app/components/angular/angular.js',
   'app/components/angular-mocks/angular-mocks.js',
+  'app/components/firebase.js',
+  'app/components/angularFire.js',
   'app/components/angular-google-maps.js',
   'app/components/imageupload.js',
   'app/scripts/*.js',

@@ -1011,7 +1011,7 @@ function _initCrowdSeer(newSpot) {
  * @name _roundCloseTime
  * @function
  *
- * @description For any open period during an hour is open, the whole hour in crowdseer
+ * @description If any open period during an hour is open, the whole hour in crowdseer
  *              should appear as open.  For open times the initial hour is include, but 
  *              for close times the hour needs to be rounded up.  Rounding into a new
  *              meridiem or day must be taken into acount. This function performs this 
