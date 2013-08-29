@@ -833,25 +833,27 @@ var fakeSpot3 = {
        * @returns {object} The spot id if successful otherwise an error code.
        */ 
       create: function (newSpot) {
-        // Should return new spots id.
+        
         var deferred = $q.defer(),
             locationObj = {'address': newSpot.address,
                            'city': newSpot.city,
                            'postal_code': newSpot.postal_code, 
                            'state_code': newSpot.state_code };
-
         newSpot.id = _constructId(newSpot);
         newSpot.review_count = 0;
-        console.log('here');
+        newSpot.reviews = [];
+        newSpot.crowdfactor = _initCrowdSeer(newSpot);
         geolocation.getLatLong(locationObj).then(function(locationObject) {
-          console.log('success');
-          console.log(locationObject);
+          
+          // Construct Geohash 
           createdSpot = newSpot;
           deferred.resolve(createdSpot.id);
+
         }, function(reason) {
           conosle.log('failed for ' + reason);
           deferred.resolve('error');
         });
+
         return deferred.promise;
       },
 
@@ -921,4 +923,29 @@ function _constructId(newSpot) {
     // add 2, 3, ... to end if exists
     return id;
   }
+}
+
+function _initCrowdSeer(newSpot) {
+  var crowdfactor = {},
+      WEEKDAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+  crowdfactor.watch_count = 0;
+  crowdfactor.most_recent = {'time': 0, 'score': 0};
+  crowdfactor.blocks = {};
+  crowdfactor.day = {};
+  
+  // Construct crowdfactor with all closed
+  WEEKDAYS.forEach(function(day) {
+    crowdfactor[day] = {};
+    for (var i = 1; i <= 12; i++) {
+      var closed_am = {'count': -1, 'score': -1},
+          closed_pm = {'count': -1, 'score': -1};
+      crowdfactor[day][i + 'am'] = closed_am;
+      crowdfactor[day][i + 'pm'] = closed_pm;
+    }
+  });
+  console.log(crowdfactor);
+  //'blocks': {'morning':true, 'afternoon':true, 'evening':true, 'latenight':false},
+  //'day': { 
+  //  'monday': {
+  //    '12am': {'count': -1, 'score': -1},
 }
