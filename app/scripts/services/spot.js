@@ -927,7 +927,12 @@ function _constructId(newSpot) {
 
 function _initCrowdSeer(newSpot) {
   var crowdfactor = {},
-      WEEKDAYS = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+      WEEKDAYS = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
+      BLOCK_HOURS = {'morning': ['5am', '6am', '7am', '8am', '9am', '10am'],
+                     'afternoon': ['11am', '12pm', '1pm', '2pm', '3pm', '4pm'],
+                     'evening': ['5pm', '6pm', '7pm', '8pm', '9pm', '10pm'],
+                     'latenight': ['11pm', '12am', '1am', '2am', '3am', '4am']
+                    };
   crowdfactor.watch_count = 0;
   crowdfactor.most_recent = {'time': 0, 'score': 0};
   crowdfactor.blocks = {};
@@ -944,7 +949,7 @@ function _initCrowdSeer(newSpot) {
     }
   });
 
-
+  // Add open hours
   newSpot.business_hours.forEach(function(time) {
     var current = {'hour': time.open_hour.hour, 'meridiem': time.open_meridiem.label, 
                    'day': _dayToNum(time.open_day.label)},
@@ -974,6 +979,23 @@ function _initCrowdSeer(newSpot) {
     }
   });
 
+  // Determine blocks
+  for (var block in BLOCK_HOURS) {
+    crowdfactor.blocks[block] = false; // Assume block is empty
+    checkLoop:
+    for (var i = 0; i < WEEKDAYS.length; i++) {
+      var day = WEEKDAYS[i];
+      for (var j = 0; j < BLOCK_HOURS[block].length; j++) {
+        var hour = BLOCK_HOURS[block][j];
+        if (crowdfactor[day][hour].count !== -1) {
+          crowdfactor.blocks[block] = true;
+          break checkLoop;
+        }
+      }
+    }
+  }
+
+  console.log(crowdfactor.blocks);
   // 'open_day': {'label': 'Tuesday'}, 'open_meridiem': {'label': 'pm'},
   // 'open_hour': {'label': '1:00', 'hour': 1, 'minutes': 0},
   // 'close_day': {'label': 'Tuesday'}, 'close_meridiem': {'label': 'pm'},
