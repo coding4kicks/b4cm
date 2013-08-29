@@ -52,6 +52,12 @@ describe('Service: spot', function () {
                        'open_hour': {'label': '1:30', 'hour': 1, 'minutes': 30},
                        'close_day': {'label': 'Thursday'}, 'close_meridiem': {'label': 'pm'},
                        'close_hour': {'label': '11:30', 'hour': 11, 'minutes': 30}
+                      },
+                      // Overnight
+                      {'open_day': {'label': 'Friday'}, 'open_meridiem': {'label': 'pm'},
+                       'open_hour': {'label': '8:00', 'hour': 8, 'minutes': 0},
+                       'close_day': {'label': 'Saturday'}, 'close_meridiem': {'label': 'am'},
+                       'close_hour': {'label': '8:00', 'hour': 8, 'minutes': 0}
                       }
                     ]
                    };

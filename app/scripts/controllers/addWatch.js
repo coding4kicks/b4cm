@@ -104,25 +104,3 @@ function _calculateWatchTimes(start, stop) {
   return times
 }
 
-/**
- * @name _dayToNum
- * @function
- *
- * @description Converts a day of the week (i.e. sunday) to a number.
- *              Capitalization doesn't matter.
- * @param {string} dayOfWeek The english day of week.
- * @return {int} A number representing the day of week. Sunday = 0...
- */  
-function _dayToNum(dayOfWeek) {
-  var dayNum = -1;
-  switch(dayOfWeek.toLowerCase()) {
-    case 'sunday':    dayNum = 0; break;
-    case 'monday':    dayNum = 1; break;
-    case 'tuesday':   dayNum = 2; break;
-    case 'wednesday': dayNum = 3; break;
-    case 'thursday':  dayNum = 4; break;
-    case 'friday':    dayNum = 5; break;
-    case 'satday':    dayNum = 6; break;
-  }
-  return dayNum;
-}
