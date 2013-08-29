@@ -971,12 +971,6 @@ function _initCrowdSeer(newSpot) {
         }
       }
       else if (current.hour === 13) {current.hour = 1;}
-      console.log('times');
-      console.log(current.day, current.hour, current.meridiem);
-      console.log(close.day, close.hour, close.meridiem);
-      i++;
-      if (i === 13) {console.log('here');break;}
-      //break;
     }
   });
 
@@ -1039,7 +1033,7 @@ function _dayToNum(dayOfWeek) {
     case 'wednesday': dayNum = 3; break;
     case 'thursday':  dayNum = 4; break;
     case 'friday':    dayNum = 5; break;
-    case 'satday':    dayNum = 6; break;
+    case 'saturday':    dayNum = 6; break;
   }
   return dayNum;
 }

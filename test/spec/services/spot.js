@@ -24,41 +24,41 @@ describe('Service: spot', function () {
                        'open_hour': {'label': '7:00', 'hour': 7, 'minutes': 0},
                        'close_day': {'label': 'monday'}, 'close_meridiem': {'label': 'pm'},
                        'close_hour': {'label': '7:00', 'hour': 7, 'minutes': 0}
-                      }//,
+                      },
                       // Closed in the middle of a day
-                     // {'open_day': {'label': 'Tuesday'}, 'open_meridiem': {'label': 'am'},
-                     //  'open_hour': {'label': '7:00', 'hour': 7, 'minutes': 0},
-                     //  'close_day': {'label': 'Tuesday'}, 'close_meridiem': {'label': 'am'},
-                     //  'close_hour': {'label': '11:00', 'hour': 11, 'minutes': 0}
-                     // },
-                     // {'open_day': {'label': 'Tuesday'}, 'open_meridiem': {'label': 'pm'},
-                     //  'open_hour': {'label': '1:00', 'hour': 1, 'minutes': 0},
-                     //  'close_day': {'label': 'Tuesday'}, 'close_meridiem': {'label': 'pm'},
-                     //  'close_hour': {'label': '7:00', 'hour': 7, 'minutes': 0}
-                     // },
-                     // // Half hour start and finish
-                     // {'open_day': {'label': 'Wednesday'}, 'open_meridiem': {'label': 'am'},
-                     //  'open_hour': {'label': '7:30', 'hour': 7, 'minutes': 30},
-                     //  'close_day': {'label': 'Wednesday'}, 'close_meridiem': {'label': 'pm'},
-                     //  'close_hour': {'label': '7:30', 'hour': 7, 'minutes': 30}
-                     // },
-                     // // Half hours at the twelves
-                     // {'open_day': {'label': 'Thursday'}, 'open_meridiem': {'label': 'am'},
-                     //  'open_hour': {'label': '12:30', 'hour': 12, 'minutes': 30},
-                     //  'close_day': {'label': 'Wednesday'}, 'close_meridiem': {'label': 'am'},
-                     //  'close_hour': {'label': '11:30', 'hour': 11, 'minutes': 30}
-                     // },
-                     // {'open_day': {'label': 'Thursday'}, 'open_meridiem': {'label': 'pm'},
-                     //  'open_hour': {'label': '1:30', 'hour': 1, 'minutes': 30},
-                     //  'close_day': {'label': 'Thursday'}, 'close_meridiem': {'label': 'pm'},
-                     //  'close_hour': {'label': '11:30', 'hour': 11, 'minutes': 30}
-                     // },
-                     // // Overnight
-                     // {'open_day': {'label': 'Friday'}, 'open_meridiem': {'label': 'pm'},
-                     //  'open_hour': {'label': '8:00', 'hour': 8, 'minutes': 0},
-                     //  'close_day': {'label': 'Saturday'}, 'close_meridiem': {'label': 'am'},
-                     //  'close_hour': {'label': '8:00', 'hour': 8, 'minutes': 0}
-                     // }
+                      {'open_day': {'label': 'Tuesday'}, 'open_meridiem': {'label': 'am'},
+                       'open_hour': {'label': '7:00', 'hour': 7, 'minutes': 0},
+                       'close_day': {'label': 'Tuesday'}, 'close_meridiem': {'label': 'am'},
+                       'close_hour': {'label': '11:00', 'hour': 11, 'minutes': 0}
+                      },
+                      {'open_day': {'label': 'Tuesday'}, 'open_meridiem': {'label': 'pm'},
+                       'open_hour': {'label': '1:00', 'hour': 1, 'minutes': 0},
+                       'close_day': {'label': 'Tuesday'}, 'close_meridiem': {'label': 'pm'},
+                       'close_hour': {'label': '7:00', 'hour': 7, 'minutes': 0}
+                      },
+                      // Half hour start and finish
+                      {'open_day': {'label': 'Wednesday'}, 'open_meridiem': {'label': 'am'},
+                       'open_hour': {'label': '7:30', 'hour': 7, 'minutes': 30},
+                       'close_day': {'label': 'Wednesday'}, 'close_meridiem': {'label': 'pm'},
+                       'close_hour': {'label': '7:30', 'hour': 7, 'minutes': 30}
+                      },
+                      // Half hours at the twelves
+                      {'open_day': {'label': 'Thursday'}, 'open_meridiem': {'label': 'am'},
+                       'open_hour': {'label': '12:30', 'hour': 12, 'minutes': 30},
+                       'close_day': {'label': 'Thursday'}, 'close_meridiem': {'label': 'am'},
+                       'close_hour': {'label': '11:30', 'hour': 11, 'minutes': 30}
+                      },
+                      {'open_day': {'label': 'Thursday'}, 'open_meridiem': {'label': 'pm'},
+                       'open_hour': {'label': '1:30', 'hour': 1, 'minutes': 30},
+                       'close_day': {'label': 'Thursday'}, 'close_meridiem': {'label': 'pm'},
+                       'close_hour': {'label': '11:30', 'hour': 11, 'minutes': 30}
+                      },
+                      // Overnight
+                      {'open_day': {'label': 'Friday'}, 'open_meridiem': {'label': 'pm'},
+                       'open_hour': {'label': '8:00', 'hour': 8, 'minutes': 0},
+                       'close_day': {'label': 'Saturday'}, 'close_meridiem': {'label': 'am'},
+                       'close_hour': {'label': '8:00', 'hour': 8, 'minutes': 0}
+                      }
                     ]
                    };
 
@@ -82,22 +82,22 @@ describe('Service: spot', function () {
     expect(spotId).toBe("test-spot-palo-alto2");
   }));
 
-//  it('create should correctly set id to yelp_id', inject(function ($rootScope) {
-//    var spotId = '',
-//        newSpot = {};
-//    spot.create(testSpot).then(function(value) {spotId = value});
-//    $rootScope.$apply();
-//    expect(spotId).toBe("test-spot-palo-alto2");
-//  }));
-//
-//  it('create should correctly construct id if no yelp id', inject(function ($rootScope) {
-//    var spotId = '',
-//        newSpot = {};
-//    testSpot.yelp_id = undefined;
-//    spot.create(testSpot).then(function(value) {spotId = value});
-//    $rootScope.$apply();
-//    expect(spotId).toBe("test-spot-palo-alto");
-//  }));
+  it('create should correctly set id to yelp_id', inject(function ($rootScope) {
+    var spotId = '',
+        newSpot = {};
+    spot.create(testSpot).then(function(value) {spotId = value});
+    $rootScope.$apply();
+    expect(spotId).toBe("test-spot-palo-alto2");
+  }));
+
+  it('create should correctly construct id if no yelp id', inject(function ($rootScope) {
+    var spotId = '',
+        newSpot = {};
+    testSpot.yelp_id = undefined;
+    spot.create(testSpot).then(function(value) {spotId = value});
+    $rootScope.$apply();
+    expect(spotId).toBe("test-spot-palo-alto");
+  }));
 
   it('edit should return false', function () {
     expect(spot.edit()).toBe(false);

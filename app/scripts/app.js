@@ -218,7 +218,7 @@ function _dayToNum(dayOfWeek) {
     case 'wednesday': dayNum = 3; break;
     case 'thursday':  dayNum = 4; break;
     case 'friday':    dayNum = 5; break;
-    case 'satday':    dayNum = 6; break;
+    case 'saturday':    dayNum = 6; break;
   }
   return dayNum;
 }
