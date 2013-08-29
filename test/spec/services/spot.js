@@ -32,32 +32,30 @@ describe('Service: spot', function () {
     expect(spot.addWatch()).toBe(false);
   });
   
-//  it('addSpot should correctly add hours', function () {
-//    var spotId = '',
-//        newSpot = {};
-//    spotId = spot.create(testSpot);
-//    newSpot = spot.get(spotId);
-//    expect(spot.create(testSpot)).toBe("test-spot-palo-alto2");
-//
-//  });
+  it('addSpot should correctly add hours', inject(function ($rootScope) {
+    var spotId = '',
+        newSpot = {};
+    spot.create(testSpot).then(function(value) {spotId = value});
+    $rootScope.$apply();
+    expect(spotId).toBe("test-spot-palo-alto2");
+  }));
 
   it('addSpot should correctly set id to yelp_id', inject(function ($rootScope) {
     var spotId = '',
         newSpot = {};
-
     spot.create(testSpot).then(function(value) {spotId = value});
     $rootScope.$apply();
     expect(spotId).toBe("test-spot-palo-alto2");
-
   }));
 
-  it('addSpot should correctly construct id', function () {
+  it('addSpot should correctly construct id', inject(function ($rootScope) {
     var spotId = '',
         newSpot = {};
     testSpot.yelp_id = undefined;
-    spotId = spot.create(testSpot);
+    spot.create(testSpot).then(function(value) {spotId = value});
+    $rootScope.$apply();
     expect(spotId).toBe("test-spot-palo-alto");
-  });
+  }));
 
   it('edit should return false', function () {
     expect(spot.edit()).toBe(false);
