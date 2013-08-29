@@ -948,14 +948,36 @@ function _initCrowdSeer(newSpot) {
   newSpot.business_hours.forEach(function(time) {
     var current = {'hour': time.open_hour.hour, 'meridiem': time.open_meridiem.label, 
                    'day': _dayToNum(time.open_day.label)},
-        close = _roundCloseTime(time);
-        // round close hour up if
-        //close_hour = (time.close_minutes === 0) ? time.close_hour : time.close_hour + 1
+        close = _roundCloseTime(time),
+        i = 0;
 
-    //while (current.day !== close_day ||
-    //       current.hour !== time.close_ ||
-    //       current.meridiem !== stop.meridiem) {
-    //}
+    while (current.day !== close.day ||
+           current.hour !== close.hour ||
+           current.meridiem !== close.meridiem) {
+      // Mark current time as open
+      crowdfactor[WEEKDAYS[current.day]][current.hour + current.meridiem].count = 0;
+      crowdfactor[WEEKDAYS[current.day]][current.hour + current.meridiem].score = 0;
+
+      // Increment time
+      current.hour = current.hour + 1;
+      if (current.hour === 12) {
+        if (current.meridiem === 'pm') {
+          current.day = current.day + 1;
+          if (current.day === 7) {current.day = 0;}
+          current.meridiem = 'am';
+        }
+        else {
+          current.meridiem = 'pm';
+        }
+      }
+      else if (current.hour === 13) {current.hour = 1;}
+      console.log('times');
+      console.log(current.day, current.hour, current.meridiem);
+      console.log(close.day, close.hour, close.meridiem);
+      i++;
+      if (i === 13) {console.log('here');break;}
+      //break;
+    }
   });
 
   // 'open_day': {'label': 'Tuesday'}, 'open_meridiem': {'label': 'pm'},
@@ -995,6 +1017,8 @@ function _roundCloseTime(time) {
   close.day = day;
   close.hour = hour;
   close.meridiem = meridiem;
+
+  return close;
 };
 
 /**
