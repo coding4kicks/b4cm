@@ -82,6 +82,15 @@ describe('Service: spot', function () {
     expect(spotId).toBe("test-spot-palo-alto2");
   }));
 
+  it('empty blocks set to false', inject(function ($rootScope) {
+    var spotId = '',
+        newSpot = {};
+    testSpot.business_hours = [];
+    spot.create(testSpot).then(function(value) {spotId = value});
+    $rootScope.$apply();
+    expect(spotId).toBe("test-spot-palo-alto2");
+  }));
+
   it('create should correctly set id to yelp_id', inject(function ($rootScope) {
     var spotId = '',
         newSpot = {};

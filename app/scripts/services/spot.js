@@ -908,7 +908,6 @@ var fakeSpot3 = {
  * @param {object} newSpot A spot with name and city (possibly yelp_id) but no id.
  * @returns {object} A spot object with an id.
  */ 
-
 function _constructId(newSpot) {
   if (typeof newSpot.yelp_id !== 'undefined') {
     //TODO: check valid yelp id
@@ -994,18 +993,6 @@ function _initCrowdSeer(newSpot) {
       }
     }
   }
-
-  console.log(crowdfactor.blocks);
-  // 'open_day': {'label': 'Tuesday'}, 'open_meridiem': {'label': 'pm'},
-  // 'open_hour': {'label': '1:00', 'hour': 1, 'minutes': 0},
-  // 'close_day': {'label': 'Tuesday'}, 'close_meridiem': {'label': 'pm'},
-  // 'close_hour': {'label': '7:00', 'hour': 7, 'minutes': 0}
-
-  //console.log(crowdfactor);
-  //'blocks': {'morning':true, 'afternoon':true, 'evening':true, 'latenight':false},
-  //'day': { 
-  //  'monday': {
-  //    '12am': {'count': -1, 'score': -1},
 }
 
 function _roundCloseTime(time) {
