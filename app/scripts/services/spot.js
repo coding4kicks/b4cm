@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('b4cmApp')
-  .factory('spot', function ($q, angularFireCollection, geolocation) {
+  .factory('spot', function ($q, $timeout, angularFireCollection, geolocation) {
 
     var fakeSpot1 = {
       'id': 'fakeSpot1',
@@ -849,10 +849,8 @@ angular.module('b4cmApp')
 
         //var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + newSpot.id);
         //spotRef.set(newSpot);
-        console.log('heeeer');
-        var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + newSpot.id);
-        spotRef.set(newSpot);
-        console.log(newSpot);
+        console.log('prior');
+
         geolocation.getLatLong(locationObj).then(function(locationObject) {
           
           // Construct Geohash 
@@ -861,7 +859,12 @@ angular.module('b4cmApp')
           //spotData.set(newSpot.id);
           //var spotRef = spotData.child(newSpot.id);
           //spotRef.set(newSpot);
+          
+          console.log(locationObject);
 
+          //var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + newSpot.id);
+          //spotRef.set(newSpot);
+          //console.log(newSpot);
 
           deferred.resolve(newSpot.id);
 
@@ -869,7 +872,7 @@ angular.module('b4cmApp')
           conosle.log('failed for ' + reason);
           deferred.resolve('error');
         });
-
+        console.log('after');
         return deferred.promise;
       },
 
