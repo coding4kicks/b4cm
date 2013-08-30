@@ -8,37 +8,44 @@ angular.module('b4cmApp')
    *
    * @description Retrieves and calculates display information for a requested spot (aka. business).
    */ 
-  .controller('SpotCtrl', function ($scope, $location, $timeout, $routeParams, spot) {
+  .controller('SpotCtrl', function ($scope, $location, $timeout, $routeParams, angularFire, spot) {
 
     // Load spot information
-    $scope.spot = spot.get($routeParams.spotId);
+    //$scope.spot = spot.get($routeParams.spotId);
 
-    $scope.watch_count = $scope.spot.crowdfactor.watch_count;
+    spot.get($routeParams.spotId).then(function(spot_data) {
 
-    // Calculate stars overall and for each review.
-    $scope.stars = _calculateStars($scope.spot.rating);
-    for (var j = 0; j < $scope.spot.reviews.length; j++) {
-      $scope.spot.reviews[j].stars = _calculateStars($scope.spot.reviews[j].rating);
-    }
+      $scope.spot = spot_data;
+      console.log($scope.spot);
+      $scope.watch_count = $scope.spot.crowdfactor.watch_count;
 
-    // Calculate weighting for each type of spot.
-    $scope.types = _weightTypes($scope.spot.type.food,
-                                $scope.spot.type.study,
-                                $scope.spot.type.social);
+      // Calculate stars overall and for each review.
+      $scope.stars = _calculateStars($scope.spot.rating);
+      if (typeof $scope.spot.reviews === 'undefined') {$scope.spot.reviews = {'length': 0};}
+      for (var j = 0; j < $scope.spot.reviews.length; j++) {
+        $scope.spot.reviews[j].stars = _calculateStars($scope.spot.reviews[j].rating);
+      }
 
-    // Calculate block structure for display of crowdfactor visualization.
-    $scope.blocks = _constructCrowdFactor($scope.spot.crowdfactor.blocks,
-                                          $scope.spot.crowdfactor.day);
+      // Calculate weighting for each type of spot.
+      $scope.types = _weightTypes($scope.spot.type.food,
+                                  $scope.spot.type.study,
+                                  $scope.spot.type.social);
 
-    // Set up crowdfactor current time marker information.
-    $scope.show_marker = _initializeShowMarkerMatrix();
-    $scope.current_marker = {'day': '', 'hour': '', 'meridiem': ''}; // Currently visible marker position
+      // Calculate block structure for display of crowdfactor visualization.
+      $scope.blocks = _constructCrowdFactor($scope.spot.crowdfactor.blocks,
+                                            $scope.spot.crowdfactor.day);
 
-    // Initialize google maps parameters for spot page
-    _initializeGoogleMaps($scope, $scope.spot.location, [$scope.spot]);
+      // Set up crowdfactor current time marker information.
+      $scope.show_marker = _initializeShowMarkerMatrix();
+      $scope.current_marker = {'day': '', 'hour': '', 'meridiem': ''}; // Currently visible marker position
+
+      // Initialize google maps parameters for spot page
+      _initializeGoogleMaps($scope, $scope.spot.location, [$scope.spot]);
    
-    // Start updates
-    _updateStatus($scope, $timeout);
+      // Start updates
+      _updateStatus($scope, $timeout);
+
+     });
 
     /**
      * @name addWatch
