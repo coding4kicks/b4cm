@@ -102,7 +102,6 @@ angular.module('b4cmApp')
         if ($scope.study) {newSpot.type.study = 1};
         if ($scope.social) {newSpot.type.social = 1};
         newSpot.business_hours = $scope.business_hours;
-
         spot.create(newSpot);
       }
     };

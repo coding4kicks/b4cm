@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('b4cmApp')
-  .factory('spot', function ($rootScope, $q, angularFireCollection, geolocation) {
+  .factory('spot', function ($q, angularFireCollection, geolocation) {
 
     var fakeSpot1 = {
       'id': 'fakeSpot1',
@@ -829,7 +829,7 @@ angular.module('b4cmApp')
        * @returns {object} The spot id if successful otherwise an error code.
        */ 
       create: function (newSpot) {
-        
+
         var deferred = $q.defer(),
             base_url = 'https://crowd-data.firebaseio.com/spots/',
             spot_url = '',
@@ -839,23 +839,31 @@ angular.module('b4cmApp')
                            'state_code': newSpot.state_code };
         newSpot.id = _constructId(newSpot);
         if (typeof newSpot.yelp_id === 'undefined') {newSpot.yelp_id = null};
+        if (typeof newSpot.image_url === 'undefined') {newSpot.image_url = null};
+        if (typeof newSpot.wifi === 'undefined') {newSpot.wifi = false};
         newSpot.review_count = 0;
         newSpot.reviews = [];
         newSpot.crowdfactor = _initCrowdSeer(newSpot);
+
+
+
+        //var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + newSpot.id);
+        //spotRef.set(newSpot);
+        console.log('heeeer');
+        var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + newSpot.id);
+        spotRef.set(newSpot);
+        console.log(newSpot);
         geolocation.getLatLong(locationObj).then(function(locationObject) {
           
           // Construct Geohash 
-          //console.log(newSpot.id);
-          //console.log($rootScope);
-          //console.log($rootScope.spots);
 
-          //$rootScope.spots[newSpot.id] = newSpot;
-          spot_url = base_url + newSpot.id;
-          var spotLocation = angularFireCollection(new Firebase(spot_url));
           //spotLocation.add(newSpot);
+          //spotData.set(newSpot.id);
+          //var spotRef = spotData.child(newSpot.id);
+          //spotRef.set(newSpot);
+
 
           deferred.resolve(newSpot.id);
-          //deferred.resolve(newSpot);
 
         }, function(reason) {
           conosle.log('failed for ' + reason);
@@ -875,10 +883,10 @@ angular.module('b4cmApp')
        */  
       edit: function (id) {
         // test get firebase
-        var base_url = 'https://crowd-data.firebaseio.com/testing',
-            col = angularFireCollection(new Firebase(base_url));
-            col.add({'test': 'tester'});
-            console.log(col);
+        //var base_url = 'https://crowd-data.firebaseio.com/testing',
+        //    col = angularFireCollection(new Firebase(base_url));
+        //    col.add({'test': 'tester'});
+        //    console.log(col);
 
         return false;
       },
