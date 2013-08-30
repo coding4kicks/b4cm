@@ -118,8 +118,7 @@ angular.module('b4cmApp')
         // Create the spot - Asynch send to firebase
         spot.create(newSpot).then(function (spotId) {
           // Handle success or error
-          // Reload page (could clear all paramaters)
-          //$route.reload(); 
+          // Redirect to added spot
           $location.path("/spot/" + spotId);
           // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
           if(!$scope.$$phase) { $scope.$apply(); }

@@ -128,7 +128,8 @@ function _calculateStars(rating) {
 function _calculateStatus(score) {
   var cf_status = "";
   if (score < 0) {cf_status = 'closed'}
-  else if (score < .5) {cf_status = 'empty';} 
+  else if (score < 0.5) {cf_status = 'none';}
+  else if (score < 1.5) {cf_status = 'empty';} 
   else if (score < 2.5) {cf_status = 'few';}
   else if (score < 3.5) {cf_status = 'average';}
   else if (score < 4.5) {cf_status = 'crowded';}
@@ -162,7 +163,9 @@ function _getStatus(spot, time) {
         count = day[time.getTimeLabel()].count,
         score = day[time.getTimeLabel()].score;    
     if (count === -1){ cf_status_label = 'Closed'; }
-    else if (count === 0){ cf_status_label = 'NoInfo'}
+    else if (count === 0){ 
+      cf_status_label = '';
+      cf_status_time = 'No watches yet: be the first'}
     else {
       cf_status_label = CFLABELS[Math.round(score/count) - 1];
     }
