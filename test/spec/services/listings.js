@@ -12,7 +12,8 @@ describe('Service: listings', function () {
   }));
 
   it('create should return false', function () {
-    expect(listings.add()).toBe(false);
+    var data = {'id': 'some-great-place'};
+    expect(listings.add(32.323232, -122.222222, data)).toBe(false);
   });
 
   it('edit should return false', function () {

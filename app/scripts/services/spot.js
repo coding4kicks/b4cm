@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('b4cmApp')
-  .factory('spot', function ($q, $timeout, angularFireCollection, geolocation) {
+  .factory('spot', function ($q, $timeout, angularFireCollection, geolocation, listings) {
 
     var fakeSpot1 = {
       'id': 'fakeSpot1',
@@ -861,6 +861,9 @@ angular.module('b4cmApp')
           
 
           // Add to listings
+          listings.add(locationObject.latitude,
+                       locationObject.longitude,
+                       {'id': newSpot.id});
 
           // Create new spot
           var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + newSpot.id);

@@ -60,7 +60,8 @@ angular.module('b4cmApp')
 
     // Public API here
     return {
-      add: function () {
+      add: function (lat, lon, data) {
+        geo.insert(lat, lon, data);
         return false;
       },
       edit: function () {
