@@ -101,10 +101,26 @@ angular.module('b4cmApp')
         if ($scope.food) {newSpot.type.food = 1};
         if ($scope.study) {newSpot.type.study = 1};
         if ($scope.social) {newSpot.type.social = 1};
-        newSpot.business_hours = $scope.business_hours;
-        spot.create(newSpot).then(function (spotId) {
-          console.log('finished');
+
+
+        newSpot.business_hours = [];
+
+        
+        $scope.business_hours.forEach(function(hour) {
+          var time = {'open_day': hour.open_day, 'open_meridiem': hour.open_meridiem,
+                      'open_hour': hour.open_hour, 'close_day': hour.close_day,
+                      'close_meridiem': hour.close_meridiem, 'close_hour': hour.close_hour };
+          newSpot.business_hours.push(time);
         });
+        console.log('biz hours');
+        //console.log(newSpot.business_hours.indexOf('$$hashkey'));
+        //delete business_hours.$$hashkey;
+        //newSpot.business_hours.splice(0, 1);
+        //console.log(newSpot.business_hours.$$haskkey);
+        console.log(newSpot);
+        //spot.create(newSpot).then(function (spotId) {
+        //  console.log('finished');
+        //});
       }
     };
 
