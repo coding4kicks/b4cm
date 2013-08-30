@@ -833,10 +833,10 @@ angular.module('b4cmApp')
         var deferred = $q.defer(),
             base_url = 'https://crowd-data.firebaseio.com/spots/',
             spot_url = '',
-            locationObj = {'address': newSpot.address,
-                           'city': newSpot.city,
-                           'postal_code': newSpot.postal_code, 
-                           'state_code': newSpot.state_code };
+            locationObj = {'address': newSpot.location.address,
+                           'city': newSpot.location.city,
+                           'postal_code': newSpot.location.postal_code, 
+                           'state_code': newSpot.location.state_code };
 
         newSpot.id = _constructId(newSpot);
 
@@ -848,7 +848,7 @@ angular.module('b4cmApp')
         newSpot.reviews = [];
         newSpot.crowdfactor = _initCrowdSeer(newSpot);
 
-        // Asynch call to get lat and long.
+         // Asynch call to get lat and long.
         geolocation.getLatLong(locationObj).then(function(locationObject) {          
           newSpot.location.latitude = locationObject.latitude;
           newSpot.location.longitude = locationObject.longitude;
@@ -857,7 +857,8 @@ angular.module('b4cmApp')
           newSpot.location.geohash = listings.add(locationObject.latitude,
                                                   locationObject.longitude,
                                                   {'id': newSpot.id});
-          console.log(newSpot);
+          //console.log(newSpot);
+
           // Add the new spot in Firebase
           var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + newSpot.id);
           spotRef.set(newSpot);

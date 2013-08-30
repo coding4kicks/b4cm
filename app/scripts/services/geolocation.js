@@ -28,17 +28,21 @@ angular.module('b4cmApp')
 
         else {
           // call geolocation api
-          var geocoder = new google.maps.Geocoder();
-          // TODO: switch in location object address info
-          geocoder.geocode( { 'address': '1500+Amphitheatre+Parkway,+Mountain+View,+CA'}, function(results, status) {
+          var geocoder = new google.maps.Geocoder(),
+              address = location_object.address + ", " + location_object.city + ", " + location_object.state_code;
+          address.replace(/ /g,"+"); // URI encode?
+          console.log(address);
+          //geocoder.geocode( { 'address': '1500+Amphitheatre+Parkway,+Mountain+View,+CA'}, function(results, status) {
+          geocoder.geocode( { 'address': address}, function(results, status) {
             console.log(results);
             console.log(status);
             if (status == google.maps.GeocoderStatus.OK) {
               location_object.latitude = results[0].geometry.location.lat();
               location_object.longitude = results[0].geometry.location.lng();
-              // need $rootScope.$apply here to transmit results back into Angular
+              // Need $rootScope.$apply here to transmit results back into Angular
               $rootScope.$apply(deferred.resolve(location_object));
             } else {
+              // Need appropriate error handling.
               $rootScope.$apply(deferred.reject(status));
             }
           });
