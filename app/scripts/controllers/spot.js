@@ -138,7 +138,8 @@ function _constructCrowdFactor(cf_blocks, cf_day) {
                     },
       DAYS = {'monday': 'M', 'tuesday': 'T', 'wednesday': 'W', 'thursday': 'Th',
               'friday': 'F', 'saturday': 'Sa', 'sunday': 'Su'};
-  for (var block_name in cf_blocks) {
+  //for (var block_name in cf_blocks) {
+  ['morning', 'afternoon', 'evening', 'latenight'].forEach(function(block_name){
     if(cf_blocks[block_name]) {
       var block = {};
       block.name = block_name;
@@ -165,7 +166,7 @@ function _constructCrowdFactor(cf_blocks, cf_day) {
       }
       display_blocks.push(block);
     };
-  }
+  });
   return display_blocks;
 }
 
