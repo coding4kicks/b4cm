@@ -8,7 +8,7 @@ angular.module('b4cmApp')
    *
    * @description Adds a new spot to the database.
    */ 
-  .controller('AddSpotCtrl', function ($scope, spot) {
+  .controller('AddSpotCtrl', function ($scope, $route, spot) {
 
     var newSpot = {};
     $scope.business_hours = []; // Business's hours of operation
@@ -113,7 +113,9 @@ angular.module('b4cmApp')
 
         // Create the spot - Asynch send to firebase
         spot.create(newSpot).then(function (spotId) {
-          // Handle success or error 
+          // Handle success or error
+          // Reload page (could clear all paramaters)
+          $route.reload(); 
         });
       }
     };
