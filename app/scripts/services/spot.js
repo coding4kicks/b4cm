@@ -975,12 +975,12 @@ function _initCrowdSeer(newSpot) {
   
   // Construct crowdfactor with all closed
   WEEKDAYS.forEach(function(day) {
-    crowdfactor[day] = {};
+    crowdfactor.day[day] = {};
     for (var i = 1; i <= 12; i++) {
       var closed_am = {'count': -1, 'score': -1},
           closed_pm = {'count': -1, 'score': -1};
-      crowdfactor[day][i + 'am'] = closed_am;
-      crowdfactor[day][i + 'pm'] = closed_pm;
+      crowdfactor.day[day][i + 'am'] = closed_am;
+      crowdfactor.day[day][i + 'pm'] = closed_pm;
     }
   });
 
@@ -995,8 +995,8 @@ function _initCrowdSeer(newSpot) {
            current.hour !== close.hour ||
            current.meridiem !== close.meridiem) {
       // Mark current time as open
-      crowdfactor[WEEKDAYS[current.day]][current.hour + current.meridiem].count = 0;
-      crowdfactor[WEEKDAYS[current.day]][current.hour + current.meridiem].score = 0;
+      crowdfactor.day[WEEKDAYS[current.day]][current.hour + current.meridiem].count = 0;
+      crowdfactor.day[WEEKDAYS[current.day]][current.hour + current.meridiem].score = 0;
 
       // Increment time
       current.hour = current.hour + 1;
@@ -1022,7 +1022,7 @@ function _initCrowdSeer(newSpot) {
       var day = WEEKDAYS[i];
       for (var j = 0; j < BLOCK_HOURS[block].length; j++) {
         var hour = BLOCK_HOURS[block][j];
-        if (crowdfactor[day][hour].count !== -1) {
+        if (crowdfactor.day[day][hour].count !== -1) {
           crowdfactor.blocks[block] = true;
           break checkLoop;
         }

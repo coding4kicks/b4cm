@@ -161,7 +161,8 @@ function _getStatus(spot, time) {
     var day = spot.crowdfactor.day[time.getDay().toLowerCase()],
         count = day[time.getTimeLabel()].count,
         score = day[time.getTimeLabel()].score;    
-    if (count === -1){ cf_status_label = 'Closed' }
+    if (count === -1){ cf_status_label = 'Closed'; }
+    else if (count === 0){ cf_status_label = 'NoInfo'}
     else {
       cf_status_label = CFLABELS[Math.round(score/count) - 1];
     }

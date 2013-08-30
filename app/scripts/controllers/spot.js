@@ -206,6 +206,7 @@ var _updateStatus = function ($scope, $timeout) {
   _calculateCurrentTimeInfo($scope, current_date);
   $scope.current_status = current_status.time;
   $scope.current_cflabel = current_status.label;
+  console.log(current_status.label);
   _updateMarker($scope);
   $timeout(function(){_updateStatus($scope, $timeout);}, 60000);
 }
