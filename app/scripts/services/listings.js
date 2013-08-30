@@ -61,8 +61,8 @@ angular.module('b4cmApp')
     // Public API here
     return {
       add: function (lat, lon, data) {
-        geo.insert(lat, lon, data);
-        return false;
+        var hash = geo.insert(lat, lon, data);
+        return hash;
       },
       edit: function () {
         return false;

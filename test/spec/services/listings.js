@@ -13,7 +13,7 @@ describe('Service: listings', function () {
 
   it('create should return false', function () {
     var data = {'id': 'some-great-place'};
-    expect(listings.add(32.323232, -122.222222, data)).toBe(false);
+    expect(listings.add(32.323232, -122.222222, data)).toBe('9m9pfu22rz1v');
   });
 
   it('edit should return false', function () {
