@@ -853,15 +853,13 @@ angular.module('b4cmApp')
 
         geolocation.getLatLong(locationObj).then(function(locationObject) {
           
+          // Add lat and long
+          newSpot.location.latitude = locationObject.latitude;
+          newSpot.location.longitude = locationObject.longitude;
+
           // Construct Geohash 
 
-          //spotLocation.add(newSpot);
-          //spotData.set(newSpot.id);
-          //var spotRef = spotData.child(newSpot.id);
-          //spotRef.set(newSpot);
-          
-          console.log(locationObject);
-          console.log(newSpot);
+          // Create new spot
           var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + newSpot.id);
           spotRef.set(newSpot);
 

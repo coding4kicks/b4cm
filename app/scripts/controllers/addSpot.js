@@ -102,10 +102,8 @@ angular.module('b4cmApp')
         if ($scope.study) {newSpot.type.study = 1};
         if ($scope.social) {newSpot.type.social = 1};
 
-
+        // Hack to remove $$haskey property which blows up Firebase
         newSpot.business_hours = [];
-
-        
         $scope.business_hours.forEach(function(hour) {
           var time = {'open_day': hour.open_day, 'open_meridiem': hour.open_meridiem,
                       'open_hour': hour.open_hour, 'close_day': hour.close_day,
