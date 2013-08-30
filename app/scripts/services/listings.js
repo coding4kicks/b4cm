@@ -2,8 +2,9 @@
 
 angular.module('b4cmApp')
   .factory('listings', function () {
-    // Service logic
-    // ...
+
+    var geoRef = new Firebase('https://crowd-data.firebaseio.com/geo'),
+        geo = new FirebaseGeo(geoRef);
 
     var fakeListingsStudy = {};
     fakeListingsStudy.location = { 'city': 'Palo Alto',

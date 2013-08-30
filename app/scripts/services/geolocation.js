@@ -50,8 +50,12 @@ angular.module('b4cmApp')
           });
         }
         return deferred.promise;
-      }
+      },
 
+      getGeohash: function(location_object) {
+        //var geohash = 
+
+      }
     };
   });
 

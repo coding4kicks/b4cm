@@ -837,15 +837,15 @@ angular.module('b4cmApp')
                            'city': newSpot.city,
                            'postal_code': newSpot.postal_code, 
                            'state_code': newSpot.state_code };
+
         newSpot.id = _constructId(newSpot);
+        // Must guard against undefined to protect from Firebase error.
         if (typeof newSpot.yelp_id === 'undefined') {newSpot.yelp_id = null};
         if (typeof newSpot.image_url === 'undefined') {newSpot.image_url = null};
         if (typeof newSpot.wifi === 'undefined') {newSpot.wifi = false};
         newSpot.review_count = 0;
         newSpot.reviews = [];
         newSpot.crowdfactor = _initCrowdSeer(newSpot);
-
-
 
         //var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + newSpot.id);
         //spotRef.set(newSpot);
@@ -858,11 +858,13 @@ angular.module('b4cmApp')
           newSpot.location.longitude = locationObject.longitude;
 
           // Construct Geohash 
+          
+
+          // Add to listings
 
           // Create new spot
           var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + newSpot.id);
           spotRef.set(newSpot);
-
 
           deferred.resolve(newSpot.id);
 
