@@ -2,10 +2,6 @@
 
 angular.module('b4cmApp')
   .factory('geolocation', function ($q, $rootScope) {
-    // Service logic
-    // ...
-
-    var meaningOfLife = 42;
 
     // Public API here
     return {
@@ -21,16 +17,15 @@ angular.module('b4cmApp')
        * @returns {object} The given location object with latitude and longitude parameters added.
        */ 
       getLatLong: function (location_object) {
-        console.log('in');
         var deferred = $q.defer();
 
         // No google in unit test so resolve fake lat/long
         if (typeof google === "undefined") {
           location_object.latitude = 37.441838;
           location_object.longitude = -122.161675;
-          console.log('leaving test');
           deferred.resolve(location_object);
         }
+
         else {
           // call geolocation api
           var geocoder = new google.maps.Geocoder();
@@ -41,7 +36,6 @@ angular.module('b4cmApp')
             if (status == google.maps.GeocoderStatus.OK) {
               location_object.latitude = results[0].geometry.location.lat();
               location_object.longitude = results[0].geometry.location.lng();
-              console.log('leaving live');
               // need $rootScope.$apply here to transmit results back into Angular
               $rootScope.$apply(deferred.resolve(location_object));
             } else {
@@ -52,10 +46,6 @@ angular.module('b4cmApp')
         return deferred.promise;
       },
 
-      getGeohash: function(location_object) {
-        //var geohash = 
-
-      }
     };
   });
 

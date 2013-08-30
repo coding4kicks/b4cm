@@ -839,7 +839,8 @@ angular.module('b4cmApp')
                            'state_code': newSpot.state_code };
 
         newSpot.id = _constructId(newSpot);
-        // Must guard against undefined to protect from Firebase error.
+
+        // Set Defaults - Must guard against undefined to protect from Firebase error.
         if (typeof newSpot.yelp_id === 'undefined') {newSpot.yelp_id = null};
         if (typeof newSpot.image_url === 'undefined') {newSpot.image_url = null};
         if (typeof newSpot.wifi === 'undefined') {newSpot.wifi = false};
@@ -847,25 +848,17 @@ angular.module('b4cmApp')
         newSpot.reviews = [];
         newSpot.crowdfactor = _initCrowdSeer(newSpot);
 
-        //var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + newSpot.id);
-        //spotRef.set(newSpot);
-        console.log('prior');
-
-        geolocation.getLatLong(locationObj).then(function(locationObject) {
-          
-          // Add lat and long
+        // Asynch call to get lat and long.
+        geolocation.getLatLong(locationObj).then(function(locationObject) {          
           newSpot.location.latitude = locationObject.latitude;
           newSpot.location.longitude = locationObject.longitude;
 
-          // Construct Geohash 
-          
-
-          // Add to listings
+          // Add to listings & add geohash TODO: return geohash
           listings.add(locationObject.latitude,
                        locationObject.longitude,
                        {'id': newSpot.id});
 
-          // Create new spot
+          // Add the new spot in Firebase
           var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + newSpot.id);
           spotRef.set(newSpot);
 
@@ -875,7 +868,7 @@ angular.module('b4cmApp')
           conosle.log('failed for ' + reason);
           deferred.resolve('error');
         });
-        console.log('after');
+
         return deferred.promise;
       },
 

@@ -67,7 +67,7 @@ angular.module('b4cmApp')
    * @procedure
    *
    * @description Calls the spot service to add a new spot to the database.
-   *              Requires addSpot controllers $scope
+   *              Requires the addSpot controller's $scope
    */ 
     $scope.addSpot = function() {
 
@@ -110,10 +110,10 @@ angular.module('b4cmApp')
                       'close_meridiem': hour.close_meridiem, 'close_hour': hour.close_hour };
           newSpot.business_hours.push(time);
         });
-        console.log('biz hours');
-        console.log(newSpot);
+
+        // Create the spot - Asynch send to firebase
         spot.create(newSpot).then(function (spotId) {
-          console.log('finished');
+          // Handle success or error 
         });
       }
     };
@@ -127,8 +127,6 @@ angular.module('b4cmApp')
    */ 
     $scope.yelpIdHelp = function() {
       $scope.yelpHelpShow = !$scope.yelpHelpShow;
-      // just to test
-      spot.edit();
     };
 
   });
