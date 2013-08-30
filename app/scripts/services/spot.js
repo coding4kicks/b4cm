@@ -861,10 +861,10 @@ angular.module('b4cmApp')
           //spotRef.set(newSpot);
           
           console.log(locationObject);
+          console.log(newSpot);
+          var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + newSpot.id);
+          spotRef.set(newSpot);
 
-          //var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + newSpot.id);
-          //spotRef.set(newSpot);
-          //console.log(newSpot);
 
           deferred.resolve(newSpot.id);
 

@@ -42,10 +42,10 @@ angular.module('b4cmApp')
               location_object.latitude = results[0].geometry.location.lat();
               location_object.longitude = results[0].geometry.location.lng();
               console.log('leaving live');
+              // need $rootScope.$apply here to transmit results back into Angular
               $rootScope.$apply(deferred.resolve(location_object));
-                //deferred.resolve(location_object););
             } else {
-              deferred.reject(status);
+              $rootScope.$apply(deferred.reject(status));
             }
           });
         }
