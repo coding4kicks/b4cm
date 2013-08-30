@@ -113,14 +113,10 @@ angular.module('b4cmApp')
           newSpot.business_hours.push(time);
         });
         console.log('biz hours');
-        //console.log(newSpot.business_hours.indexOf('$$hashkey'));
-        //delete business_hours.$$hashkey;
-        //newSpot.business_hours.splice(0, 1);
-        //console.log(newSpot.business_hours.$$haskkey);
         console.log(newSpot);
-        //spot.create(newSpot).then(function (spotId) {
-        //  console.log('finished');
-        //});
+        spot.create(newSpot).then(function (spotId) {
+          console.log('finished');
+        });
       }
     };
 
