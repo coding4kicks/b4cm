@@ -154,8 +154,9 @@ function _constructCrowdFactor(cf_blocks, cf_day) {
         BLOCK_HOURS[block_name].forEach(function(hour_label) {
           var hour = {},
               spot_info = cf_day[day_name][hour_label],
-              cf_score = spot_info.score / spot_info.count;
-          if(spot_info.score === -1){cf_score = -1};
+              cf_score = 0;
+          if (spot_info.count !== 0) {cf_score = spot_info.score / spot_info.count;}
+          if (spot_info.score === -1){cf_score = -1}
           hour.cf_status = _calculateStatus(cf_score);
           hour.label = hour_label;
           day.hours.push(hour);
@@ -206,7 +207,6 @@ var _updateStatus = function ($scope, $timeout) {
   _calculateCurrentTimeInfo($scope, current_date);
   $scope.current_status = current_status.time;
   $scope.current_cflabel = current_status.label;
-  console.log(current_status.label);
   _updateMarker($scope);
   $timeout(function(){_updateStatus($scope, $timeout);}, 60000);
 }
