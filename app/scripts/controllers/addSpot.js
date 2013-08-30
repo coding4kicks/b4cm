@@ -46,8 +46,12 @@ angular.module('b4cmApp')
                    'open_meridiem': $scope.openMeridiem,
                    'close_day': $scope.closeDay, 
                    'close_hour': $scope.closeHour, 
-                   'close_meridiem': $scope.closeMeridiem};
+                   'close_meridiem': $scope.closeMeridiem},
+          nextDay = $scope.WEEKDAYS[_incrementDay($scope.openDay.label)];
       $scope.business_hours.push(times);
+      // Increment days to next day for convenience
+      $scope.openDay = nextDay;
+      $scope.closeDay = nextDay;
     };
 
   /**
@@ -160,3 +164,16 @@ function _handleFormErrors($scope, errors) {
   }
 }
 
+/**
+ * @name _incrementDay
+ * @function
+ *
+ * @description Advances the day of week by one
+ * @param {string} day The day to increment
+ * @return {int} The number representation of the next day.
+ */ 
+function _incrementDay(day) {
+  var nextDay = _dayToNum(day) + 1;
+  if (nextDay === 7) {nextDay = 0};
+  return nextDay;
+ }
