@@ -854,10 +854,10 @@ angular.module('b4cmApp')
           newSpot.location.longitude = locationObject.longitude;
 
           // Add to listings & add geohash TODO: return geohash
-          listings.add(locationObject.latitude,
-                       locationObject.longitude,
-                       {'id': newSpot.id});
-
+          newSpot.location.geohash = listings.add(locationObject.latitude,
+                                                  locationObject.longitude,
+                                                  {'id': newSpot.id});
+          console.log(newSpot);
           // Add the new spot in Firebase
           var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + newSpot.id);
           spotRef.set(newSpot);
@@ -881,12 +881,6 @@ angular.module('b4cmApp')
        * @returns {object} The spot id if successful otherwise an error code.
        */  
       edit: function (id) {
-        // test get firebase
-        //var base_url = 'https://crowd-data.firebaseio.com/testing',
-        //    col = angularFireCollection(new Firebase(base_url));
-        //    col.add({'test': 'tester'});
-        //    console.log(col);
-
         return false;
       },
 
