@@ -211,7 +211,8 @@ input[type='text']:focus {
 }
 
 .none-square {
-  background-color: $cf-average;
+  background-color: $text-dark;
+  box-shadow: 2px 2px 5px 5px $cf-average inset;
 }
 
 .empty {
@@ -1049,9 +1050,13 @@ input[type='text']:focus {
   }
 
   .labels {
-    margin: 0 0 0 20%;
+    margin: 0 0 0 18%;
     padding: 10px 0;
     width: 600px;
+
+    .none-square {
+      box-shadow: 0px 0px 3px 3px $cf-average inset;
+    }
 
     h5 {
       display: inline-block;
@@ -1065,7 +1070,7 @@ input[type='text']:focus {
       text-align: left;
 
       &>div {
-        width: 160px;
+        width: 140px;
         display: inline-block;
       }
     }
