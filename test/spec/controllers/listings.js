@@ -16,6 +16,6 @@ describe('Controller: ListingsCtrl', function () {
     });
   }));
 
-  it('expect nothing', function () {
-  });
+  //it('expect nothing', function () {
+  //});
 });
