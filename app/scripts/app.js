@@ -283,5 +283,7 @@ function _initializeGoogleMaps($scope, position, spots) {
       $log.log("user defined event: " + eventName, mapModel, originalEventArgs);
     }
   };
+  $scope.isMapElementHidden = false;
+  alert($scope.isMapElementHidden);
 }
 

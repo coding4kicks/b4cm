@@ -10,9 +10,22 @@ angular.module('b4cmApp')
    */ 
   .controller('SpotCtrl', function ($scope, $location, $timeout, $routeParams, angularFire, spot) {
 
-    // Load spot information
-    //$scope.spot = spot.get($routeParams.spotId);
+    // Google map defaults
+    $scope.isMapElementHidden = true;
+    $scope.centerProperty = {
+      'latitude': 37.7833,
+      'longitude': 122.4167
+    };
+    $scope.position = {
+      'coords': {
+        'latitude': 37.7833,
+        'longitude': 122.4167
+      }
+    };
+    $scope.zoomProperty = 14;
 
+
+    // Load spot information
     spot.get($routeParams.spotId).then(function(spot_data) {
 
       $scope.spot = spot_data;
