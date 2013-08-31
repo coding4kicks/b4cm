@@ -25,6 +25,7 @@ angular.module('b4cmApp')
       for (var j = 0; j < $scope.spot.reviews.length; j++) {
         $scope.spot.reviews[j].stars = _calculateStars($scope.spot.reviews[j].rating);
       }
+      if ($scope.spot.reviews.length < 1) {$scope.noReviews = true;}
 
       // Calculate weighting for each type of spot.
       $scope.types = _weightTypes($scope.spot.type.food,

@@ -132,7 +132,7 @@
       <hr>
 
       <div class="review-list">
-
+        <h2 ng-show="noReviews">No Reviews - Be the first!</h2>
         <div class="review" ng-repeat="review in spot.reviews">
           <div class="user">
             <img ng-src="{{review.author.pic}}">
