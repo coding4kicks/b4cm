@@ -284,6 +284,5 @@ function _initializeGoogleMaps($scope, position, spots) {
     }
   };
   $scope.isMapElementHidden = false;
-  alert($scope.isMapElementHidden);
 }
 

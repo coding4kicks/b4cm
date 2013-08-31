@@ -24,7 +24,6 @@ angular.module('b4cmApp')
     };
     $scope.zoomProperty = 14;
 
-
     // Load spot information
     spot.get($routeParams.spotId).then(function(spot_data) {
 
