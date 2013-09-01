@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('b4cmApp')
-  .factory('listings', function () {
+  .factory('listings', function ($q, geolocation) {
 
     var geoRef = new Firebase('https://crowd-data.firebaseio.com/geo'),
         geo = new FirebaseGeo(geoRef);
@@ -68,10 +68,11 @@ angular.module('b4cmApp')
         return false;
       },
       get: function (searchLocation, listingType) {
-        var DEFAULT_RADIUS = 10;
+        var deferred = $q.defer(),
+            DEFAULT_RADIUS = 10;
         // Asynch call to get lat and long of search location.
         geolocation.getLatLong(searchLocation).then(function(locationObject) {
-          var deferred = $q.defer()
+          var deferred = $q.defer();
           geo.search(locationObject.latitude, 
                      locationObject.longitude, 
                      DEFAULT_RADIUS, 
