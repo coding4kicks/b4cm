@@ -68,11 +68,11 @@ angular.module('b4cmApp')
         return false;
       },
       get: function (listingType) {
-        if (listingType === 'study') {return fakeListingsStudy;}
-        if (listingType === 'social') {return fakeListingsSocial;}
-        if (listingType === 'food') {return fakeListingsFood;}
-        if (listingType === 'all') {return fakeListingsAll;}
-        return fakeListingsStudy;
+        //if (listingType === 'study') {return fakeListingsStudy;}
+        //if (listingType === 'social') {return fakeListingsSocial;}
+        //if (listingType === 'food') {return fakeListingsFood;}
+        //if (listingType === 'all') {return fakeListingsAll;}
+        //return fakeListingsStudy;
       },
       remove: function () {
         return false;
