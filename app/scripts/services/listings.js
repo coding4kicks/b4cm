@@ -71,7 +71,7 @@ angular.module('b4cmApp')
         var DEFAULT_RADIUS = 10;
         // Asynch call to get lat and long of search location.
         geolocation.getLatLong(searchLocation).then(function(locationObject) {
-          var deferred = $q.deferred();
+          var deferred = $q.defer()
           geo.search(locationObject.latitude, locationObject.longitude, function(results) {
             deferred.resolve(results);      
           });          

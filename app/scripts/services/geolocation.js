@@ -17,13 +17,14 @@ angular.module('b4cmApp')
        * @returns {object} The given location object with latitude and longitude parameters added.
        */ 
       getLatLong: function (location_object) {
-        var deferred = $q.defer();
+        var deferred = $q.defer(),
+            locObject = {};
 
         // No google in unit test so resolve fake lat/long
         if (typeof google === "undefined") {
-          location_object.latitude = 37.441838;
-          location_object.longitude = -122.161675;
-          deferred.resolve(location_object);
+          locObject.latitude = 37.441838;
+          locObject.longitude = -122.161675;
+          deferred.resolve(locObject);
         }
 
         else {
@@ -36,10 +37,10 @@ angular.module('b4cmApp')
             console.log(results);
             console.log(status);
             if (status == google.maps.GeocoderStatus.OK) {
-              location_object.latitude = results[0].geometry.location.lat();
-              location_object.longitude = results[0].geometry.location.lng();
+              locObject.latitude = results[0].geometry.location.lat();
+              locObject.longitude = results[0].geometry.location.lng();
               // Need $rootScope.$apply here to transmit results back into Angular
-              $rootScope.$apply(deferred.resolve(location_object));
+              $rootScope.$apply(deferred.resolve(locObject));
             } else {
               // Need appropriate error handling.
               $rootScope.$apply(deferred.reject(status));
