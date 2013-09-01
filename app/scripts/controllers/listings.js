@@ -14,58 +14,71 @@ angular.module('b4cmApp')
         searchLocation = decodeURIComponent($routeParams.searchLocation);
 
     // Get geohash
-    var idList = [],
-        spotList = [];
-        
-    listings.get(serachLocation, spotType).then(function(listData) {
-      idList.push(listItem)
-    
-      // Get ten and don't procede until you do
-      idList.forEach(function(spotId) {
-        spot.get($routeParams.spotId).then(function(spotData) {
-          spotList.push(spotData);
+    var spotList = [],
+        cacheList = [],
+        SPOTS_PER_PAGE = 10,
+        CACHE_SIZE = SPOTS_PER_PAGE * 1; 
+        // implement cache of next page results later (at end of function)
+
+    $scope.spots = [];
+
+    // Calculate times
+    var hour = 60 * 60 * 1000,
+        current_date = new Date(),
+        current_time = _timeInfo(current_date),
+        plus1_time = _timeInfo(new Date(current_date.getTime() + 1 * hour)),
+        plus2_time = _timeInfo(new Date(current_date.getTime() + 2 * hour)),
+        plus3_time = _timeInfo(new Date(current_date.getTime() + 3 * hour)),
+        plus4_time = _timeInfo(new Date(current_date.getTime() + 4 * hour)),
+        times = [current_time, plus1_time, plus2_time, plus3_time, plus4_time];
+
+    $scope.current_time = current_time.getTimeLabel();
+    $scope.plus2_time = plus2_time.getTimeLabel();
+    $scope.plus4_time = plus4_time.getTimeLabel();
+  
+    listings.get(serachLocation, spotType).then(function(idList) {
+
+      // Get and format spot info for each spot in returned id list.
+      for (var i = 0; i < SPOTS_PER_PAGE; i++) {
+        var spotId = idList[i];
+        spot.get(spotId).then(function(spotObj) {
+          current_status = _getStatus(spotObj, current_time);
+          spotObj.stars = _calculateStars(spotObj.rating);
+          spotObj.cf_status_label = current_status.label;
+          spotObj.cf_status_time = current_status.time;
+          spotObj.cf_status_boxes = _calculateBoxLabels(spot_obj, times)
+          $scope.spots.push(spotObj);
+          if ($scope.spots.length + 1 === SPOTS_TO_SHOW) {
+            // Initialize google maps parameters for listings page when all data is ready
+            _initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots);
+          }
         });
       }
-
+    });
       // Get listings
       //$scope.listings = listings.get(spotType);
 
-      // Calculate times
-      var hour = 60 * 60 * 1000,
-          current_date = new Date(),
-          current_time = _timeInfo(current_date),
-          plus1_time = _timeInfo(new Date(current_date.getTime() + 1 * hour)),
-          plus2_time = _timeInfo(new Date(current_date.getTime() + 2 * hour)),
-          plus3_time = _timeInfo(new Date(current_date.getTime() + 3 * hour)),
-          plus4_time = _timeInfo(new Date(current_date.getTime() + 4 * hour)),
-          times = [current_time, plus1_time, plus2_time, plus3_time, plus4_time];
-
-      $scope.current_time = current_time.getTimeLabel();
-      $scope.plus2_time = plus2_time.getTimeLabel();
-      $scope.plus4_time = plus4_time.getTimeLabel();
-
       // Format spots for display
-      $scope.spots = [];
-      $scope.listings.spots.forEach(function(geohash) {
-        var spot_id = geohash[Object.keys(geohash)[0]],
-            spot_obj = spot.get(spot_id),
-            current_status = _getStatus(spot_obj, current_time);
+      //$scope.spots = [];
+      //$scope.listings.spots.forEach(function(geohash) {
+      //listings_data.spots.forEach(function(geohash) {
+      //  var spot_id = geohash[Object.keys(geohash)[0]],
+      //      spot_obj = spot.get(spot_id),
+      //      current_status = _getStatus(spot_obj, current_time);
                   
         // Calculate star rating for spot
-        spot_obj.stars = _calculateStars(spot_obj.rating);
+      //  spot_obj.stars = _calculateStars(spot_obj.rating);
 
         // Calculate crowd status for crowd watch bar
-        spot_obj.cf_status_label = current_status.label;
-        spot_obj.cf_status_time = current_status.time;
-        spot_obj.cf_status_boxes = _calculateBoxLabels(spot_obj, times)
+      //  spot_obj.cf_status_label = current_status.label;
+      //  spot_obj.cf_status_time = current_status.time;
+      //  spot_obj.cf_status_boxes = _calculateBoxLabels(spot_obj, times)
 
-        $scope.spots.push(spot_obj);
-      });
+       // $scope.spots.push(spot_obj);
+      //});
 
-      // Initialize google maps parameters for listings page
-      _initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots);
 
-    });
+    //});
 
     /**
      * @name getSpot
