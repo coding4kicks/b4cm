@@ -85,6 +85,8 @@ angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload'])
      * @description Redirects to add-watch-page.
      */ 
     $rootScope.searchListings = function(spotType, searchLocation) {
+      //default search - switch to context aware search based upon location or url
+      if (typeof searchLocation === 'undefined') {searchLocation = "Palo Alto, CA";}
       $location.path("/listings/" + spotType.toLowerCase() + "/" + encodeURIComponent(searchLocation));
       // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
       if(!$rootScope.$$phase) { $rootScope.$apply(); }
