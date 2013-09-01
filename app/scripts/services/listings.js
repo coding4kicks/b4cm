@@ -67,7 +67,23 @@ angular.module('b4cmApp')
       edit: function () {
         return false;
       },
-      get: function (listingType) {
+      get: function (searchLocation, listingType) {
+        var DEFAULT_RADIUS = 10;
+        // Asynch call to get lat and long of search location.
+        geolocation.getLatLong(searchLocation).then(function(locationObject) {
+          var deferred = $q.deferred();
+          geo.search(locationObject.latitude, locationObject.longitude, function(results) {
+            deferred.resolve(results);      
+          });          
+          return deferred.promise;
+
+          }, function(reason) {
+            conosle.log('failed for ' + reason);
+            deferred.resolve('error');
+        });
+
+        return deferred.promise;
+
         //if (listingType === 'study') {return fakeListingsStudy;}
         //if (listingType === 'social') {return fakeListingsSocial;}
         //if (listingType === 'food') {return fakeListingsFood;}

@@ -36,7 +36,7 @@ angular.module('b4cmApp')
     $scope.plus2_time = plus2_time.getTimeLabel();
     $scope.plus4_time = plus4_time.getTimeLabel();
   
-    listings.get(serachLocation, spotType).then(function(idList) {
+    listings.get(searchLocation, spotType).then(function(idList) {
 
       // Get and format spot info for each spot in returned id list.
       for (var i = 0; i < SPOTS_PER_PAGE; i++) {
