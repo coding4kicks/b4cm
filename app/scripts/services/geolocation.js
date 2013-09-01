@@ -16,7 +16,7 @@ angular.module('b4cmApp')
        * @param {object} locationObj A location with address, city, state_code, and zip_code
        * @returns {object} The given location object with latitude and longitude parameters added.
        */ 
-      getLatLong: function (location_object) {
+      getLatLong: function (address) {
         var deferred = $q.defer(),
             locObject = {};
 
@@ -29,8 +29,8 @@ angular.module('b4cmApp')
 
         else {
           // call geolocation api
-          var geocoder = new google.maps.Geocoder(),
-              address = location_object.address + ", " + location_object.city + ", " + location_object.state_code;
+          var geocoder = new google.maps.Geocoder();
+              //address = location_object.address + ", " + location_object.city + ", " + location_object.state_code;
           address.replace(/ /g,"+"); // URI encode?
           console.log(address);
           geocoder.geocode( { 'address': address}, function(results, status) {
