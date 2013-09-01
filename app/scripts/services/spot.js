@@ -848,7 +848,7 @@ angular.module('b4cmApp')
         newSpot.reviews = [];
         newSpot.crowdfactor = _initCrowdSeer(newSpot);
 
-         // Asynch call to get lat and long.
+        // Asynch call to get lat and long.
         geolocation.getLatLong(locationObj).then(function(locationObject) {          
           newSpot.location.latitude = locationObject.latitude;
           newSpot.location.longitude = locationObject.longitude;
@@ -857,7 +857,6 @@ angular.module('b4cmApp')
           newSpot.location.geohash = listings.add(locationObject.latitude,
                                                   locationObject.longitude,
                                                   {'id': newSpot.id});
-          //console.log(newSpot);
 
           // Add the new spot in Firebase
           var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + newSpot.id);

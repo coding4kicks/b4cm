@@ -32,7 +32,6 @@ angular.module('b4cmApp')
               address = location_object.address + ", " + location_object.city + ", " + location_object.state_code;
           address.replace(/ /g,"+"); // URI encode?
           console.log(address);
-          //geocoder.geocode( { 'address': '1500+Amphitheatre+Parkway,+Mountain+View,+CA'}, function(results, status) {
           geocoder.geocode( { 'address': address}, function(results, status) {
             console.log(results);
             console.log(status);
