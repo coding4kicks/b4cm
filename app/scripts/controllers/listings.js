@@ -12,6 +12,9 @@ angular.module('b4cmApp')
 
     var spotType = $routeParams.spotType,
         searchLocation = decodeURIComponent($routeParams.searchLocation);
+  
+    $scope.listings = {}
+    $scope.listings.type = $routeParams.spotType;
 
     // Get geohash
     var spotList = [],
