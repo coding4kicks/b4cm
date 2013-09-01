@@ -836,7 +836,8 @@ angular.module('b4cmApp')
             locationObj = {'address': newSpot.location.address,
                            'city': newSpot.location.city,
                            'postal_code': newSpot.location.postal_code, 
-                           'state_code': newSpot.location.state_code };
+                           'state_code': newSpot.location.state_code },
+            address = locationObj.address + ", " + locationObj.city + ", " + locationObj.state_code;
 
         newSpot.id = _constructId(newSpot);
 
@@ -849,7 +850,7 @@ angular.module('b4cmApp')
         newSpot.crowdfactor = _initCrowdSeer(newSpot);
 
         // Asynch call to get lat and long.
-        geolocation.getLatLong(locationObj).then(function(locationObject) {          
+        geolocation.getLatLong(address).then(function(locationObject) {          
           newSpot.location.latitude = locationObject.latitude;
           newSpot.location.longitude = locationObject.longitude;
 
