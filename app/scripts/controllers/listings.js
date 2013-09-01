@@ -55,9 +55,13 @@ angular.module('b4cmApp')
     $scope.zoomProperty = 14;
   
     listings.get(searchLocation, spotType).then(function(idList) {
+      // TODO: Handle 0 results;
+      //
       console.log(idList);
       // Get and format spot info for each spot in returned id list.
       for (var i = 0; i < SPOTS_PER_PAGE; i++) {
+        // Break if not a full set of results
+        if (i === idList.length) {break;}
         var spotId = idList[i];
         spot.get(spotId).then(function(spotObj) {
           console.log(spotObj);
@@ -71,6 +75,7 @@ angular.module('b4cmApp')
           if ($scope.spots.length + 1 === SPOTS_PER_PAGE ||
               $scope.spots.length + 1 === idList.length) {
             // Initialize google maps parameters for listings page when all data is ready
+            // TODO: fix borken google maps
             _initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots);
           }
         });
@@ -135,7 +140,7 @@ function _calculateBoxLabels(spot, times) {
         count = day[time.getTimeLabel()].count,
         score = day[time.getTimeLabel()].score,
         cf_score = 0;
-    if (spot_info.count !== 0) {cf_score = score / count;}
+    if (count !== 0) {cf_score = score / count;}
     if (score === -1){cf_score = -1};
     cf_labels.push(_calculateStatus(cf_score));
   });
