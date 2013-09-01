@@ -60,13 +60,16 @@ angular.module('b4cmApp')
       for (var i = 0; i < SPOTS_PER_PAGE; i++) {
         var spotId = idList[i];
         spot.get(spotId).then(function(spotObj) {
-          current_status = _getStatus(spotObj, current_time);
+          console.log(spotObj);
+          var current_status = _getStatus(spotObj, current_time);
           spotObj.stars = _calculateStars(spotObj.rating);
           spotObj.cf_status_label = current_status.label;
           spotObj.cf_status_time = current_status.time;
-          spotObj.cf_status_boxes = _calculateBoxLabels(spot_obj, times)
+          spotObj.cf_status_boxes = _calculateBoxLabels(spotObj, times)
           $scope.spots.push(spotObj);
-          if ($scope.spots.length + 1 === SPOTS_TO_SHOW) {
+          console.log($scope.spots.length);
+          if ($scope.spots.length + 1 === SPOTS_PER_PAGE ||
+              $scope.spots.length + 1 === idList.length) {
             // Initialize google maps parameters for listings page when all data is ready
             _initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots);
           }
@@ -131,8 +134,9 @@ function _calculateBoxLabels(spot, times) {
     var day = spot.crowdfactor.day[time.getDay().toLowerCase()],
         count = day[time.getTimeLabel()].count,
         score = day[time.getTimeLabel()].score,
-        cf_score = score / count;
-    if(score === -1){cf_score = -1};
+        cf_score = 0;
+    if (spot_info.count !== 0) {cf_score = score / count;}
+    if (score === -1){cf_score = -1};
     cf_labels.push(_calculateStatus(cf_score));
   });
   return cf_labels;

@@ -80,11 +80,9 @@ angular.module('b4cmApp')
                            locationObject.longitude, 
                            DEFAULT_RADIUS, 
                            function(results) {
-            console.log(results);
             results.forEach(function(result) {
               spotIdList.push(result.id);
             });
-            console.log(spotIdList);
             // Resolve the outerscope deferred
             $rootScope.$apply(deferred.resolve(spotIdList));      
           });          
