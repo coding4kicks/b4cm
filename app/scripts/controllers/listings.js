@@ -55,7 +55,7 @@ angular.module('b4cmApp')
     $scope.zoomProperty = 14;
   
     listings.get(searchLocation, spotType).then(function(idList) {
-
+      console.log(idList);
       // Get and format spot info for each spot in returned id list.
       for (var i = 0; i < SPOTS_PER_PAGE; i++) {
         var spotId = idList[i];
