@@ -14,9 +14,17 @@ angular.module('b4cmApp')
         searchLocation = decodeURIComponent($routeParams.searchLocation);
 
     // Get geohash
+    var spotList = [],
+        idList = listings.get(serachLocation, spotType);
+    idList.forEach(function(spotId) {
+      spot.get($routeParams.spotId).then(function(spot_data) {
+        spotList.push(spot.get(spotId));
+      });
+    }
 
+    spot.get($routeParams.spotId).then(function(spot_data) {
     // Get listings
-    $scope.listings = listings.get(spotType);
+    //$scope.listings = listings.get(spotType);
 
     // Calculate times
     var hour = 60 * 60 * 1000,
