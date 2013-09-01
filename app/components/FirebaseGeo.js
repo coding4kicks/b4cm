@@ -98,7 +98,6 @@
    * Earth's radius varying between 6356.752 km through 6378.137 km.
    */
   function dist(lat1, lon1, lat2, lon2) {
-    console.log(lat1, lon1, lat2, lon2);
     var radius = 6371, // km
         dlat = deg2rad(lat2 - lat1),
         dlon = deg2rad(lon2 - lon1),
@@ -198,12 +197,10 @@
       zoomLevel -= 1;
     
     hash = hash.substring(0, zoomLevel);
-    console.log(hash);
 
     // TODO: Be smarter about this, and only zoom out if actually optimal.
     queries = this.neighbors(hash);
     queries.push(hash);
-    console.log(queries);
     // Get unique list of neighbor hashes.
     var uniquesObj = {};
     for (var ix = 0; ix < queries.length; ix++) {
@@ -213,7 +210,6 @@
     delete uniquesObj;
 
     resultHandler = function(snapshot) {
-      console.log(snapshot.val());
       // Compile the results for each of the queries as they return.
       var matchSet = snapshot.val();
       for (var hash in matchSet) {
@@ -221,7 +217,6 @@
           matches.push(matchSet[hash][pushId]);
         }
       }
-      console.log(matches);
 
       // Wait for each of the queries to return before filtering and sorting.
       if (++i == queries.length) {
@@ -230,15 +225,12 @@
         for (var jx = 0; jx < matches.length; jx++) {
           var match = matches[jx],
               pointDist = dist(lat, lon, match['lat'], match['lon']);
-              console.log(pointDist);
-              console.log(match);
 
           if (pointDist <= radius) {
             match.dist = pointDist;
             matchesFiltered.push(match);
           }
         }
-        console.log(matchesFiltered);
         // Sort the results by radius.
         matchesFiltered.sort(function(a, b) {
           return a['dist'] - b['dist'];

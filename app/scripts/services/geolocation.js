@@ -32,10 +32,7 @@ angular.module('b4cmApp')
           var geocoder = new google.maps.Geocoder();
               //address = location_object.address + ", " + location_object.city + ", " + location_object.state_code;
           address.replace(/ /g,"+"); // URI encode?
-          console.log(address);
           geocoder.geocode( { 'address': address}, function(results, status) {
-            console.log(results);
-            console.log(status);
             if (status == google.maps.GeocoderStatus.OK) {
               locObject.latitude = results[0].geometry.location.lat();
               locObject.longitude = results[0].geometry.location.lng();
