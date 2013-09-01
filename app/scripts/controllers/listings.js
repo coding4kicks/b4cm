@@ -35,6 +35,20 @@ angular.module('b4cmApp')
     $scope.current_time = current_time.getTimeLabel();
     $scope.plus2_time = plus2_time.getTimeLabel();
     $scope.plus4_time = plus4_time.getTimeLabel();
+
+    // Google map defaults
+    $scope.isMapElementHidden = true;
+    $scope.centerProperty = {
+      'latitude': 37.7833,
+      'longitude': 122.4167
+    };
+    $scope.position = {
+      'coords': {
+        'latitude': 37.7833,
+        'longitude': 122.4167
+      }
+    };
+    $scope.zoomProperty = 14;
   
     listings.get(searchLocation, spotType).then(function(idList) {
 
