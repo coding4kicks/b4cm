@@ -3,6 +3,9 @@
 angular.module('b4cmApp')
   .factory('spot', function ($q, $timeout, $rootScope, geolocation, listings) {
 
+    // Initialize cache to 20
+    var cache = spotCache(20);
+
     // Public API
     return {
 
@@ -116,13 +119,23 @@ angular.module('b4cmApp')
       get: function (id) {
         // TODO: need code to deal with invalid IDs.
         //if (id in spotCache) {deferred.resolve(spotCache[id]);}
-        var deferred = $q.defer(),
-            spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + id);
+        var deferred = $q.defer();
+        console.log(cache.all());
+        console.log('hhhhheeeerreee');
+        console.log(id);
+        var cacheRes = cache.check(id);
+        console.log(cacheRes);
+        if(cacheRes) {console.log('hit');deferred.resolve(cache.get(id));}
+        else {
+          console.log('miss');
+          var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + id);
           spotRef.on('value', function(data) {
             // Need to handle data.val() === null
             // Need $rootScope.$apply here to transmit results back into Angular
             $rootScope.$apply(deferred.resolve(data.val()));
+            cache.add(data.val());
           });
+        }
         return deferred.promise;
       },
 
@@ -312,3 +325,35 @@ function _dayToNum(dayOfWeek) {
   return dayNum;
 }
 
+function spotCache(cacheSize) {
+  var cache = [];
+
+  return {
+    check: function(id) {
+      var hit = false;
+      cache.forEach(function(spot) {
+        console.log('ids');
+        console.log(spot.id !== 'undefined');
+        console.log(spot.id === id);
+        if(typeof (spot.id !== 'undefined') && (spot.id === id)) {hit = true;}
+      });
+      return hit;
+    },
+    add: function(spot) {
+      if (cache.length >= cacheSize) {cache.shift();}
+      cache.push(spot);
+    },
+    get: function(id) {
+      var returnSpot = null
+      cache.forEach(function(spot) {
+        if(typeof (spot.id !== 'undefined') && (spot.id === id)) {returnSpot = spot;}
+        console.log('repeat');
+      });
+      return returnSpot;
+    },
+    all: function() {
+      return cache;
+    }
+  }
+
+}
