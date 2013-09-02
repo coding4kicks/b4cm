@@ -49,6 +49,7 @@ angular.module('b4cmApp')
     $scope.zoomProperty = 14;
   
     listings.get(searchLocation, spotType).then(function(idList) {
+      $scope.numReturns = idList.length;
       if (idList.length === 0) {$scope.noSpots = true;}
       else {
         // Get and format spot info for each spot in returned id list.

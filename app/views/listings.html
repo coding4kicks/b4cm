@@ -20,7 +20,7 @@
   <div class="page">
 
     <div class="listings main-col">
-      <h6 ng-hide="noSpots">1-10 of 100</h6>
+      <h6 ng-hide="noSpots">1-{{spots.length}} of {{numReturns}}</h6>
       <a  ng-href="#/addSpot">
         <button class="btn add-spot">Add Spot</button>
       </a>
