@@ -29,7 +29,7 @@ angular.module('b4cmApp')
     $scope.noSpots = false;
     $scope.listings = {}
     $scope.listings.type = $routeParams.spotType;
-    $scope.listings.location = searchLocation;
+    $scope.displayAddress = searchLocation;
     $scope.current_time = current_time.getTimeLabel();
     $scope.plus2_time = plus2_time.getTimeLabel();
     $scope.plus4_time = plus4_time.getTimeLabel();
@@ -48,7 +48,11 @@ angular.module('b4cmApp')
     };
     $scope.zoomProperty = 14;
   
-    listings.get(searchLocation, spotType).then(function(idList) {
+    listings.get(searchLocation, spotType).then(function(listingInfo) {
+      var idList = listingInfo.idList;
+      $scope.listings.location = {}
+      $scope.listings.location.latitude = listingInfo.location.latitude;
+      $scope.listings.location.longitude = listingInfo.location.longitude; 
       $scope.numReturns = idList.length;
       if (idList.length === 0) {$scope.noSpots = true;}
       else {

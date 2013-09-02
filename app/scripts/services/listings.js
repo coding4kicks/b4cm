@@ -84,7 +84,7 @@ angular.module('b4cmApp')
               spotIdList.push(result.id);
             });
             // Resolve the outerscope deferred
-            $rootScope.$apply(deferred.resolve(spotIdList));      
+            $rootScope.$apply(deferred.resolve({'idList': spotIdList, 'location': locationObject}));      
           });          
           return deferred2.promise;
 
