@@ -120,14 +120,8 @@ angular.module('b4cmApp')
         // TODO: need code to deal with invalid IDs.
         //if (id in spotCache) {deferred.resolve(spotCache[id]);}
         var deferred = $q.defer();
-        console.log(cache.all());
-        console.log('hhhhheeeerreee');
-        console.log(id);
-        var cacheRes = cache.check(id);
-        console.log(cacheRes);
-        if(cacheRes) {console.log('hit');deferred.resolve(cache.get(id));}
+        if(cache.check(id)) {deferred.resolve(cache.get(id));}
         else {
-          console.log('miss');
           var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + id);
           spotRef.on('value', function(data) {
             // Need to handle data.val() === null
@@ -325,32 +319,74 @@ function _dayToNum(dayOfWeek) {
   return dayNum;
 }
 
+/**
+ * @name _dayToNum
+ * @closure
+ *
+ * @description Stores a cache recently accessed spots so a call to the datastore
+ *              is unecessary.  Also helps prevent a Angular $digest bug which occurs
+ *              when trying to reload a spot that has already been retrieved.  
+ *              Capitalization doesn't matter.
+ * @param {int} cacheSize The number of spots to store in the cache.
+ * @return {object} The cache object with functions check, add, all, and get.
+ */ 
 function spotCache(cacheSize) {
   var cache = [];
 
   return {
+
+    /**
+     * @name check
+     * @function
+     *
+     * @description Checks if a spot is in the cache.
+     * @param {int} id The id of the spot to check for.
+     * @return {boolean} True if a cache hit.
+     */ 
     check: function(id) {
       var hit = false;
       cache.forEach(function(spot) {
-        console.log('ids');
-        console.log(spot.id !== 'undefined');
-        console.log(spot.id === id);
         if(typeof (spot.id !== 'undefined') && (spot.id === id)) {hit = true;}
       });
       return hit;
     },
+
+    /**
+     * @name add
+     * @function
+     *
+     * @description Adds a spot to the cache.  If there are more spots in
+     *              the cache than cacheSize, the least recent spot is removed.
+     * @param {object} spot The spot to add to the cache.
+     */ 
     add: function(spot) {
       if (cache.length >= cacheSize) {cache.shift();}
       cache.push(spot);
     },
+
+    /**
+     * @name get
+     * @function
+     *
+     * @description Retrieve a spot from the cach.
+     * @param {int} id The id of the spot to retrieve.
+     * @return {object} The spot from the cache.
+     */ 
     get: function(id) {
       var returnSpot = null
       cache.forEach(function(spot) {
         if(typeof (spot.id !== 'undefined') && (spot.id === id)) {returnSpot = spot;}
-        console.log('repeat');
       });
       return returnSpot;
     },
+
+    /**
+     * @name all
+     * @function
+     *
+     * @description Return the whole cache for troubleshooting.
+     * @return {array} All of the cache.
+     */ 
     all: function() {
       return cache;
     }
