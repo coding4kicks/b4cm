@@ -62,16 +62,14 @@ angular.module('b4cmApp')
           if (i === idList.length) {break;}
           var spotId = idList[i];
           spot.get(spotId).then(function(spotObj) {
-            console.log(spotObj);
             var current_status = _getStatus(spotObj, current_time);
             spotObj.stars = _calculateStars(spotObj.rating);
             spotObj.cf_status_label = current_status.label;
             spotObj.cf_status_time = current_status.time;
             spotObj.cf_status_boxes = _calculateBoxLabels(spotObj, times)
             $scope.spots.push(spotObj);
-            console.log($scope.spots.length);
             if ($scope.spots.length + 1 === SPOTS_PER_PAGE ||
-                $scope.spots.length + 1 === idList.length) {
+                $scope.spots.length === idList.length) {
               // Initialize google maps parameters for listings page when all data is ready
               // TODO: fix borken google maps
               _initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots, 12);

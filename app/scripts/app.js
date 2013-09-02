@@ -239,8 +239,9 @@ function _dayToNum(dayOfWeek) {
  */ 
 function _initializeGoogleMaps($scope, position, spots, zoom) {
 
-  console.log(position);
-  console.log(spots);
+  // TODO: Need to make sure center and zoom encompass all the locations.  
+  //       Should probably just have zoom level and search radius be equal. How?
+
   // Enable the new Google Maps visuals until it gets enabled by default.
   // See http://googlegeodevelopers.blogspot.ca/2013/05/a-fresh-new-look-for-maps-api-for-all.html
   // Add test for existance so doesn't blow up unit tests
@@ -270,9 +271,6 @@ function _initializeGoogleMaps($scope, position, spots, zoom) {
     var marker = {},
         spot = spots[i],
         url = "../images/marker-icon" + (i + 1) + ".png";
-    console.log(spot);
-    console.log(spot.location);
-    console.log(spot.location.latitude);
     marker.latitude = spot.location.latitude;
     marker.longitude = spot.location.longitude;
     marker.infoWindow = spot.name;
