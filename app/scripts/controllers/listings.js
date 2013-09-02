@@ -11,23 +11,12 @@ angular.module('b4cmApp')
   .controller('ListingsCtrl', function ($scope, $log, $location, $routeParams, listings, spot) {
 
     var spotType = $routeParams.spotType,
-        searchLocation = decodeURIComponent($routeParams.searchLocation);
-  
-    $scope.listings = {}
-    $scope.listings.type = $routeParams.spotType;
-    $scope.listings.location = searchLocation;
-
-    // Get geohash
-    var spotList = [],
+        searchLocation = decodeURIComponent($routeParams.searchLocation),
+        spotList = [],
         cacheList = [],
         SPOTS_PER_PAGE = 10,
-        CACHE_SIZE = SPOTS_PER_PAGE * 1; 
-        // implement cache of next page results later (at end of function)
-
-    $scope.spots = [];
-
-    // Calculate times
-    var hour = 60 * 60 * 1000,
+        CACHE_SIZE = SPOTS_PER_PAGE * 1, // implement cache of next page results later (at end of function)
+        hour = 60 * 60 * 1000,
         current_date = new Date(),
         current_time = _timeInfo(current_date),
         plus1_time = _timeInfo(new Date(current_date.getTime() + 1 * hour)),
@@ -36,6 +25,11 @@ angular.module('b4cmApp')
         plus4_time = _timeInfo(new Date(current_date.getTime() + 4 * hour)),
         times = [current_time, plus1_time, plus2_time, plus3_time, plus4_time];
 
+    $scope.spots = [];
+    $scope.noSpots = false;
+    $scope.listings = {}
+    $scope.listings.type = $routeParams.spotType;
+    $scope.listings.location = searchLocation;
     $scope.current_time = current_time.getTimeLabel();
     $scope.plus2_time = plus2_time.getTimeLabel();
     $scope.plus4_time = plus4_time.getTimeLabel();
@@ -55,56 +49,33 @@ angular.module('b4cmApp')
     $scope.zoomProperty = 14;
   
     listings.get(searchLocation, spotType).then(function(idList) {
-      // TODO: Handle 0 results;
-      //
-      console.log(idList);
-      // Get and format spot info for each spot in returned id list.
-      for (var i = 0; i < SPOTS_PER_PAGE; i++) {
-        // Break if not a full set of results
-        if (i === idList.length) {break;}
-        var spotId = idList[i];
-        spot.get(spotId).then(function(spotObj) {
-          console.log(spotObj);
-          var current_status = _getStatus(spotObj, current_time);
-          spotObj.stars = _calculateStars(spotObj.rating);
-          spotObj.cf_status_label = current_status.label;
-          spotObj.cf_status_time = current_status.time;
-          spotObj.cf_status_boxes = _calculateBoxLabels(spotObj, times)
-          $scope.spots.push(spotObj);
-          console.log($scope.spots.length);
-          if ($scope.spots.length + 1 === SPOTS_PER_PAGE ||
-              $scope.spots.length + 1 === idList.length) {
-            // Initialize google maps parameters for listings page when all data is ready
-            // TODO: fix borken google maps
-            _initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots);
-          }
-        });
+      idList = [];
+      if (idList.length === 0) {$scope.noSpots = true;}
+      else {
+        // Get and format spot info for each spot in returned id list.
+        for (var i = 0; i < SPOTS_PER_PAGE; i++) {
+          // Break if not a full set of results
+          if (i === idList.length) {break;}
+          var spotId = idList[i];
+          spot.get(spotId).then(function(spotObj) {
+            console.log(spotObj);
+            var current_status = _getStatus(spotObj, current_time);
+            spotObj.stars = _calculateStars(spotObj.rating);
+            spotObj.cf_status_label = current_status.label;
+            spotObj.cf_status_time = current_status.time;
+            spotObj.cf_status_boxes = _calculateBoxLabels(spotObj, times)
+            $scope.spots.push(spotObj);
+            console.log($scope.spots.length);
+            if ($scope.spots.length + 1 === SPOTS_PER_PAGE ||
+                $scope.spots.length + 1 === idList.length) {
+              // Initialize google maps parameters for listings page when all data is ready
+              // TODO: fix borken google maps
+              _initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots);
+            }
+          });
+        }
       }
     });
-      // Get listings
-      //$scope.listings = listings.get(spotType);
-
-      // Format spots for display
-      //$scope.spots = [];
-      //$scope.listings.spots.forEach(function(geohash) {
-      //listings_data.spots.forEach(function(geohash) {
-      //  var spot_id = geohash[Object.keys(geohash)[0]],
-      //      spot_obj = spot.get(spot_id),
-      //      current_status = _getStatus(spot_obj, current_time);
-                  
-        // Calculate star rating for spot
-      //  spot_obj.stars = _calculateStars(spot_obj.rating);
-
-        // Calculate crowd status for crowd watch bar
-      //  spot_obj.cf_status_label = current_status.label;
-      //  spot_obj.cf_status_time = current_status.time;
-      //  spot_obj.cf_status_boxes = _calculateBoxLabels(spot_obj, times)
-
-       // $scope.spots.push(spot_obj);
-      //});
-
-
-    //});
 
     /**
      * @name getSpot
