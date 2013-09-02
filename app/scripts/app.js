@@ -237,7 +237,7 @@ function _dayToNum(dayOfWeek) {
  * @params {object} $scope Controller's scope.
  * @returns {nothing} Procedure has side effects on scope.
  */ 
-function _initializeGoogleMaps($scope, position, spots) {
+function _initializeGoogleMaps($scope, position, spots, zoom) {
 
   console.log(position);
   console.log(spots);
@@ -262,7 +262,7 @@ function _initializeGoogleMaps($scope, position, spots) {
   };
 
   /** the initial zoom level of the map */
-  $scope.zoomProperty = 14;
+  $scope.zoomProperty = zoom || 14;
 
   /** list of markers to put in the map */
   $scope.markersProperty = [];
@@ -270,6 +270,9 @@ function _initializeGoogleMaps($scope, position, spots) {
     var marker = {},
         spot = spots[i],
         url = "../images/marker-icon" + (i + 1) + ".png";
+    console.log(spot);
+    console.log(spot.location);
+    console.log(spot.location.latitude);
     marker.latitude = spot.location.latitude;
     marker.longitude = spot.location.longitude;
     marker.infoWindow = spot.name;

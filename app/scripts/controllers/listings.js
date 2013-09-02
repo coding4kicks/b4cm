@@ -46,7 +46,7 @@ angular.module('b4cmApp')
         'longitude': 122.4167
       }
     };
-    $scope.zoomProperty = 14;
+    $scope.zoomProperty = 12;
   
     listings.get(searchLocation, spotType).then(function(listingInfo) {
       var idList = listingInfo.idList;
@@ -74,7 +74,7 @@ angular.module('b4cmApp')
                 $scope.spots.length + 1 === idList.length) {
               // Initialize google maps parameters for listings page when all data is ready
               // TODO: fix borken google maps
-              _initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots);
+              _initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots, 12);
             }
           });
         }
