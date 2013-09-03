@@ -8,7 +8,7 @@ angular.module('b4cmApp')
    *
    * @description Retrieves and calculates display information for a requested spot (aka. business).
    */ 
-  .controller('SpotCtrl', function ($scope, $location, $timeout, $routeParams, angularFire, spot) {
+  .controller('SpotCtrl', function ($scope, $location, $timeout, $routeParams, angularFire, spot, user) {
 
     // Google map defaults
     $scope.isMapElementHidden = true;
@@ -67,11 +67,18 @@ angular.module('b4cmApp')
      * @description Redirects to add-watch-page.
      */ 
     $scope.addWatch = function() {
-      $location.path("/addWatch/" + $scope.spot.id);
-      // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
-      if(!$scope.$$phase) { $scope.$apply(); }
-    };
+      // Make sure logged in
+      if (user.loggedIn()){
+        $location.path("/addWatch/" + $scope.spot.id);
+        // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
+        if(!$scope.$$phase) { $scope.$apply(); }
+      }
+      else {
+        alert("Must be logged in to add a review");
+      }
 
+    };
+      
     /**
      * @name addReview
      * @function
@@ -79,9 +86,15 @@ angular.module('b4cmApp')
      * @description Redirects to add-review-page.
      */ 
     $scope.addReview = function() {
-      $location.path("/addReview/" + $scope.spot.id);
-      // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
-      if(!$scope.$$phase) { $scope.$apply(); }
+      // Make sure logged in
+      if (user.loggedIn()){
+        $location.path("/addReview/" + $scope.spot.id);
+        // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
+        if(!$scope.$$phase) { $scope.$apply(); }
+      }
+      else {
+        alert("Must be logged in to add a review");
+      }
     };
   });
 
