@@ -30,15 +30,16 @@ angular.module('b4cmApp')
 
     // Public API here
     return {
-      signUp: function (email, password) {
+      signUp: function (email, password, name) {
         auth.createUser(email, password, function(error, user) {
           if (!error) {
-            var newUser = _createUser(user),
+            var newUser = _createUser(user, name),
                 userUrl = usersUrl + user.provider + '/' + user.id,
                 userRef = new Firebase(userUrl);
             console.log(newUser);
             console.log('User Id: ' + user.id + ', Email: ' + user.email);
             userRef.set(newUser);
+            userObj = newUser;
           }
           else {
             console.log(error);
@@ -74,7 +75,7 @@ angular.module('b4cmApp')
     };
   });
 
-function _createUser(user) {
+function _createUser(user, name) {
   var newUser = {};
   newUser.id = user.id;
   newUser.displayName = user.displayName;
@@ -86,7 +87,7 @@ function _createUser(user) {
   newUser.watchCount = 0;
   newUser.watchLocations = [];
   if (typeof newUser.displayName === 'undefined') {
-    newUser.displayName = user.email;
+    newUser.displayName = name;
   }
   return newUser;
 }

@@ -8,7 +8,7 @@ angular.module('b4cmApp')
         alert('Must enter valid password and email');
       }
       else {
-        user.signUp($scope.email, $scope.password);
+        user.signUp($scope.email, $scope.password, $scope.name);
       }
     };
     $scope.signin = function () {
