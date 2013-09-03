@@ -829,7 +829,7 @@ input[type='text']:focus {
 /******************
 *** Sign Up Page 
 *******************/
-#sign-up {
+#sign-up, #sign-in {
   @include page-container;
   background-color: $acc-light;
   border-radius: 10px 10px 10px 10px;
@@ -867,7 +867,7 @@ input[type='text']:focus {
 
   }
 
-  .b4cm-signup {
+  .b4cm-signup, .b4cm-signin {
     display: inline-block;
     width: 380px;
     padding: 0 10px;
@@ -880,12 +880,6 @@ input[type='text']:focus {
     .controls {
       margin-left: 90px;
     }
-  }
-
-  .or-signup {
-    display: inline-block;
-    width: 50px;
-    vertical-align: top;
   }
 
   .third-party-signup {
