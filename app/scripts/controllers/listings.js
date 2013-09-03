@@ -29,7 +29,7 @@ angular.module('b4cmApp')
     $scope.noSpots = false;
     $scope.listings = {}
     $scope.listings.type = $routeParams.spotType;
-    $scope.displayAddress = searchLocation;
+    $scope.listings.displayAddress = searchLocation;
     $scope.current_time = current_time.getTimeLabel();
     $scope.plus2_time = plus2_time.getTimeLabel();
     $scope.plus4_time = plus4_time.getTimeLabel();
