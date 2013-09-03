@@ -84,6 +84,12 @@ angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload'])
       $rootScope.$apply();
     });
 
+    // Logout
+    $rootScope.logOut = function() {
+      $rootScope.name = null;
+      user.logOut();
+    };
+
     /**
      * @name addWatch
      * @function

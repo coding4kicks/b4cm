@@ -57,7 +57,7 @@ angular.module('b4cmApp')
         else {return false;}
       },
       logOut: function () {
-        user = null;
+        userObj = null;
         auth.logout();
       },
       getName: function () {
