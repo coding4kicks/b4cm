@@ -830,9 +830,72 @@ input[type='text']:focus {
 *** Sign Up Page 
 *******************/
 #sign-up {
-  
+  @include page-container;
+  background-color: $acc-light;
+  border-radius: 10px 10px 10px 10px;
+  padding: 40px 0;
+
+
   .login-method {
     display: inline-block;
+    text-align: center;
+    padding: 20px;
+
+    &.facebook .icon {
+      background-position: 0 0;
+    }
+
+    &.twitter .icon {
+      background-position: -41px 0;
+    }
+
+    &.github .icon {
+      background-position: -83px 0;
+    }
+
+    &.persona .icon {
+      background-position: -125px 0;
+    }
+
+    .icon {
+      background: url('../images/social-icons.png');
+      background-size: 250px 50px;
+      width: 42px;
+      height: 50px;
+      margin: auto;
+    }
+
+  }
+
+  .b4cm-signup {
+    display: inline-block;
+    width: 380px;
+    padding: 0 10px;
+    vertical-align: top;
+
+    .control-label {
+      width: 80px;
+    }
+
+    .controls {
+      margin-left: 90px;
+    }
+  }
+
+  .or-signup {
+    display: inline-block;
+    width: 50px;
+    vertical-align: top;
+  }
+
+  .third-party-signup {
+    display: inline-block;
+    width: 40%;
+    vertical-align: top;
+
+    div {
+      text-align: center;
+    }
   }
 }
 
