@@ -78,12 +78,9 @@ angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload'])
     ];
     $rootScope.spotType = $rootScope.spotTypes[0];
 
-    $rootScope.name = user.getName();
-
+    // Listen for login
     $rootScope.$on('login', function(event, name) {
-      console.log('root name');
       $rootScope.name = name;
-      console.log($rootScope.name);
       $rootScope.$apply();
     });
 
