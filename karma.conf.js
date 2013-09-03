@@ -10,6 +10,7 @@ files = [
   'app/components/angular/angular.js',
   'app/components/angular-mocks/angular-mocks.js',
   'app/components/firebase.js',
+  'app/components/firebase-simple-login.js',
   'app/components/angularFire.js',
   'app/components/FirebaseGeo.js',
   'app/components/angular-google-maps.js',
