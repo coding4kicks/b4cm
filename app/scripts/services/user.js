@@ -27,14 +27,16 @@ angular.module('b4cmApp')
           if (!error) {
             console.log('User Id: ' + user.id + ', Email: ' + user.email);
           }
+          else {
+            console.log(error);
+          }
         });
-        return meaningOfLife;
       },
       logIn: function (provider, email, password) {
         if (provider === email) {
           auth.login('password', {
-            email: '<email@domain.com>',
-            password: '<password>'
+            'email': email,
+            'password': password
           });
         }
         else {auth.login(provider);}
