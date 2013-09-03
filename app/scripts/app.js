@@ -80,6 +80,13 @@ angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload'])
 
     $rootScope.name = user.getName();
 
+    $rootScope.$on('login', function(event, name) {
+      console.log('root name');
+      $rootScope.name = name;
+      console.log($rootScope.name);
+      $rootScope.$apply();
+    });
+
     /**
      * @name addWatch
      * @function

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('b4cmApp')
-  .factory('user', function () {
+  .factory('user', function ($rootScope) {
 
     var ref = new Firebase('https://crowd-data.firebaseIO.com'),
         userObj = null;
@@ -13,8 +13,15 @@ angular.module('b4cmApp')
       } else if (user) {
         // user authenticated with Firebase
         userObj = user;
-        console.log(user);
+        if (user.provider === 'password' || user.provider === 'persona') {
+          userObj.name = user.email;
+        }
+        else {
+          userObj.name = user.id
+        }
+        console.log(userObj);
         console.log('User ID: ' + user.id + ', Provider: ' + user.provider);
+        $rootScope.$broadcast('login', userObj.name);
       } else {
         // user is logged out
       }
