@@ -33,13 +33,17 @@ angular.module('b4cmApp')
         });
       },
       logIn: function (provider, email, password) {
-        if (provider === email) {
+        console.log('here');
+        console.log(provider);
+        if (provider === 'email') {
+          console.log('email provider');
           auth.login('password', {
             'email': email,
-            'password': password
+            'password': password,
+            'rememberMe': true
           });
         }
-        else {auth.login(provider);}
+        else {console.log('provider ', provider);auth.login(provider);}
       },
       loggedIn: function () {
         if (user) {return true;}
