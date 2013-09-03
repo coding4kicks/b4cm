@@ -67,7 +67,7 @@ angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload'])
 
   })
   
-  .run(function ($rootScope, $location) {
+  .run(function ($rootScope, $location, user) {
 
     // Spot types for search
     $rootScope.spotTypes = [
@@ -77,6 +77,8 @@ angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload'])
       {name:'All'}
     ];
     $rootScope.spotType = $rootScope.spotTypes[0];
+
+    $rootScope.name = user.getName();
 
     /**
      * @name addWatch

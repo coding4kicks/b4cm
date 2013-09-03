@@ -4,7 +4,7 @@ angular.module('b4cmApp')
   .factory('user', function () {
 
     var ref = new Firebase('https://crowd-data.firebaseIO.com'),
-        userObj = {};
+        userObj = null;
 
     var auth = new FirebaseSimpleLogin(ref, function(error, user) {
       if (error) {
@@ -48,6 +48,11 @@ angular.module('b4cmApp')
       logOut: function () {
         user = null;
         auth.logout();
+      },
+      getName: function () {
+        console.log(userObj);
+        if (userObj) {return userObj.id}
+        else {return null;}
       }
     };
   });
