@@ -13,16 +13,26 @@ angular.module('b4cmApp')
         console.log(error);
       } else if (user) {
         // user authenticated with Firebase
-        userObj = user;
-        if (user.provider === 'password' || user.provider === 'persona') {
-          userObj.name = user.email;
-        }
-        else {
-          userObj.name = user.id
-        }
-        console.log(userObj);
-        console.log('User ID: ' + user.id + ', Provider: ' + user.provider);
-        $rootScope.$broadcast('login', userObj.name);
+        // retrieve user object from db
+        var userUrl = usersUrl + user.provider + '/' + user.id,
+            userRef = new Firebase(userUrl);
+        userRef.on('value', function(data) {
+          // Need to handle data.val() === null
+          userObj = data.val();
+          console.log(userObj);
+          $rootScope.$broadcast('login', userObj.displayName);
+        });
+
+        //userObj = user;
+        //if (user.provider === 'password' || user.provider === 'persona') {
+        //  userObj.name = user.email;
+        //}
+        //else {
+        //  userObj.name = user.id
+        //}
+        //console.log(userObj);
+        //console.log('User ID: ' + user.id + ', Provider: ' + user.provider);
+        //$rootScope.$broadcast('login', userObj.name);
       } else {
         // user is logged out
       }
