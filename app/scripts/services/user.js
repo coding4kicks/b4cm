@@ -53,7 +53,7 @@ angular.module('b4cmApp')
         else {console.log('provider ', provider);auth.login(provider);}
       },
       loggedIn: function () {
-        if (user) {return true;}
+        if (userObj) {return true;}
         else {return false;}
       },
       logOut: function () {
