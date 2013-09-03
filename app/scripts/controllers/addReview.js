@@ -35,6 +35,7 @@ angular.module('b4cmApp')
         if ($scope.study) {review.type.study = 1};
         if ($scope.social) {review.type.social = 1};
         spot.addReview(review, $routeParams.spotId);
+        // also add to user
       }
       else {
         alert("Must be logged in to add a review");
