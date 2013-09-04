@@ -4,7 +4,8 @@ angular.module('b4cmApp')
   .controller('AddReviewCtrl', function ($scope, $routeParams, spot, user) {
 
     var author = {},
-        review = {};
+        review = {},
+        additionalInfo = {};
 
     $scope.RATINGS = [{'label': 1}, {'label': 2}, {'label': 3}, {'label': 4}, {'label': 5}];
     $scope.rating = $scope.RATINGS[2];
@@ -15,6 +16,9 @@ angular.module('b4cmApp')
       console.log('hereeee');
       $scope.spot = spot_data;
       review.spotId = spot_data.id;
+      additionalInfo.review_count = spot_data.review_count;
+      additionalInfo.rating_count = spot_data.rating_count;
+      additionalInfo.type = spot_data.type;
     });
 
     /**
@@ -55,7 +59,7 @@ angular.module('b4cmApp')
           //  else {console.log(error);}
           //});
           console.log(review);
-          spot.addReview(review, $routeParams.spotId);
+          spot.addReview(review, $routeParams.spotId, additionalInfo);
           // also add to user
         }
         else {
