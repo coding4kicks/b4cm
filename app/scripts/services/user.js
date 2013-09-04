@@ -72,16 +72,6 @@ angular.module('b4cmApp')
         else {return null;}
       },
       getInfo: function () {
-        // Need to delay for browser refresh
-        var deferred = $q.defer();
-        if (userObj) {deferred.resolve(userObj)}
-        else {
-          // TODO: find a better way.
-          $timeout(function() {
-            console.log('here');
-            deferred.resolve(userObj);}, 2000);
-        }
-        return deferred.promise;
       }
     };
   });

@@ -14,21 +14,6 @@ angular.module('b4cmApp')
     review.writeup = $scope.writeup;
     review.type = {'food': 0, 'study': 0, 'social': 0};
 
-    user.getInfo().then(function(curUser) {
-      console.log('hhhheeeer');
-      console.log(curUser);
-      if(curUser) {
-        author.id = curUser.profile + '-' + curUser.id,
-        author.name = curUser.displayName, 
-        author.pic = curUser.gravatar
-        review.author = author;
-      }
-      else {
-        author = null;
-      }
-
-    });
-
     spot.get($routeParams.spotId).then(function(spot_data) {
       $scope.spot = spot_data;
       console.log($scope.spot);
@@ -44,7 +29,16 @@ angular.module('b4cmApp')
     $scope.addReview = function() {
 
       // Make sure logged in
-      if (user.loggedIn() && author){
+      if (user.loggedIn()){
+
+        var curUser = user.getInfo()
+        console.log('hhhheeeer');
+        console.log(curUser);
+        author.id = curUser.profile + '-' + curUser.id,
+        author.name = curUser.displayName, 
+        author.pic = curUser.gravatar
+        review.author = author;
+
         // Make sure review is filled in: type and writeup
         if ((typeof $scope.food !== 'undefined' || 
              typeof $scope.study !== 'undefined' || 
