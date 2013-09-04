@@ -25,7 +25,8 @@ angular.module('b4cmApp')
        */ 
       addReview: function (newReview, spotId, additionalInfo) {
         var revRef = new Firebase(fbUrl + 'spots/' + spotId + '/reviews').push(),
-            spotRef = new Firebase(fbUrl + 'spots/' + spotId);
+            spotRef = new Firebase(fbUrl + 'spots/' + spotId),
+            userRef = new Firebase(fbUrl + 'users/' + newReview.author.id);
         spotRef.child('review_count').set(parseInt(additionalInfo.review_count) + 1);
         spotRef.child('rating_count').set(parseInt(additionalInfo.rating_count) + parseInt(newReview.rating.label));
         var typeUpdate = {'food': parseInt(additionalInfo.type.food) + newReview.type.food,
@@ -34,6 +35,7 @@ angular.module('b4cmApp')
                          };
         spotRef.child('type').set(typeUpdate);
         revRef.set(newReview);
+        userRef.child('reviews').push().set(newReview);
         console.log(additionalInfo);
         return false
       },

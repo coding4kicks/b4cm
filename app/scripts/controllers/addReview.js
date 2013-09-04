@@ -31,7 +31,7 @@ angular.module('b4cmApp')
 
       if (user.loggedIn()){
         var curUser = user.getInfo()
-        author.id = curUser.provider + '-' + curUser.id,
+        author.id = curUser.provider + '/' + curUser.id,
         author.name = curUser.displayName, 
         author.pic = curUser.gravatar
         review.author = author;

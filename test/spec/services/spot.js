@@ -67,7 +67,7 @@ describe('Service: spot', function () {
   }));
 
   it('addReview should return false', function () {
-    expect(spot.addReview({'rating': {'label': 3}, type: {'food': 1, 'social': 0, 'study': 1}}, '1234', {'review_count': 3, 'rating_count': 9, 'type': {'food': 1, 'social': 1, 'study': 2}})).toBe(false);
+    expect(spot.addReview({'author': {'id': 'passord/1'}, 'rating': {'label': 3}, type: {'food': 1, 'social': 0, 'study': 1}}, '1234', {'review_count': 3, 'rating_count': 9, 'type': {'food': 1, 'social': 1, 'study': 2}})).toBe(false);
   });
 
   it('addWatch should return false', function () {
