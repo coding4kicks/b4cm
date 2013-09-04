@@ -14,22 +14,27 @@ angular.module('b4cmApp')
        * @name addReview
        * @funtion
        *
-       * @description Adds a review for to a spot.  Recieves a review object
-       *              and a spot id.  The review contains author info, a writup,
-       *              and a rating.  
+       * @description Adds a review for a spot by a user to both the spot and the user.
+       *              Recieves a review object, a spot id, and additional: updated counts
+       *              The review contains author info, a writup and a rating 
        * @param {object} newReview A review to be added to a spot.
        *                 Properties: author info, writeup, and rating
-       * @param {int} spotId The spot to add the review to.                 .
+       * @param {int} spotId The spot to add the review to.
+       * @param {object} additionalInfo Counts needed to update the spot object.                 .
        * @returns {object} The spot id if successful otherwise an error code.
        */ 
-      addReview: function (newReview, spotId) {
-        var revRef = new Firebase(fbUrl + 'spots/' + spotId + '/reviews').push();
+      addReview: function (newReview, spotId, additionalInfo) {
+        var revRef = new Firebase(fbUrl + 'spots/' + spotId + '/reviews').push(),
+            spotRef = new Firebase(fbUrl + 'spots/' + spotId);
+        spotRef.child('review_count').set(parseInt(additionalInfo.review_count) + 1);
+        spotRef.child('rating_count').set(parseInt(additionalInfo.rating_count) + parseInt(newReview.rating.label));
+        var typeUpdate = {'food': parseInt(additionalInfo.type.food) + newReview.type.food,
+                          'study': parseInt(additionalInfo.type.study) + newReview.type.study,
+                          'social': parseInt(additionalInfo.type.social) + newReview.type.social
+                         };
+        spotRef.child('type').set(typeUpdate);
         revRef.set(newReview);
-        // update count
-        // update type
-        // update review rating
-        console.log(newReview.author);
-        console.log(newReview, spotId);
+        console.log(additionalInfo);
         return false
       },
 
