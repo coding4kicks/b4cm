@@ -123,7 +123,6 @@ angular.module('b4cmApp')
        * @returns {object} The spot if successful otherwise an error code.
        */       
       get: function (id) {
-        console.log('why blow up');
         // TODO: need code to deal with invalid IDs.
         //if (id in spotCache) {deferred.resolve(spotCache[id]);}
         var deferred = $q.defer();
