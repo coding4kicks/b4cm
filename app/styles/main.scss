@@ -764,7 +764,7 @@ input[type='text']:focus {
     padding: 20px 15px;
 
     hr {
-      margin-top: 15px;
+      margin-top: 5px 0;
       width: 640px;
     }
 
@@ -774,10 +774,15 @@ input[type='text']:focus {
         width: 40px;
       }
     }
+
+    .info {
+      p {
+        margin: 20px 0 0 0;
+      }
+    }
   }
 
   .review-nums {
-    margin-bottom: -10px;
   }
 
   .review {
@@ -797,7 +802,7 @@ input[type='text']:focus {
 
   .add-review {
     float: right;
-    margin-top: -20px;
+    margin-top: -40px;
   }
 
   .find-nearby {

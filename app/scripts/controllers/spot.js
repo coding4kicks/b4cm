@@ -38,15 +38,18 @@ angular.module('b4cmApp')
       }
       $scope.stars = _calculateStars(ratingScore);
       if (typeof $scope.spot.reviews === 'undefined') {$scope.spot.reviews = {'length': 0};}
+      var reviewsDisplayedCount = 0
       for (var review in $scope.spot.reviews) {
         // Set defualt pic
         if (!$scope.spot.reviews[review].author.pic) {
           $scope.spot.reviews[review].author.pic = '../images/default-author-pic.png';
         }
         $scope.spot.reviews[review].stars = _calculateStars($scope.spot.reviews[review].rating.label);
-        console.log($scope.spot.reviews[review].author.pic);
+        reviewsDisplayedCount = reviewsDisplayedCount + 1;
       }
-      if ($scope.spot.reviews.length < 1) {$scope.noReviews = true;}
+      $scope.reviewsDisplayedCount = reviewsDisplayedCount;
+      
+      if ($scope.spot.review_count < 1) {$scope.noReviews = true;}
       // Calculate weighting for each type of spot.
       $scope.types = _weightTypes($scope.spot.type.food,
                                   $scope.spot.type.study,
@@ -60,6 +63,9 @@ angular.module('b4cmApp')
       $scope.show_marker = _initializeShowMarkerMatrix();
       $scope.current_marker = {'day': '', 'hour': '', 'meridiem': ''}; // Currently visible marker position
 
+      // determine number of reviews total and displaying
+      $scope.numReturns = spot_data.reviews.length;
+      
       // Initialize google maps parameters for spot page
       _initializeGoogleMaps($scope, $scope.spot.location, [$scope.spot]);
    
