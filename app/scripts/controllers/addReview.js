@@ -45,11 +45,20 @@ angular.module('b4cmApp')
 
       // Make sure logged in
       if (user.loggedIn() && author){
-        if ($scope.food) {review.type.food = 1};
-        if ($scope.study) {review.type.study = 1};
-        if ($scope.social) {review.type.social = 1};
-        spot.addReview(review, $routeParams.spotId);
-        // also add to user
+        // Make sure review is filled in: type and writeup
+        if ((typeof $scope.food !== 'undefined' || 
+             typeof $scope.study !== 'undefined' || 
+             typeof $scope.social !== 'undefined') &&
+            typeof $scope.writeup !== 'undefined') {
+          if ($scope.food) {review.type.food = 1};
+          if ($scope.study) {review.type.study = 1};
+          if ($scope.social) {review.type.social = 1};
+          spot.addReview(review, $routeParams.spotId);
+          // also add to user
+        }
+        else {
+          alert("Must enter at least 1 type and a writeup.");
+        }
       }
       else {
         alert("Must be logged in to add a review");
