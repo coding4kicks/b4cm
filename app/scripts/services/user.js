@@ -44,7 +44,6 @@ angular.module('b4cmApp')
         userRef.on('value', function(data) {
           // Need to handle data.val() === null
           userObj = data.val();
-          console.log(userObj);
           // Need broadcast to update user name in nav bar
           $rootScope.$broadcast('login', userObj.displayName);
         });

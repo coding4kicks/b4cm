@@ -23,19 +23,10 @@ angular.module('b4cmApp')
        * @returns {object} The spot id if successful otherwise an error code.
        */ 
       addReview: function (newReview, spotId) {
-        var deferred = $q.defer();
-        console.log(fbUrl);
-        var url = fbUrl + 'spots/' + spotId + '/reviews';
-        console.log(url);
         var revRef = new Firebase(fbUrl + 'spots/' + spotId + '/reviews').push();
         revRef.set(newReview);
-
-        //if (newReview) {
         console.log(newReview.author);
         console.log(newReview, spotId);
-          
-        //}
-        //return deferred.promise;
         return false
       },
 
