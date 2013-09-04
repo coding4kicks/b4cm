@@ -62,8 +62,12 @@ angular.module('b4cmApp')
           if (i === idList.length) {break;}
           var spotId = idList[i];
           spot.get(spotId).then(function(spotObj) {
-            var current_status = _getStatus(spotObj, current_time);
-            spotObj.stars = _calculateStars(spotObj.rating);
+            var current_status = _getStatus(spotObj, current_time),
+                score = 0;
+            if (spotObj.review_count !== 0) {
+              score = spotObj.rating_count / spotObj.review_count;
+            }
+            spotObj.stars = _calculateStars(score);
             spotObj.cf_status_label = current_status.label;
             spotObj.cf_status_time = current_status.time;
             spotObj.cf_status_boxes = _calculateBoxLabels(spotObj, times)
