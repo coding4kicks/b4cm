@@ -25,6 +25,9 @@ angular.module('b4cmApp')
       addReview: function (newReview, spotId) {
         var revRef = new Firebase(fbUrl + 'spots/' + spotId + '/reviews').push();
         revRef.set(newReview);
+        // update count
+        // update type
+        // update review rating
         console.log(newReview.author);
         console.log(newReview, spotId);
         return false
@@ -75,6 +78,7 @@ angular.module('b4cmApp')
         if (typeof newSpot.image_url === 'undefined') {newSpot.image_url = null};
         if (typeof newSpot.wifi === 'undefined') {newSpot.wifi = false};
         newSpot.review_count = 0;
+        newSpot.rating_count = 0;
         newSpot.reviews = [];
         newSpot.crowdfactor = _initCrowdSeer(newSpot);
 
