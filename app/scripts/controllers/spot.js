@@ -67,7 +67,6 @@ angular.module('b4cmApp')
      * @description Redirects to add-watch-page.
      */ 
     $scope.addWatch = function() {
-      // Make sure logged in
       if (user.loggedIn()){
         $location.path("/addWatch/" + $scope.spot.id);
         // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
@@ -86,7 +85,6 @@ angular.module('b4cmApp')
      * @description Redirects to add-review-page.
      */ 
     $scope.addReview = function() {
-      // Make sure logged in
       if (user.loggedIn()){
         $location.path("/addReview/" + $scope.spot.id);
         // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase

@@ -28,13 +28,11 @@ angular.module('b4cmApp')
      */     
     $scope.addReview = function() {
 
-      // Make sure logged in
       if (user.loggedIn()){
-
         var curUser = user.getInfo()
         console.log('hhhheeeer');
         console.log(curUser);
-        author.id = curUser.profile + '-' + curUser.id,
+        author.id = curUser.provider + '-' + curUser.id,
         author.name = curUser.displayName, 
         author.pic = curUser.gravatar
         review.author = author;
