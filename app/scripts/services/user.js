@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('b4cmApp')
-  .factory('user', function ($rootScope) {
+  .factory('user', function ($rootScope, $q, $timeout) {
 
     var ref = new Firebase('https://crowd-data.firebaseIO.com'),
         usersUrl = 'https://crowd-data.firebaseIO.com/users/',
@@ -22,17 +22,6 @@ angular.module('b4cmApp')
           console.log(userObj);
           $rootScope.$broadcast('login', userObj.displayName);
         });
-
-        //userObj = user;
-        //if (user.provider === 'password' || user.provider === 'persona') {
-        //  userObj.name = user.email;
-        //}
-        //else {
-        //  userObj.name = user.id
-        //}
-        //console.log(userObj);
-        //console.log('User ID: ' + user.id + ', Provider: ' + user.provider);
-        //$rootScope.$broadcast('login', userObj.name);
       } else {
         // user is logged out
       }
@@ -81,6 +70,18 @@ angular.module('b4cmApp')
         console.log(userObj);
         if (userObj) {return userObj.id}
         else {return null;}
+      },
+      getInfo: function () {
+        // Need to delay for browser refresh
+        var deferred = $q.defer();
+        if (userObj) {deferred.resolve(userObj)}
+        else {
+          // TODO: find a better way.
+          $timeout(function() {
+            console.log('here');
+            deferred.resolve(userObj);}, 2000);
+        }
+        return deferred.promise;
       }
     };
   });
