@@ -32,7 +32,11 @@ angular.module('b4cmApp')
       $scope.watch_count = $scope.spot.crowdfactor.watch_count;
 
       // Calculate stars overall and for each review.
-      $scope.stars = _calculateStars($scope.spot.rating);
+      var ratingScore = 0;
+      if($scope.spot.review_count !== 0) {
+        ratingScore = $scope.spot.rating_count / $scope.spot.rating_count;
+      }
+      $scope.stars = _calculateStars(ratingScore);
       if (typeof $scope.spot.reviews === 'undefined') {$scope.spot.reviews = {'length': 0};}
       for (var review in $scope.spot.reviews) {
         // Set defualt pic
