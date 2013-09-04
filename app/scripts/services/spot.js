@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('b4cmApp')
-  .factory('spot', function ($q, $timeout, $rootScope, geolocation, listings) {
+  .factory('spot', function ($q, $timeout, $rootScope, geolocation, listings, util) {
 
     // Initialize cache to 20
-    var cache = spotCache(20);
+    var cache = spotCache(20),
+        fbUrl = util.getFbUrl();
 
     // Public API
     return {
@@ -17,15 +18,25 @@ angular.module('b4cmApp')
        *              and a spot id.  The review contains author info, a writup,
        *              and a rating.  
        * @param {object} newReview A review to be added to a spot.
-       *                 Properties: author info, writeup, and rating                 .
+       *                 Properties: author info, writeup, and rating
+       * @param {int} spotId The spot to add the review to.                 .
        * @returns {object} The spot id if successful otherwise an error code.
        */ 
-      addReview: function (newReview, id) {
-        if (newReview) {
-          console.log(newReview.author);
-          console.log(newReview, id);
-        }
-        return false;
+      addReview: function (newReview, spotId) {
+        var deferred = $q.defer();
+        console.log(fbUrl);
+        var url = fbUrl + 'spots/' + spotId + '/reviews';
+        console.log(url);
+        var revRef = new Firebase(fbUrl + 'spots/' + spotId + '/reviews').push();
+        revRef.set(newReview);
+
+        //if (newReview) {
+        console.log(newReview.author);
+        console.log(newReview, spotId);
+          
+        //}
+        //return deferred.promise;
+        return false
       },
 
       /**

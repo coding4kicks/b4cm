@@ -2,15 +2,13 @@
 
 angular.module('b4cmApp')
   .factory('util', function () {
-    // Service logic
-    // ...
 
-    var meaningOfLife = 42;
+    var firebaseUrl = 'https://crowd-data.firebaseIO.com/';
 
     // Public API here
     return {
-      someMethod: function () {
-        return meaningOfLife;
+      getFbUrl: function () {
+        return firebaseUrl;
       }
     };
   });

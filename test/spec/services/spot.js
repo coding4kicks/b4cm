@@ -67,7 +67,7 @@ describe('Service: spot', function () {
   }));
 
   it('addReview should return false', function () {
-    expect(spot.addReview()).toBe(false);
+    expect(spot.addReview({}, '1234')).toBe(false);
   });
 
   it('addWatch should return false', function () {
