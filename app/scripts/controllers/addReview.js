@@ -45,7 +45,17 @@ angular.module('b4cmApp')
           if ($scope.food) {review.type.food = 1};
           if ($scope.study) {review.type.study = 1};
           if ($scope.social) {review.type.social = 1};
-          spot.addReview(review, $routeParams.spotId);
+          spot.addReview(review, $routeParams.spotId).then(function(error) {
+            if (!error) {
+              user.addReview(review).then(function(error) {
+                if (!error) {
+                  // redirect
+                }
+                else {console.log(error);}
+              });
+            }
+            else {console.log(error);}
+          });
           // also add to user
         }
         else {
