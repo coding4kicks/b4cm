@@ -67,7 +67,7 @@ angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload'])
 
   })
   
-  .run(function ($rootScope, $location, user) {
+  .run(function ($rootScope, $location, user, util) {
 
     // Spot types for search
     $rootScope.spotTypes = [
@@ -81,7 +81,7 @@ angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload'])
     // Listen for login
     $rootScope.$on('login', function(event, name) {
       $rootScope.name = name;
-      $rootScope.$apply();
+      util.safeApply($rootScope);
     });
 
     // Logout
