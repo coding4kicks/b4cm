@@ -35,8 +35,12 @@ angular.module('b4cmApp')
       $scope.stars = _calculateStars($scope.spot.rating);
       if (typeof $scope.spot.reviews === 'undefined') {$scope.spot.reviews = {'length': 0};}
       for (var review in $scope.spot.reviews) {
-        console.log($scope.spot.reviews[review]);
+        // Set defualt pic
+        if (!$scope.spot.reviews[review].author.pic) {
+          $scope.spot.reviews[review].author.pic = '../images/default-author-pic.png';
+        }
         $scope.spot.reviews[review].stars = _calculateStars($scope.spot.reviews[review].rating.label);
+        console.log($scope.spot.reviews[review].author.pic);
       }
       if ($scope.spot.reviews.length < 1) {$scope.noReviews = true;}
       // Calculate weighting for each type of spot.
