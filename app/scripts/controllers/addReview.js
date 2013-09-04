@@ -12,8 +12,8 @@ angular.module('b4cmApp')
     review.type = {'food': 0, 'study': 0, 'social': 0};
 
     spot.get($routeParams.spotId).then(function(spot_data) {
+      console.log('hereeee');
       $scope.spot = spot_data;
-      console.log($scope.spot);
       review.spotId = spot_data.id;
     });
 

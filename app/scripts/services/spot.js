@@ -123,6 +123,7 @@ angular.module('b4cmApp')
        * @returns {object} The spot if successful otherwise an error code.
        */       
       get: function (id) {
+        console.log('why blow up');
         // TODO: need code to deal with invalid IDs.
         //if (id in spotCache) {deferred.resolve(spotCache[id]);}
         var deferred = $q.defer();
@@ -132,7 +133,8 @@ angular.module('b4cmApp')
           spotRef.on('value', function(data) {
             // Need to handle data.val() === null
             // Need $rootScope.$apply here to transmit results back into Angular
-            $rootScope.$apply(deferred.resolve(data.val()));
+            //$rootScope.$apply(deferred.resolve(data.val()));
+            util.safeApply($rootScope, deferred.resolve(data.val()));
             cache.add(data.val());
           });
         }
