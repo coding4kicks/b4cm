@@ -3,7 +3,10 @@
 angular.module('b4cmApp')
   .controller('AddReviewCtrl', function ($scope, $routeParams, spot, user) {
 
-    var author = {'id': '555', 'name': 'Jolly G.', 'pic': '../images/peeps1.jpg'},
+    var author = {'id': user.profile + '-' + user.id,
+                  'name': user.displayName, 
+                  'pic': user.gravatar
+                 },
         review = {};
         
   

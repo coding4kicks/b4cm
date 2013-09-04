@@ -21,6 +21,10 @@ angular.module('b4cmApp')
        * @returns {object} The spot id if successful otherwise an error code.
        */ 
       addReview: function (newReview, id) {
+        if (newReview) {
+          console.log(newReview.author);
+          console.log(newReview, id);
+        }
         return false;
       },
 
