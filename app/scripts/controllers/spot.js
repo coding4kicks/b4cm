@@ -28,17 +28,17 @@ angular.module('b4cmApp')
     spot.get($routeParams.spotId).then(function(spot_data) {
 
       $scope.spot = spot_data;
-      console.log($scope.spot);
       $scope.watch_count = $scope.spot.crowdfactor.watch_count;
 
-      // Calculate stars overall and for each review.
+      // Calculate stars overall, stars for each review,
+      // and the total number of reviews being displayed and reviews returned.
       var ratingScore = 0;
       if($scope.spot.review_count !== 0) {
         ratingScore = $scope.spot.rating_count / $scope.spot.review_count;
       }
       $scope.stars = _calculateStars(ratingScore);
       if (typeof $scope.spot.reviews === 'undefined') {$scope.spot.reviews = {'length': 0};}
-      var reviewsDisplayedCount = 0
+      var reviewsDisplayedCount = 0;
       for (var review in $scope.spot.reviews) {
         // Set defualt pic
         if (!$scope.spot.reviews[review].author.pic) {
@@ -49,7 +49,9 @@ angular.module('b4cmApp')
       }
       $scope.reviewsDisplayedCount = reviewsDisplayedCount;
       
+      // If no reviews to show, display the "Be the first" tagline
       if ($scope.spot.review_count < 1) {$scope.noReviews = true;}
+
       // Calculate weighting for each type of spot.
       $scope.types = _weightTypes($scope.spot.type.food,
                                   $scope.spot.type.study,
@@ -61,15 +63,12 @@ angular.module('b4cmApp')
 
       // Set up crowdfactor current time marker information.
       $scope.show_marker = _initializeShowMarkerMatrix();
-      $scope.current_marker = {'day': '', 'hour': '', 'meridiem': ''}; // Currently visible marker position
-
-      // determine number of reviews total and displaying
-      $scope.numReturns = spot_data.reviews.length;
+      $scope.current_marker = {'day': '', 'hour': '', 'meridiem': ''}; 
       
       // Initialize google maps parameters for spot page
       _initializeGoogleMaps($scope, $scope.spot.location, [$scope.spot]);
    
-      // Start updates
+      // Start updates of current time, marker, and crowdstatus.
       _updateStatus($scope, $timeout);
 
      });
@@ -89,7 +88,6 @@ angular.module('b4cmApp')
       else {
         alert("Must be logged in to add a review");
       }
-
     };
       
     /**
