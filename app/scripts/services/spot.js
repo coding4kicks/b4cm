@@ -59,11 +59,6 @@ angular.module('b4cmApp')
                          };
         spotRef.child('type').set(typeUpdate);
         revRef.set(newReview);
-        ////////
-        // Move to user service
-        // /////
-        //userRef.child('reviews').push().set(newReview);
-        //console.log(additionalInfo);
         return false
       },
 
