@@ -70,6 +70,8 @@ angular.module('b4cmApp')
        * @returns {object} TODO: The user id if successful otherwise an error code.
        */ 
       addReview: function (newReview, spotId) {
+        // TODO: only use user info from inside user service
+        // TODO: add pathId to user that is provider/userId
         var userRef = new Firebase(fbUrl + 'users/' + newReview.author.id);
         userRef.child('reviews').push().set(newReview);
         return false
@@ -83,7 +85,10 @@ angular.module('b4cmApp')
        * @returns {object} TODO: The spot id if successful otherwise an error code.
        */ 
       incrementWatchCount: function () {
-        //console.log(spotId, newWatch);
+        var id = userObj.provider + '/' + userObj.id,
+            userRef = new Firebase(fbUrl + 'users/' + id),
+            newCount = userObj.watchCount + 1;
+        userRef.child('watchCount').set(newCount);
         return false;
       },
         
