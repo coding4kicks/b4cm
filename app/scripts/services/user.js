@@ -22,10 +22,11 @@ angular.module('b4cmApp')
    *        'watchLocations': {array} Places user has performed a crowdwatch
    *    }
    */ 
-  .factory('user', function ($rootScope, $q, $timeout) {
+  .factory('user', function ($rootScope, $q, $timeout, util) {
 
-    var ref = new Firebase('https://crowd-data.firebaseIO.com'),
-        usersUrl = 'https://crowd-data.firebaseIO.com/users/',
+    var fbUrl = util.getFbUrl(),
+        ref = new Firebase(fbUrl),
+        usersUrl = fbUrl + 'users/',
         userObj = null;
 
     /**
@@ -55,6 +56,25 @@ angular.module('b4cmApp')
     // Public API here
     return {
 
+      /**
+       * @name addReview
+       * @funtion
+       *
+       * @description Adds a review for a spot by a user to both the spot and the user.
+       *              Recieves a review object, a spot id, and additional: updated counts
+       *              The review contains author info, a writup and a rating 
+       * @param {object} newReview A review to be added to a spot.
+       *                 Properties: author info, writeup, and rating
+       * @param {int} spotId The spot to add the review to.
+       * @param {object} additionalInfo Counts needed to update the spot object.                 .
+       * @returns {object} The spot id if successful otherwise an error code.
+       */ 
+      addReview: function (newReview, spotId, additionalInfo) {
+        var userRef = new Firebase(fbUrl + 'users/' + newReview.author.id);
+        userRef.child('reviews').push().set(newReview);
+        return false
+      },
+        
       /**
        * @name signUp
        * @procedure

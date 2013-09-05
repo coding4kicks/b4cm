@@ -60,7 +60,8 @@ angular.module('b4cmApp')
           //});
           console.log(review);
           spot.addReview(review, $routeParams.spotId, additionalInfo);
-          // also add to user
+          user.addReview(review, $routeParams.spotId)
+          // also add to user *******
         }
         else {
           alert("Must enter at least 1 type and a writeup.");
