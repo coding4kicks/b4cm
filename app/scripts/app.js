@@ -169,7 +169,7 @@ function _getStatus(spot, time) {
       cf_status_label, cf_status_time;
   if (time_delta < 60) {
     cf_status_time = Math.round(time_delta) + ' minutes ago';
-    cf_status_label = CFLABELS[$scope.spot.crowdfactor.most_recent.score - 1];
+    cf_status_label = CFLABELS[spot.crowdfactor.most_recent.score - 1];
   }
   else {
     cf_status_time = 'historical';

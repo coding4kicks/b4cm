@@ -77,12 +77,15 @@ angular.module('b4cmApp')
       addWatch: function (newWatch, spotId) {
         console.log(spotId, newWatch);
         var crowdfactorRef = new Firebase(fbUrl + 'spots/' + spotId + '/crowdfactor/day/'),
+            mostRecentRef = new Firebase(fbUrl + 'spots/' + spotId + '/crowdfactor/'),
             score = _statusToScore(newWatch.cf_status);
          console.log(crowdfactorRef.toString());
 
         newWatch.time.forEach(function(time) {
           crowdfactorRef.child(time.day).child(time.hour).child('count').set(time.count + 1);
           crowdfactorRef.child(time.day).child(time.hour).child('score').set(time.score + score);
+          mostRecentRef.child('most_recent').child('score').set(score);
+          mostRecentRef.child('most_recent').child('time').set((new Date()).getTime());
         });
         console.log(score);
         return false;
