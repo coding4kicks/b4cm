@@ -53,23 +53,23 @@ angular.module('b4cmApp')
       }
     });
 
-    // Public API here
+    //////////////////// 
+    // PUBLIC API
+    //////////////////// 
     return {
 
       /**
        * @name addReview
        * @funtion
        *
-       * @description Adds a review for a spot by a user to both the spot and the user.
-       *              Recieves a review object, a spot id, and additional: updated counts
-       *              The review contains author info, a writup and a rating 
+       * @description Adds a review for a spot by a user to the users data.
+       *              The review contains author info, a writup, a rating, and a spot id
        * @param {object} newReview A review to be added to a spot.
        *                 Properties: author info, writeup, and rating
-       * @param {int} spotId The spot to add the review to.
-       * @param {object} additionalInfo Counts needed to update the spot object.                 .
-       * @returns {object} The spot id if successful otherwise an error code.
+       * @param {int} spotId The spot to add the review to.                .
+       * @returns {object} TODO: The user id if successful otherwise an error code.
        */ 
-      addReview: function (newReview, spotId, additionalInfo) {
+      addReview: function (newReview, spotId) {
         var userRef = new Firebase(fbUrl + 'users/' + newReview.author.id);
         userRef.child('reviews').push().set(newReview);
         return false
