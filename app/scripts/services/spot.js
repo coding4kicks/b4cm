@@ -78,12 +78,15 @@ angular.module('b4cmApp')
         console.log(spotId, newWatch);
         var crowdfactorRef = new Firebase(fbUrl + 'spots/' + spotId + '/crowdfactor/day/'),
             score = _statusToScore(newWatch.cf_status);
+         console.log(crowdfactorRef.toString());
+
         newWatch.time.forEach(function(time) {
-        //  crowdfactorRef.child(time.day).child(time.hour).child('count').set(additionalInfo.count + 1);
-          // set spotId + '/crowdfactor/day/' + time.day + '/' + time.hour + '/count'
-          // increment 1
-          // set spotId + '/crowdfactor/day/' + time.day + '/' + time.hour + '/score'
-          // increment by cf_status - must convert to number 1 - 5
+          //console.log('here');
+          //console.log(crowdfactorRef.child(time.day).child(time.hour).child('count').toString());
+          //console.log(time.count + 1);
+          //console.log(time.score + score);
+          crowdfactorRef.child(time.day).child(time.hour).child('count').set(time.count + 1);
+          crowdfactorRef.child(time.day).child(time.hour).child('score').set(time.score + score);
         });
         console.log(score);
         return false;
