@@ -68,11 +68,11 @@ angular.module('b4cmApp')
       $scope.current_marker = {'day': '', 'hour': '', 'meridiem': ''}; 
       
       // Initialize google maps parameters for spot page
-      _initializeGoogleMaps($scope, $scope.spot.location, [$scope.spot]);
-   
+      console.log('initializing google maps');
+      $timeout(function(){_initializeGoogleMaps($scope, $scope.spot.location, [$scope.spot])},0);
+      
       // Start updates of current time, marker, and crowdstatus.
       _updateStatus($scope, $timeout);
-
      });
 
     /**
