@@ -74,8 +74,17 @@ angular.module('b4cmApp')
        *                 Properties: start and stop times of watch event, a rating.
        * @returns {object} The spot id if successful otherwise an error code.
        */ 
-      addWatch: function (newWatch, id) {
-        //console.log(spotId, newWatch);
+      addWatch: function (newWatch, spotId) {
+        console.log(spotId, newWatch);
+        var crowdfactorRef = new Firebase(fbUrl + 'spots/' + spotId + '/crowdfactor/day/'),
+            score = _statusToScore(newWatch.cf_status);
+        newWatch.time.forEach(function(time) {
+        //  crowdfactorRef.child(time.day).child(time.hour).child('count').set(additionalInfo.count + 1);
+          // set spotId + '/crowdfactor/day/' + time.day + '/' + time.hour + '/count'
+          // increment 1
+          // set spotId + '/crowdfactor/day/' + time.day + '/' + time.hour + '/score'
+          // increment by cf_status - must convert to number 1 - 5
+        });
         return false;
       },
 
@@ -186,6 +195,26 @@ angular.module('b4cmApp')
       }
     };
   });
+
+function _statusToScore(cf_status) {
+  switch (cf_status) {
+    case 'empty':
+      return 1;
+      break;
+    case 'few':
+      return 2;
+      break;
+    case 'average':
+      return 3;
+      break;
+    case 'crowded':
+      return 4;
+      break;
+    case 'packed':
+      return 5;
+      break;
+  }
+}
 
 /**
  * @name _constructId

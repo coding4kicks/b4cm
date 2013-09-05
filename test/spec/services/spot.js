@@ -71,7 +71,7 @@ describe('Service: spot', function () {
   });
 
   it('addWatch should return false', function () {
-    expect(spot.addWatch()).toBe(false);
+    expect(spot.addWatch({'time': [{'day':'wednesday', 'hour':'8pm'}]})).toBe(false);
   });
   
   it('create should correctly add hours', inject(function ($rootScope) {
