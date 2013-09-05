@@ -193,16 +193,16 @@ angular.module('b4cmApp')
 function _createUser(user, name) {
   var newUser = {};
   newUser.id = user.id;
-  newUser.displayName = user.displayName;
+  newUser.display_name = user.displayName;
   newUser.email = user.email;
   newUser.provider = user.provider;
-  newUser.joinDate = new Date();
+  newUser.join_date = new Date();
   newUser.gravatar = '';
   newUser.reviews = [];
-  newUser.watchCount = 0;
-  newUser.watchLocations = [];
-  if (typeof newUser.displayName === 'undefined') {
-    newUser.displayName = name;
+  newUser.watch_count = 0;
+  newUser.watch_locations = [];
+  if (typeof newUser.display_name === 'undefined') {
+    newUser.display_name = name;
   }
   return newUser;
 }
