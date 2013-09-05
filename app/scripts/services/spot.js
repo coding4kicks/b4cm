@@ -1,13 +1,37 @@
 'use strict';
 
 angular.module('b4cmApp')
+
+  /**
+   * @name Spot Service
+   * @service
+   *
+   * @description Saves, retrieves, and edits Spot information.
+   * @data-location https://crowd-data.firebaseIO.com/spots/
+   * @data-key <spot.id>
+   * @data-sample {JSON} 
+   *    {'spot':
+   *        'id': {string}  Yelp id or Spot name + city + incremented int,
+   *        'imageUrl': {string} Image to the picture for the spot,
+   *        'wifi': {boolean} True if spot has wifi,
+   *        'yelp_id': {string} The yelp_id for the business,
+   *        'rating_count': {int} The sum of all rating scores
+   *        'review_count': {int} The total number of reviews
+   *        'reviews': {array} Users' reviews,
+   *        'location': {object} details about Spots location
+   *        'crowdfactor': {object} Details about the crowds at a spot
+   *        'business_hours': {array} Details of the spots hours of operation
+   *    }
+   */ 
   .factory('spot', function ($q, $timeout, $rootScope, geolocation, listings, util) {
 
     // Initialize cache to 20
     var cache = spotCache(20),
         fbUrl = util.getFbUrl();
 
-    // Public API
+    //////////////////// 
+    // PUBLIC API
+    //////////////////// 
     return {
 
       /**
@@ -38,8 +62,8 @@ angular.module('b4cmApp')
         ////////
         // Move to user service
         // /////
-        userRef.child('reviews').push().set(newReview);
-        console.log(additionalInfo);
+        //userRef.child('reviews').push().set(newReview);
+        //console.log(additionalInfo);
         return false
       },
 
