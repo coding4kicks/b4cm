@@ -11,6 +11,8 @@ angular.module('b4cmApp')
   .controller('AddWatchCtrl', function ($scope, $routeParams, spot, user) {
 
     var watch = {},
+        spotObj = {},
+        additionalInfo = {},
         current_date = new Date(),
         future_date = new Date(current_date.getTime() + 60 * 60 * 1000),
         current_day = current_date.getDay(),
@@ -35,6 +37,11 @@ angular.module('b4cmApp')
     $scope.startMeridiem = $scope.MERIDIEMS[current_meridiem];
     $scope.stopMeridiem = $scope.MERIDIEMS[future_meridiem];
 
+    // Retreive the spot associated with this review.
+    spot.get($routeParams.spotId).then(function(spot_data) {
+      spotObj = spot_data;
+    });
+
     /**
      * @name addWatch
      * @function
@@ -49,7 +56,7 @@ angular.module('b4cmApp')
                   'hour': parseInt($scope.stopHour.label), 
                   'meridiem': $scope.stopMeridiem.label}
       watch.cf_status = $scope.cf_status;
-      watch.time = _calculateWatchTimes(start, stop);
+      watch.time = _calculateWatchTimes(start, stop, spotObj);
       if (typeof watch.cf_status === 'undefined') {alert('Please choose a crowd status.');}
       else {
         // TODO: implement
@@ -70,13 +77,16 @@ angular.module('b4cmApp')
  * @function
  *
  * @description Given a start and stop times, creates an array of time lables
- *              used as keys for updating a spot's crowdseer.
+ *              used as keys for updating a spot's crowdseer.  Also determines the total 
+ *              score and count for the time periods.  Also checks time is not closed
+ *              and score for the 
  * @param {object} start The start time. Props: day (int), hour (int), meridiem (string)
  * @param {object} stop The stop time. Props: day (int), hour (int), meridiem (string)
  * @return {array} An array of watch time lables i.e {'day': 'monday', 'hour': '11pm'}
  */ 
-function _calculateWatchTimes(start, stop) {
+function _calculateWatchTimes(start, stop, spotObj) {
   var times = [],
+      day = spotObj.crowdfactor.day,
       current = {'day': start.day, 'hour': start.hour, 'meridiem': start.meridiem},
       WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
@@ -91,7 +101,10 @@ function _calculateWatchTimes(start, stop) {
 
     watch.day = WEEKDAYS[current.day].toLowerCase();
     watch.hour = current.hour + current.meridiem;
-    times.push(watch);
+    watch.count = day[watch.day][watch.hour].count
+    watch.score = day[watch.day][watch.hour].score
+    // only add if not closed
+    if (day[watch.day][watch.hour].count !== -1) {times.push(watch)};
 
     // Increment current time
     current.hour = current.hour + 1;

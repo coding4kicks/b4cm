@@ -85,6 +85,7 @@ angular.module('b4cmApp')
           // set spotId + '/crowdfactor/day/' + time.day + '/' + time.hour + '/score'
           // increment by cf_status - must convert to number 1 - 5
         });
+        console.log(score);
         return false;
       },
 
@@ -210,7 +211,7 @@ function _statusToScore(cf_status) {
     case 'crowded':
       return 4;
       break;
-    case 'packed':
+    case 'herd':
       return 5;
       break;
   }
