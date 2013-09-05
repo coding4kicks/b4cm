@@ -37,16 +37,18 @@ angular.module('b4cmApp')
         ratingScore = $scope.spot.rating_count / $scope.spot.review_count;
       }
       $scope.stars = _calculateStars(ratingScore);
-      if (typeof $scope.spot.reviews === 'undefined') {$scope.spot.reviews = {'length': 0};}
       var reviewsDisplayedCount = 0;
-      for (var review in $scope.spot.reviews) {
-        // Set defualt pic
-        if (!$scope.spot.reviews[review].author.pic) {
-          $scope.spot.reviews[review].author.pic = '../images/default-author-pic.png';
+      if (typeof $scope.spot.reviews !== 'undefined') {
+        for (var review in $scope.spot.reviews) {
+          // Set defualt pic
+          if (!$scope.spot.reviews[review].author.pic) {
+            $scope.spot.reviews[review].author.pic = '../images/default-author-pic.png';
+          }
+          $scope.spot.reviews[review].stars = _calculateStars($scope.spot.reviews[review].rating.label);
+          reviewsDisplayedCount = reviewsDisplayedCount + 1;
         }
-        $scope.spot.reviews[review].stars = _calculateStars($scope.spot.reviews[review].rating.label);
-        reviewsDisplayedCount = reviewsDisplayedCount + 1;
       }
+      else {$scope.spot.reviews = {'length': 0};}
       $scope.reviewsDisplayedCount = reviewsDisplayedCount;
       
       // If no reviews to show, display the "Be the first" tagline
