@@ -16,13 +16,14 @@ angular.module('b4cmApp')
         cacheList = [],
         SPOTS_PER_PAGE = 10,
         CACHE_SIZE = SPOTS_PER_PAGE * 1, // implement cache of next page results later (at end of function)
-        hour = 60 * 60 * 1000,
+        HOUR = 60 * 60 * 1000,
+        // Create a timeinfo object for each of the five crowdwatch boxes
         current_date = new Date(),
         current_time = _timeInfo(current_date),
-        plus1_time = _timeInfo(new Date(current_date.getTime() + 1 * hour)),
-        plus2_time = _timeInfo(new Date(current_date.getTime() + 2 * hour)),
-        plus3_time = _timeInfo(new Date(current_date.getTime() + 3 * hour)),
-        plus4_time = _timeInfo(new Date(current_date.getTime() + 4 * hour)),
+        plus1_time = _timeInfo(new Date(current_date.getTime() + 1 * HOUR)),
+        plus2_time = _timeInfo(new Date(current_date.getTime() + 2 * HOUR)),
+        plus3_time = _timeInfo(new Date(current_date.getTime() + 3 * HOUR)),
+        plus4_time = _timeInfo(new Date(current_date.getTime() + 4 * HOUR)),
         times = [current_time, plus1_time, plus2_time, plus3_time, plus4_time];
 
     $scope.spots = [];
@@ -34,7 +35,7 @@ angular.module('b4cmApp')
     $scope.plus2_time = plus2_time.getTimeLabel();
     $scope.plus4_time = plus4_time.getTimeLabel();
 
-    // Google map defaults
+    // Google map defaults - Otherwise 3rd party plugin breaks
     $scope.isMapElementHidden = true;
     $scope.centerProperty = {
       'latitude': 37.7833,
@@ -48,6 +49,8 @@ angular.module('b4cmApp')
     };
     $scope.zoomProperty = 12;
   
+    // Retrieve the listings for the specified search location, 
+    // TODO: filter by spot type in listings service
     listings.get(searchLocation, spotType).then(function(listingInfo) {
       var idList = listingInfo.idList;
       $scope.listings.location = {}
@@ -56,10 +59,11 @@ angular.module('b4cmApp')
       $scope.numReturns = idList.length;
       if (idList.length === 0) {$scope.noSpots = true;}
       else {
-        // Get and format spot info for each spot in returned id list.
+
+        // Get and format spot info for each spot in returned id list,
+        // up to the number of spots per page to display.
         for (var i = 0; i < SPOTS_PER_PAGE; i++) {
-          // Break if not a full set of results
-          if (i === idList.length) {break;}
+          if (i === idList.length) {break;} // Break if not a full set of results
           var spotId = idList[i];
           spot.get(spotId).then(function(spotObj) {
             var current_status = _getStatus(spotObj, current_time),
@@ -75,7 +79,6 @@ angular.module('b4cmApp')
             if ($scope.spots.length + 1 === SPOTS_PER_PAGE ||
                 $scope.spots.length === idList.length) {
               // Initialize google maps parameters for listings page when all data is ready
-              // TODO: fix borken google maps
               _initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots, 12);
             }
           });
