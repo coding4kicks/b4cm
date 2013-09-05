@@ -8,7 +8,7 @@ angular.module('b4cmApp')
    *
    * @description Adds a Crowd Watch report to a Spot's crowdfactor.
    */ 
-  .controller('AddWatchCtrl', function ($scope, $routeParams, spot) {
+  .controller('AddWatchCtrl', function ($scope, $routeParams, spot, user) {
 
     var watch = {},
         current_date = new Date(),
@@ -51,6 +51,8 @@ angular.module('b4cmApp')
       watch.cf_status = $scope.cf_status;
       watch.time = _calculateWatchTimes(start, stop);
       spot.addWatch(watch, $routeParams.spotId);
+      // TODO: implement
+      user.incrementWatchCount();
     };
 
   });

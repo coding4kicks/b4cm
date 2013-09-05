@@ -74,6 +74,18 @@ angular.module('b4cmApp')
         userRef.child('reviews').push().set(newReview);
         return false
       },
+
+      /**
+       * @name incrementWatchCount
+       * @funtion
+       *
+       * @description Adds 1 to the User's total watch count
+       * @returns {object} TODO: The spot id if successful otherwise an error code.
+       */ 
+      incrementWatchCount: function () {
+        //console.log(spotId, newWatch);
+        return false;
+      },
         
       /**
        * @name signUp
