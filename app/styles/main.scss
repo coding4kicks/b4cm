@@ -443,6 +443,13 @@ input[type='text']:focus {
 #main-page {
   text-align: center;
 
+  // Hacky
+  .crowd-factor {
+    .timeslot {
+      margin-left: -32px;
+    }
+  }
+
   .spot-types {
     @include page-container;
     background-color: $acc-light;
