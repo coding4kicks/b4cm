@@ -1177,3 +1177,12 @@ input[type='text']:focus {
   }
 }
 
+// TEMP INTRO
+.modal-body {
+  .help-item {
+      font-weight: bold;
+    }
+  .data-item {
+      font-style: italic;
+  }
+}
