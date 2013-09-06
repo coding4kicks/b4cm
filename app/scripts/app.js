@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload'])
+angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload', 'ui.bootstrap.modal'])
 
   .config(function ($routeProvider) {
 

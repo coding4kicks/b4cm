@@ -15,6 +15,7 @@ files = [
   'app/components/FirebaseGeo.js',
   'app/components/angular-google-maps.js',
   'app/components/imageupload.js',
+  'app/components/modal.js',
   'app/scripts/*.js',
   'app/scripts/**/*.js',
   'test/mock/**/*.js',
