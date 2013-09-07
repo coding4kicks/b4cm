@@ -18,7 +18,7 @@ angular.module('b4cmApp')
    *        'joinDate': {Date} User's datetime at join,
    *        'gravatar': {string} Url to picture location: gravatar, fb, twit.
    *        'reviews': {array} Users reviews,
-   *        'watchCount': {int} Number of watches performed,
+   *        'watch_count': {int} Number of watches performed,
    *        'watchLocations': {array} Places user has performed a crowdwatch
    *    }
    */ 
@@ -99,7 +99,7 @@ angular.module('b4cmApp')
         var id = userObj.provider + '/' + userObj.id,
             userRef = new Firebase(fbUrl + 'users/' + id),
             newCount = userObj.watch_count + 1;
-        userRef.child('watchCount').set(newCount);
+        userRef.child('watch_count').set(newCount);
         return false;
       },
         

@@ -9,7 +9,7 @@ angular.module('b4cmApp')
    * @description Allows a user to add a review.  The data is denormalized.  
    *              The review is saved both to its associated spot and to the user's data.
    */ 
-  .controller('AddReviewCtrl', function ($scope, $routeParams, spot, user) {
+  .controller('AddReviewCtrl', function ($scope, $routeParams, $location, spot, user, util) {
 
     var author = {},
         review = {},
@@ -39,7 +39,7 @@ angular.module('b4cmApp')
       if (user.loggedIn()){
         var curUser = user.getInfo();
         author.id = curUser.provider + '/' + curUser.id,
-        author.name = curUser.displayName, 
+        author.name = curUser.display_name, 
         author.pic = curUser.gravatar
         review.author = author;
         review.date = new Date();
@@ -56,6 +56,9 @@ angular.module('b4cmApp')
           if ($scope.social) {review.type.social = 1};
           spot.addReview(review, $routeParams.spotId, additionalInfo);
           user.addReview(review, $routeParams.spotId)
+          // Redirect back to spot
+          $location.path("/spot/" + $routeParams.spotId);
+          util.safeApply($scope);
         }
         else {alert("Must enter at least 1 type and a writeup.");}
       }
