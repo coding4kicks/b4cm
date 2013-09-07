@@ -156,8 +156,8 @@ angular.module('b4cmApp')
         }
         else {console.log('provider ', provider);auth.login(provider);}
         // Redirect to home (TODO: redirect to prior page.)
-        //$location.path("/welcome");
-        //util.safeApply($rootScope);
+        $location.path("/welcome");
+        util.safeApply($rootScope);
         // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
         //if(!$scope.$$phase) { $scope.$apply(); }
         
