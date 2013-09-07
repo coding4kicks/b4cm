@@ -59,7 +59,7 @@ angular.module('b4cmApp')
       watch.time = _calculateWatchTimes(start, stop, spotObj);
       if (typeof watch.cf_status === 'undefined') {alert('Please choose a crowd status.');}
       else {
-        spot.addWatch(watch, $routeParams.spotId);
+        spot.addWatch(watch, $routeParams.spotId, spotObj.crowdfactor.watch_count);
         user.incrementWatchCount();
         alert('Crowd watch added.');
 

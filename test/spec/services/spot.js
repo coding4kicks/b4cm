@@ -71,7 +71,7 @@ describe('Service: spot', function () {
   });
 
   it('addWatch should return false', function () {
-    expect(spot.addWatch({'cf_status': 'herd', 'time': [{'day':'wednesday', 'hour':'8pm', 'count': 5, 'score': 21}]})).toBe(false);
+    expect(spot.addWatch({'cf_status': 'herd', 'time': [{'day':'wednesday', 'hour':'8pm', 'count': 5, 'score': 21}]}, 123, 2)).toBe(false);
   });
   
   it('create should correctly add hours', inject(function ($rootScope) {

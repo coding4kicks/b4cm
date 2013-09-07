@@ -74,17 +74,19 @@ angular.module('b4cmApp')
        *                 Properties: start and stop times of watch event, a rating.
        * @returns {object} The spot id if successful otherwise an error code.
        */ 
-      addWatch: function (newWatch, spotId) {
+      addWatch: function (newWatch, spotId, currentCount) {
         console.log(spotId, newWatch);
-        var crowdfactorRef = new Firebase(fbUrl + 'spots/' + spotId + '/crowdfactor/day/'),
-            mostRecentRef = new Firebase(fbUrl + 'spots/' + spotId + '/crowdfactor/'),
+        var dayRef = new Firebase(fbUrl + 'spots/' + spotId + '/crowdfactor/day/'),
+            crowdFactorRef = new Firebase(fbUrl + 'spots/' + spotId + '/crowdfactor/'),
             score = _statusToScore(newWatch.cf_status);
 
+        crowdFactorRef.child('watch_count').set(currentCount + 1);
+
         newWatch.time.forEach(function(time) {
-          crowdfactorRef.child(time.day).child(time.hour).child('count').set(time.count + 1);
-          crowdfactorRef.child(time.day).child(time.hour).child('score').set(time.score + score);
-          mostRecentRef.child('most_recent').child('score').set(score);
-          mostRecentRef.child('most_recent').child('time').set((new Date()).getTime());
+          dayRef.child(time.day).child(time.hour).child('count').set(time.count + 1);
+          dayRef.child(time.day).child(time.hour).child('score').set(time.score + score);
+          crowdFactorRef.child('most_recent').child('score').set(score);
+          crowdFactorRef.child('most_recent').child('time').set((new Date()).getTime());
         });
         return false;
       },
