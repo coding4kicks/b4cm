@@ -8,7 +8,7 @@
 
       <div class="details-left">
         <h4>{{spot.location.address}}</h4>
-        <h4>{{spot.location.city}}, {{spot.location.state_code}} {{spot.location.postal_code}}</h4>
+        <h4 ng-cloak>{{spot.location.city}}, {{spot.location.state_code}} {{spot.location.postal_code}}</h4>
         <div class="rating">
           <div class="stars">
             <img ng-repeat="star in stars" ng-src="{{star}}">

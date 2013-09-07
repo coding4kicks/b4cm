@@ -98,7 +98,7 @@ angular.module('b4cmApp')
       incrementWatchCount: function () {
         var id = userObj.provider + '/' + userObj.id,
             userRef = new Firebase(fbUrl + 'users/' + id),
-            newCount = userObj.watchCount + 1;
+            newCount = userObj.watch_count + 1;
         userRef.child('watchCount').set(newCount);
         return false;
       },
