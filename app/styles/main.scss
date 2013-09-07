@@ -1235,7 +1235,8 @@ input[type='text']:focus {
 /* 
   Allow angular.js to be loaded in body, hiding cloaked elements until 
   templates compile.  The !important is important given that there may be 
-  other selectors that are more specific or come later and might alter display.  
+  other selectors that are more specific or come later and might alter display. 
+  http://stackoverflow.com/a/13276214 
  */
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important;
