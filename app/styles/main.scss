@@ -945,6 +945,15 @@ input[type='text']:focus {
 }
 
 /******************
+*** Welcome Page 
+*******************/
+#welcome-page {
+  background-color: $acc-light;
+  border-radius: 10px;
+  padding: 10px 0 10px 20px;
+}
+
+/******************
 *** Add Review/Watch/Spot Page 
 *******************/
 #add-review-page,
