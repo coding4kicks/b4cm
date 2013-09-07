@@ -27,7 +27,8 @@ angular.module('b4cmApp')
     var fbUrl = util.getFbUrl(),
         ref = new Firebase(fbUrl),
         usersUrl = fbUrl + 'users/',
-        userObj = null;
+        userObj = null,
+        redirectLocation = null;
 
     /**
      * Firebase Authentication
@@ -36,8 +37,8 @@ angular.module('b4cmApp')
     var auth = new FirebaseSimpleLogin(ref, function(error, user) {
       if (error) {
         // an error occurred while attempting login
+        alert('Email and password combination invalid.');
         console.log('error: ', error);
-        console.log(error);
       } else if (user) {
         // user authenticated with Firebase
         // retrieve user object from db
@@ -49,6 +50,13 @@ angular.module('b4cmApp')
           userObj = data.val();
           // Need broadcast to update user name in nav bar
           $rootScope.$broadcast('login', userObj.display_name);
+
+          // redirect
+          if (redirectLocation) {
+            console.log('redirecting');
+            $location.path("/" + redirectLocation);
+            util.safeApply($rootScope);
+          }
 
         });
       } else {
@@ -115,21 +123,21 @@ angular.module('b4cmApp')
             console.log('User Id: ' + user.id + ', Email: ' + user.email);
             userRef.set(newUser);
             userObj = newUser;
-
+            redirectLocation = 'welcome';
             auth.login('password', {
               'email': email,
               'password': password,
               'rememberMe': true
             });
-
-            console.log('redirecting');
-            $location.path("/welcome");
-            util.safeApply($rootScope);
+            //console.log('redirecting');
+            //$location.path("/welcome");
+            //util.safeApply($rootScope);
             // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
             //if(!$scope.$$phase) { $scope.$apply(); }
 
           }
           else {
+            alert('Unable to create user - Please report: ', error);
             console.log(error);
           }
         });
@@ -148,6 +156,7 @@ angular.module('b4cmApp')
         console.log(provider);
         if (provider === 'email') {
           console.log('email provider');
+          redirectLocation = 'welcome';
           auth.login('password', {
             'email': email,
             'password': password,
@@ -155,11 +164,13 @@ angular.module('b4cmApp')
           });
         }
         else {console.log('provider ', provider);auth.login(provider);}
-        // Redirect to home (TODO: redirect to prior page.)
-        $location.path("/welcome");
-        util.safeApply($rootScope);
-        // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
-        //if(!$scope.$$phase) { $scope.$apply(); }
+        //if (typeof auth.id !== 'undefined') {
+          // Redirect to home (TODO: redirect to prior page.)
+          //$location.path("/welcome");
+          //util.safeApply($rootScope);
+          // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
+          //if(!$scope.$$phase) { $scope.$apply(); }
+        //}
         
       },
 
