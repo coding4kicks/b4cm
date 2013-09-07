@@ -8,7 +8,7 @@ angular.module('b4cmApp')
    *
    * @description Adds a new spot to the database.
    */ 
-  .controller('AddSpotCtrl', function ($scope, $location, spot) {
+  .controller('AddSpotCtrl', function ($scope, $location, spot, util) {
 
     var newSpot = {};
     $scope.business_hours = []; // Business's hours of operation
@@ -120,9 +120,7 @@ angular.module('b4cmApp')
           // Handle success or error
           // Redirect to added spot
           $location.path("/spot/" + spotId);
-          // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
-          if(!$scope.$$phase) { $scope.$apply(); }
-
+          util.safeApply($scope);
         });
       }
     };
