@@ -22,7 +22,7 @@ angular.module('b4cmApp')
    *        'watchLocations': {array} Places user has performed a crowdwatch
    *    }
    */ 
-  .factory('user', function ($rootScope, $q, $timeout, util) {
+  .factory('user', function ($rootScope, $q, $timeout, $location, util) {
 
     var fbUrl = util.getFbUrl(),
         ref = new Firebase(fbUrl),
@@ -47,6 +47,11 @@ angular.module('b4cmApp')
           userObj = data.val();
           // Need broadcast to update user name in nav bar
           $rootScope.$broadcast('login', userObj.displayName);
+          // Redirect to home (TODO: redirect to prior page.)
+          $location.path("/");
+          // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
+          if(!$scope.$$phase) { $scope.$apply(); }
+
         });
       } else {
         // user is logged out
@@ -112,6 +117,9 @@ angular.module('b4cmApp')
             console.log('User Id: ' + user.id + ', Email: ' + user.email);
             userRef.set(newUser);
             userObj = newUser;
+
+            // log the user in
+            logIn('password', email, password);
           }
           else {
             console.log(error);
