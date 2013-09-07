@@ -15,7 +15,9 @@ angular.module('b4cmApp')
         spotList = [],
         cacheList = [],
         SPOTS_PER_PAGE = 10,
-        CACHE_SIZE = SPOTS_PER_PAGE * 1, // implement cache of next page results later (at end of function)
+        // implement cache of next page results later (at end of function)
+        // currently not necessary since retrieving all results for area
+        CACHE_SIZE = SPOTS_PER_PAGE * 1, 
         HOUR = 60 * 60 * 1000,
         // Create a timeinfo object for each of the five crowdwatch boxes
         current_date = new Date(),
@@ -48,7 +50,6 @@ angular.module('b4cmApp')
       }
     };
     $scope.zoomProperty = 12;
-  
     // Retrieve the listings for the specified search location, 
     // TODO: filter by spot type in listings service
     listings.get(searchLocation, spotType).then(function(listingInfo) {
@@ -66,16 +67,21 @@ angular.module('b4cmApp')
           if (i === idList.length) {break;} // Break if not a full set of results
           var spotId = idList[i];
           spot.get(spotId).then(function(spotObj) {
-            var current_status = _getStatus(spotObj, current_time),
-                score = 0;
-            if (spotObj.review_count !== 0) {
-              score = spotObj.rating_count / spotObj.review_count;
+            // Basic filtering: filter if no recommendations of this type.
+            // Later should filter based on a percentage
+            // Also, total is all returned spots for the area, not of this type.
+            if (spotObj.type[spotType] > 0) {
+              var current_status = _getStatus(spotObj, current_time),
+                  score = 0;
+              if (spotObj.review_count !== 0) {
+                score = spotObj.rating_count / spotObj.review_count;
+              }
+              spotObj.stars = _calculateStars(score);
+              spotObj.cf_status_label = current_status.label;
+              spotObj.cf_status_time = current_status.time;
+              spotObj.cf_status_boxes = _calculateBoxLabels(spotObj, times)
+              $scope.spots.push(spotObj);
             }
-            spotObj.stars = _calculateStars(score);
-            spotObj.cf_status_label = current_status.label;
-            spotObj.cf_status_time = current_status.time;
-            spotObj.cf_status_boxes = _calculateBoxLabels(spotObj, times)
-            $scope.spots.push(spotObj);
             if ($scope.spots.length + 1 === SPOTS_PER_PAGE ||
                 $scope.spots.length === idList.length) {
               // Initialize google maps parameters for listings page when all data is ready
