@@ -29,8 +29,8 @@ angular.module('b4cmApp')
       $log.info('Modal dismissed at: ' + new Date());
     });
   };
-
-  $scope.open();
+  // Cancel temp intro: just use welcome page.
+  //$scope.open();
 
   // try to make sure addthis is showing
   $timeout(function() {addthis.toolbox()}, 1000);
