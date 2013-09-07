@@ -66,7 +66,7 @@ angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload', 'ui.bootstr
       });
 
   })
-  
+
   .run(function ($rootScope, $location, user, util) {
 
     // Spot types for search
@@ -95,11 +95,11 @@ angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload', 'ui.bootstr
      * @function
      *
      * @description Redirects to add-watch-page.
-     */ 
+     */
     $rootScope.searchListings = function(spotType, searchLocation) {
       //default search - switch to context aware search based upon location or url
-      if (typeof searchLocation === 'undefined') {searchLocation = "Palo Alto, CA";}
-      $location.path("/listings/" + spotType.toLowerCase() + "/" + encodeURIComponent(searchLocation));
+      if (typeof searchLocation === 'undefined') {searchLocation = 'Palo Alto, CA';}
+      $location.path('/listings/' + spotType.toLowerCase() + '/' + encodeURIComponent(searchLocation));
       // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
       if(!$rootScope.$$phase) { $rootScope.$apply(); }
     };
@@ -119,14 +119,15 @@ angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload', 'ui.bootstr
  *              URL points to either full, half or empty star.
  * @param {float} rating Review's star rating.
  * @returns {array} Array of URLs to star pictures.
- */ 
+ */
 function _calculateStars(rating) {
   var stars = [];
   for (var i = 1; i <= 5; i++) {
-    if (i < rating) {stars.push("images/star-icon.png")}
+    if (i < rating) {stars.push('images/star-icon.png');}
     else if (0.25 < (i - rating) && (i - rating) < 0.75) {
-      stars.push("images/star-icon-half.png")}
-    else {stars.push("images/star-icon-empty.png")}
+      stars.push('images/star-icon-half.png');
+    }
+    else {stars.push('images/star-icon-empty.png')}
   }
   return stars;
 }
@@ -138,9 +139,9 @@ function _calculateStars(rating) {
  * @description Calculates crowdfactor status based upon crowd score.
  * @param {float} score Crowd score from 1-5.
  * @returns {string} Crowd status (closed, empty, few, average, crowded, or herd).
- */ 
+ */
 function _calculateStatus(score) {
-  var cf_status = "";
+  var cf_status = '';
   if (score < 0) {cf_status = 'closed'}
   else if (score < 0.5) {cf_status = 'none';}
   else if (score < 1.5) {cf_status = 'empty';} 
