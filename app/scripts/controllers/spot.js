@@ -8,7 +8,7 @@ angular.module('b4cmApp')
    *
    * @description Retrieves and calculates display information for a requested spot (aka. business).
    */ 
-  .controller('SpotCtrl', function ($scope, $location, $timeout, $routeParams, angularFire, spot, user) {
+  .controller('SpotCtrl', function ($scope, $location, $timeout, $routeParams, angularFire, spot, user, util) {
 
     // Google map defaults
     $scope.isMapElementHidden = true;
@@ -84,11 +84,12 @@ angular.module('b4cmApp')
     $scope.addWatch = function() {
       if (user.loggedIn()){
         $location.path("/addWatch/" + $scope.spot.id);
-        // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
-        if(!$scope.$$phase) { $scope.$apply(); }
+        util.safeApply($scope);
       }
       else {
-        alert("Must be logged in to add a review");
+        alert("Must be logged in to add a watch");
+        $location.path("/signin/");
+        util.safeApply($scope);
       }
     };
       
@@ -101,11 +102,12 @@ angular.module('b4cmApp')
     $scope.addReview = function() {
       if (user.loggedIn()){
         $location.path("/addReview/" + $scope.spot.id);
-        // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
-        if(!$scope.$$phase) { $scope.$apply(); }
+        util.safeApply($scope);
       }
       else {
-        alert("Must be logged in to add a review");
+        alert("Must be logged in to add a review.");
+        $location.path("/signin/");
+        util.safeApply($scope);
       }
     };
   });
