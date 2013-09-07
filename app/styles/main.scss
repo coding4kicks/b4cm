@@ -950,10 +950,17 @@ input[type='text']:focus {
 #welcome-page {
   background-color: $acc-light;
   border-radius: 10px;
-  padding: 10px 0 10px 20px;
+  padding: 40px;
 
   .sign-in-notification {
     color: $comp2-dark;
+  }
+
+  .help-item {
+      font-weight: bold;
+    }
+  .data-item {
+      font-style: italic;
   }
 }
 
