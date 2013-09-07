@@ -51,11 +51,12 @@ angular.module('b4cmApp')
           // Need broadcast to update user name in nav bar
           $rootScope.$broadcast('login', userObj.display_name);
 
-          // redirect
+          // redirect only from signup and signin
           if (redirectLocation) {
             console.log('redirecting');
             $location.path("/" + redirectLocation);
             util.safeApply($rootScope);
+            redirectLocation = null;
           }
 
         });
