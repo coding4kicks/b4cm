@@ -36,22 +36,19 @@ angular.module('b4cmApp')
     var auth = new FirebaseSimpleLogin(ref, function(error, user) {
       if (error) {
         // an error occurred while attempting login
+        console.log('error: ', error);
         console.log(error);
       } else if (user) {
         // user authenticated with Firebase
         // retrieve user object from db
+        console.log('user authenticated');
         var userUrl = usersUrl + user.provider + '/' + user.id,
             userRef = new Firebase(userUrl);
         userRef.on('value', function(data) {
           // Need to handle data.val() === null
           userObj = data.val();
           // Need broadcast to update user name in nav bar
-          $rootScope.$broadcast('login', userObj.displayName);
-          // Redirect to home (TODO: redirect to prior page.)
-          $location.path("/");
-          util.safeApply($rootScope);
-          // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
-          //if(!$scope.$$phase) { $scope.$apply(); }
+          $rootScope.$broadcast('login', userObj.display_name);
 
         });
       } else {
@@ -119,8 +116,18 @@ angular.module('b4cmApp')
             userRef.set(newUser);
             userObj = newUser;
 
-            // log the user in
-            logIn('password', email, password);
+            auth.login('password', {
+              'email': email,
+              'password': password,
+              'rememberMe': true
+            });
+
+            console.log('redirecting');
+            $location.path("/welcome");
+            util.safeApply($rootScope);
+            // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
+            //if(!$scope.$$phase) { $scope.$apply(); }
+
           }
           else {
             console.log(error);
@@ -148,6 +155,12 @@ angular.module('b4cmApp')
           });
         }
         else {console.log('provider ', provider);auth.login(provider);}
+        // Redirect to home (TODO: redirect to prior page.)
+        //$location.path("/welcome");
+        //util.safeApply($rootScope);
+        // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
+        //if(!$scope.$$phase) { $scope.$apply(); }
+        
       },
 
       /**
