@@ -112,6 +112,9 @@ angular.module('b4cmApp')
        *              These are two separate actions.  Firebase auth contains limited data.
        *              Additional attributes such as gravatar, reviews, etc. need to be 
        *              stored in an additional Firebase data structure.
+       *              After creating the user, they are automatically logged on and
+       *              redirected to a welcome page.  TODO: Currently there is no email
+       *              verification - need external system.
        */ 
       signUp: function (email, password, name) {
         auth.createUser(email, password, function(error, user) {
@@ -129,11 +132,6 @@ angular.module('b4cmApp')
               'password': password,
               'rememberMe': true
             });
-            //console.log('redirecting');
-            //$location.path("/welcome");
-            //util.safeApply($rootScope);
-            // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
-            //if(!$scope.$$phase) { $scope.$apply(); }
 
           }
           else {
@@ -164,13 +162,6 @@ angular.module('b4cmApp')
           });
         }
         else {console.log('provider ', provider);auth.login(provider);}
-        //if (typeof auth.id !== 'undefined') {
-          // Redirect to home (TODO: redirect to prior page.)
-          //$location.path("/welcome");
-          //util.safeApply($rootScope);
-          // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
-          //if(!$scope.$$phase) { $scope.$apply(); }
-        //}
         
       },
 
