@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('b4cmApp')
-  .controller('MainCtrl', function ($scope, $rootScope, $location, $modal) {
+  .controller('MainCtrl', function ($scope, $rootScope, $location, $timeout, $modal) {
 
     $scope.addWatch = function() {
       $location.path("/addWatch");
@@ -31,6 +31,9 @@ angular.module('b4cmApp')
   };
 
   $scope.open();
+
+  // try to make sure addthis is showing
+  $timeout(function() {addthis.toolbox()}, 1000);
 
   });
 
