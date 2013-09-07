@@ -49,8 +49,9 @@ angular.module('b4cmApp')
           $rootScope.$broadcast('login', userObj.displayName);
           // Redirect to home (TODO: redirect to prior page.)
           $location.path("/");
+          util.safeApply($rootScope);
           // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
-          if(!$scope.$$phase) { $scope.$apply(); }
+          //if(!$scope.$$phase) { $scope.$apply(); }
 
         });
       } else {
