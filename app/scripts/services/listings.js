@@ -12,51 +12,6 @@ angular.module('b4cmApp')
                               'latitude': 37.447365, 
                               'longitude': -122.160248
                             };
-    fakeListingsStudy.type = 'Study';
-    fakeListingsStudy.spots = [
-      {'geohash1': 'fakeSpot1'},
-      {'geohash2': 'fakeSpot2'},
-      {'geohash3': 'fakeSpot3'}
-    ];
-
-    var fakeListingsSocial = {};
-    fakeListingsSocial.location = { 'city': 'Palo Alto',
-                              'state_code': 'CA',
-                              'latitude': 37.447365, 
-                              'longitude': -122.160248
-                            };
-    fakeListingsSocial.type = 'Social';
-    fakeListingsSocial.spots = [
-      {'geohash1': 'fakeSpot1'},
-      {'geohash2': 'fakeSpot2'},
-      {'geohash3': 'fakeSpot3'}
-    ];
-
-    var fakeListingsFood = {};
-    fakeListingsFood.location = { 'city': 'Palo Alto',
-                              'state_code': 'CA',
-                              'latitude': 37.447365, 
-                              'longitude': -122.160248
-                            };
-    fakeListingsFood.type = 'Food';
-    fakeListingsFood.spots = [
-      {'geohash1': 'fakeSpot1'},
-      {'geohash2': 'fakeSpot2'},
-      {'geohash3': 'fakeSpot3'}
-    ];
-
-    var fakeListingsAll = {};
-    fakeListingsAll.location = { 'city': 'Palo Alto',
-                              'state_code': 'CA',
-                              'latitude': 37.447365, 
-                              'longitude': -122.160248
-                            };
-    fakeListingsAll.type = 'All';
-    fakeListingsAll.spots = [
-      {'geohash1': 'fakeSpot1'},
-      {'geohash2': 'fakeSpot2'},
-      {'geohash3': 'fakeSpot3'}
-    ];
 
     // Public API here
     return {
