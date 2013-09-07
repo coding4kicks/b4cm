@@ -1102,6 +1102,21 @@ input[type='text']:focus {
 }
 
 /******************
+*** About Page 
+*******************/
+
+#about-page,
+#privacy-page,
+#terms-page,
+#faq-page,
+#advertise-page,
+#contact-page{
+  background-color: $acc-light;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+/******************
 *** Crowd Factor 
 *******************/
 .crowd-factor {
