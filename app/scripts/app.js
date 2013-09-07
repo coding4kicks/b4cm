@@ -61,6 +61,10 @@ angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload', 'ui.bootstr
         templateUrl: 'views/signin.html',
         controller: 'SigninCtrl'
       })
+      .when('/welcome', {
+        templateUrl: 'views/welcome.html',
+        controller: 'WelcomeCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
