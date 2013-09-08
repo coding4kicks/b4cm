@@ -59,11 +59,16 @@ hr {
   width: 930px;
 }
 
-button {
+button, .btn {
   background-color: $comp1-dark !important;
   background-image: linear-gradient(to bottom, $comp1-light, $comp1-dark) !important;
   color: $high-bright !important;
   margin: -10px 0 0 10px;
+
+  background-image: -webkit-linear-gradient(top, $comp1-light, $comp1-dark) !important;
+  background-image: -o-linear-gradient(top,$comp1-light, $comp1-dark) !important;
+  // looks cool
+  // background-image: -webkit-linear-gradient(top, black, #e6e6e6) !important;
 }
 
 a {
