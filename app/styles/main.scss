@@ -935,6 +935,10 @@ input[type='text']:focus {
     div {
       text-align: center;
     }
+
+    .login-method:hover {
+      cursor: pointer;
+    }
   }
 }
 
