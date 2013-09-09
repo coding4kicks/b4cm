@@ -171,13 +171,15 @@ function _getStatus(spot, time) {
   var cf_status = {},
       time_delta = (time.getTime() - spot.crowdfactor.most_recent.time) / 60 / 1000,
       CFLABELS = ['Empty', 'Few', 'Average', 'Crowded', 'Herd'],
-      cf_status_label, cf_status_time;
+      cf_status_label, cf_status_time, cf_status_comment;
   if (time_delta < 60) {
     cf_status_time = Math.round(time_delta) + ' minutes ago';
     cf_status_label = CFLABELS[spot.crowdfactor.most_recent.score - 1];
+    cf_status_comment = spot.crowdfactor.most_recent.comment;
   }
   else {
     cf_status_time = 'historical';
+    cf_status_comment = null;
     var day = spot.crowdfactor.day[time.getDay().toLowerCase()],
         count = day[time.getTimeLabel()].count,
         score = day[time.getTimeLabel()].score;    
@@ -191,6 +193,9 @@ function _getStatus(spot, time) {
   }
   cf_status.label = cf_status_label;
   cf_status.time = cf_status_time;
+  cf_status.comment = cf_status_comment;
+  console.log('cf_status');
+  console.log(cf_status);
   return cf_status;
 }
 
