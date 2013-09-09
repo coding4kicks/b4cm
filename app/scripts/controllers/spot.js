@@ -29,6 +29,7 @@ angular.module('b4cmApp')
 
       $scope.spot = spot_data;
       $scope.watch_count = $scope.spot.crowdfactor.watch_count;
+      $scope.spot.yelpLink = "http://www.yelp.com/biz/" + $scope.spot.yelp_id;
 
       // Calculate stars overall, stars for each review,
       // and the total number of reviews being displayed and reviews returned.

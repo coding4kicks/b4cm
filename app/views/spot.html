@@ -15,13 +15,16 @@
           </div>
           <div class="review-count">{{spot.review_count}} Reviews</div>
         </div>
+        <div>
+          <a ng-href="{{spot.yelpLink}}"><h4>Checkout Yelp reviews:</h4></a>
+        </div>
       </div>
 
       <div class="details-right">
         <div class="current-status">
           <h3>Current Status: <span class="status {{current_cflabel | lowercase}}">{{current_cflabel}}</span></h3>
           <h5>({{current_status}})</h5>
-          <p>comment: {{current_comment}}</p>
+          <p><span class="watch-comment-header">comment</span>: {{current_comment}}</p>
         </div>
         <div class="spot-types">
           <div class="type" ng-repeat="type in types">
