@@ -23,7 +23,7 @@ angular.module('b4cmApp')
    *        'business_hours': {array} Details of the spots hours of operation
    *    }
    */ 
-  .factory('spot', function ($q, $timeout, $rootScope, geolocation, listings, util) {
+  .factory('spot', function ($q, $timeout, $rootScope, geolocation, listings, user, util) {
 
     // Initialize cache to 20
     var cache = spotCache(20),
@@ -57,6 +57,13 @@ angular.module('b4cmApp')
                           'study': parseInt(additionalInfo.type.study) + newReview.type.study,
                           'social': parseInt(additionalInfo.type.social) + newReview.type.social
                          };
+        if (additionalInfo.review_count === 0) {
+          var user_info = {};
+          user_info = newReview.author;
+          user_info.date = newReview.date.getTime();
+          console.log(user_info);
+          spotRef.child('first_review').set(user_info); 
+        }
         spotRef.child('type').set(typeUpdate);
         revRef.set(newReview);
         return false
