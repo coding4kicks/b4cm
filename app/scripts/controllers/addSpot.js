@@ -8,7 +8,7 @@ angular.module('b4cmApp')
    *
    * @description Adds a new spot to the database.
    */ 
-  .controller('AddSpotCtrl', function ($scope, $location, spot, util) {
+  .controller('AddSpotCtrl', function ($scope, $location, spot, util, user) {
 
     var newSpot = {};
     $scope.business_hours = []; // Business's hours of operation
@@ -88,7 +88,8 @@ angular.module('b4cmApp')
       if (errors.length > 0) {_handleFormErrors($scope, errors);}
 
       // Add the spot
-      else {
+      else if (user.loggedIn()){
+        var curUser = user.getInfo();
         newSpot.name = $scope.name;
         newSpot.yelp_id = $scope.yelp_id;
         newSpot.location = {};
@@ -122,6 +123,11 @@ angular.module('b4cmApp')
           $location.path("/spot/" + spotId);
           util.safeApply($scope);
         });
+      }
+      else {
+        alert('Must be signed in to add a spot');
+        $location.path("/signin");
+        util.safeApply($scope);
       }
     };
 

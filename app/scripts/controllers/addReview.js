@@ -62,6 +62,10 @@ angular.module('b4cmApp')
         }
         else {alert("Must enter at least 1 type and a writeup.");}
       }
-      else {alert("Must be logged in to add a review");}
+      else {
+        alert("Must be logged in to add a review");
+        $location.path("/signin");
+        util.safeApply($scope);
+      }
     };
   });
