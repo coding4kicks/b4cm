@@ -175,14 +175,16 @@ function _getStatus(spot, time) {
     cf_status.time = Math.round(time_delta) + ' minutes ago';
     cf_status.label = CFLABELS[spot.crowdfactor.most_recent.score - 1];
     cf_status.comment = '"' + spot.crowdfactor.most_recent.comment + '"';
+    cf_status.user = spot.crowdfactor.most_recent.user;
   }
   else {
     cf_status.time = 'historical';
     cf_status.comment = 'N/A';
+    cf_status.user = '';
     var day = spot.crowdfactor.day[time.getDay().toLowerCase()],
         count = day[time.getTimeLabel()].count,
         score = day[time.getTimeLabel()].score;    
-    if (count === -1){ cf_status_label = 'Closed'; }
+    if (count === -1){ cf_status.label = 'Closed'; }
     else if (count === 0){ 
       cf_status.label = '';
       cf_status.time = 'No watches yet: be the first'}

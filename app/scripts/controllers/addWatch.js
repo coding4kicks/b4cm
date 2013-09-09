@@ -58,7 +58,7 @@ angular.module('b4cmApp')
       watch.cf_status = $scope.cf_status;
       watch.time = _calculateWatchTimes(start, stop, spotObj);
       watch.comment = $scope.watchComment;
-      watch.user = user.getInfo().id;
+      watch.user = user.getInfo().display_name;
       if (typeof watch.cf_status === 'undefined') {alert('Please choose a crowd status.');}
       else {
         spot.addWatch(watch, $routeParams.spotId, spotObj.crowdfactor.watch_count);
