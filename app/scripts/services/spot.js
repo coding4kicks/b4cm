@@ -181,6 +181,8 @@ angular.module('b4cmApp')
             //$rootScope.$apply(deferred.resolve(data.val()));
             util.safeApply($rootScope, deferred.resolve(data.val()));
             cache.add(data.val());
+            // TODO: Need broadcast to update current status / comment
+            // $rootScope.$broadcast('most_recent', data.val().crowdfactor.most_recent);
           });
         }
         return deferred.promise;
