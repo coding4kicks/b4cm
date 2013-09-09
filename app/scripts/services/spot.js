@@ -150,7 +150,8 @@ angular.module('b4cmApp')
           deferred.resolve(newSpot.id);
 
         }, function(reason) {
-          conosle.log('failed for ' + reason);
+          if (reason === 'ZERO_RESULTS') {alert('Unable to geolocate address.');}
+          console.log('failed for ' + reason);
           deferred.resolve('error');
         });
 
