@@ -103,7 +103,24 @@ angular.module('b4cmApp')
         userRef.child('watch_count').set(newCount);
         return false;
       },
-        
+
+      /**
+       * @name incrementSpotCount
+       * @funtion
+       *
+       * @description Adds 1 to the User's total spot count
+       * @returns {object} TODO: The spot id if successful otherwise an error code.
+       */ 
+      incrementSpotCount: function () {
+        var id = userObj.provider + '/' + userObj.id,
+            userRef = new Firebase(fbUrl + 'users/' + id),
+            newCount = 1
+        if (typeof userObj.spot_count !== 'undefined') {
+            newCount = userObj.spot_count + 1;
+        }
+        userRef.child('spot_count').set(newCount);
+        return false;
+      },      
       /**
        * @name signUp
        * @procedure
