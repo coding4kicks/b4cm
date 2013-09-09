@@ -80,7 +80,7 @@
 
     <div class="control-group">
       <label class="control-label" for="inputHours">Hours: </label>
-      <div class="controls">
+      <div class="controls class="{{validForm.hours}}"">
         <select class="day-select" ng-model="openDay" ng-options="day.label for day in WEEKDAYS"></select>
         <select class="hour-select" ng-model="openHour" ng-options="hour.label for hour in HOURS"></select>
         <select class="meridiem-select" ng-model="openMeridiem" ng-options="meridiem.label for meridiem in MERIDIEMS"></select>

@@ -77,16 +77,17 @@ angular.module('b4cmApp')
 
       // Validate the form
       var errors = [];
-      if (typeof $scope.name === 'undefined') {errors.push('Name')};
-      if (typeof $scope.address === 'undefined') {errors.push('Address')};
-      if (typeof $scope.city === 'undefined') {errors.push('City')};
-      if (typeof $scope.postal_code === 'undefined') {errors.push('Zip')};
-      if (typeof $scope.state_code === 'undefined') {errors.push('State')};
+      if (typeof $scope.name === 'undefined') {errors.push('Name');}
+      if (typeof $scope.address === 'undefined') {errors.push('Address');}
+      if (typeof $scope.city === 'undefined') {errors.push('City');}
+      if (typeof $scope.postal_code === 'undefined') {errors.push('Zip');}
+      if (typeof $scope.state_code === 'undefined') {errors.push('State');}
       if (typeof $scope.food === 'undefined' &&
           typeof $scope.study === 'undefined' &&
-          typeof $scope.social === 'undefined') {errors.push('Type')};
+          typeof $scope.social === 'undefined') {errors.push('Type');}
+      if ($scope.business_hours.length === 0) {errors.push('Hours');}
       if (errors.length > 0) {_handleFormErrors($scope, errors);}
-
+     
       // Add the spot
       else if (user.loggedIn()){
         var curUser = user.getInfo(),
