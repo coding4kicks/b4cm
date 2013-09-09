@@ -60,7 +60,7 @@ angular.module('b4cmApp')
         if (additionalInfo.review_count === 0) {
           var user_info = {};
           user_info = newReview.author;
-          user_info.date = newReview.date.getTime();
+          user_info.date = newReview.date;
           console.log(user_info);
           spotRef.child('first_review').set(user_info); 
         }

@@ -42,7 +42,7 @@ angular.module('b4cmApp')
         author.name = curUser.display_name, 
         author.pic = curUser.gravatar
         review.author = author;
-        review.date = new Date();
+        review.date = new Date().getTime();
         review.rating = $scope.rating;
         review.writeup = $scope.writeup;
 
