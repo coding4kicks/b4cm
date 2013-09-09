@@ -174,11 +174,11 @@ function _getStatus(spot, time) {
   if (time_delta < 60) {
     cf_status.time = Math.round(time_delta) + ' minutes ago';
     cf_status.label = CFLABELS[spot.crowdfactor.most_recent.score - 1];
-    cf_status.comment = spot.crowdfactor.most_recent.comment;
+    cf_status.comment = '"' + spot.crowdfactor.most_recent.comment + '"';
   }
   else {
     cf_status.time = 'historical';
-    cf_status.comment = null;
+    cf_status.comment = 'N/A';
     var day = spot.crowdfactor.day[time.getDay().toLowerCase()],
         count = day[time.getTimeLabel()].count,
         score = day[time.getTimeLabel()].score;    
