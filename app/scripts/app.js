@@ -127,7 +127,7 @@ angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload', 'ui.bootstr
 function _calculateStars(rating) {
   var stars = [];
   for (var i = 1; i <= 5; i++) {
-    if (i < rating) {stars.push('images/star-icon.png');}
+    if (i <= rating) {stars.push('images/star-icon.png');}
     else if (0.25 < (i - rating) && (i - rating) < 0.75) {
       stars.push('images/star-icon-half.png');
     }
