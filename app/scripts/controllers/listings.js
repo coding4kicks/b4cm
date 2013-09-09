@@ -8,7 +8,7 @@ angular.module('b4cmApp')
    *
    * @description Retrieves and calculates display information for a requested listing.
    */ 
-  .controller('ListingsCtrl', function ($scope, $log, $location, $routeParams, listings, spot) {
+  .controller('ListingsCtrl', function ($scope, $log, $location, $routeParams, $timeout, listings, spot) {
 
     var spotType = $routeParams.spotType,
         searchLocation = decodeURIComponent($routeParams.searchLocation),
@@ -82,8 +82,8 @@ angular.module('b4cmApp')
               spotObj.cf_status_boxes = _calculateBoxLabels(spotObj, times)
               $scope.spots.push(spotObj);
             }
-            if ($scope.spots.length + 1 === SPOTS_PER_PAGE ||
-                $scope.spots.length === idList.length) {
+            if (i === SPOTS_PER_PAGE ||
+                i === idList.length) {
               // Initialize google maps parameters for listings page when all data is ready
               _initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots, 12);
             }
