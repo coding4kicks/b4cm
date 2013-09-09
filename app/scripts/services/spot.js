@@ -87,6 +87,7 @@ angular.module('b4cmApp')
           dayRef.child(time.day).child(time.hour).child('score').set(time.score + score);
           crowdFactorRef.child('most_recent').child('score').set(score);
           crowdFactorRef.child('most_recent').child('time').set((new Date()).getTime());
+          crowdFactorRef.child('most_recent').child('comment').set(newWatch.comment);
         });
         return false;
       },

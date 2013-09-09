@@ -57,6 +57,7 @@ angular.module('b4cmApp')
                   'meridiem': $scope.stopMeridiem.label}
       watch.cf_status = $scope.cf_status;
       watch.time = _calculateWatchTimes(start, stop, spotObj);
+      watch.comment = $scope.watchComment;
       if (typeof watch.cf_status === 'undefined') {alert('Please choose a crowd status.');}
       else {
         spot.addWatch(watch, $routeParams.spotId, spotObj.crowdfactor.watch_count);
