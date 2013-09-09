@@ -89,7 +89,13 @@ angular.module('b4cmApp')
 
       // Add the spot
       else if (user.loggedIn()){
-        var curUser = user.getInfo();
+        var curUser = user.getInfo(),
+            first_user = {};
+        first_user.id = curUser.provider + '/' + curUser.id;
+        first_user.name = curUser.display_name;
+        first_user.pic = curUser.gravatar;
+        newSpot.first_user = first_user;
+        newSpot.date_added = new Date().getTime();
         newSpot.name = $scope.name;
         newSpot.yelp_id = $scope.yelp_id;
         newSpot.location = {};
