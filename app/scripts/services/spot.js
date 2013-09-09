@@ -89,6 +89,8 @@ angular.module('b4cmApp')
 
         crowdFactorRef.child('watch_count').set(currentCount + 1);
 
+        if (typeof newWatch.comment === 'undefined') {newWatch.comment = 'No Comment';}
+
         newWatch.time.forEach(function(time) {
           dayRef.child(time.day).child(time.hour).child('count').set(time.count + 1);
           dayRef.child(time.day).child(time.hour).child('score').set(time.score + score);
