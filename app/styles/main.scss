@@ -628,6 +628,10 @@ input[type='text']:focus {
       margin: 0px;
     }
 
+    .address {
+      max-width: 290px;
+    }
+
     .rank, .info, .crowd-bar, .watchers, .box {
       display: inline-block;
     }
@@ -647,7 +651,9 @@ input[type='text']:focus {
     }
 
     .watchers {
-      margin: 0 0 0 5px;
+      display: inline-block;
+      margin: 4px 0 0 5px;
+      vertical-align: top;
     }
 
     .crowd-rank {
@@ -664,11 +670,6 @@ input[type='text']:focus {
         font-size: 10px;
         margin: 15px 0 0 2px;
       }
-    }
-
-    .watchers {
-      float: right;
-      margin: 5px 0 0 10px;
     }
 
     hr {
