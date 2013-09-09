@@ -165,37 +165,31 @@ function _calculateStatus(score) {
  *              And determine if status is historical or withing the past hour.
  * @param {object} spot The spot to determine the status for.
  * @param {object} time The time object to use to determine the status.
- * @returns {object} cf_status with label property and time property
+ * @returns {object} cf_status with label, time, and comment properties
  */ 
 function _getStatus(spot, time) {
   var cf_status = {},
       time_delta = (time.getTime() - spot.crowdfactor.most_recent.time) / 60 / 1000,
-      CFLABELS = ['Empty', 'Few', 'Average', 'Crowded', 'Herd'],
-      cf_status_label, cf_status_time, cf_status_comment;
+      CFLABELS = ['Empty', 'Few', 'Average', 'Crowded', 'Herd'];
   if (time_delta < 60) {
-    cf_status_time = Math.round(time_delta) + ' minutes ago';
-    cf_status_label = CFLABELS[spot.crowdfactor.most_recent.score - 1];
-    cf_status_comment = spot.crowdfactor.most_recent.comment;
+    cf_status.time = Math.round(time_delta) + ' minutes ago';
+    cf_status.label = CFLABELS[spot.crowdfactor.most_recent.score - 1];
+    cf_status.comment = spot.crowdfactor.most_recent.comment;
   }
   else {
-    cf_status_time = 'historical';
-    cf_status_comment = null;
+    cf_status.time = 'historical';
+    cf_status.comment = null;
     var day = spot.crowdfactor.day[time.getDay().toLowerCase()],
         count = day[time.getTimeLabel()].count,
         score = day[time.getTimeLabel()].score;    
     if (count === -1){ cf_status_label = 'Closed'; }
     else if (count === 0){ 
-      cf_status_label = '';
-      cf_status_time = 'No watches yet: be the first'}
+      cf_status.label = '';
+      cf_status.time = 'No watches yet: be the first'}
     else {
-      cf_status_label = CFLABELS[Math.round(score/count) - 1];
+      cf_status.label = CFLABELS[Math.round(score/count) - 1];
     }
   }
-  cf_status.label = cf_status_label;
-  cf_status.time = cf_status_time;
-  cf_status.comment = cf_status_comment;
-  console.log('cf_status');
-  console.log(cf_status);
   return cf_status;
 }
 
