@@ -69,6 +69,11 @@ button, .btn {
   background-image: -o-linear-gradient(top,$comp1-light, $comp1-dark) !important;
   // looks cool
   // background-image: -webkit-linear-gradient(top, black, #e6e6e6) !important;
+
+  //&:hover {
+    //background-image: -webkit-linear-gradient(top, $comp1-light, $comp1-dark) !important;
+    //background-image: -o-linear-gradient(top,$comp1-light, $comp1-dark) !important;
+  //}
 }
 
 a {
