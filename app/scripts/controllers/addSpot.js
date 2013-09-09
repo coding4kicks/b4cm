@@ -62,7 +62,7 @@ angular.module('b4cmApp')
    *              Requires addSpot controllers $scope
    * @param {int} index The index for the business hours to delete.
    */ 
-    $scope.deleteHour = function(index) {
+    $scope.deleteHours = function(index) {
       $scope.business_hours.splice(index, 1);
     }
 
