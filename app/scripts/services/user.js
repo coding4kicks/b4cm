@@ -49,7 +49,7 @@ angular.module('b4cmApp')
           // Need to handle data.val() === null
           userObj = data.val();
           // Need broadcast to update user name in nav bar
-          $rootScope.$broadcast('login', userObj.display_name);
+          if (userObj) {$rootScope.$broadcast('login', userObj.display_name);}
 
           // redirect only from signup and signin
           if (redirectLocation) {
