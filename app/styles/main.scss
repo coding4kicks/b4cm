@@ -1019,7 +1019,9 @@ input[type='text']:focus {
       background-color: $acc-dark;
       border: 1px solid $comp1-dark;
       color: $text-light;
+      max-width: 250px;
     }
+
   }
 
 
