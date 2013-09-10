@@ -8,7 +8,7 @@ angular.module('b4cmApp')
    *
    * @description Retrieves and calculates display information for a requested listing.
    */ 
-  .controller('ListingsCtrl', function ($scope, $log, $location, $routeParams, $timeout, listings, spot, util) {
+  .controller('ListingsCtrl', function ($scope, $log, $location, $routeParams, $timeout, listings, spot, user, util) {
 
     var spotType = $routeParams.spotType,
         searchLocation = decodeURIComponent($routeParams.searchLocation),
@@ -110,8 +110,15 @@ angular.module('b4cmApp')
      * @description Redirects to add-spot-page if user logged in.
      */ 
     $scope.addSpot = function() {
-      $location.path('/addSpot');
-      util.safeApply($scope);
+      if (user.loggedIn()) {
+        $location.path('/addSpot');
+        util.safeApply($scope);
+      }
+      else {
+        alert('Must be signed in to add a spot.');
+        $location.path('/signin');
+        util.safeApply($scope);
+      }
     };   
 
   });
