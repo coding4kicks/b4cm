@@ -21,7 +21,7 @@
 
     <div class="listings main-col">
       <h6 ng-hide="noSpots">1-{{spots.length}} of {{numReturns}}</h6>
-      <a  ng-href="#/addSpot">
+      <a  ng-click="addSpot()">
         <button class="btn add-spot">Add Spot</button>
       </a>
       <h2 ng-show="noSpots">No spots of this type for your search area.  Help us out and add a spot!</h2>

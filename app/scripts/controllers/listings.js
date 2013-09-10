@@ -8,7 +8,7 @@ angular.module('b4cmApp')
    *
    * @description Retrieves and calculates display information for a requested listing.
    */ 
-  .controller('ListingsCtrl', function ($scope, $log, $location, $routeParams, $timeout, listings, spot) {
+  .controller('ListingsCtrl', function ($scope, $log, $location, $routeParams, $timeout, listings, spot, util) {
 
     var spotType = $routeParams.spotType,
         searchLocation = decodeURIComponent($routeParams.searchLocation),
@@ -100,9 +100,19 @@ angular.module('b4cmApp')
      */ 
     $scope.getSpot = function(spot_id) {
       $location.path("/spot/" + spot_id);
-      // http://www.yearofmoo.com/2012/10/ ... apply-digest-and-phase
-      if(!$scope.$$phase) { $scope.$apply(); }
-    };  
+      util.safeApply($scope);
+    };
+
+    /**
+     * @name addSpot
+     * @function
+     *
+     * @description Redirects to add-spot-page if user logged in.
+     */ 
+    $scope.addSpot = function() {
+      $location.path('/addSpot');
+      util.safeApply($scope);
+    };   
 
   });
 
