@@ -433,7 +433,7 @@ function spotCache(cacheSize) {
     check: function(id) {
       var hit = false;
       cache.forEach(function(spot) {
-        if(typeof (spot.id !== 'undefined') && (spot.id === id)) {hit = true;}
+        if((spot !== null) && (typeof spot.id !== 'undefined') && (spot.id === id)) {hit = true;}
       });
       return hit;
     },

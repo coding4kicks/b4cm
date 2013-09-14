@@ -69,9 +69,7 @@ angular.module('b4cmApp')
             // Basic filtering: filter if no recommendations of this type.
             // Later should filter based on a percentage
             // Also, total is all returned spots for the area, not of this type.
-            console.log(spotObj.type);
-            console.log(spotObj.type[spotType]);
-            if (spotObj.type[spotType] > 0) {
+            if (spotObj !== null && spotObj.type[spotType] > 0) {
               var current_status = _getStatus(spotObj, current_time),
                   score = 0;
               if (spotObj.review_count !== 0) {
