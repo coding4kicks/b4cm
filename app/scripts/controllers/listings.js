@@ -8,16 +8,14 @@ angular.module('b4cmApp')
    *
    * @description Retrieves and calculates display information for a requested listing.
    */ 
-  .controller('ListingsCtrl', function ($scope, $log, $location, $routeParams, $timeout, listings, spot, user, util) {
+  .controller('ListingsCtrl', function ($scope, $log, $location, $routeParams, $timeout, 
+                                        listings, spot, user, util) {
 
     var spotType = $routeParams.spotType,
         searchLocation = decodeURIComponent($routeParams.searchLocation),
         spotList = [],
         cacheList = [],
         SPOTS_PER_PAGE = 10,
-        // implement cache of next page results later (at end of function)
-        // currently not necessary since retrieving all results for area
-        CACHE_SIZE = SPOTS_PER_PAGE * 1, 
         HOUR = 60 * 60 * 1000,
         // Create a timeinfo object for each of the five crowdwatch boxes
         current_date = new Date(),
@@ -50,8 +48,8 @@ angular.module('b4cmApp')
       }
     };
     $scope.zoomProperty = 12;
+
     // Retrieve the listings for the specified search location, 
-    // TODO: filter by spot type in listings service
     listings.get(searchLocation, spotType).then(function(listingInfo) {
       var idList = listingInfo.idList;
       $scope.listings.location = {}
@@ -60,10 +58,11 @@ angular.module('b4cmApp')
       $scope.numReturns = idList.length;
       if (idList.length === 0) {$scope.noSpots = true;}
       else {
-        // Get and format spot info for each spot in returned id list,
-        // up to the number of spots per page to display.
-        for (var i = 0; $scope.spots.length < SPOTS_PER_PAGE; i++) {
-          if (i === idList.length) {break;} // Break if not a full set of results
+        // Must retrieve all spots returned in search
+        // Need to fix this if have a lot of spots (at least return after 10 good ones returned)
+        // and save others for later
+        for (var i = 0; i < idList.length; i++) {
+          //if (i === idList.length) {break;} // Break if not a full set of results
           var spotId = idList[i];
           spot.get(spotId).then(function(spotObj) {
             // Basic filtering: filter if no recommendations of this type.
@@ -79,7 +78,12 @@ angular.module('b4cmApp')
               spotObj.cf_status_label = current_status.label;
               spotObj.cf_status_time = current_status.time;
               spotObj.cf_status_boxes = _calculateBoxLabels(spotObj, times)
-              $scope.spots.push(spotObj);
+              if ($scope.spots.length < SPOTS_PER_PAGE) {
+                $scope.spots.push(spotObj);
+              }
+              else {
+                // push to cache
+              }
             }
             if (i === SPOTS_PER_PAGE ||
                 i === idList.length) {
