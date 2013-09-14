@@ -14,7 +14,8 @@ angular.module('b4cmApp')
     var spotType = $routeParams.spotType,
         searchLocation = decodeURIComponent($routeParams.searchLocation),
         spotList = [],
-        cacheList = [],
+        moreList = [],
+        prevList = [],
         SPOTS_PER_PAGE = 10,
         HOUR = 60 * 60 * 1000,
         // Create a timeinfo object for each of the five crowdwatch boxes
@@ -83,7 +84,7 @@ angular.module('b4cmApp')
                 $scope.spots.push(spotObj);
               }
               else {
-                cacheList.push(spotObj);
+                moreList.push(spotObj);
                 $scope.displayMore = true;
               }
             }
@@ -133,11 +134,13 @@ angular.module('b4cmApp')
      * @description Displays the next set of results.
      */ 
     $scope.moreSpots = function() {
+      var newList = moreList.splice(0, SPOTS_PER_PAGE);
+      $scope.displayPrevious = true
       $scope.startIndex = $scope.startIndex + SPOTS_PER_PAGE;
-      for (var i = 0; i < SPOTS_PER_PAGE; i++) {
-        $scope.spots = cacheList;
-        $scope.displayPrevious = true;
-      }
+      prevList = prevList.concat($scope.spots);
+      $scope.spots = newList;
+      if (moreList.length < 1) {$scope.displayMore = false}
+
     }; 
 
     /**
@@ -147,9 +150,12 @@ angular.module('b4cmApp')
      * @description Displays the previous set of results.
      */ 
     $scope.previousSpots = function() {
+      var newList = prevList.splice(prevList.length - SPOTS_PER_PAGE, SPOTS_PER_PAGE);
+      $scope.displayMore = true
       $scope.startIndex = $scope.startIndex - SPOTS_PER_PAGE;
-      for (var i = 0; i < SPOTS_PER_PAGE; i++) {
-      }
+      moreList = $scope.spots.concat(moreList);
+      $scope.spots = newList;
+      if (prevList.length < 1) {$scope.displayPrevious = false}
     }; 
 
   });
