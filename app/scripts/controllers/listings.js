@@ -84,6 +84,7 @@ angular.module('b4cmApp')
               }
               else {
                 cacheList.push(spotObj);
+                $scope.displayMore = true;
               }
             }
             if (i === SPOTS_PER_PAGE ||
@@ -135,7 +136,7 @@ angular.module('b4cmApp')
       for (var i = 0; i < SPOTS_PER_PAGE; i++) {
         $scope.startIndex = 11;
         $scope.spots = cacheList;
-        
+        $scope.displayPrevious = true;
       }
     }; 
 

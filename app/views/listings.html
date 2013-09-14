@@ -59,7 +59,7 @@
       </div>
 
       <div class="more" ng-hide="noSpots">
-        <a ng-click="moreSpots()">More Results</a>
+        <a ng-show="displayMore" ng-click="moreSpots()">More Results</a><span ng-show="displayMore && displayPrevious">||</span><a ng-show="displayPrevious" ng-click="previousSpots()">Previous Results</a>
       </div>
     </div>
 
