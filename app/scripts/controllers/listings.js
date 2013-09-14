@@ -82,7 +82,7 @@ angular.module('b4cmApp')
                 $scope.spots.push(spotObj);
               }
               else {
-                // push to cache
+                cacheList.push(spotObj);
               }
             }
             if (i === SPOTS_PER_PAGE ||
@@ -123,6 +123,18 @@ angular.module('b4cmApp')
         util.safeApply($scope);
       }
     };   
+
+    /**
+     * @name moreSpots
+     * @function
+     *
+     * @description Displays the next set of results.
+     */ 
+    $scope.moreSpots = function() {
+      for (var i = 0; i < SPOTS_PER_PAGE; i++) {
+        $scope.spots = cacheList;
+      }
+    }; 
 
   });
 
