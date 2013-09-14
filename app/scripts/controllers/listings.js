@@ -60,16 +60,17 @@ angular.module('b4cmApp')
       $scope.numReturns = idList.length;
       if (idList.length === 0) {$scope.noSpots = true;}
       else {
-
         // Get and format spot info for each spot in returned id list,
         // up to the number of spots per page to display.
-        for (var i = 0; i < SPOTS_PER_PAGE; i++) {
+        for (var i = 0; $scope.spots.length < SPOTS_PER_PAGE; i++) {
           if (i === idList.length) {break;} // Break if not a full set of results
           var spotId = idList[i];
           spot.get(spotId).then(function(spotObj) {
             // Basic filtering: filter if no recommendations of this type.
             // Later should filter based on a percentage
             // Also, total is all returned spots for the area, not of this type.
+            console.log(spotObj.type);
+            console.log(spotObj.type[spotType]);
             if (spotObj.type[spotType] > 0) {
               var current_status = _getStatus(spotObj, current_time),
                   score = 0;

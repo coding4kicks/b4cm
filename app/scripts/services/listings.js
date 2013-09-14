@@ -64,7 +64,7 @@ angular.module('b4cmApp')
        */ 
       get: function (searchLocation, listingType) {
         var deferred = $q.defer(),
-            DEFAULT_RADIUS = 25;
+            DEFAULT_RADIUS = 10;
         // Asynch call to get lat and long of search location.
         geolocation.getLatLong(searchLocation).then(function(locationObject) {
           var deferred2 = $q.defer(),
@@ -77,10 +77,10 @@ angular.module('b4cmApp')
               spotIdList.push(result.id);
             });
             // Resolve the outerscope deferred
-            $rootScope.$apply(deferred.resolve({'idList': spotIdList, 'location': locationObject}));      
-          });          
-          return deferred2.promise;
+            $rootScope.$apply(deferred.resolve({'idList': spotIdList, 'location': locationObject}));    
+          });  
 
+          return deferred2.promise;
           }, function(reason) {
             conosle.log('failed for ' + reason);
             deferred.resolve('error');
