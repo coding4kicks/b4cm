@@ -133,10 +133,22 @@ angular.module('b4cmApp')
      * @description Displays the next set of results.
      */ 
     $scope.moreSpots = function() {
+      $scope.startIndex = $scope.startIndex + SPOTS_PER_PAGE;
       for (var i = 0; i < SPOTS_PER_PAGE; i++) {
-        $scope.startIndex = 11;
         $scope.spots = cacheList;
         $scope.displayPrevious = true;
+      }
+    }; 
+
+    /**
+     * @name previousSpots
+     * @function
+     *
+     * @description Displays the previous set of results.
+     */ 
+    $scope.previousSpots = function() {
+      $scope.startIndex = $scope.startIndex - SPOTS_PER_PAGE;
+      for (var i = 0; i < SPOTS_PER_PAGE; i++) {
       }
     }; 
 
