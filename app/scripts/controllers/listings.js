@@ -57,7 +57,7 @@ angular.module('b4cmApp')
       $scope.listings.location.latitude = listingInfo.location.latitude;
       $scope.listings.location.longitude = listingInfo.location.longitude; 
       $scope.numReturns = idList.length;
-      if (idList.length === 0) {$scope.noSpots = true;}
+      if (idList.length === 0) {$scope.noSpots = true; $scope.startIndex = 0;}
       else {
         // Must retrieve all spots returned in search
         // Need to fix this if have a lot of spots (at least return after 10 good ones returned)
