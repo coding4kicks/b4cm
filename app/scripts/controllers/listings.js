@@ -140,7 +140,7 @@ angular.module('b4cmApp')
       prevList = prevList.concat($scope.spots);
       $scope.spots = newList;
       if (moreList.length < 1) {$scope.displayMore = false}
-
+      _initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots, 12);
     }; 
 
     /**
@@ -156,6 +156,7 @@ angular.module('b4cmApp')
       moreList = $scope.spots.concat(moreList);
       $scope.spots = newList;
       if (prevList.length < 1) {$scope.displayPrevious = false}
+      _initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots, 12);
     }; 
 
   });
