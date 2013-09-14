@@ -27,7 +27,7 @@
       <h2 ng-show="noSpots">No spots of this type for your search area.  Help us out and add a spot!</h2>
       <div class="listing" ng-click="getSpot(spot.id)" ng-repeat="spot in spots">
         <div class="rank">
-          <h4>{{$index + 1}}.</h4>
+          <h4>{{startIndex + $index}}.</h4>
         </div>
         <img class="spot-pic" ng-src="{{spot.image_url}}">
         <div class="info"> 

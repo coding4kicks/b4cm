@@ -28,6 +28,7 @@ angular.module('b4cmApp')
 
     $scope.spots = [];
     $scope.noSpots = false;
+    $scope.startIndex = 1;
     $scope.listings = {}
     $scope.listings.type = $routeParams.spotType;
     $scope.listings.displayAddress = searchLocation;
@@ -132,7 +133,9 @@ angular.module('b4cmApp')
      */ 
     $scope.moreSpots = function() {
       for (var i = 0; i < SPOTS_PER_PAGE; i++) {
+        $scope.startIndex = 11;
         $scope.spots = cacheList;
+        
       }
     }; 
 
