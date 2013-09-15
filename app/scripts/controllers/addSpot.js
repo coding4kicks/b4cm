@@ -77,7 +77,7 @@ angular.module('b4cmApp')
 
       // Validate the form
       var errors = [];
-      if (typeof $scope.name === 'undefined') {errors.push('Name');}
+      if (typeof $scope.spotName === 'undefined') {errors.push('Name');}
       if (typeof $scope.address === 'undefined') {errors.push('Address');}
       if (typeof $scope.city === 'undefined') {errors.push('City');}
       if (typeof $scope.postal_code === 'undefined') {errors.push('Zip');}
@@ -97,7 +97,7 @@ angular.module('b4cmApp')
         first_user.pic = curUser.gravatar;
         newSpot.first_user = first_user;
         newSpot.date_added = new Date().getTime();
-        newSpot.name = $scope.name;
+        newSpot.name = $scope.spotName;
         newSpot.yelp_id = $scope.yelp_id;
         newSpot.location = {};
         newSpot.location.address = $scope.address;
