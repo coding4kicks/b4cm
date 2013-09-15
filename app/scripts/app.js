@@ -65,6 +65,10 @@ angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload', 'ui.bootstr
         templateUrl: 'views/welcome.html',
         controller: 'WelcomeCtrl'
       })
+      .when('/editSpot', {
+        templateUrl: 'views/editSpot.html',
+        controller: 'EditSpotCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
