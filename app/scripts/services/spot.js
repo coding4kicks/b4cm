@@ -149,7 +149,7 @@ angular.module('b4cmApp')
           var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + newSpot.id);
           spotRef.set(newSpot);
 
-          deferred.resolve(newSpot.id);
+          deferred.resolve(newSpot);
 
         }, function(reason) {
           if (reason === 'ZERO_RESULTS') {alert('Unable to geolocate address.');}

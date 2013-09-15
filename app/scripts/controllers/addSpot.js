@@ -124,11 +124,11 @@ angular.module('b4cmApp')
         });
 
         // Create the spot - Asynch send to firebase
-        spot.create(newSpot).then(function (spotId) {
+        spot.create(newSpot).then(function (newSpot) {
           // Handle success or error
           user.incrementSpotCount();
           // Redirect to added spot
-          $location.path("/spot/" + spotId);
+          $location.path("/spot/" + newSpot.spotId);
           util.safeApply($scope);
         });
       }
