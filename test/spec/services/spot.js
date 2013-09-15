@@ -7,7 +7,8 @@ describe('Service: spot', function () {
 
   // instantiate service
   var spot,
-       testSpot = { 'name': 'Test Spot',
+      util,
+      testSpot = { 'name': 'Test Spot',
                     'yelp_id': 'test-spot-palo-alto2',
                     'image_url': "../images/spot-peets.jpg",
                     'wifi': true,
@@ -62,8 +63,9 @@ describe('Service: spot', function () {
                     ]
                    };
 
-  beforeEach(inject(function (_spot_) {
+  beforeEach(inject(function (_spot_, _util_) {
     spot = _spot_;
+    util = _util_;
   }));
 
   it('addReview should return false', function () {
@@ -77,35 +79,35 @@ describe('Service: spot', function () {
   it('create should correctly add hours', inject(function ($rootScope) {
     var spotId = '',
         newSpot = {};
-    spot.create(testSpot).then(function(value) {spotId = value});
+    spot.create(testSpot).then(function(value) {newSpot = value});
     $rootScope.$apply();
-    expect(spotId).toBe("test-spot-palo-alto2");
+    expect(newSpot.id).toBe("test-spot-palo-alto2");
   }));
 
   it('empty blocks set to false', inject(function ($rootScope) {
     var spotId = '',
         newSpot = {};
     testSpot.business_hours = [];
-    spot.create(testSpot).then(function(value) {spotId = value});
+    spot.create(testSpot).then(function(value) {newSpot = value});
     $rootScope.$apply();
-    expect(spotId).toBe("test-spot-palo-alto2");
+    expect(newSpot.id).toBe("test-spot-palo-alto2");
   }));
 
   it('create should correctly set id to yelp_id', inject(function ($rootScope) {
     var spotId = '',
         newSpot = {};
-    spot.create(testSpot).then(function(value) {spotId = value});
+    spot.create(testSpot).then(function(value) {newSpot = value});
     $rootScope.$apply();
-    expect(spotId).toBe("test-spot-palo-alto2");
+    expect(newSpot.id).toBe("test-spot-palo-alto2");
   }));
 
   it('create should correctly construct id if no yelp id', inject(function ($rootScope) {
     var spotId = '',
         newSpot = {};
     testSpot.yelp_id = undefined;
-    spot.create(testSpot).then(function(value) {spotId = value});
+    spot.create(testSpot).then(function(value) {newSpot = value});
     $rootScope.$apply();
-    expect(spotId).toBe("test-spot-palo-alto");
+    expect(newSpot.id).toBe("test-spot-palo-alto");
   }));
 
   it('edit should return false', function () {
