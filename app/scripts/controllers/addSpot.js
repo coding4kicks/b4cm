@@ -128,7 +128,7 @@ angular.module('b4cmApp')
           // Handle success or error
           user.incrementSpotCount();
           // Redirect to added spot
-          $location.path("/spot/" + newSpot.spotId);
+          $location.path("/spot/" + newSpot.id);
           util.safeApply($scope);
         });
       }
