@@ -105,14 +105,15 @@ angular.module('b4cmApp')
       if ($scope.business_hours.length === 0) {errors.push('Hours');}
       if (errors.length > 0) {_handleFormErrors($scope, errors);}
      
-      // Add the spot
+      // Save the spot
       else if (user.loggedIn()){
         var curUser = user.getInfo(),
-            first_user = {};
-        first_user.id = curUser.provider + '/' + curUser.id;
-        first_user.name = curUser.display_name;
-        first_user.pic = curUser.gravatar;
-        editedSpot.first_user = first_user;
+            editor = {};
+        editor.id = curUser.provider + '/' + curUser.id;
+        editor.name = curUser.display_name;
+        editor.pic = curUser.gravatar;
+        // Do I add this here? Or just log it, or check okay?
+        //editedSpot.editor.pic = editor;
         editedSpot.date_added = new Date().getTime();
         editedSpot.name = $scope.spotName;
         editedSpot.yelp_id = $scope.yelp_id;
