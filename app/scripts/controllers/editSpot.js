@@ -146,7 +146,7 @@ angular.module('b4cmApp')
         });
 
         // Create the spot - Asynch send to firebase
-        spot.create(editedSpot).then(function (editedSpot) {
+        spot.create(editedSpot, oldData).then(function (editedSpot) {
           // Handle success or error
           user.incrementSpotCount();
           // Redirect to added spot

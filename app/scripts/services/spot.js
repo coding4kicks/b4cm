@@ -168,52 +168,68 @@ angular.module('b4cmApp')
        * @param {string} id The id of the spot to edit.
        * @returns {object} The spot id if successful otherwise an error code.
        */  
-      edit: function (newSpot) {
+      edit: function (editedSpot, oldData) {
         var deferred = $q.defer(),
             base_url = 'https://crowd-data.firebaseio.com/spots/',
             spot_url = '',
-            locationObj = {'address': newSpot.location.address,
-                           'city': newSpot.location.city,
-                           'postal_code': newSpot.location.postal_code, 
-                           'state_code': newSpot.location.state_code },
-            address = locationObj.address + ", " + locationObj.city + ", " + locationObj.state_code;
+            locationObj = {'address': editedSpot.location.address,
+                           'city': editedSpot.location.city,
+                           'postal_code': editedSpot.location.postal_code, 
+                           'state_code': editedSpot.location.state_code },
+            address = locationObj.address + ", " + locationObj.city + ", " + locationObj.state_code,
+            oldAddress = oldData.location.address + ", " + 
+                         oldData.location.city + ", " + 
+                         oldData.location.state_code;
 
-        //newSpot.id = _constructId(newSpot);
+        //editedSpot.id = _constructId(editedSpot);
 
         // Set Defaults - Must guard against undefined to protect from Firebase error.
-        if (typeof newSpot.yelp_id === 'undefined') {newSpot.yelp_id = null};
-        if (typeof newSpot.image_url === 'undefined') {newSpot.image_url = null};
-        if (typeof newSpot.wifi === 'undefined') {newSpot.wifi = false};
+        if (typeof editedSpot.yelp_id === 'undefined') {editedSpot.yelp_id = null};
+        if (typeof editedSpot.image_url === 'undefined') {editedSpot.image_url = null};
+        if (typeof editedSpot.wifi === 'undefined') {editedSpot.wifi = false};
 
-        // How do I deal with this? + watchCount
-        newSpot.review_count = 0;
-        newSpot.rating_count = 0;
-        newSpot.reviews = [];
+        // How do I deal with this? + watchCount - Should all stay the same
+        //editedSpot.review_count = 0;
+        //editedSpot.rating_count = 0;
+        //editedSpot.reviews = [];
         // How to deal with watches that already exist: need update
-        newSpot.crowdfactor = _initCrowdSeer(newSpot);
+        editedSpot.crowdfactor = _initCrowdSeer(editedSpot);
+        editedSpot.crowdfactor = _updateCrowdSeer(editedSpot, oldData);
 
         // Asynch call to get lat and long.
         // only do geolocation and add to listing if new address (must delete old from listing)
-        geolocation.getLatLong(address).then(function(locationObject) {          
-          newSpot.location.latitude = locationObject.latitude;
-          newSpot.location.longitude = locationObject.longitude;
+        if (address !== oldAddress) {
+          console.log('updating geo');
+          geolocation.getLatLong(address).then(function(locationObject) {          
+            editedSpot.location.latitude = locationObject.latitude;
+            editedSpot.location.longitude = locationObject.longitude;
 
-          // Add to listings & add geohash TODO: return geohash
-          newSpot.location.geohash = listings.add(locationObject.latitude,
-                                                  locationObject.longitude,
-                                                  {'id': newSpot.id});
+            // Add to listings & add geohash TODO: return geohash
+            // Need listing delete of old
+            //editedSpot.location.geohash = listings.add(locationObject.latitude,
+            //                                        locationObject.longitude,
+            //                                        {'id': editedSpot.id});
 
+            // Add the new spot in Firebase
+            var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + editedSpot.id);
+            //spotRef.set(editedSpot);
+
+            deferred.resolve(editedSpot);
+
+          }, function(reason) {
+            if (reason === 'ZERO_RESULTS') {alert('Unable to geolocate address.');}
+            console.log('failed for ' + reason);
+            deferred.resolve('error');
+          });
+        }
+        else {
+          console.log('update without geo call');
           // Add the new spot in Firebase
-          var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + newSpot.id);
-          spotRef.set(newSpot);
-
-          deferred.resolve(newSpot);
-
-        }, function(reason) {
-          if (reason === 'ZERO_RESULTS') {alert('Unable to geolocate address.');}
-          console.log('failed for ' + reason);
-          deferred.resolve('error');
-        });
+          var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + editedSpot.id);
+          //spotRef.set(editedSpot);
+          deferred.resolve(editedSpot);
+        }
+          
 
         return deferred.promise;
       },
@@ -386,6 +402,10 @@ function _initCrowdSeer(newSpot) {
   }
 
   return crowdfactor;
+}
+
+function _updateCrowdSeer(newSpot, oldData) {
+  console.log('updating crowd graph');
 }
 
 /**
