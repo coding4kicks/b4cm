@@ -10,11 +10,15 @@ angular.module('b4cmApp')
    */ 
   .controller('EditSpotCtrl', function ($scope, $routeParams, $location, spot, util, user) {
 
-    var editedSpot = {};
+    var editedSpot = {},
+        oldData = {};
 
     // Retreive the spot to edit.
     spot.get($routeParams.spotId).then(function(spot_data) {
       editedSpot = spot_data;
+      oldData.business_hours = util.clone(spot_data.business_hours);
+      oldData.location = util.clone(spot_data.location);
+      console.log(oldData);
       $scope.spotName = spot_data.name;
       $scope.yelp_id = spot_data.yelp_id;
       $scope.address = spot_data.location.address;
