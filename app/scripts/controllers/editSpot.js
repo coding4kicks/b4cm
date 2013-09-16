@@ -16,7 +16,7 @@ angular.module('b4cmApp')
     // Retreive the spot to edit.
     spot.get($routeParams.spotId).then(function(spot_data) {
       editedSpot = spot_data;
-      oldData.business_hours = util.clone(spot_data.business_hours);
+      oldData.crowdfactor = util.clone(spot_data.crowdfactor);
       oldData.location = util.clone(spot_data.location);
       console.log(oldData);
       $scope.spotName = spot_data.name;
