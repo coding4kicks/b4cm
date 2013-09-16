@@ -42,7 +42,8 @@ angular.module('b4cmApp')
       if (typeof $scope.spot.reviews !== 'undefined') {
         for (var review in $scope.spot.reviews) {
           // Set defualt pic
-          if (!$scope.spot.reviews[review].author.pic) {
+          if (typeof $scope.spot.reviews[review].author !== 'undefined' &&
+              !$scope.spot.reviews[review].author.pic) {
             $scope.spot.reviews[review].author.pic = '../images/default-author-pic.png';
           }
           $scope.spot.reviews[review].stars = _calculateStars($scope.spot.reviews[review].rating.label);
