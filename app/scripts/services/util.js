@@ -55,8 +55,9 @@ angular.module('b4cmApp')
        * clone
        * @function
        *
-       * @description Deeop copies 6 types of Javascript objects.
+       * @description Deep copies 6 types of Javascript objects.
        * @author http://stackoverflow.com/a/728694/2297380
+       * @this Refers to the util service
        */ 
       clone: function (obj) {
         // Handle the 3 simple types, and null or undefined
@@ -73,7 +74,7 @@ angular.module('b4cmApp')
         if (obj instanceof Array) {
             var copy = [];
             for (var i = 0, len = obj.length; i < len; i++) {
-                copy[i] = clone(obj[i]);
+                copy[i] = this.clone(obj[i]);
             }
             return copy;
         }
@@ -82,7 +83,7 @@ angular.module('b4cmApp')
         if (obj instanceof Object) {
             var copy = {};
             for (var attr in obj) {
-                if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
+                if (obj.hasOwnProperty(attr)) copy[attr] = this.clone(obj[attr]);
             }
             return copy;
         }
