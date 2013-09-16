@@ -60,6 +60,7 @@
       <div class="controls image-load-control">
         <input type="file" id="imageLoader" accept="image/*" image="image2" resize-max-height="100" resize-max-width="100" resize-quality="0.7" />
         <img ng-show="image2" ng-src="{{image2.resized.dataURL}}"/>
+        <img ng-hide="image2" ng-model="image_url" ng-src="{{image_url}}"/>
       </div>
     </div>
 

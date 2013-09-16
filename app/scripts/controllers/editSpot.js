@@ -22,11 +22,12 @@ angular.module('b4cmApp')
       $scope.postal_code = spot_data.location.postal_code;
       $scope.state_code = spot_data.location.state_code;
       $scope.wifi = spot_data.wifi;
-      $scope.image2.resized.dataURL = spot_data.image_url;
-      $scope.food = spot_data.type.food;
-      $scope.study = spot_data.type.study;
-      $scope.social = spot_data.type.social;
+      $scope.image_url = spot_data.image_url;
+      //$scope.food = spot_data.type.food;
+      //$scope.study = spot_data.type.study;
+      //$scope.social = spot_data.type.social;
       $scope.business_hours = spot_data.business_hours;
+      //util.safeApply();
     });
 
     
@@ -101,9 +102,6 @@ angular.module('b4cmApp')
       if (typeof $scope.city === 'undefined') {errors.push('City');}
       if (typeof $scope.postal_code === 'undefined') {errors.push('Zip');}
       if (typeof $scope.state_code === 'undefined') {errors.push('State');}
-      if (typeof $scope.food === 'undefined' &&
-          typeof $scope.study === 'undefined' &&
-          typeof $scope.social === 'undefined') {errors.push('Type');}
       if ($scope.business_hours.length === 0) {errors.push('Hours');}
       if (errors.length > 0) {_handleFormErrors($scope, errors);}
      
@@ -129,9 +127,9 @@ angular.module('b4cmApp')
         }
         editedSpot.image_url = $scope.image2.resized.dataURL;
         editedSpot.type = {'food': 0, 'study': 0, 'social': 0}
-        if ($scope.food) {editedSpot.type.food = 1};
-        if ($scope.study) {editedSpot.type.study = 1};
-        if ($scope.social) {editedSpot.type.social = 1};
+        if ($scope.food) {editedSpot.type.food = editedSpot.type.food + 1};
+        if ($scope.study) {editedSpot.type.study = editedSpot.type.food + 1};
+        if ($scope.social) {editedSpot.type.social = editedSpot.type.food + 1};
 
         // Hack to remove $$haskey property which blows up Firebase
         editedSpot.business_hours = [];
