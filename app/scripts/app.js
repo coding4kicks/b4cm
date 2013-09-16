@@ -21,6 +21,10 @@ angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload', 'ui.bootstr
         templateUrl: 'views/addSpot.html',
         controller: 'AddSpotCtrl'
       })
+      .when('/editSpot/:spotId', {
+        templateUrl: 'views/editSpot.html',
+        controller: 'EditSpotCtrl'
+      })
       .when('/addReview/:spotId', {
         templateUrl: 'views/addReview.html',
         controller: 'AddReviewCtrl'
@@ -64,10 +68,6 @@ angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload', 'ui.bootstr
       .when('/welcome', {
         templateUrl: 'views/welcome.html',
         controller: 'WelcomeCtrl'
-      })
-      .when('/editSpot', {
-        templateUrl: 'views/editSpot.html',
-        controller: 'EditSpotCtrl'
       })
       .otherwise({
         redirectTo: '/'
