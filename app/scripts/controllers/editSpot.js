@@ -91,13 +91,13 @@ angular.module('b4cmApp')
     }
 
   /**
-   * @name saveSpot
+   * @name editSpot
    * @procedure
    *
    * @description Calls the spot service to add a new spot to the database.
    *              Requires the editSpot controller's $scope
    */ 
-    $scope.saveSpot = function() {
+    $scope.editSpot = function() {
 
       // Validate the form
       var errors = [];
@@ -113,12 +113,14 @@ angular.module('b4cmApp')
       else if (user.loggedIn()){
         var curUser = user.getInfo(),
             editor = {};
+        // TODO: switch editor info to array so can track editors
+        // TODO: save last state so can revert back
         editor.id = curUser.provider + '/' + curUser.id;
         editor.name = curUser.display_name;
         editor.pic = curUser.gravatar;
-        // Do I add this here? Or just log it, or check okay?
-        //editedSpot.editor.pic = editor;
-        editedSpot.date_added = new Date().getTime();
+        editedSpot.editor = editor;
+        editedSpot.date_edited = new Date().getTime();
+
         editedSpot.name = $scope.spotName;
         editedSpot.yelp_id = $scope.yelp_id;
         editedSpot.location = {};
@@ -127,11 +129,13 @@ angular.module('b4cmApp')
         editedSpot.location.state_code = $scope.state_code;
         editedSpot.location.postal_code = $scope.postal_code;
         editedSpot.wifi = $scope.wifi;
-        if (typeof $scope.image2 === 'undefined') {
-          $scope.image2 = {'resized': {'dateURL': null}};
+        //if (typeof $scope.image2 === 'undefined') {
+        //  $scope.image2 = {'resized': {'dateURL': null}};
+        //}
+        if (typeof $scope.image2 !== 'undefined') {
+          editedSpot.image_url = $scope.image2.resized.dataURL;
         }
-        editedSpot.image_url = $scope.image2.resized.dataURL;
-        editedSpot.type = {'food': 0, 'study': 0, 'social': 0}
+        //editedSpot.type = {'food': 0, 'study': 0, 'social': 0}
         if ($scope.food) {editedSpot.type.food = editedSpot.type.food + 1};
         if ($scope.study) {editedSpot.type.study = editedSpot.type.food + 1};
         if ($scope.social) {editedSpot.type.social = editedSpot.type.food + 1};
@@ -146,7 +150,7 @@ angular.module('b4cmApp')
         });
 
         // Create the spot - Asynch send to firebase
-        spot.create(editedSpot, oldData).then(function (editedSpot) {
+        spot.edit(editedSpot, oldData).then(function (editedSpot) {
           // Handle success or error
           user.incrementSpotCount();
           // Redirect to added spot
@@ -155,7 +159,7 @@ angular.module('b4cmApp')
         });
       }
       else {
-        alert('Must be signed in to add a spot');
+        alert('Must be signed in to edit a spot');
         $location.path("/signin");
         util.safeApply($scope);
       }
