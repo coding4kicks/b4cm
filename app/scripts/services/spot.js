@@ -168,8 +168,54 @@ angular.module('b4cmApp')
        * @param {string} id The id of the spot to edit.
        * @returns {object} The spot id if successful otherwise an error code.
        */  
-      edit: function (id) {
-        return false;
+      edit: function (newSpot) {
+        var deferred = $q.defer(),
+            base_url = 'https://crowd-data.firebaseio.com/spots/',
+            spot_url = '',
+            locationObj = {'address': newSpot.location.address,
+                           'city': newSpot.location.city,
+                           'postal_code': newSpot.location.postal_code, 
+                           'state_code': newSpot.location.state_code },
+            address = locationObj.address + ", " + locationObj.city + ", " + locationObj.state_code;
+
+        //newSpot.id = _constructId(newSpot);
+
+        // Set Defaults - Must guard against undefined to protect from Firebase error.
+        if (typeof newSpot.yelp_id === 'undefined') {newSpot.yelp_id = null};
+        if (typeof newSpot.image_url === 'undefined') {newSpot.image_url = null};
+        if (typeof newSpot.wifi === 'undefined') {newSpot.wifi = false};
+
+        // How do I deal with this? + watchCount
+        newSpot.review_count = 0;
+        newSpot.rating_count = 0;
+        newSpot.reviews = [];
+        // How to deal with watches that already exist: need update
+        newSpot.crowdfactor = _initCrowdSeer(newSpot);
+
+        // Asynch call to get lat and long.
+        // only do geolocation and add to listing if new address (must delete old from listing)
+        geolocation.getLatLong(address).then(function(locationObject) {          
+          newSpot.location.latitude = locationObject.latitude;
+          newSpot.location.longitude = locationObject.longitude;
+
+          // Add to listings & add geohash TODO: return geohash
+          newSpot.location.geohash = listings.add(locationObject.latitude,
+                                                  locationObject.longitude,
+                                                  {'id': newSpot.id});
+
+          // Add the new spot in Firebase
+          var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + newSpot.id);
+          spotRef.set(newSpot);
+
+          deferred.resolve(newSpot);
+
+        }, function(reason) {
+          if (reason === 'ZERO_RESULTS') {alert('Unable to geolocate address.');}
+          console.log('failed for ' + reason);
+          deferred.resolve('error');
+        });
+
+        return deferred.promise;
       },
 
       /**
