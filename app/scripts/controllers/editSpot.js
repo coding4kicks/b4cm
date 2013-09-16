@@ -8,10 +8,29 @@ angular.module('b4cmApp')
    *
    * @description Adds a new spot to the database.
    */ 
-  .controller('EditSpotCtrl', function ($scope, $location, spot, util, user) {
+  .controller('EditSpotCtrl', function ($scope, $routeParams, $location, spot, util, user) {
 
     var editedSpot = {};
-    $scope.business_hours = []; // Business's hours of operation
+
+    // Retreive the spot to edit.
+    spot.get($routeParams.spotId).then(function(spot_data) {
+      editedSpot = spot_data;
+      $scope.spotName = spot_data.name;
+      $scope.yelp_id = spot_data.yelp_id;
+      $scope.address = spot_data.location.address;
+      $scope.city = spot_data.location.city;
+      $scope.postal_code = spot_data.location.postal_code;
+      $scope.state_code = spot_data.location.state_code;
+      $scope.wifi = spot_data.wifi;
+      $scope.image2.resized.dataURL = spot_data.image_url;
+      $scope.food = spot_data.type.food;
+      $scope.study = spot_data.type.study;
+      $scope.social = spot_data.type.social;
+      $scope.business_hours = spot_data.business_hours;
+    });
+
+    
+    //$scope.business_hours = []; // Business's hours of operation
     $scope.HOURS = [];
     for (var i = 1; i <= 12; i++) {
       var time = {'label': i + ':00', 'hour': i, 'minutes': 0},
