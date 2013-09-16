@@ -93,7 +93,25 @@ angular.module('b4cmApp')
         util.safeApply($scope);
       }
     };
-      
+
+    /**
+     * @name editSpot
+     * @function
+     *
+     * @description Redirects to editSpot-page.
+     */ 
+    $scope.editSpot = function() {
+      if (user.loggedIn()){
+        $location.path("/editSpot/" + $scope.spot.id);
+        util.safeApply($scope);
+      }
+      else {
+        alert("Must be logged in to add a watch");
+        $location.path("/signin/");
+        util.safeApply($scope);
+      }
+    };
+
     /**
      * @name addReview
      * @function
