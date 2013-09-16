@@ -871,6 +871,17 @@ input[type='text']:focus {
     }
   }
 
+  .edit-spot {
+    color: $comp2-dark;
+    margin: 15px 0 0 0;
+    float: right;
+
+    &:hover {
+      cursor: pointer;
+      color: $comp1-dark; 
+    }    
+  }
+
   .more {
 
     a { 
@@ -1023,7 +1034,6 @@ input[type='text']:focus {
     }
 
   }
-
 
   .control-group:last-of-type {
     margin-bottom: 0;
