@@ -26,7 +26,6 @@ angular.module('b4cmApp')
 
     // Load spot information
     spot.get($routeParams.spotId).then(function(spot_data) {
-
       $scope.spot = spot_data;
       $scope.watch_count = $scope.spot.crowdfactor.watch_count;
       $scope.spot.yelpLink = "http://www.yelp.com/biz/" + $scope.spot.yelp_id;
@@ -39,7 +38,7 @@ angular.module('b4cmApp')
       }
       $scope.stars = _calculateStars(ratingScore);
       var reviewsDisplayedCount = 0;
-      if (typeof $scope.spot.reviews !== 'undefined') {
+      if (typeof $scope.spot.reviews !== 'undefined' && $scope.spot.reviews.length > 0) {
         for (var review in $scope.spot.reviews) {
           // Set defualt pic
           if (typeof $scope.spot.reviews[review].author !== 'undefined' &&
