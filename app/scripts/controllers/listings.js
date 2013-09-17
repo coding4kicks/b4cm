@@ -8,7 +8,7 @@ angular.module('b4cmApp')
    *
    * @description Retrieves and calculates display information for a requested listing.
    */ 
-  .controller('ListingsCtrl', function ($scope, $log, $location, $routeParams, $timeout, 
+  .controller('ListingsCtrl', function ($scope, $log, $location, $routeParams, $timeout, $window, 
                                         listings, spot, user, util) {
 
     var spotType = $routeParams.spotType,
@@ -36,6 +36,9 @@ angular.module('b4cmApp')
     $scope.current_time = current_time.getTimeLabel();
     $scope.plus2_time = plus2_time.getTimeLabel();
     $scope.plus4_time = plus4_time.getTimeLabel();
+
+    //console.log('heeer');
+    //console.log($scope.scroll);
 
     // Google map defaults - Otherwise 3rd party plugin breaks
     $scope.isMapElementHidden = true;

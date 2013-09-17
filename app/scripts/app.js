@@ -314,3 +314,4 @@ function _initializeGoogleMaps($scope, position, spots, zoom) {
   $scope.isMapElementHidden = false;
 }
 
+

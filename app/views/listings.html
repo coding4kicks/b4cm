@@ -63,7 +63,7 @@
       </div>
     </div>
 
-    <div class="side-col">
+    <div scroll-position="scroll" class="side-col" ng-class="{fixed: scroll > 220, relative: scroll <= 220}">
 	    <div class="google-map"
         center="position.coords"
         zoom="zoomProperty"
