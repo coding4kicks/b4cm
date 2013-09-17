@@ -61,7 +61,6 @@ angular.module('b4cmApp')
           var user_info = {};
           user_info = newReview.author;
           user_info.date = newReview.date;
-          console.log(user_info);
           spotRef.child('first_review').set(user_info); 
         }
         spotRef.child('type').set(typeUpdate);
@@ -82,7 +81,6 @@ angular.module('b4cmApp')
        * @returns {object} The spot id if successful otherwise an error code.
        */ 
       addWatch: function (newWatch, spotId, currentCount) {
-        console.log(spotId, newWatch);
         var dayRef = new Firebase(fbUrl + 'spots/' + spotId + '/crowdfactor/day/'),
             crowdFactorRef = new Firebase(fbUrl + 'spots/' + spotId + '/crowdfactor/'),
             score = _statusToScore(newWatch.cf_status);
@@ -164,9 +162,14 @@ angular.module('b4cmApp')
        * @name edit
        * @funtion
        *
-       * @description Edits a spot in the datastore. 
-       * @param {string} id The id of the spot to edit.
-       * @returns {object} The spot id if successful otherwise an error code.
+       * @description Edits a spot in the datastore. If the address has
+       *              changed, the old listing is removed and a new one 
+       *              added with the new geohash.  No matter what, the id
+       *              will still be the same.  Issue is if name changes,
+       *              url will still have old name.
+       * @param {object} editedSpot The new spot info.
+       * @param {object} oldData Old data for the crowdfactor and address
+       * @returns {object} The spot if successful otherwise an error code.
        */  
       edit: function (editedSpot, oldData) {
         var deferred = $q.defer(),
@@ -181,8 +184,6 @@ angular.module('b4cmApp')
                          oldData.location.city + ", " + 
                          oldData.location.state_code;
 
-        //editedSpot.id = _constructId(editedSpot);
-
         // Set Defaults - Must guard against undefined to protect from Firebase error.
         if (typeof editedSpot.yelp_id === 'undefined') {editedSpot.yelp_id = null};
         if (typeof editedSpot.image_url === 'undefined') {editedSpot.image_url = null};
@@ -194,11 +195,9 @@ angular.module('b4cmApp')
 
         // Asynch call to get lat and long.
         // only do geolocation and add to listing if new address (must delete old from listing)
-        console.log(oldData.location.latitude);
         if (address !== oldAddress || 
             typeof oldData.location.latitude === 'undefined' ||
             typeof oldData.location.longitude === 'undefined') {
-          console.log('updating geo');
           geolocation.getLatLong(address).then(function(locationObject) {          
             editedSpot.location.latitude = locationObject.latitude;
             editedSpot.location.longitude = locationObject.longitude;
@@ -206,14 +205,12 @@ angular.module('b4cmApp')
             // double check new lat long different for update
             if (editedSpot.location.latitude !== oldData.location.latitude ||
                 editedSpot.location.longitude !== oldData.location.longitude) {
-              console.log('new lat and long');
               listings.remove(oldData.location.geohash);
               // Add to listings & add geohash TODO: return geohash
               // Need listing delete of old
               editedSpot.location.geohash = listings.add(locationObject.latitude,
                                                       locationObject.longitude,
                                                       {'id': editedSpot.id});
-              console.log('new spot hash ' + editedSpot.location.geohash)
             }
 
             // Add the new spot in Firebase
@@ -235,7 +232,6 @@ angular.module('b4cmApp')
           spotRef.set(editedSpot);
           deferred.resolve(editedSpot);
         }
-          
 
         return deferred.promise;
       },
@@ -411,7 +407,6 @@ function _initCrowdSeer(newSpot) {
 }
 
 function _updateCrowdSeer(newSpot, oldData) {
-  console.log('updating crowd graph');
   for (var day in oldData.crowdfactor.day) {
     for (var time in oldData.crowdfactor.day[day]) {
       // Use spots old data if it exists when not closed
