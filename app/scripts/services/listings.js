@@ -17,7 +17,7 @@ angular.module('b4cmApp')
    *        'lon': {string} Spot longitude
    *    }
    */ 
-  .factory('listings', function ($q, $rootScope, geolocation) {
+  .factory('listings', function ($q, $rootScope, util, geolocation) {
 
     var geoRef = new Firebase('https://crowd-data.firebaseio.com/geo'),
         geo = new FirebaseGeo(geoRef);
@@ -89,7 +89,12 @@ angular.module('b4cmApp')
         return deferred.promise;
       },
 
-      remove: function () {
+      /**
+       * Should be inside FirebaseGeo
+       */
+      remove: function (spotHash) {
+        var spotRef = new Firebase(util.getFbUrl() + 'geo/' + spotHash);
+        spotRef.remove();
         return false;
       }
     };
