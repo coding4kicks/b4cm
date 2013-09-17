@@ -195,7 +195,11 @@ angular.module('b4cmApp')
 
         // How to deal with watches that already exist: need update
         editedSpot.crowdfactor = _initCrowdSeer(editedSpot);
+        console.log('editedSpot prior');
+        console.log(editedSpot.crowdfactor);
         editedSpot.crowdfactor = _updateCrowdSeer(editedSpot, oldData);
+        console.log('editedSpot after');
+        console.log(editedSpot.crowdfactor);
 
         // Asynch call to get lat and long.
         // only do geolocation and add to listing if new address (must delete old from listing)
@@ -407,18 +411,16 @@ function _initCrowdSeer(newSpot) {
 
 function _updateCrowdSeer(newSpot, oldData) {
   console.log('updating crowd graph');
-  //for (var day in oldData.crowdfactor.day) {
-  //  for (var time in oldData.crowdfactor.day[day]) {
-  //    // Use spots old data if it exists when not closed
-  //    if (newSpot.crowdfactor.day[day][time].count !== -1 &&
-  //        oldData.crowdfactor.day[day][time].count !== -1) {
-  //      newSpot.crowdfactor.day[day][time] = oldData.crowdfactor.day[day][time].count;
-  //    }
-  //  }
-  //}
-  console.log(newSpot.crowdfactor);
-  console.log(oldData.crowdfactor);
-  return oldData.crowdfactor;
+  for (var day in oldData.crowdfactor.day) {
+    for (var time in oldData.crowdfactor.day[day]) {
+      // Use spots old data if it exists when not closed
+      if (newSpot.crowdfactor.day[day][time].count !== -1 &&
+          oldData.crowdfactor.day[day][time].count !== -1) {
+          newSpot.crowdfactor.day[day][time] = oldData.crowdfactor.day[day][time];
+      }
+    }
+  }
+  return newSpot.crowdfactor;
 }
 
 /**
