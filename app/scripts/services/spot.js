@@ -188,36 +188,37 @@ angular.module('b4cmApp')
         if (typeof editedSpot.image_url === 'undefined') {editedSpot.image_url = null};
         if (typeof editedSpot.wifi === 'undefined') {editedSpot.wifi = false};
 
-        // How do I deal with this? + watchCount - Should all stay the same
-        //editedSpot.review_count = 0;
-        //editedSpot.rating_count = 0;
-        //editedSpot.reviews = [];
-
         // How to deal with watches that already exist: need update
         editedSpot.crowdfactor = _initCrowdSeer(editedSpot);
-        console.log('editedSpot prior');
-        console.log(editedSpot.crowdfactor);
         editedSpot.crowdfactor = _updateCrowdSeer(editedSpot, oldData);
-        console.log('editedSpot after');
-        console.log(editedSpot.crowdfactor);
 
         // Asynch call to get lat and long.
         // only do geolocation and add to listing if new address (must delete old from listing)
-        if (address !== oldAddress) {
+        console.log(oldData.location.latitude);
+        if (address !== oldAddress || 
+            typeof oldData.location.latitude === 'undefined' ||
+            typeof oldData.location.longitude === 'undefined') {
           console.log('updating geo');
           geolocation.getLatLong(address).then(function(locationObject) {          
             editedSpot.location.latitude = locationObject.latitude;
             editedSpot.location.longitude = locationObject.longitude;
 
-            // Add to listings & add geohash TODO: return geohash
-            // Need listing delete of old
-            //editedSpot.location.geohash = listings.add(locationObject.latitude,
-            //                                        locationObject.longitude,
-            //                                        {'id': editedSpot.id});
+            // double check new lat long different for update
+            if (editedSpot.location.latitude !== oldData.location.latitude ||
+                editedSpot.location.longitude !== oldData.location.longitude) {
+              console.log('new lat and long');
+              listings.remove(oldData.location.geohash);
+              // Add to listings & add geohash TODO: return geohash
+              // Need listing delete of old
+              editedSpot.location.geohash = listings.add(locationObject.latitude,
+                                                      locationObject.longitude,
+                                                      {'id': editedSpot.id});
+              console.log('new spot hash ' + editedSpot.location.geohash)
+            }
 
             // Add the new spot in Firebase
             var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + editedSpot.id);
-            //spotRef.set(editedSpot);
+            spotRef.set(editedSpot);
 
             deferred.resolve(editedSpot);
 
@@ -231,7 +232,7 @@ angular.module('b4cmApp')
           console.log('update without geo call');
           // Add the new spot in Firebase
           var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + editedSpot.id);
-          //spotRef.set(editedSpot);
+          spotRef.set(editedSpot);
           deferred.resolve(editedSpot);
         }
           
