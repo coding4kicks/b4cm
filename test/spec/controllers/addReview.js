@@ -46,4 +46,16 @@ describe('Controller: AddReviewCtrl', function () {
     scope.addReview();
     expect(window.alert).toHaveBeenCalledWith(userText);
   });
+
+  it('addReview requires type and writeup', function () {
+    var alertText = 'Must enter at least 1 type and a writeup.';
+    window.alert = jasmine.createSpy();
+    _user.loggedIn = jasmine.createSpy('loggedIn').andReturn(true);
+    _user.getInfo = jasmine.createSpy('getInfo').andReturn(
+      {'provider': 'password', 'id': 1, 'display_name': 'Test', 'gravatar': 'fakeurl'});
+    expect(window.alert).not.toHaveBeenCalled();
+    scope.addReview();
+    expect(window.alert).toHaveBeenCalledWith(alertText);
+  });
+
 });
