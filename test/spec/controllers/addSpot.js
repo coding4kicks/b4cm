@@ -29,7 +29,7 @@ describe('Controller: AddSpotCtrl', function () {
   beforeEach(inject(function ($controller, $rootScope, $window, user, spot) {
     window = $window;
     _user = user;
-    _spot = spot
+    _spot = spot;
     scope = $rootScope.$new();
     AddSpotCtrl = $controller('AddSpotCtrl', {
       $scope: scope
