@@ -1059,6 +1059,10 @@ input[type='text']:focus {
       color: $comp1-dark; 
     }
   }
+
+  button {
+    margin-top: 0px;
+  }
 }
 
 #add-review-page {
@@ -1076,6 +1080,12 @@ input[type='text']:focus {
   }
   .meridiem-select {
     width: 60px;
+  }
+
+  .add-multiple {
+    .control-label {
+      width: 170px;
+    }
   }
 }
 
