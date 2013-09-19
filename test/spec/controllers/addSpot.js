@@ -7,11 +7,28 @@ describe('Controller: AddSpotCtrl', function () {
 
   var AddSpotCtrl,
       scope,
-      window;
+      window,
+      _user,
+      _spot;
+
+  beforeEach(module(function($provide) {
+    $provide.provider('user', function() {
+      this.$get = function() {
+        return {loggedIn: jasmine.createSpy('loggedIn').andReturn(false)};
+       };      
+    });
+    $provide.provider('spot', function() {
+      this.$get = function() {
+        return {};
+       };      
+    });
+  }));
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope, $window) {
+  beforeEach(inject(function ($controller, $rootScope, $window, user, spot) {
     window = $window;
+    _user = user;
+    _spot = spot
     scope = $rootScope.$new();
     AddSpotCtrl = $controller('AddSpotCtrl', {
       $scope: scope
@@ -61,5 +78,76 @@ describe('Controller: AddSpotCtrl', function () {
     expect(window.alert).toHaveBeenCalledWith(alertText);
   });
 
+  it('addSpot checks for user', function () {
+    var time = {
+      'openDay': {'label': 'Friday'},
+      'openHour': {'label': '8:00', 'hour': 8, 'minutes': 0},
+      'openMeridiem': {'label': 'am'},
+      'closeDay': {'label': 'Friday'},
+      'closeHour': {'label': '8:00', 'hour': 8, 'minutes': 0},
+      'closeMeridiem': {'label': 'am'}},
+        userText = 'Must be signed in to add a spot';
+    window.alert = jasmine.createSpy();
+    _user.loggedIn = jasmine.createSpy('loggedIn');
+    scope.spotName = 'TestSpot';
+    scope.address = '221 Byron St';
+    scope.city = 'Palo Alto';
+    scope.postal_code = '94301';
+    scope.state_code = 'CA';
+    scope.food = 'undefined';
+    scope.study = true;
+    scope.social = true;
+    scope.business_hours = [time];
+    expect(window.alert).not.toHaveBeenCalled();
+    scope.addSpot();
+    expect(window.alert).toHaveBeenCalledWith(userText);
+  });
 
+  it('addSpot checks for user', function () {
+    var userText = 'Must be signed in to add a spot';
+    window.alert = jasmine.createSpy();
+    //_user.loggedIn = jasmine.createSpy('loggedIn');
+    _setValidScope(scope);
+    expect(window.alert).not.toHaveBeenCalled();
+    scope.addSpot();
+    expect(window.alert).toHaveBeenCalledWith(userText);
+  });
+
+  it('addSpot creates spot if user logged in', inject(function($q) {
+    var deferred = $q.defer(),
+        promise = deferred.promise;
+    window.alert = jasmine.createSpy();
+    _user.loggedIn = jasmine.createSpy('loggedIn').andReturn(true);
+    _user.getInfo = jasmine.createSpy('getInfo').andReturn(
+      {'provider': 'password', 'id': 1, 'display_name': 'Test', 'gravatar': 'fakeurl'});
+    _spot.create = jasmine.createSpy('create').andReturn(promise);
+    _setValidScope(scope);
+    expect(_user.loggedIn).not.toHaveBeenCalled();
+    expect(_user.getInfo).not.toHaveBeenCalled();
+    expect(_spot.create).not.toHaveBeenCalled();
+    scope.addSpot();
+    expect(_user.loggedIn).toHaveBeenCalled();
+    expect(_user.getInfo).toHaveBeenCalled();
+    //expect(_spot.create).toHaveBeenCalledWith('');
+    expect(window.alert).not.toHaveBeenCalled();
+  }));
 });
+
+function _setValidScope(scope) {
+  var time = {
+    'openDay': {'label': 'Friday'},
+    'openHour': {'label': '8:00', 'hour': 8, 'minutes': 0},
+    'openMeridiem': {'label': 'am'},
+    'closeDay': {'label': 'Friday'},
+    'closeHour': {'label': '8:00', 'hour': 8, 'minutes': 0},
+    'closeMeridiem': {'label': 'am'}};
+  scope.spotName = 'TestSpot';
+  scope.address = '221 Byron St';
+  scope.city = 'Palo Alto';
+  scope.postal_code = '94301';
+  scope.state_code = 'CA';
+  scope.food = 'undefined';
+  scope.study = true;
+  scope.social = true;
+  scope.business_hours = [time];
+}
