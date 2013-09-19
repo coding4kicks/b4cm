@@ -11,6 +11,7 @@ describe('Controller: AddSpotCtrl', function () {
       _user,
       _spot;
 
+  // Instantiate user and spot services
   beforeEach(module(function($provide) {
     $provide.provider('user', function() {
       this.$get = function() {
@@ -114,6 +115,7 @@ describe('Controller: AddSpotCtrl', function () {
   });
 
   it('addSpot creates spot if user logged in', inject(function($q) {
+    // Doesn't validate call parameters since Date().getTime() changes.
     var deferred = $q.defer(),
         promise = deferred.promise;
     window.alert = jasmine.createSpy();
