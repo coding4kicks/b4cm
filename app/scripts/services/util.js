@@ -10,7 +10,7 @@ angular.module('b4cmApp')
     return {
 
       /**
-       * getFbURL
+       * @name getFbURL
        * @function
        *
        * @description Provides a single source for the Firebase location.
@@ -20,7 +20,7 @@ angular.module('b4cmApp')
       },
 
       /**
-       * WEEKDAYS
+       * @name WEEKDAYS
        * @enum
        *
        * @description Enum of days of the week
@@ -54,7 +54,7 @@ angular.module('b4cmApp')
       },
 
       /**
-       * safeApply
+       * @name safeApply
        * @procedure
        *
        * @description Enum of days of the week
@@ -76,7 +76,7 @@ angular.module('b4cmApp')
       },
 
       /**
-       * clone
+       * @name clone
        * @function
        *
        * @description Deep copies 6 types of Javascript objects.
