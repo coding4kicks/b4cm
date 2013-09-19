@@ -1,5 +1,8 @@
 'use strict';
 
+/* global alert, _dayToNum */
+/* jshint camelcase: false */
+
 angular.module('b4cmApp')
 
   /**
@@ -7,7 +10,7 @@ angular.module('b4cmApp')
    * @controller
    *
    * @description Adds a new spot to the database.
-   */ 
+   */
   .controller('AddSpotCtrl', function ($scope, $location, spot, util, user) {
 
     var newSpot = {};
@@ -19,8 +22,8 @@ angular.module('b4cmApp')
       $scope.HOURS.push(time);
       $scope.HOURS.push(timeHalf);
     }
-    $scope.WEEKDAYS = [{'label': 'Sunday'}, {'label': 'Monday'}, {'label': 'Tuesday'}, 
-                       {'label': 'Wednesday'}, {'label': 'Thursday'}, {'label': 'Friday'}, 
+    $scope.WEEKDAYS = [{'label': 'Sunday'}, {'label': 'Monday'}, {'label': 'Tuesday'},
+                       {'label': 'Wednesday'}, {'label': 'Thursday'}, {'label': 'Friday'},
                        {'label': 'Saturday'}];
     $scope.MERIDIEMS = [{'label': 'am'}, {'label': 'pm'}];
     $scope.openDay = $scope.WEEKDAYS[1];
@@ -39,13 +42,13 @@ angular.module('b4cmApp')
    *
    * @description Adds hours to a business's hours of operations.
    *              Requires addSpot controllers $scope
-   */ 
+   */
     $scope.addHours = function() {
-      var times = {'open_day': $scope.openDay, 
-                   'open_hour': $scope.openHour, 
+      var times = {'open_day': $scope.openDay,
+                   'open_hour': $scope.openHour,
                    'open_meridiem': $scope.openMeridiem,
-                   'close_day': $scope.closeDay, 
-                   'close_hour': $scope.closeHour, 
+                   'close_day': $scope.closeDay,
+                   'close_hour': $scope.closeHour,
                    'close_meridiem': $scope.closeMeridiem},
           nextDay = $scope.WEEKDAYS[_incrementDay($scope.openDay.label)];
       $scope.business_hours.push(times);
@@ -61,10 +64,12 @@ angular.module('b4cmApp')
    * @description Deletes hours from a business's hours of operations.
    *              Requires addSpot controllers $scope
    * @param {int} index The index for the business hours to delete.
-   */ 
+   */
     $scope.deleteHours = function(index) {
+      /* jshint camelcase: false */
       $scope.business_hours.splice(index, 1);
-    }
+      /* jshint camelcase: false */
+    };
 
   /**
    * @name addSpot
@@ -72,7 +77,7 @@ angular.module('b4cmApp')
    *
    * @description Calls the spot service to add a new spot to the database.
    *              Requires the addSpot controller's $scope
-   */ 
+   */
     $scope.addSpot = function() {
 
       // Validate the form
@@ -86,8 +91,9 @@ angular.module('b4cmApp')
           typeof $scope.study === 'undefined' &&
           typeof $scope.social === 'undefined') {errors.push('Type');}
       if ($scope.business_hours.length === 0) {errors.push('Hours');}
+      /* jshint -W003 */
       if (errors.length > 0) {_handleFormErrors($scope, errors);}
-     
+
       // Add the spot
       else if (user.loggedIn()){
         var curUser = user.getInfo(),
@@ -109,10 +115,10 @@ angular.module('b4cmApp')
           $scope.image2 = {'resized': {'dateURL': null}};
         }
         newSpot.image_url = $scope.image2.resized.dataURL;
-        newSpot.type = {'food': 0, 'study': 0, 'social': 0}
-        if ($scope.food) {newSpot.type.food = 1};
-        if ($scope.study) {newSpot.type.study = 1};
-        if ($scope.social) {newSpot.type.social = 1};
+        newSpot.type = {'food': 0, 'study': 0, 'social': 0};
+        if ($scope.food) {newSpot.type.food = 1;}
+        if ($scope.study) {newSpot.type.study = 1;}
+        if ($scope.social) {newSpot.type.social = 1;}
 
         // Hack to remove $$haskey property which blows up Firebase
         newSpot.business_hours = [];
@@ -128,13 +134,13 @@ angular.module('b4cmApp')
           // Handle success or error
           user.incrementSpotCount();
           // Redirect to added spot
-          $location.path("/spot/" + newSpot.id);
+          $location.path('/spot/' + newSpot.id);
           util.safeApply($scope);
         });
       }
       else {
         alert('Must be signed in to add a spot');
-        $location.path("/signin");
+        $location.path('/signin');
         util.safeApply($scope);
       }
     };
@@ -145,7 +151,7 @@ angular.module('b4cmApp')
    *
    * @description Toggles the visibility of the yelp id help section.
    *              Requires addSpot controllers $scope
-   */ 
+   */
     $scope.yelpIdHelp = function() {
       $scope.yelpHelpShow = !$scope.yelpHelpShow;
     };
@@ -155,6 +161,8 @@ angular.module('b4cmApp')
 /*****************************
  * HELPER FUNCS
  *****************************/
+/* TODO: Move to utility */
+/* jshint -W098 */
 
 /**
  * @name _handleFormErrors
@@ -166,16 +174,16 @@ angular.module('b4cmApp')
  *              invalid, triggering the invalid css class for that elelment.
  * @param {object} $scope The form's controlling scope.
  * @param {array} errors An array of string names for each error type.
- */ 
+ */
 function _handleFormErrors($scope, errors) {
   errors.forEach(function(error) {
     $scope.validForm[error.toLowerCase()] = 'invalid';
   });
   if (errors.length === 1) {
-    alert(errors[0] + " is a required field.");
+    alert(errors[0] + ' is a required field.');
   }
   else {
-    alert(errors.join(', ') + " are required fields.");
+    alert(errors.join(', ') + ' are required fields.');
   }
 }
 
@@ -186,9 +194,10 @@ function _handleFormErrors($scope, errors) {
  * @description Advances the day of week by one
  * @param {string} day The day to increment
  * @return {int} The number representation of the next day.
- */ 
+ */
 function _incrementDay(day) {
   var nextDay = _dayToNum(day) + 1;
-  if (nextDay === 7) {nextDay = 0};
+  if (nextDay === 7) {nextDay = 0;}
   return nextDay;
- }
+}
+
