@@ -53,11 +53,12 @@ describe('Controller: AddSpotCtrl', function () {
     expect(scope.yelpHelpShow).toBe(true);
   });
 
-  it('addSpot checks required form elements', function () { 
+  it('addSpot checks required form elements', function () {
+    var alertText = 'Name, Address, City, Zip, State, Type, Hours are required fields.';
     window.alert = jasmine.createSpy();
     expect(window.alert).not.toHaveBeenCalled();
     scope.addSpot();
-    expect(window.alert).toHaveBeenCalled();
+    expect(window.alert).toHaveBeenCalledWith(alertText);
   });
 
 
