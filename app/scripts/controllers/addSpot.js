@@ -10,6 +10,7 @@ angular.module('b4cmApp')
    * @controller
    *
    * @description Adds a new spot to the database.
+   * @requires $scope, $location, spot, util, user
    */
   .controller('AddSpotCtrl', function ($scope, $location, spot, util, user) {
 

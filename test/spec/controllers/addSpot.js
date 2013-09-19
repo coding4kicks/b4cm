@@ -38,4 +38,12 @@ describe('Controller: AddSpotCtrl', function () {
     expect(scope.closeDay.label).toBe('Saturday');
     console.log(scope.business_hours);
   });
+
+  it('deleteHours correctly removes a time', function () { 
+    scope.business_hours = ['dummyData'];
+    expect(scope.business_hours.length).toBe(1);
+    scope.deleteHours();
+    expect(scope.business_hours.length).toBe(0);
+  });
+
 });
