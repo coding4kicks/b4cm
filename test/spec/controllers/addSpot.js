@@ -116,27 +116,29 @@ describe('Controller: AddSpotCtrl', function () {
     expect(_spot.create).toHaveBeenCalled();
     expect(window.alert).not.toHaveBeenCalled();
   }));
+
+  function _setValidScope(scope) {
+    var time = {
+      'open_day': {'label': 'Friday'},
+      'open_hour': {'label': '8:00', 'hour': 8, 'minutes': 0},
+      'open_meridiem': {'label': 'am'},
+      'close_day': {'label': 'Friday'},
+      'close_hour': {'label': '8:00', 'hour': 8, 'minutes': 0},
+      'close_meridiem': {'label': 'am'}};
+    scope.spotName = 'TestSpot';
+    scope.address = '221 Byron St';
+    scope.city = 'Palo Alto';
+    scope.postal_code = '94301';
+    scope.state_code = 'CA';
+    scope.food = undefined;
+    scope.study = true;
+    scope.social = true;
+    scope.image2 = {'resized': {}};
+    scope.image2.resized.dataURL = 'testPic';
+    scope.wifi = true;
+    scope.business_hours = [];
+    scope.business_hours.push(time);
+  }
+
 });
 
-function _setValidScope(scope) {
-  var time = {
-    'open_day': {'label': 'Friday'},
-    'open_hour': {'label': '8:00', 'hour': 8, 'minutes': 0},
-    'open_meridiem': {'label': 'am'},
-    'close_day': {'label': 'Friday'},
-    'close_hour': {'label': '8:00', 'hour': 8, 'minutes': 0},
-    'close_meridiem': {'label': 'am'}};
-  scope.spotName = 'TestSpot';
-  scope.address = '221 Byron St';
-  scope.city = 'Palo Alto';
-  scope.postal_code = '94301';
-  scope.state_code = 'CA';
-  scope.food = undefined;
-  scope.study = true;
-  scope.social = true;
-  scope.image2 = {'resized': {}};
-  scope.image2.resized.dataURL = 'testPic';
-  scope.wifi = true;
-  scope.business_hours = [];
-  scope.business_hours.push(time);
-}
