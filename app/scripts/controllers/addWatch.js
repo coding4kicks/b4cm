@@ -65,7 +65,13 @@ angular.module('b4cmApp')
           spot.addWatch(watch, $routeParams.spotId, spotObj.crowdfactor.watch_count);
           user.incrementWatchCount();
           alert('Crowd watch added.');
-
+          
+          if ($scope.multipleWatches) {
+            alert('multiples');
+          }
+          else {
+            alert('redirect');
+          }
         }
       }
       else {
@@ -73,9 +79,6 @@ angular.module('b4cmApp')
         $location.path('/signin');
         util.safeApply($scope);
       }
-        // Don't redirect so can add multiple
-        //$location.path("/spot/" + $routeParams.spotId);
-        //util.safeApply($scope);
     };
 
   });
