@@ -1,5 +1,7 @@
 'use strict';
 
+/* global google, $log */
+
 angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload', 'ui.bootstrap.modal'])
 
   .config(function ($routeProvider) {
@@ -117,6 +119,8 @@ angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload', 'ui.bootstr
 /*****************************
  * APPLICATION HELPER FUNCS
  *****************************/
+/* TODO: Move to utility */
+/* jshint -W098 */
 
 /**
  * @name _calculateStars
@@ -135,7 +139,7 @@ function _calculateStars(rating) {
     else if (0.25 < (i - rating) && (i - rating) < 0.75) {
       stars.push('images/star-icon-half.png');
     }
-    else {stars.push('images/star-icon-empty.png')}
+    else {stars.push('images/star-icon-empty.png');}
   }
   return stars;
 }
@@ -149,16 +153,16 @@ function _calculateStars(rating) {
  * @returns {string} Crowd status (closed, empty, few, average, crowded, or herd).
  */
 function _calculateStatus(score) {
-  var cf_status = '';
-  if (score < 0) {cf_status = 'closed'}
-  else if (score < 0.5) {cf_status = 'none';}
-  else if (score < 1.5) {cf_status = 'empty';} 
-  else if (score < 2.5) {cf_status = 'few';}
-  else if (score < 3.5) {cf_status = 'average';}
-  else if (score < 4.5) {cf_status = 'crowded';}
-  else if (score <= 5) {cf_status = 'herd';}
+  var cfStatus = '';
+  if (score < 0) {cfStatus = 'closed';}
+  else if (score < 0.5) {cfStatus = 'none';}
+  else if (score < 1.5) {cfStatus = 'empty';}
+  else if (score < 2.5) {cfStatus = 'few';}
+  else if (score < 3.5) {cfStatus = 'average';}
+  else if (score < 4.5) {cfStatus = 'crowded';}
+  else if (score <= 5) {cfStatus = 'herd';}
   else {console.log('Error in status update for score:' + score);}
-  return cf_status;
+  return cfStatus;
 }
 
 /**
@@ -169,34 +173,39 @@ function _calculateStatus(score) {
  *              And determine if status is historical or withing the past hour.
  * @param {object} spot The spot to determine the status for.
  * @param {object} time The time object to use to determine the status.
- * @returns {object} cf_status with label, time, and comment properties
- */ 
+ * @returns {object} cfStatus with label, time, and comment properties
+ */
 function _getStatus(spot, time) {
-  var cf_status = {},
-      time_delta = (time.getTime() - spot.crowdfactor.most_recent.time) / 60 / 1000,
+  /* jshint camelcase: false */
+  var cfStatus = {},
+      timeDelta = (time.getTime() - spot.crowdfactor.most_recent.time) / 60 / 1000,
       CFLABELS = ['Empty', 'Few', 'Average', 'Crowded', 'Herd'];
-  if (time_delta < 60) {
-    cf_status.time = Math.round(time_delta) + ' minutes ago';
-    cf_status.label = CFLABELS[spot.crowdfactor.most_recent.score - 1];
-    cf_status.comment = '"' + spot.crowdfactor.most_recent.comment + '"';
-    cf_status.user = spot.crowdfactor.most_recent.user;
+
+  if (timeDelta < 60) {
+
+    cfStatus.time = Math.round(timeDelta) + ' minutes ago';
+    cfStatus.label = CFLABELS[spot.crowdfactor.most_recent.score - 1];
+    cfStatus.comment = '"' + spot.crowdfactor.most_recent.comment + '"';
+    cfStatus.user = spot.crowdfactor.most_recent.user;
+    /* jshint camelcase: true */
   }
   else {
-    cf_status.time = 'historical';
-    cf_status.comment = 'N/A';
-    cf_status.user = '';
+    cfStatus.time = 'historical';
+    cfStatus.comment = 'N/A';
+    cfStatus.user = '';
     var day = spot.crowdfactor.day[time.getDay().toLowerCase()],
         count = day[time.getTimeLabel()].count,
-        score = day[time.getTimeLabel()].score;    
-    if (count === -1){ cf_status.label = 'Closed'; }
-    else if (count === 0){ 
-      cf_status.label = '';
-      cf_status.time = 'No watches yet: be the first'}
+        score = day[time.getTimeLabel()].score;
+    if (count === -1){ cfStatus.label = 'Closed'; }
+    else if (count === 0){
+      cfStatus.label = '';
+      cfStatus.time = 'No watches yet: be the first';
+    }
     else {
-      cf_status.label = CFLABELS[Math.round(score/count) - 1];
+      cfStatus.label = CFLABELS[Math.round(score/count) - 1];
     }
   }
-  return cf_status;
+  return cfStatus;
 }
 
 /**
@@ -209,22 +218,22 @@ function _getStatus(spot, time) {
  * @returns {object} getTime() - Returns the getTime() result for the date object.
  *                   getTimeLabel() - Returns the time label.
  *                   getDay() - Returns the day of weeek
- */ 
+ */
 function _timeInfo(date) {
-  var WEEKDAY = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], 
+  var WEEKDAY = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
       day = WEEKDAY[date.getDay()],
       hour24 = date.getHours(),
       hour = hour24 % 12,
       meridiem = (hour24 < 12) ? 'am' : 'pm',
       timeLabel = '';
-  if (hour === 0) {hour = 12};
+  if (hour === 0) {hour = 12;}
   timeLabel = hour + meridiem;
 
   return {
     getTime: function() {return date.getTime();},
     getTimeLabel: function() {return timeLabel;},
     getDay: function() {return day;}
-  }
+  };
 }
 
 
@@ -236,17 +245,18 @@ function _timeInfo(date) {
  *              Capitalization doesn't matter.
  * @param {string} dayOfWeek The english day of week.
  * @return {int} A number representing the day of week. Sunday = 0...
- */  
+ */
 function _dayToNum(dayOfWeek) {
   var dayNum = -1;
+  /* jshint -W015 */
   switch(dayOfWeek.toLowerCase()) {
-    case 'sunday':    dayNum = 0; break;
-    case 'monday':    dayNum = 1; break;
-    case 'tuesday':   dayNum = 2; break;
-    case 'wednesday': dayNum = 3; break;
-    case 'thursday':  dayNum = 4; break;
-    case 'friday':    dayNum = 5; break;
-    case 'saturday':    dayNum = 6; break;
+  case 'sunday':    dayNum = 0; break;
+  case 'monday':    dayNum = 1; break;
+  case 'tuesday':   dayNum = 2; break;
+  case 'wednesday': dayNum = 3; break;
+  case 'thursday':  dayNum = 4; break;
+  case 'friday':    dayNum = 5; break;
+  case 'saturday':  dayNum = 6; break;
   }
   return dayNum;
 }
@@ -258,7 +268,7 @@ function _dayToNum(dayOfWeek) {
  * @description Initialize parameters for google maps directive for the spot page.
  * @params {object} $scope Controller's scope.
  * @returns {nothing} Procedure has side effects on scope.
- */ 
+ */
 function _initializeGoogleMaps($scope, position, spots, zoom) {
 
   // TODO: Need to make sure center and zoom encompass all the locations.  
@@ -268,7 +278,7 @@ function _initializeGoogleMaps($scope, position, spots, zoom) {
   // See http://googlegeodevelopers.blogspot.ca/2013/05/a-fresh-new-look-for-maps-api-for-all.html
   // Add test for existance so doesn't blow up unit tests
   console.log('currently initializing google maps');
-  if (typeof google !== "undefined") {
+  if (typeof google !== 'undefined') {
     google.maps.visualRefresh = true;
   }
 
@@ -293,22 +303,22 @@ function _initializeGoogleMaps($scope, position, spots, zoom) {
   for (var i = 0; i < spots.length; i++) {
     var marker = {},
         spot = spots[i],
-        url = "../images/marker-icon" + (i + 1) + ".png";
+        url = '../images/marker-icon' + (i + 1) + '.png';
     marker.latitude = spot.location.latitude;
     marker.longitude = spot.location.longitude;
     marker.infoWindow = spot.name;
     marker.icon = {'url': url};
     $scope.markersProperty.push(marker);
-  } 
+  }
 
   // These 2 properties will be set when clicking on the map
   $scope.clickedLatitudeProperty = null;
-  $scope.clickedLongitudeProperty = null;   
+  $scope.clickedLongitudeProperty = null;
   $scope.eventsProperty = {
-    'click': function (mapModel, eventName, originalEventArgs) {	
+    'click': function (mapModel, eventName, originalEventArgs) {
       // 'this' is the directive's scope
-      $log.log("user defined event on map directive with scope", this);
-      $log.log("user defined event: " + eventName, mapModel, originalEventArgs);
+      $log.log('user defined event on map directive with scope', this);
+      $log.log('user defined event: ' + eventName, mapModel, originalEventArgs);
     }
   };
   $scope.isMapElementHidden = false;
