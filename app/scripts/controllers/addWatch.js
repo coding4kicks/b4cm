@@ -49,26 +49,33 @@ angular.module('b4cmApp')
      * @description Adds a crowd watch to a spot
      */     
     $scope.addWatch = function() {
-      var start = {'day': _dayToNum($scope.startDay.label), 
-                   'hour': parseInt($scope.startHour.label), 
-                   'meridiem': $scope.startMeridiem.label},
-          stop = {'day': _dayToNum($scope.stopDay.label), 
-                  'hour': parseInt($scope.stopHour.label), 
-                  'meridiem': $scope.stopMeridiem.label}
-      watch.cf_status = $scope.cf_status;
-      watch.time = _calculateWatchTimes(start, stop, spotObj);
-      watch.comment = $scope.watchComment;
-      watch.user = user.getInfo().display_name;
-      if (typeof watch.cf_status === 'undefined') {alert('Please choose a crowd status.');}
-      else {
-        spot.addWatch(watch, $routeParams.spotId, spotObj.crowdfactor.watch_count);
-        user.incrementWatchCount();
-        alert('Crowd watch added.');
+      if (user.loggedIn()){
+        var start = {'day': _dayToNum($scope.startDay.label), 
+                     'hour': parseInt($scope.startHour.label), 
+                     'meridiem': $scope.startMeridiem.label},
+            stop = {'day': _dayToNum($scope.stopDay.label), 
+                    'hour': parseInt($scope.stopHour.label), 
+                    'meridiem': $scope.stopMeridiem.label}
+        watch.cf_status = $scope.cf_status;
+        watch.time = _calculateWatchTimes(start, stop, spotObj);
+        watch.comment = $scope.watchComment;
+        watch.user = user.getInfo().display_name;
+        if (typeof watch.cf_status === 'undefined') {alert('Please choose a crowd status.');}
+        else {
+          spot.addWatch(watch, $routeParams.spotId, spotObj.crowdfactor.watch_count);
+          user.incrementWatchCount();
+          alert('Crowd watch added.');
 
+        }
       }
-      // Don't redirect so can add multiple
-      //$location.path("/spot/" + $routeParams.spotId);
-      //util.safeApply($scope);
+      else {
+        alert('Must be logged in to add a watch');
+        $location.path('/signin');
+        util.safeApply($scope);
+      }
+        // Don't redirect so can add multiple
+        //$location.path("/spot/" + $routeParams.spotId);
+        //util.safeApply($scope);
     };
 
   });
