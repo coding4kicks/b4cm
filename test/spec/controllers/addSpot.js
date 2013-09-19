@@ -80,25 +80,9 @@ describe('Controller: AddSpotCtrl', function () {
   });
 
   it('addSpot checks for user', function () {
-    var time = {
-      'openDay': {'label': 'Friday'},
-      'openHour': {'label': '8:00', 'hour': 8, 'minutes': 0},
-      'openMeridiem': {'label': 'am'},
-      'closeDay': {'label': 'Friday'},
-      'closeHour': {'label': '8:00', 'hour': 8, 'minutes': 0},
-      'closeMeridiem': {'label': 'am'}},
-        userText = 'Must be signed in to add a spot';
+    var userText = 'Must be signed in to add a spot';
     window.alert = jasmine.createSpy();
-    _user.loggedIn = jasmine.createSpy('loggedIn');
-    scope.spotName = 'TestSpot';
-    scope.address = '221 Byron St';
-    scope.city = 'Palo Alto';
-    scope.postal_code = '94301';
-    scope.state_code = 'CA';
-    scope.food = 'undefined';
-    scope.study = true;
-    scope.social = true;
-    scope.business_hours = [time];
+    _setValidScope(scope);
     expect(window.alert).not.toHaveBeenCalled();
     scope.addSpot();
     expect(window.alert).toHaveBeenCalledWith(userText);
@@ -107,7 +91,6 @@ describe('Controller: AddSpotCtrl', function () {
   it('addSpot checks for user', function () {
     var userText = 'Must be signed in to add a spot';
     window.alert = jasmine.createSpy();
-    //_user.loggedIn = jasmine.createSpy('loggedIn');
     _setValidScope(scope);
     expect(window.alert).not.toHaveBeenCalled();
     scope.addSpot();
