@@ -1,6 +1,6 @@
 'use strict';
 
-/* global alert, _dayToNum */
+/* global alert */
 /* jshint camelcase: false */
 
 angular.module('b4cmApp')
@@ -196,7 +196,7 @@ function _handleFormErrors($scope, errors) {
  * @return {int} The number representation of the next day.
  */
 function _incrementDay(day) {
-  var nextDay = _dayToNum(day) + 1;
+  var nextDay = util.dayToNum(day) + 1;
   if (nextDay === 7) {nextDay = 0;}
   return nextDay;
 }
