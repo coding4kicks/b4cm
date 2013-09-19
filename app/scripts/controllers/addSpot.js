@@ -123,13 +123,16 @@ angular.module('b4cmApp')
 
         // Hack to remove $$haskey property which blows up Firebase
         newSpot.business_hours = [];
+        console.log($scope.business_hours);
         $scope.business_hours.forEach(function(hour) {
           var time = {'open_day': hour.open_day, 'open_meridiem': hour.open_meridiem,
                       'open_hour': hour.open_hour, 'close_day': hour.close_day,
                       'close_meridiem': hour.close_meridiem, 'close_hour': hour.close_hour };
+          console.log(time);
           newSpot.business_hours.push(time);
         });
-
+        console.log('newSpot biz hrs');
+        console.log(newSpot.business_hours);
         // Create the spot - Asynch send to firebase
         spot.create(newSpot).then(function (newSpot) {
           // Handle success or error

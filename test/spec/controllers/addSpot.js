@@ -119,7 +119,7 @@ describe('Controller: AddSpotCtrl', function () {
     window.alert = jasmine.createSpy();
     _user.loggedIn = jasmine.createSpy('loggedIn').andReturn(true);
     _user.getInfo = jasmine.createSpy('getInfo').andReturn(
-      {'provider': 'password', 'id': 1, 'display_name': 'Test', 'gravatar': 'fakeurl'});
+      {'provider': 'password', 'id': 1, 'display_name': 'Test', 'gravatar': 'fakeurl'});  
     _spot.create = jasmine.createSpy('create').andReturn(promise);
     _setValidScope(scope);
     expect(_user.loggedIn).not.toHaveBeenCalled();
@@ -128,26 +128,30 @@ describe('Controller: AddSpotCtrl', function () {
     scope.addSpot();
     expect(_user.loggedIn).toHaveBeenCalled();
     expect(_user.getInfo).toHaveBeenCalled();
-    //expect(_spot.create).toHaveBeenCalledWith('');
+    expect(_spot.create).toHaveBeenCalled();
     expect(window.alert).not.toHaveBeenCalled();
   }));
 });
 
 function _setValidScope(scope) {
   var time = {
-    'openDay': {'label': 'Friday'},
-    'openHour': {'label': '8:00', 'hour': 8, 'minutes': 0},
-    'openMeridiem': {'label': 'am'},
-    'closeDay': {'label': 'Friday'},
-    'closeHour': {'label': '8:00', 'hour': 8, 'minutes': 0},
-    'closeMeridiem': {'label': 'am'}};
+    'open_day': {'label': 'Friday'},
+    'open_hour': {'label': '8:00', 'hour': 8, 'minutes': 0},
+    'open_meridiem': {'label': 'am'},
+    'close_day': {'label': 'Friday'},
+    'close_hour': {'label': '8:00', 'hour': 8, 'minutes': 0},
+    'close_meridiem': {'label': 'am'}};
   scope.spotName = 'TestSpot';
   scope.address = '221 Byron St';
   scope.city = 'Palo Alto';
   scope.postal_code = '94301';
   scope.state_code = 'CA';
-  scope.food = 'undefined';
+  scope.food = undefined;
   scope.study = true;
   scope.social = true;
-  scope.business_hours = [time];
+  scope.image2 = {'resized': {}};
+  scope.image2.resized.dataURL = 'testPic';
+  scope.wifi = true;
+  scope.business_hours = [];
+  scope.business_hours.push(time);
 }
