@@ -55,7 +55,25 @@ describe('Controller: AddWatchCtrl', function () {
     _user.loggedIn = jasmine.createSpy('loggedIn').andReturn(true);
     _user.getInfo = jasmine.createSpy('getInfo').andReturn(
       {'provider': 'password', 'id': 1, 'display_name': 'Test', 'gravatar': 'fakeurl'});
-    scope.spotObj = {'crowdfactor': _emptyCrowdGraph()};
+    scope.spotObj = {'crowdfactor': _fullCrowdGraph()};
+    expect(window.alert).not.toHaveBeenCalled();
+    expect(_user.loggedIn).not.toHaveBeenCalled();
+    expect(_user.getInfo).not.toHaveBeenCalled();
+    scope.addWatch();
+    expect(window.alert).toHaveBeenCalledWith(alertText);
+    expect(_user.loggedIn).toHaveBeenCalled();
+    expect(_user.getInfo).toHaveBeenCalled();
+  });
+
+  it('addWatch period must be less than 24 hours', function () {
+    var alertText = 'Watches must be for less than a 24 hour period.';
+    window.alert = jasmine.createSpy();
+    _user.loggedIn = jasmine.createSpy('loggedIn').andReturn(true);
+    _user.getInfo = jasmine.createSpy('getInfo').andReturn(
+      {'provider': 'password', 'id': 1, 'display_name': 'Test', 'gravatar': 'fakeurl'});
+    scope.spotObj = {'crowdfactor': _fullCrowdGraph()};
+    scope.cf_status = 'empty';
+    _setInvalidScope(scope);
     expect(window.alert).not.toHaveBeenCalled();
     expect(_user.loggedIn).not.toHaveBeenCalled();
     expect(_user.getInfo).not.toHaveBeenCalled();
@@ -67,14 +85,18 @@ describe('Controller: AddWatchCtrl', function () {
 
   it('addWatch adds a watch', function () {
     var alertText = 'Crowd watch added.',
-        watchObj = { cf_status : 'empty', time : [  ], comment : undefined, user : 'Test' };
+        watchObj = {cf_status: 'empty', 
+                    time: [{day: 'friday', hour: '8am', count: 1, score: 3 }, 
+                           {day: 'friday', hour: '9am', count: 1, score: 3}], 
+                    comment: undefined, user: 'Test'};
     
     window.alert = jasmine.createSpy();
     _user.loggedIn = jasmine.createSpy('loggedIn').andReturn(true);
     _user.getInfo = jasmine.createSpy('getInfo').andReturn(
       {'provider': 'password', 'id': 1, 'display_name': 'Test', 'gravatar': 'fakeurl'});
-    scope.spotObj = {'crowdfactor': _emptyCrowdGraph()};
+    scope.spotObj = {'crowdfactor': _fullCrowdGraph()};
     scope.cf_status = 'empty';
+    _setValidScope(scope);
     _spot.addWatch = jasmine.createSpy('addWatch');
     _user.incrementWatchCount = jasmine.createSpy('incrementWatchCount');
     expect(window.alert).not.toHaveBeenCalled();
@@ -95,7 +117,16 @@ describe('Controller: AddWatchCtrl', function () {
     scope.stopMeridiem.label = 'am';
   }
 
-  function _emptyCrowdGraph() {
+  function _setInvalidScope(scope) {
+    scope.startDay.label = 'Friday'; 
+    scope.startHour.label = '8';
+    scope.startMeridiem.label = 'am'
+    scope.stopDay.label = 'Saturday';
+    scope.stopHour.label = '9';
+    scope.stopMeridiem.label = 'am';
+  }
+
+  function _fullCrowdGraph() {
     var crowdgraph = {},
         WEEKDAYS = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
         BLOCK_HOURS = {'morning': ['5am', '6am', '7am', '8am', '9am', '10am'],
@@ -112,16 +143,15 @@ describe('Controller: AddWatchCtrl', function () {
     WEEKDAYS.forEach(function(day) {
       crowdgraph.day[day] = {};
       for (var i = 1; i <= 12; i++) {
-        var closed_am = {'count': -1, 'score': -1},
-            closed_pm = {'count': -1, 'score': -1};
-        crowdgraph.day[day][i + 'am'] = closed_am;
-        crowdgraph.day[day][i + 'pm'] = closed_pm;
+        var statusAm = {'count': 1, 'score': 3},
+            statusPm = {'count': 1, 'score': 3};
+        crowdgraph.day[day][i + 'am'] = statusAm;
+        crowdgraph.day[day][i + 'pm'] = statusPm;
       }
     });
 
     return crowdgraph
   }
-
 
 });
 
