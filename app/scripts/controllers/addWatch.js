@@ -58,8 +58,6 @@ angular.module('b4cmApp')
                     'hour': parseInt($scope.stopHour.label), 
                     'meridiem': $scope.stopMeridiem.label}
         watch.cf_status = $scope.cf_status;
-        console.log('check spot');
-        console.log($scope.spotObj);
         watch.time = _calculateWatchTimes(start, stop, $scope.spotObj);
         watch.comment = $scope.watchComment;
         watch.user = user.getInfo().display_name;
@@ -116,11 +114,7 @@ function _calculateWatchTimes(start, stop, spotObj) {
     var watch = {};
     var i = 0;
     i = i + 1;
-    console.log('calc');
-    console.log(day);
-    console.log(current.day);
     watch.day = WEEKDAYS[current.day].toLowerCase();
-    console.log(watch.day);
     watch.hour = current.hour + current.meridiem;
     watch.count = day[watch.day][watch.hour].count;
     watch.score = day[watch.day][watch.hour].score;
