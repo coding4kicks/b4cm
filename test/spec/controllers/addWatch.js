@@ -75,12 +75,8 @@ describe('Controller: AddWatchCtrl', function () {
     scope.cf_status = 'empty';
     _setInvalidScope(scope);
     expect(window.alert).not.toHaveBeenCalled();
-    expect(_user.loggedIn).not.toHaveBeenCalled();
-    expect(_user.getInfo).not.toHaveBeenCalled();
     scope.addWatch();
     expect(window.alert).toHaveBeenCalledWith(alertText);
-    expect(_user.loggedIn).toHaveBeenCalled();
-    expect(_user.getInfo).toHaveBeenCalled();
   });
 
   it('addWatch adds a watch', function () {
@@ -109,21 +105,21 @@ describe('Controller: AddWatchCtrl', function () {
   });
 
   function _setValidScope(scope) {
-    scope.startDay.label = 'Friday'; 
-    scope.startHour.label = '8';
-    scope.startMeridiem.label = 'am'
-    scope.stopDay.label = 'Friday';
-    scope.stopHour.label = '10';
-    scope.stopMeridiem.label = 'am';
+    scope.startDay = {'label': 'Friday'}; 
+    scope.startHour = {'label': 8};
+    scope.startMeridiem = {'label': 'am'};
+    scope.stopDay = {'label': 'Friday'};
+    scope.stopHour = {'label': 10};
+    scope.stopMeridiem = {'label': 'am'};
   }
 
   function _setInvalidScope(scope) {
-    scope.startDay.label = 'Friday'; 
-    scope.startHour.label = '8';
-    scope.startMeridiem.label = 'am'
-    scope.stopDay.label = 'Saturday';
-    scope.stopHour.label = '9';
-    scope.stopMeridiem.label = 'am';
+    scope.startDay = {'label': 'Friday'}; 
+    scope.startHour = {'label': 8};
+    scope.startMeridiem = {'label': 'am'};
+    scope.stopDay = {'label': 'Saturday'};
+    scope.stopHour = {'label': 11};
+    scope.stopMeridiem = {'label': 'am'};
   }
 
   function _fullCrowdGraph() {
