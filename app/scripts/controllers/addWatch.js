@@ -11,7 +11,7 @@ angular.module('b4cmApp')
   .controller('AddWatchCtrl', function ($scope, $routeParams, $location, spot, user, util) {
 
     var watch = {},
-        spotObj = {},
+        //spotObj = {},
         additionalInfo = {},
         current_date = new Date(),
         future_date = new Date(current_date.getTime() + 60 * 60 * 1000),
@@ -22,6 +22,7 @@ angular.module('b4cmApp')
         current_meridiem = (current_date.getHours() < 12) ? '0' : '1',
         future_meridiem = (future_date.getHours() < 12) ? '0' : '1';
 
+    $scope.spotObj = {}; // Scope reference only used for testing.
     $scope.WEEKDAYS = [{'label': 'Sunday'}, {'label': 'Monday'}, {'label': 'Tuesday'}, 
                        {'label': 'Wednesday'}, {'label': 'Thursday'}, {'label': 'Friday'}, 
                        {'label': 'Saturday'}],
@@ -39,7 +40,7 @@ angular.module('b4cmApp')
 
     // Retreive the spot associated with this review.
     spot.get($routeParams.spotId).then(function(spot_data) {
-      spotObj = spot_data;
+      $scope.spotObj = spot_data;
     });
 
     /**
@@ -57,12 +58,14 @@ angular.module('b4cmApp')
                     'hour': parseInt($scope.stopHour.label), 
                     'meridiem': $scope.stopMeridiem.label}
         watch.cf_status = $scope.cf_status;
-        watch.time = _calculateWatchTimes(start, stop, spotObj);
+        console.log('check spot');
+        console.log($scope.spotObj);
+        watch.time = _calculateWatchTimes(start, stop, $scope.spotObj);
         watch.comment = $scope.watchComment;
         watch.user = user.getInfo().display_name;
         if (typeof watch.cf_status === 'undefined') {alert('Please choose a crowd status.');}
         else {
-          spot.addWatch(watch, $routeParams.spotId, spotObj.crowdfactor.watch_count);
+          spot.addWatch(watch, $routeParams.spotId, $scope.spotObj.crowdfactor.watch_count);
           user.incrementWatchCount();
           alert('Crowd watch added.');
           
@@ -113,11 +116,14 @@ function _calculateWatchTimes(start, stop, spotObj) {
     var watch = {};
     var i = 0;
     i = i + 1;
-
+    console.log('calc');
+    console.log(day);
+    console.log(current.day);
     watch.day = WEEKDAYS[current.day].toLowerCase();
+    console.log(watch.day);
     watch.hour = current.hour + current.meridiem;
-    watch.count = day[watch.day][watch.hour].count
-    watch.score = day[watch.day][watch.hour].score
+    watch.count = day[watch.day][watch.hour].count;
+    watch.score = day[watch.day][watch.hour].score;
     // only add if not closed
     if (day[watch.day][watch.hour].count !== -1) {times.push(watch)};
 
