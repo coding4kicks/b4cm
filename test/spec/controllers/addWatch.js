@@ -65,6 +65,27 @@ describe('Controller: AddWatchCtrl', function () {
     expect(_user.getInfo).toHaveBeenCalled();
   });
 
+  it('addWatch adds a watch', function () {
+    var alertText = 'Crowd watch added.',
+        watchObj = { cf_status : 'empty', time : [  ], comment : undefined, user : 'Test' };
+    
+    window.alert = jasmine.createSpy();
+    _user.loggedIn = jasmine.createSpy('loggedIn').andReturn(true);
+    _user.getInfo = jasmine.createSpy('getInfo').andReturn(
+      {'provider': 'password', 'id': 1, 'display_name': 'Test', 'gravatar': 'fakeurl'});
+    scope.spotObj = {'crowdfactor': _emptyCrowdGraph()};
+    scope.cf_status = 'empty';
+    _spot.addWatch = jasmine.createSpy('addWatch');
+    _user.incrementWatchCount = jasmine.createSpy('incrementWatchCount');
+    expect(window.alert).not.toHaveBeenCalled();
+    expect(_user.incrementWatchCount).not.toHaveBeenCalled();
+    expect(_spot.addWatch).not.toHaveBeenCalled();
+    scope.addWatch();
+    expect(window.alert).toHaveBeenCalledWith(alertText);
+    expect(_user.incrementWatchCount).toHaveBeenCalled();
+    expect(_spot.addWatch).toHaveBeenCalledWith(watchObj, undefined, 0);
+  });
+
   function _setValidScope(scope) {
     scope.startDay.label = 'Friday'; 
     scope.startHour.label = '8';
