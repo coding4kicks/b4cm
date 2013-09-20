@@ -64,7 +64,9 @@ angular.module('b4cmApp')
         watch.time = _calculateWatchTimes(start, stop, $scope.spotObj);
         watch.comment = $scope.watchComment;
         watch.user = user.getInfo().display_name;
+
         if (typeof watch.cf_status === 'undefined') {alert('Please choose a crowd status.');}
+        else if (watch.time.length > 24) {alert('Watches must be for less than a 24 hour period.');}
         else {
           spot.addWatch(watch, $routeParams.spotId, $scope.spotObj.crowdfactor.watch_count);
           /* jshint camelcase: true */
