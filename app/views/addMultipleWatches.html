@@ -1,1 +1,59 @@
-<p>This is the addMultipleWatches view.</p>
+<div id="add-multiple-page">
+  <h3>Add Multiple Crowd Watches:</h3>
+
+  <h4>{{name}}<h4>
+  <h5>{{address}}, {{city}}</h5>
+
+  <form class="form-horizontal">
+    
+    <div class="control-group">
+      <label class="control-label">Crowd Factor: </label>
+      <div class="controls">
+        <label class="radio inline empty">
+          <input type="radio" name="cf_status" ng-model="cf_status" value="empty">Empty
+        </label>
+        <label class="radio inline few">
+          <input type="radio" name="cf_status" ng-model="cf_status" value="few">Few
+        </label>
+        <label class="radio inline ave">
+          <input type="radio" name="cf_status" ng-model="cf_status" value="average">Average
+        </label>
+        <label class="radio inline crowded">
+          <input type="radio" name="cf_status" ng-model="cf_status" value="crowded">Crowded
+        </label>
+        <label class="radio inline herd">
+          <input type="radio" name="cf_status" ng-model="cf_status" value="herd">Herd
+        </label>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="inputHours">Time Window: </label>
+      <div class="controls">
+        <select class="day-select" ng-model="startDay" ng-options="day.label for day in WEEKDAYS"></select>
+        <select class="hour-select" ng-model="startHour" ng-options="hour.label for hour in HOURS"></select>
+        <select class="meridiem-select" ng-model="startMeridiem" ng-options="meridiem.label for meridiem in MERIDIEMS"></select>
+        To
+        <select class="day-select" ng-model="stopDay" ng-options="day.label for day in WEEKDAYS"></select>
+        <select class="hour-select" ng-model="stopHour" ng-options="hour.label for hour in HOURS"></select>
+        <select class="meridiem-select" ng-model="stopMeridiem" ng-options="meridiem.label for meridiem in MERIDIEMS"></select>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="watchComment">Comment:</label>
+      <div class="controls">
+        <textarea id="watchComment" placeholder="Comment on the status." ng-model="watchComment"></textarea>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <button type="submit" class="btn" ng-click="addWatch()">Add Crowd Watch</button>
+      </div>
+    </div>
+  </form>
+  <br>
+  <a class="add-multiple" ng-click="addMultiple()">Add Multiple Spots</a>
+</div>
+
