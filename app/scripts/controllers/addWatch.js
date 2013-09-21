@@ -43,6 +43,9 @@ angular.module('b4cmApp')
     // Retreive the spot associated with this review.
     spot.get($routeParams.spotId).then(function(spotData) {
       $scope.spotObj = spotData;
+      $scope.name = spotData.name;
+      $scope.address = spotData.location.address;
+      $scope.city = spotData.location.city;
     });
 
     /**
