@@ -35,6 +35,10 @@ angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload', 'ui.bootstr
         templateUrl: 'views/addWatch.html',
         controller: 'AddWatchCtrl'
       })
+      .when('/addMultipleWatches/:spotId', {
+        templateUrl: 'views/addMultipleWatches.html',
+        controller: 'AddMultipleWatchesCtrl'
+      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
@@ -70,10 +74,6 @@ angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload', 'ui.bootstr
       .when('/welcome', {
         templateUrl: 'views/welcome.html',
         controller: 'WelcomeCtrl'
-      })
-      .when('/addMultipleWatches', {
-        templateUrl: 'views/addMultipleWatches.html',
-        controller: 'AddMultipleWatchesCtrl'
       })
       .otherwise({
         redirectTo: '/'

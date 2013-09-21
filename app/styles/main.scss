@@ -1083,8 +1083,10 @@ input[type='text']:focus {
   }
 
   .add-multiple {
-    .control-label {
-      width: 170px;
+    margin: 0 0 0 40px;
+
+    &:hover {
+      cursor: pointer;
     }
   }
 }
