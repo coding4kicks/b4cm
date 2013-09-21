@@ -69,25 +69,20 @@ angular.module('b4cmApp')
         // Enable the new Google Maps visuals until it gets enabled by default.
         // See http://googlegeodevelopers.blogspot.ca/2013/05/a-fresh-new-look-for-maps-api-for-all.html
         // Add test for existance so doesn't blow up unit tests
-        console.log('currently initializing google maps');
-        console.log(index);
         if (typeof google !== 'undefined') {
           google.maps.visualRefresh = true;
         }
-      
         $scope.position = {
           'coords': {
             'latitude': position.latitude,
             'longitude': position.longitude
           }
         };
-      
         /** the initial center of the map */
         $scope.centerProperty = {
           'latitude': position.latitude,
           'longitude': position.longitude
         };
-      
         /** the initial zoom level of the map */
         $scope.zoomProperty = zoom || 14;
       
@@ -96,7 +91,7 @@ angular.module('b4cmApp')
         for (var i = 0; i < spots.length; i++) {
           var marker = {},
               spot = spots[i],
-              url = '../images/marker-icon' + (i + 1) + '.png';
+              url = '../images/marker-icon' + (index + i) + '.png';
           marker.latitude = spot.location.latitude;
           marker.longitude = spot.location.longitude;
           marker.infoWindow = spot.name;
