@@ -75,13 +75,8 @@ angular.module('b4cmApp')
           /* jshint camelcase: true */
           user.incrementWatchCount();
           alert('Crowd watch added.');
-
-          if ($scope.multipleWatches) {
-            alert('multiples');
-          }
-          else {
-            alert('redirect');
-          }
+          $location.path('/spot/' + $scope.spotObj.id);
+          util.safeApply($scope);
         }
       }
       else {
