@@ -66,16 +66,21 @@ angular.module('b4cmApp')
         // Must retrieve all spots returned in search
         // Need to fix this if have a lot of spots (at least return after 10 good ones returned)
         // and save others for later
+        var typeSpots = 0,
+            totalSpots = 0,
+            initialized = false;
         for (var i = 0; i < idList.length; i++) {
           //if (i === idList.length) {break;} // Break if not a full set of results
           var spotId = idList[i];
           spot.get(spotId).then(function(spotObj) {
+            totalSpots = totalSpots + 1;
             // Basic filtering: filter if no recommendations of this type.
             // Later should filter based on a percentage
             // Also, total is all returned spots for the area, not of this type.
             if (spotObj !== null && spotObj.type[spotType] > 0) {
               var current_status = _getStatus(spotObj, current_time),
                   score = 0;
+              typeSpots = typeSpots + 1;
               if (spotObj.review_count !== 0) {
                 score = spotObj.rating_count / spotObj.review_count;
               }
@@ -91,11 +96,13 @@ angular.module('b4cmApp')
                 $scope.displayMore = true;
               }
             }
-            if (i === SPOTS_PER_PAGE ||
-                i === idList.length) {
-              // Initialize google maps parameters for listings page when all data is ready
+            // Initialize google maps parameters for listings page when all data is ready
+            if ((typeSpots === SPOTS_PER_PAGE ||
+                totalSpots === idList.length) &&
+                !initialized) {
               var zoom = 12,
                   index = 1;
+              initialized = true;
               util.initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots, zoom, index);
             }
           });

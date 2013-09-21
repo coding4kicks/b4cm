@@ -61,7 +61,7 @@ angular.module('b4cmApp')
        * @params {object} $scope Controller's scope.
        * @returns {nothing} Procedure has side effects on scope.
        */
-      initializeGoogleMaps: function($scope, position, spots, zoom) {
+      initializeGoogleMaps: function($scope, position, spots, zoom, index) {
       
         // TODO: Need to make sure center and zoom encompass all the locations.  
         //       Should probably just have zoom level and search radius be equal. How?
@@ -70,6 +70,7 @@ angular.module('b4cmApp')
         // See http://googlegeodevelopers.blogspot.ca/2013/05/a-fresh-new-look-for-maps-api-for-all.html
         // Add test for existance so doesn't blow up unit tests
         console.log('currently initializing google maps');
+        console.log(index);
         if (typeof google !== 'undefined') {
           google.maps.visualRefresh = true;
         }
