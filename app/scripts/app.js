@@ -71,6 +71,10 @@ angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload', 'ui.bootstr
         templateUrl: 'views/welcome.html',
         controller: 'WelcomeCtrl'
       })
+      .when('/addMultipleWatches', {
+        templateUrl: 'views/addMultipleWatches.html',
+        controller: 'AddMultipleWatchesCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
