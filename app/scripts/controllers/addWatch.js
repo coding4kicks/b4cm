@@ -88,6 +88,26 @@ angular.module('b4cmApp')
       }
     };
 
+    /**
+     * @name addMultiple
+     * @function
+     *
+     * @description Redirects to add-multiple-watches-page.
+     */ 
+    $scope.addMultiple = function() {
+      console.log('here');
+      if (user.loggedIn()){
+        $location.path("/addMultipleWatches/" + $scope.spotObj.id);
+        util.safeApply($scope);
+      }
+      else {
+        alert("Must be logged in to add watches.");
+        $location.path("/signin/");
+        util.safeApply($scope);
+      }
+    };
+
+
   });
 
 /***************
