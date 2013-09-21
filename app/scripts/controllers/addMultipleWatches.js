@@ -55,57 +55,49 @@ angular.module('b4cmApp')
      * @description Adds a crowd watch to a spot
      */
     $scope.addWatch = function() {
+       console.log('Add a Watch');
+    }
+
+    /**
+     * @name addWatch
+     * @function
+     *
+     * @description Adds a crowd watch to a spot
+     */
+    $scope.submitWatches = function() {
       if (user.loggedIn()){
-        var start = {'day': util.dayToNum($scope.startDay.label),
-                     'hour': parseInt($scope.startHour.label, 10),
-                     'meridiem': $scope.startMeridiem.label},
-            stop = {'day': util.dayToNum($scope.stopDay.label),
-                    'hour': parseInt($scope.stopHour.label, 10),
-                    'meridiem': $scope.stopMeridiem.label};
-        /* jshint camelcase: false */
-        watch.cf_status = $scope.cf_status;
-        watch.time = _calculateWatchTimes(start, stop, $scope.spotObj);
-        watch.comment = $scope.watchComment;
-        watch.user = user.getInfo().display_name;
+        console.log('Submit Watches');
+        //var start = {'day': util.dayToNum($scope.startDay.label),
+        //             'hour': parseInt($scope.startHour.label, 10),
+        //             'meridiem': $scope.startMeridiem.label},
+        //    stop = {'day': util.dayToNum($scope.stopDay.label),
+        //            'hour': parseInt($scope.stopHour.label, 10),
+        //            'meridiem': $scope.stopMeridiem.label};
+        ///* jshint camelcase: false */
+        //watch.cf_status = $scope.cf_status;
+        //watch.time = _calculateWatchTimes(start, stop, $scope.spotObj);
+        //watch.comment = $scope.watchComment;
+        //watch.user = user.getInfo().display_name;
 
-        if (typeof watch.cf_status === 'undefined') {alert('Please choose a crowd status.');}
-        else if (watch.time.length > 24) {alert('Watches must be for less than a 24 hour period.');}
-        else {
-          spot.addWatch(watch, $routeParams.spotId, $scope.spotObj.crowdfactor.watch_count);
-          /* jshint camelcase: true */
-          user.incrementWatchCount();
-          alert('Crowd watch added.');
+        //if (typeof watch.cf_status === 'undefined') {alert('Please choose a crowd status.');}
+        //else if (watch.time.length > 24) {alert('Watches must be for less than a 24 hour period.');}
+        //else {
+        //  spot.addWatch(watch, $routeParams.spotId, $scope.spotObj.crowdfactor.watch_count);
+        //  /* jshint camelcase: true */
+        //  user.incrementWatchCount();
+        //  alert('Crowd watch added.');
 
-          if ($scope.multipleWatches) {
-            alert('multiples');
-          }
-          else {
-            alert('redirect');
-          }
-        }
+        //  if ($scope.multipleWatches) {
+        //    alert('multiples');
+        //  }
+        //  else {
+        //    alert('redirect');
+        //  }
+        //}
       }
       else {
         alert('Must be logged in to add a watch');
         $location.path('/signin');
-        util.safeApply($scope);
-      }
-    };
-
-    /**
-     * @name addMultiple
-     * @function
-     *
-     * @description Redirects to add-multiple-watches-page.
-     */ 
-    $scope.addMultiple = function() {
-      console.log('here');
-      if (user.loggedIn()){
-        $location.path("/addMultipleWatches/" + $scope.spotObj.id);
-        util.safeApply($scope);
-      }
-      else {
-        alert("Must be logged in to add watches.");
-        $location.path("/signin/");
         util.safeApply($scope);
       }
     };

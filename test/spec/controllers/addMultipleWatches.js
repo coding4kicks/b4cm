@@ -39,7 +39,7 @@ describe('Controller: AddMultipleWatchesCtrl', function () {
     });
   }));
 
-  it('addWatch requires login', function () {
+  xit('addWatch requires login', function () {
     var alertText = 'Must be logged in to add a watch';
     window.alert = jasmine.createSpy();
     expect(window.alert).not.toHaveBeenCalled();
@@ -49,7 +49,7 @@ describe('Controller: AddMultipleWatchesCtrl', function () {
     expect(_user.loggedIn).toHaveBeenCalled();
   });
 
-  it('addWatch requires a status', function () {
+  xit('addWatch requires a status', function () {
     var alertText = 'Please choose a crowd status.';
     window.alert = jasmine.createSpy();
     _user.loggedIn = jasmine.createSpy('loggedIn').andReturn(true);
@@ -65,7 +65,7 @@ describe('Controller: AddMultipleWatchesCtrl', function () {
     expect(_user.getInfo).toHaveBeenCalled();
   });
 
-  it('addWatch period must be less than 24 hours', function () {
+  xit('addWatch period must be less than 24 hours', function () {
     var alertText = 'Watches must be for less than a 24 hour period.';
     window.alert = jasmine.createSpy();
     _user.loggedIn = jasmine.createSpy('loggedIn').andReturn(true);
@@ -79,7 +79,7 @@ describe('Controller: AddMultipleWatchesCtrl', function () {
     expect(window.alert).toHaveBeenCalledWith(alertText);
   });
 
-  it('addWatch adds a watch', function () {
+  xit('addWatch adds a watch', function () {
     var alertText = 'Crowd watch added.',
         watchObj = {cf_status: 'empty', 
                     time: [{day: 'friday', hour: '8am', count: 1, score: 3 }, 
