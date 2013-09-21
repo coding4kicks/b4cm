@@ -94,7 +94,9 @@ angular.module('b4cmApp')
             if (i === SPOTS_PER_PAGE ||
                 i === idList.length) {
               // Initialize google maps parameters for listings page when all data is ready
-              util.initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots, 12);
+              var zoom = 12,
+                  index = 1;
+              util.initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots, zoom, index);
             }
           });
         }
@@ -137,13 +139,14 @@ angular.module('b4cmApp')
      * @description Displays the next set of results.
      */ 
     $scope.moreSpots = function() {
-      var newList = moreList.splice(0, SPOTS_PER_PAGE);
+      var newList = moreList.splice(0, SPOTS_PER_PAGE),
+          zoom = 12;
       $scope.displayPrevious = true
       $scope.startIndex = $scope.startIndex + SPOTS_PER_PAGE;
       prevList = prevList.concat($scope.spots);
       $scope.spots = newList;
       if (moreList.length < 1) {$scope.displayMore = false}
-      util.initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots, 12);
+      util.initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots, zoom, $scope.startIndex);
     }; 
 
     /**
@@ -153,13 +156,14 @@ angular.module('b4cmApp')
      * @description Displays the previous set of results.
      */ 
     $scope.previousSpots = function() {
-      var newList = prevList.splice(prevList.length - SPOTS_PER_PAGE, SPOTS_PER_PAGE);
+      var newList = prevList.splice(prevList.length - SPOTS_PER_PAGE, SPOTS_PER_PAGE),
+          zoom = 12;
       $scope.displayMore = true
       $scope.startIndex = $scope.startIndex - SPOTS_PER_PAGE;
       moreList = $scope.spots.concat(moreList);
       $scope.spots = newList;
       if (prevList.length < 1) {$scope.displayPrevious = false}
-      util.initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots, 12);
+      util.initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots, zoom, $scope.startIndex);
     }; 
 
   });
