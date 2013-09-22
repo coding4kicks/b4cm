@@ -6,9 +6,6 @@
 
 <div class="visualize">
   <div class="crowd-factor">
-    <h3>Current Time: <span class="current-time {{current_cflabel | lowercase}}">{{current_day}}, {{current_hour}}:{{current_minutes}} {{current_meridiem}}</span></h3>
-    <h4>{{watch_count}} Watches</h4>
-    <button type="button" class="btn" ng-click="addWatch()">Add Crowd Watch</button>
     <div class="crowd-visuals">
       <div class="timeslot" ng-repeat="block in blocks">
         <h5>{{block.name}}</h5>
@@ -19,51 +16,9 @@
           </tr>
           <tr ng-repeat="day in block.days" class="{{day.name}}-row">
             <td>{{day.label}}</td>
-            <td ng-repeat="hour in day.hours" class="{{hour.cf_status}}-square"><img ng-show="show_marker[day.name][hour.label]" class="marker" src="../images/star-icon.png"></td>
+            <td ng-repeat="hour in day.hours" class="{{hour.cf_status}}-square"></td>
           </tr>
         </table>
-      </div>
-      <div class="labels">
-        <div class="row1">
-          <div class="empty">
-            <div class="empty-square color">
-            </div>
-            <h5>Almost Empty</h5>
-          </div>
-          <div class="average">
-            <div class="average-square color">
-            </div>
-            <h5>Average Traffic</h5>
-          </div>
-          <div class="herd">
-            <div class="herd-square color">
-            </div>
-            <h5>Herd Alert</h5>
-          </div>
-          <div class="none">
-            <div class="none-square color">
-            </div>
-            <h5>No Data</h5>
-          </div>
-        </div>
-        <br>
-        <div class="row2">
-          <div class="few">
-            <div class="few-square color">
-            </div>
-            <h5>A Few People</h5>
-          </div>
-          <div class="crowded">
-            <div class="crowded-square color">
-            </div>
-            <h5>Crowded</h5>
-          </div>
-          <div class="closed">
-            <div class="closed-square color">
-            </div>
-            <h5>Closed</h5>
-          </div>
-        </div>
       </div>
     </div>
   </div>
