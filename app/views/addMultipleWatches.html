@@ -23,6 +23,15 @@
     </div>
   </div>
 
+  <div class="watch-hours" ng-repeat="watch in watchHours">
+    <h5>
+      {{watch.start.day}} {{watch.start.hour}} {{watch.start.meridiem}} 
+      <span class="to">To</span> 
+      {{watch.stop.day}} {{watch.stop.hour}} {{watch.stop.meridiem}}
+    </h5>
+    <a class="clickable" ng-click="deleteHours($index)">delete</a>
+  </div>
+
   <form class="form-horizontal">
     
     <div class="control-group">

@@ -24,6 +24,7 @@ angular.module('b4cmApp')
         futureMeridiem = (futureDate.getHours() < 12) ? '0' : '1';
 
     $scope.spot = {}; // Scope reference only used for testing.
+    $scope.watchHours = [];
     $scope.WEEKDAYS = [{'label': 'Sunday'}, {'label': 'Monday'}, {'label': 'Tuesday'},
                        {'label': 'Wednesday'}, {'label': 'Thursday'}, {'label': 'Friday'},
                        {'label': 'Saturday'}, {'label': 'Weekdays'}, {'label': 'Weekends'},
@@ -59,7 +60,30 @@ angular.module('b4cmApp')
      * @description Adds a crowd watch to a spot
      */
     $scope.addWatch = function() {
-       console.log('Add a Watch');
+      console.log('Add a Watch');
+      var watch = {'start': {'day': $scope.startDay.label,
+                             'hour': parseInt($scope.startHour.label, 10),
+                             'meridiem': $scope.startMeridiem.label},
+                    'stop':{'day': $scope.stopDay.label,
+                             'hour': parseInt($scope.stopHour.label, 10),
+                              'meridiem': $scope.stopMeridiem.label},
+                    'cf_status': $scope.cf_status
+                  };
+
+      // must use util.dayToNum($scope.stopDay.label)
+      // to convert to number prior to _calculateWatchTimes
+
+      //var times = {'open_day': $scope.openDay,
+      //             'open_hour': $scope.openHour,
+      //             'open_meridiem': $scope.openMeridiem,
+      //             'close_day': $scope.closeDay,
+      //             'close_hour': $scope.closeHour,
+      //             'close_meridiem': $scope.closeMeridiem};
+      //    //nextDay = $scope.WEEKDAYS[_incrementDay($scope.openDay.label, util)];
+      $scope.watchHours.push(watch);
+      // Increment days to next day for convenience
+      //$scope.openDay = nextDay;
+      //$scope.closeDay = nextDay;
     }
 
     /**
