@@ -80,7 +80,12 @@ angular.module('b4cmApp')
       //             'close_hour': $scope.closeHour,
       //             'close_meridiem': $scope.closeMeridiem};
       //    //nextDay = $scope.WEEKDAYS[_incrementDay($scope.openDay.label, util)];
-      $scope.watchHours.push(watch);
+      if (typeof watch.cf_status !== 'undefined') {
+        $scope.watchHours.push(watch);
+      }
+      else {
+        alert('Must select a crowd status.');
+      }
       // Increment days to next day for convenience
       //$scope.openDay = nextDay;
       //$scope.closeDay = nextDay;
