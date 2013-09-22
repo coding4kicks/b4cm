@@ -87,6 +87,19 @@ angular.module('b4cmApp')
     }
 
     /**
+     * @name deleteHours
+     * @procedure
+     *
+     * @description Deletes hours from a business's hours of operations.
+     *              Requires addSpot controllers $scope
+     * @param {int} index The index for the business hours to delete.
+     */
+    $scope.deleteHours = function(index) {
+      $scope.watchHours.splice(index, 1);
+    };
+
+
+    /**
      * @name addWatch
      * @function
      *
