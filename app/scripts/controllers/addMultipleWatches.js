@@ -26,7 +26,8 @@ angular.module('b4cmApp')
     $scope.spot = {}; // Scope reference only used for testing.
     $scope.WEEKDAYS = [{'label': 'Sunday'}, {'label': 'Monday'}, {'label': 'Tuesday'},
                        {'label': 'Wednesday'}, {'label': 'Thursday'}, {'label': 'Friday'},
-                       {'label': 'Saturday'}, {'label': 'Weekdays'}, {'label': 'Weekends'}],
+                       {'label': 'Saturday'}, {'label': 'Weekdays'}, {'label': 'Weekends'},
+                       {'label': 'All Week'}],
     $scope.HOURS = [{'label': '12'}, {'label': '1'}, {'label': '2'}, {'label': '3'},
                     {'label': '4'}, {'label': '5'}, {'label': '6'}, {'label': '7'},
                     {'label': '8'}, {'label': '9'}, {'label': '10'}, {'label': '11'}],
