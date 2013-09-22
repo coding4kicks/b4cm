@@ -37,13 +37,13 @@ angular.module('b4cmApp')
     // Form Validation
     $scope.validForm = {};
 
-  /**
-   * @name addHours
-   * @procedure
-   *
-   * @description Adds hours to a business's hours of operations.
-   *              Requires addSpot controllers $scope
-   */
+    /**
+     * @name addHours
+     * @procedure
+     *
+     * @description Adds hours to a business's hours of operations.
+     *              Requires addSpot controllers $scope
+     */
     $scope.addHours = function() {
       var times = {'open_day': $scope.openDay,
                    'open_hour': $scope.openHour,
@@ -58,27 +58,27 @@ angular.module('b4cmApp')
       $scope.closeDay = nextDay;
     };
 
-  /**
-   * @name deleteHours
-   * @procedure
-   *
-   * @description Deletes hours from a business's hours of operations.
-   *              Requires addSpot controllers $scope
-   * @param {int} index The index for the business hours to delete.
-   */
+    /**
+     * @name deleteHours
+     * @procedure
+     *
+     * @description Deletes hours from a business's hours of operations.
+     *              Requires addSpot controllers $scope
+     * @param {int} index The index for the business hours to delete.
+     */
     $scope.deleteHours = function(index) {
       /* jshint camelcase: false */
       $scope.business_hours.splice(index, 1);
       /* jshint camelcase: false */
     };
 
-  /**
-   * @name addSpot
-   * @procedure
-   *
-   * @description Calls the spot service to add a new spot to the database.
-   *              Requires the addSpot controller's $scope
-   */
+    /**
+     * @name addSpot
+     * @procedure
+     *
+     * @description Calls the spot service to add a new spot to the database.
+     *              Requires the addSpot controller's $scope
+     */
     $scope.addSpot = function() {
 
       // Validate the form
@@ -145,13 +145,13 @@ angular.module('b4cmApp')
       }
     };
 
-  /**
-   * @name yelpIdHelp
-   * @procedure
-   *
-   * @description Toggles the visibility of the yelp id help section.
-   *              Requires addSpot controllers $scope
-   */
+    /**
+     * @name yelpIdHelp
+     * @procedure
+     *
+     * @description Toggles the visibility of the yelp id help section.
+     *              Requires addSpot controllers $scope
+     */
     $scope.yelpIdHelp = function() {
       $scope.yelpHelpShow = !$scope.yelpHelpShow;
     };
