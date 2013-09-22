@@ -22,8 +22,8 @@ angular.module('b4cmApp')
         futureHour = futureDate.getHours() % 12,
         currentMeridiem = (currentDate.getHours() < 12) ? '0' : '1',
         futureMeridiem = (futureDate.getHours() < 12) ? '0' : '1';
-
-    $scope.spot = {}; // Scope reference only used for testing.
+   
+    $scope.spot = {}; // May need to clone since changing spot data and may not save.
     $scope.watchHours = [];
     $scope.WEEKDAYS = [{'label': 'Sunday'}, {'label': 'Monday'}, {'label': 'Tuesday'},
                        {'label': 'Wednesday'}, {'label': 'Thursday'}, {'label': 'Friday'},
@@ -70,18 +70,22 @@ angular.module('b4cmApp')
                     'cf_status': $scope.cf_status
                   };
 
-      // must use util.dayToNum($scope.stopDay.label)
-      // to convert to number prior to _calculateWatchTimes
-
-      //var times = {'open_day': $scope.openDay,
-      //             'open_hour': $scope.openHour,
-      //             'open_meridiem': $scope.openMeridiem,
-      //             'close_day': $scope.closeDay,
-      //             'close_hour': $scope.closeHour,
-      //             'close_meridiem': $scope.closeMeridiem};
-      //    //nextDay = $scope.WEEKDAYS[_incrementDay($scope.openDay.label, util)];
       if (typeof watch.cf_status !== 'undefined') {
+        var start = util.clone(watch.start),
+            stop = util.clone(watch.stop);
+        start.day = util.dayToNum(start.day);
+        stop.day = util.dayToNum(stop.day);
+        watch.time = _calculateWatchTimes(start, stop, $scope.spot);
+        watch.time.forEach(function(time) {
+           var score = _statusToScore(watch.cf_status);
+           $scope.spot.crowdfactor.day[time.day][time.hour].count = time.count + 1;
+           $scope.spot.crowdfactor.day[time.day][time.hour].score = time.score + score;
+        });
         $scope.watchHours.push(watch);
+        // Recalculate block structure for display of crowdfactor visualization.
+        $scope.blocks = util.constructCrowdFactor($scope.spot.crowdfactor.blocks,
+                                                  $scope.spot.crowdfactor.day);
+
       }
       else {
         alert('Must select a crowd status.');
