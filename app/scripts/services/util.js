@@ -54,6 +54,57 @@ angular.module('b4cmApp')
       },
 
       /**
+       * @name _constructCrowdFactor
+       * @function
+       *
+       * @description Transform crowdfactor details into new structure better for display.
+       *              New structure contains display information in separate blocks.
+       * @param {array} cf_blocks Array of booleans, true if spot is open during block.
+       * @param {object} cf_day Datastructure of status for every hour by day.
+       * @returns {array} Array of display information for each day and hour broken up into blocks.
+       */ 
+      constructCrowdFactor: function(cf_blocks, cf_day) {
+        var display_blocks = [], // Datastructure to display crowd factor.
+            BLOCK_HOURS = {'morning': ['5am', '6am', '7am', '8am', '9am', '10am'],
+                           'afternoon': ['11am', '12pm', '1pm', '2pm', '3pm', '4pm'],
+                           'evening': ['5pm', '6pm', '7pm', '8pm', '9pm', '10pm'],
+                           'latenight': ['11pm', '12am', '1am', '2am', '3am', '4am']
+                          },
+            DAYS = {'monday': 'M', 'tuesday': 'T', 'wednesday': 'W', 'thursday': 'Th',
+                    'friday': 'F', 'saturday': 'Sa', 'sunday': 'Su'};
+        //for (var block_name in cf_blocks) {
+        ['morning', 'afternoon', 'evening', 'latenight'].forEach(function(block_name){
+          if(cf_blocks[block_name]) {
+            var block = {};
+            block.name = block_name;
+            block.hours = [];
+            block.days = [];
+            BLOCK_HOURS[block_name].forEach(function(hour_label) {
+              block.hours.push(hour_label.slice(0,-2));});
+            for (var day_name in DAYS) {
+              var day = {};
+              day.name = day_name;
+              day.label = DAYS[day_name];
+              day.hours = [];
+              BLOCK_HOURS[block_name].forEach(function(hour_label) {
+                var hour = {},
+                    spot_info = cf_day[day_name][hour_label],
+                    cf_score = 0;
+                if (spot_info.count !== 0) {cf_score = spot_info.score / spot_info.count;}
+                if (spot_info.score === -1){cf_score = -1}
+                hour.cf_status = _calculateStatus(cf_score);
+                hour.label = hour_label;
+                day.hours.push(hour);
+              });
+              block.days.push(day);
+            }
+            display_blocks.push(block);
+          };
+        });
+        return display_blocks;
+      },
+
+      /**
        * @name _initializeGoogleMaps
        * @procedure
        *
