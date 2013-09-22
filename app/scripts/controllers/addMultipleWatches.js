@@ -45,6 +45,10 @@ angular.module('b4cmApp')
       $scope.name = spotData.name;
       $scope.address = spotData.location.address;
       $scope.city = spotData.location.city;
+
+      // Calculate block structure for display of crowdfactor visualization.
+      $scope.blocks = _constructCrowdFactor($scope.spot.crowdfactor.blocks,
+                                            $scope.spot.crowdfactor.day);
     });
 
     /**

@@ -39,6 +39,9 @@ describe('Controller: AddMultipleWatchesCtrl', function () {
     });
   }));
 
+  it('addWatch empty', function () {
+  });
+
   xit('addWatch requires login', function () {
     var alertText = 'Must be logged in to add a watch';
     window.alert = jasmine.createSpy();
