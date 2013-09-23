@@ -148,7 +148,19 @@ angular.module('b4cmApp')
      * @param {int} index The index for the business hours to delete.
      */
     $scope.deleteHours = function(index) {
+      var watch = $scope.watchHours[index];
+      watch.start.day = util.dayToNum(watch.start.day);
+      watch.stop.day = util.dayToNum(watch.stop.day);
+      watch.time = _calculateWatchTimes(watch.start, watch.stop, $scope.spot);
+      watch.time.forEach(function(time) {
+      var score = util.statusToScore(watch.cf_status);
+        $scope.spot.crowdfactor.day[time.day][time.hour].count = time.count - 1;
+        $scope.spot.crowdfactor.day[time.day][time.hour].score = time.score - score;
+      });
       $scope.watchHours.splice(index, 1);
+      // Recalculate block structure for display of crowdfactor visualization.
+      $scope.blocks = util.constructCrowdFactor($scope.spot.crowdfactor.blocks,
+                                                $scope.spot.crowdfactor.day);
     };
 
 
