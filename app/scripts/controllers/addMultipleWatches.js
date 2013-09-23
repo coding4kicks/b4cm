@@ -127,7 +127,6 @@ angular.module('b4cmApp')
           // Recalculate block structure for display of crowdfactor visualization.
           $scope.blocks = util.constructCrowdFactor($scope.spot.crowdfactor.blocks,
                                                     $scope.spot.crowdfactor.day);
-
         }
         else {
           alert('Must select a crowd status.');

@@ -102,6 +102,22 @@ angular.module('b4cmApp')
       },
 
       /**
+       * @name addMultipleWatches
+       * @funtion
+       *
+       * @description Adds multiple crowd watches for to a spot. Updates the entire 
+       *              crowdfactor.
+       * @param {object} newWatch Describes a crowd watch to be entered into a spot.
+       *                 Properties: start and stop times of watch event, a rating.
+       * @returns {object} The spot id if successful otherwise an error code.
+       */ 
+      addMultipleWatches: function (crowdfactor, spotId) {
+        var crowdFactorRef = new Firebase(fbUrl + 'spots/' + spotId + '/crowdfactor/');
+        crowdFactorRef.set(crowdfactor);
+        return false;
+      },
+
+      /**
        * @name create
        * @funtion
        *
