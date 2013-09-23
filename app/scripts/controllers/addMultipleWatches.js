@@ -109,7 +109,8 @@ angular.module('b4cmApp')
         else {
           console.log('here');
           var start = util.clone(watch.start),
-              stop = util.clone(watch.stop);
+              stop = util.clone(watch.stop),
+              nextDay = $scope.WEEKDAYS[_incrementDay($scope.startDay.label, util)];;
           start.day = util.dayToNum(start.day);
           stop.day = util.dayToNum(stop.day);
           watch.time = _calculateWatchTimes(start, stop, $scope.spot);
@@ -119,6 +120,9 @@ angular.module('b4cmApp')
              $scope.spot.crowdfactor.day[time.day][time.hour].score = time.score + score;
           });
           $scope.watchHours.push(watch);
+          // Increment days to next day for convenience
+          $scope.startDay = nextDay;
+          $scope.stopDay = nextDay;
         }
         // Recalculate block structure for display of crowdfactor visualization.
         $scope.blocks = util.constructCrowdFactor($scope.spot.crowdfactor.blocks,
@@ -129,9 +133,6 @@ angular.module('b4cmApp')
       else {
         alert('Must select a crowd status.');
       }
-      // Increment days to next day for convenience
-      //$scope.openDay = nextDay;
-      //$scope.closeDay = nextDay;
     }
 
     /**
