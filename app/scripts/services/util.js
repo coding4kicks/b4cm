@@ -104,6 +104,26 @@ angular.module('b4cmApp')
         return display_blocks;
       },
 
+      statusToScore: function(cf_status) {
+        switch (cf_status) {
+          case 'empty':
+            return 1;
+            break;
+          case 'few':
+            return 2;
+            break;
+          case 'average':
+            return 3;
+            break;
+          case 'crowded':
+            return 4;
+            break;
+          case 'herd':
+            return 5;
+            break;
+        }
+      },
+
       /**
        * @name _initializeGoogleMaps
        * @procedure

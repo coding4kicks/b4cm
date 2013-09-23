@@ -83,7 +83,7 @@ angular.module('b4cmApp')
       addWatch: function (newWatch, spotId, currentCount) {
         var dayRef = new Firebase(fbUrl + 'spots/' + spotId + '/crowdfactor/day/'),
             crowdFactorRef = new Firebase(fbUrl + 'spots/' + spotId + '/crowdfactor/'),
-            score = _statusToScore(newWatch.cf_status);
+            score = util.statusToScore(newWatch.cf_status);
 
         crowdFactorRef.child('watch_count').set(currentCount + 1);
 
@@ -277,26 +277,6 @@ angular.module('b4cmApp')
       }
     };
   });
-
-function _statusToScore(cf_status) {
-  switch (cf_status) {
-    case 'empty':
-      return 1;
-      break;
-    case 'few':
-      return 2;
-      break;
-    case 'average':
-      return 3;
-      break;
-    case 'crowded':
-      return 4;
-      break;
-    case 'herd':
-      return 5;
-      break;
-  }
-}
 
 /**
  * @name _constructId

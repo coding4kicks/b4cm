@@ -77,7 +77,7 @@ angular.module('b4cmApp')
         stop.day = util.dayToNum(stop.day);
         watch.time = _calculateWatchTimes(start, stop, $scope.spot);
         watch.time.forEach(function(time) {
-           var score = _statusToScore(watch.cf_status);
+           var score = util.statusToScore(watch.cf_status);
            $scope.spot.crowdfactor.day[time.day][time.hour].count = time.count + 1;
            $scope.spot.crowdfactor.day[time.day][time.hour].score = time.score + score;
         });
@@ -85,6 +85,7 @@ angular.module('b4cmApp')
         // Recalculate block structure for display of crowdfactor visualization.
         $scope.blocks = util.constructCrowdFactor($scope.spot.crowdfactor.blocks,
                                                   $scope.spot.crowdfactor.day);
+        // TODO: move _statusToScore to util.  Save multiples.
 
       }
       else {
