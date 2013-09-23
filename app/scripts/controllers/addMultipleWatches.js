@@ -71,17 +71,55 @@ angular.module('b4cmApp')
                   };
 
       if (typeof watch.cf_status !== 'undefined') {
-        var start = util.clone(watch.start),
-            stop = util.clone(watch.stop);
-        start.day = util.dayToNum(start.day);
-        stop.day = util.dayToNum(stop.day);
-        watch.time = _calculateWatchTimes(start, stop, $scope.spot);
-        watch.time.forEach(function(time) {
-           var score = util.statusToScore(watch.cf_status);
-           $scope.spot.crowdfactor.day[time.day][time.hour].count = time.count + 1;
-           $scope.spot.crowdfactor.day[time.day][time.hour].score = time.score + score;
-        });
-        $scope.watchHours.push(watch);
+        if ($scope.startDay.label === 'Weekdays' || 
+            $scope.startDay.label === 'Weekends' ||
+            $scope.startDay.label === 'All Week') {
+          var dayList = [];
+          if ($scope.startDay.label === 'Weekdays') {
+            dayList = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+          }
+          else if ($scope.startDay.label === 'Weekends') {
+            dayList = ['Saturday', 'Sunday'];
+          }
+          else {
+            dayList = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+          }
+          dayList.forEach(function(day) {
+            var newWatch = {'start': {'day': day,
+                                      'hour': parseInt($scope.startHour.label, 10),
+                                      'meridiem': $scope.startMeridiem.label},
+                            'stop':{'day': day,
+                                    'hour': parseInt($scope.stopHour.label, 10),
+                                    'meridiem': $scope.stopMeridiem.label},
+                            'cf_status': $scope.cf_status
+                          };
+            var start = util.clone(newWatch.start),
+                stop = util.clone(newWatch.stop);
+            start.day = util.dayToNum(start.day);
+            stop.day = util.dayToNum(stop.day);
+            newWatch.time = _calculateWatchTimes(start, stop, $scope.spot);
+            newWatch.time.forEach(function(time) {
+               var score = util.statusToScore(newWatch.cf_status);
+               $scope.spot.crowdfactor.day[time.day][time.hour].count = time.count + 1;
+               $scope.spot.crowdfactor.day[time.day][time.hour].score = time.score + score;
+            });
+            $scope.watchHours.push(newWatch);
+          });
+        }
+        else {
+          console.log('here');
+          var start = util.clone(watch.start),
+              stop = util.clone(watch.stop);
+          start.day = util.dayToNum(start.day);
+          stop.day = util.dayToNum(stop.day);
+          watch.time = _calculateWatchTimes(start, stop, $scope.spot);
+          watch.time.forEach(function(time) {
+             var score = util.statusToScore(watch.cf_status);
+             $scope.spot.crowdfactor.day[time.day][time.hour].count = time.count + 1;
+             $scope.spot.crowdfactor.day[time.day][time.hour].score = time.score + score;
+          });
+          $scope.watchHours.push(watch);
+        }
         // Recalculate block structure for display of crowdfactor visualization.
         $scope.blocks = util.constructCrowdFactor($scope.spot.crowdfactor.blocks,
                                                   $scope.spot.crowdfactor.day);
