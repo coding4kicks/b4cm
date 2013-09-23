@@ -162,30 +162,15 @@ angular.module('b4cmApp')
       if (user.loggedIn()){
         console.log('Submit Watches');
         console.log($scope.watchHours);
-        //var start = {'day': util.dayToNum($scope.startDay.label),
-        //             'hour': parseInt($scope.startHour.label, 10),
-        //             'meridiem': $scope.startMeridiem.label},
-        //    stop = {'day': util.dayToNum($scope.stopDay.label),
-        //            'hour': parseInt($scope.stopHour.label, 10),
-        //            'meridiem': $scope.stopMeridiem.label};
-        ///* jshint camelcase: false */
-        //watch.cf_status = $scope.cf_status;
-        //watch.time = _calculateWatchTimes(start, stop, $scope.spot);
         watch.user = user.getInfo().display_name;
 
-        if (watchHours.length < 1) {alert('Must add a watch to save.');}
+        if ($scope.watchHours.length < 1) {alert('Must add a watch to save.');}
         else {
-        //  spot.addWatch(watch, $routeParams.spotId, $scope.spot.crowdfactor.watch_count);
-        //  /* jshint camelcase: true */
-        //  user.incrementWatchCount();
-        //  alert('Crowd watch added.');
-
-        //  if ($scope.multipleWatches) {
-        //    alert('multiples');
-        //  }
-        //  else {
-        //    alert('redirect');
-        //  }
+          $scope.spot.crowdfactor.watch_count = $scope.spot.crowdfactor.watch_count + 1;
+          spot.addMultipleWatches($scope.spot.crowdfactor, $scope.spot.id);
+          alert('Crowd watches added.');
+          $location.path('/spot/' + $scope.spot.id);
+          util.safeApply($scope);
         }
       }
       else {
