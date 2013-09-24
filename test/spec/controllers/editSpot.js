@@ -76,7 +76,7 @@ describe('Controller: EditSpotCtrl', function () {
   });
 
   it('editSpot checks required form elements', function () {
-    var alertText = 'Name, Address, City, Zip, State, Type, Hours are required fields.';
+    var alertText = 'Name, Address, City, Zip, State, Hours are required fields.';
     scope.business_hours = [];
     scope.openDay = {'label': 'Friday'};
     scope.openHour = {'label': '8:00', 'hour': 8, 'minutes': 0}
@@ -84,7 +84,7 @@ describe('Controller: EditSpotCtrl', function () {
     scope.closeDay = {'label': 'Friday'};
     scope.closeHour = {'label': '8:00', 'hour': 8, 'minutes': 0}
     scope.closeMeridiem = {'label': 'am'};
-    scope.addHours();
+    //scope.addHours();
     window.alert = jasmine.createSpy();
     expect(window.alert).not.toHaveBeenCalled();
     scope.editSpot();
