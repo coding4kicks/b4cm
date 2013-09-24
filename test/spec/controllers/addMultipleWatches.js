@@ -68,61 +68,40 @@ describe('Controller: AddMultipleWatchesCtrl', function () {
                         time: [{ day: 'saturday', hour: '9pm', count: 1, score: 3} ]}]
     window.alert = jasmine.createSpy();
     _user.loggedIn = jasmine.createSpy('loggedIn').andReturn(true);
-    scope.startDay.label = 'Saturday';
-    scope.startHour.label = 9;
-    scope.startMeridiem.label = 'pm';
-    scope.stopDay.label = 'Saturday';
-    scope.stopHour.label = 10;
-    scope.stopMeridiem.label = 'pm';
-    scope.cf_status = 'Empty';
-    scope.spot = {'crowdfactor': _fullCrowdGraph()};
+    _setWatchScope(scope, 'Saturday')
     expect(window.alert).not.toHaveBeenCalled();
     scope.addWatch();
     expect(scope.watchHours).toEqual(watchHours);
     expect(window.alert).not.toHaveBeenCalled();
   });
 
-  xit('addWatch adds a watch', function () {
-    var alertText = 'Crowd watch added.',
-        watchObj = {cf_status: 'empty', 
-                    time: [{day: 'friday', hour: '8am', count: 1, score: 3 }, 
-                           {day: 'friday', hour: '9am', count: 1, score: 3}], 
-                    comment: undefined, user: 'Test'};
-    
+  it('addWatch should add a weekend', function () {
+    var watchHours = [{ start: { day:'Saturday', hour: 9, meridiem: 'pm' },
+                        stop: { day: 'Saturday', hour: 10, meridiem: 'pm' },
+                        cf_status: 'Empty',
+                        time: [{ day: 'saturday', hour: '9pm', count: 1, score: 3} ]},
+                      { start: { day:'Sunday', hour: 9, meridiem: 'pm' },
+                        stop: { day: 'Sunday', hour: 10, meridiem: 'pm' },
+                        cf_status: 'Empty',
+                        time: [{ day: 'sunday', hour: '9pm', count: 1, score: 3} ]}]
     window.alert = jasmine.createSpy();
     _user.loggedIn = jasmine.createSpy('loggedIn').andReturn(true);
-    _user.getInfo = jasmine.createSpy('getInfo').andReturn(
-      {'provider': 'password', 'id': 1, 'display_name': 'Test', 'gravatar': 'fakeurl'});
-    scope.spotObj = {'crowdfactor': _fullCrowdGraph()};
-    scope.cf_status = 'empty';
-    _setValidScope(scope);
-    _spot.addWatch = jasmine.createSpy('addWatch');
-    _user.incrementWatchCount = jasmine.createSpy('incrementWatchCount');
+    _setWatchScope(scope, 'Weekends')
     expect(window.alert).not.toHaveBeenCalled();
-    expect(_user.incrementWatchCount).not.toHaveBeenCalled();
-    expect(_spot.addWatch).not.toHaveBeenCalled();
     scope.addWatch();
-    expect(window.alert).toHaveBeenCalledWith(alertText);
-    expect(_user.incrementWatchCount).toHaveBeenCalled();
-    expect(_spot.addWatch).toHaveBeenCalledWith(watchObj, undefined, 0);
+    expect(scope.watchHours).toEqual(watchHours);
+    expect(window.alert).not.toHaveBeenCalled();
   });
 
-  function _setValidScope(scope) {
-    scope.startDay = {'label': 'Friday'}; 
-    scope.startHour = {'label': 8};
-    scope.startMeridiem = {'label': 'am'};
-    scope.stopDay = {'label': 'Friday'};
-    scope.stopHour = {'label': 10};
-    scope.stopMeridiem = {'label': 'am'};
-  }
-
-  function _setInvalidScope(scope) {
-    scope.startDay = {'label': 'Friday'}; 
-    scope.startHour = {'label': 8};
-    scope.startMeridiem = {'label': 'am'};
-    scope.stopDay = {'label': 'Saturday'};
-    scope.stopHour = {'label': 11};
-    scope.stopMeridiem = {'label': 'am'};
+  function _setWatchScope(scope, day) {
+    scope.startDay.label = day;
+    scope.startHour.label = 9;
+    scope.startMeridiem.label = 'pm';
+    scope.stopDay.label = day;
+    scope.stopHour.label = 10;
+    scope.stopMeridiem.label = 'pm';
+    scope.cf_status = 'Empty';
+    scope.spot = {'crowdfactor': _fullCrowdGraph()};
   }
 
   function _fullCrowdGraph() {
