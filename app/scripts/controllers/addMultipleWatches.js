@@ -60,7 +60,6 @@ angular.module('b4cmApp')
      * @description Adds a crowd watch to a spot
      */
     $scope.addWatch = function() {
-      console.log('Add a Watch');
       var watch = {'start': {'day': $scope.startDay.label,
                              'hour': parseInt($scope.startHour.label, 10),
                              'meridiem': $scope.startMeridiem.label},
@@ -97,7 +96,6 @@ angular.module('b4cmApp')
                   stop = util.clone(newWatch.stop);
               start.day = util.dayToNum(start.day);
               stop.day = util.dayToNum(stop.day);
-              console.log('hereeee');
               newWatch.time = _calculateWatchTimes(start, stop, $scope.spot);
               newWatch.time.forEach(function(time) {
                  var score = util.statusToScore(newWatch.cf_status);
@@ -105,11 +103,9 @@ angular.module('b4cmApp')
                  $scope.spot.crowdfactor.day[time.day][time.hour].score = time.score + score;
               });
               $scope.watchHours.push(newWatch);
-              console.log('doneee');
             });
           }
           else {
-            console.log('here');
             var start = util.clone(watch.start),
                 stop = util.clone(watch.stop),
                 nextDay = $scope.WEEKDAYS[_incrementDay($scope.startDay.label, util)];;
@@ -129,7 +125,6 @@ angular.module('b4cmApp')
           // Recalculate block structure for display of crowdfactor visualization.
           $scope.blocks = util.constructCrowdFactor($scope.spot.crowdfactor.blocks,
                                                     $scope.spot.crowdfactor.day);
-          console.log('done');
         }
         else {
           alert('Must select a crowd status.');
@@ -168,15 +163,13 @@ angular.module('b4cmApp')
 
 
     /**
-     * @name addWatch
+     * @name submitWatches
      * @function
      *
      * @description Adds a crowd watch to a spot
      */
     $scope.submitWatches = function() {
       if (user.loggedIn()){
-        console.log('Submit Watches');
-        console.log($scope.watchHours);
         watch.user = user.getInfo().display_name;
 
         if ($scope.watchHours.length < 1) {alert('Must add a watch to save.');}
