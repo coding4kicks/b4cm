@@ -65,10 +65,10 @@ describe('Controller: AddMultipleWatchesCtrl', function () {
     var watchHours = [{ start: { day:'Saturday', hour: 9, meridiem: 'pm' },
                         stop: { day: 'Saturday', hour: 10, meridiem: 'pm' },
                         cf_status: 'Empty',
-                        time: [{ day: 'saturday', hour: '9pm', count: 1, score: 3} ]}]
+                        time: [{ day: 'saturday', hour: '9pm', count: 1, score: 3} ]}];
     window.alert = jasmine.createSpy();
     _user.loggedIn = jasmine.createSpy('loggedIn').andReturn(true);
-    _setWatchScope(scope, 'Saturday')
+    _setWatchScope(scope, 'Saturday');
     expect(window.alert).not.toHaveBeenCalled();
     scope.addWatch();
     expect(scope.watchHours).toEqual(watchHours);
@@ -83,14 +83,24 @@ describe('Controller: AddMultipleWatchesCtrl', function () {
                       { start: { day:'Sunday', hour: 9, meridiem: 'pm' },
                         stop: { day: 'Sunday', hour: 10, meridiem: 'pm' },
                         cf_status: 'Empty',
-                        time: [{ day: 'sunday', hour: '9pm', count: 1, score: 3} ]}]
+                        time: [{ day: 'sunday', hour: '9pm', count: 1, score: 3} ]}];
     window.alert = jasmine.createSpy();
     _user.loggedIn = jasmine.createSpy('loggedIn').andReturn(true);
-    _setWatchScope(scope, 'Weekends')
+    _setWatchScope(scope, 'Weekends');
     expect(window.alert).not.toHaveBeenCalled();
     scope.addWatch();
     expect(scope.watchHours).toEqual(watchHours);
     expect(window.alert).not.toHaveBeenCalled();
+  });
+
+  it('deleteHours should remove a watch', function() {
+    scope.watchHours = [{ start: { day:'Saturday', hour: 9, meridiem: 'pm' },
+                        stop: { day: 'Saturday', hour: 10, meridiem: 'pm' },
+                        cf_status: 'Empty',
+                        time: [{ day: 'saturday', hour: '9pm', count: 1, score: 3} ]}]
+    _setWatchScope(scope, 'Saturday');
+    scope.deleteHours(0);
+    expect(scope.watchHours.length).toEqual(0);
   });
 
   function _setWatchScope(scope, day) {
