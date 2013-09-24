@@ -42,7 +42,7 @@ describe('Controller: AddMultipleWatchesCtrl', function () {
   it('addWatch empty', function () {
   });
 
-  xit('addWatch requires login', function () {
+  it('addWatch requires login', function () {
     var alertText = 'Must be logged in to add a watch';
     window.alert = jasmine.createSpy();
     expect(window.alert).not.toHaveBeenCalled();
@@ -52,20 +52,13 @@ describe('Controller: AddMultipleWatchesCtrl', function () {
     expect(_user.loggedIn).toHaveBeenCalled();
   });
 
-  xit('addWatch requires a status', function () {
-    var alertText = 'Please choose a crowd status.';
+  it('addWatch requires a status', function () {
+    var alertText = 'Must select a crowd status.';
     window.alert = jasmine.createSpy();
     _user.loggedIn = jasmine.createSpy('loggedIn').andReturn(true);
-    _user.getInfo = jasmine.createSpy('getInfo').andReturn(
-      {'provider': 'password', 'id': 1, 'display_name': 'Test', 'gravatar': 'fakeurl'});
-    scope.spotObj = {'crowdfactor': _fullCrowdGraph()};
     expect(window.alert).not.toHaveBeenCalled();
-    expect(_user.loggedIn).not.toHaveBeenCalled();
-    expect(_user.getInfo).not.toHaveBeenCalled();
     scope.addWatch();
     expect(window.alert).toHaveBeenCalledWith(alertText);
-    expect(_user.loggedIn).toHaveBeenCalled();
-    expect(_user.getInfo).toHaveBeenCalled();
   });
 
   xit('addWatch period must be less than 24 hours', function () {
