@@ -39,9 +39,6 @@ describe('Controller: AddMultipleWatchesCtrl', function () {
     });
   }));
 
-  it('addWatch empty', function () {
-  });
-
   it('addWatch requires login', function () {
     var alertText = 'Must be logged in to add a watch';
     window.alert = jasmine.createSpy();
@@ -101,6 +98,40 @@ describe('Controller: AddMultipleWatchesCtrl', function () {
     _setWatchScope(scope, 'Saturday');
     scope.deleteHours(0);
     expect(scope.watchHours.length).toEqual(0);
+  });
+
+  it('submitWatches requires login', function () {
+    var alertText = 'Must be logged in to add a watch';
+    window.alert = jasmine.createSpy();
+    expect(window.alert).not.toHaveBeenCalled();
+    expect(_user.loggedIn).not.toHaveBeenCalled();
+    scope.submitWatches();
+    expect(window.alert).toHaveBeenCalledWith(alertText);
+    expect(_user.loggedIn).toHaveBeenCalled();
+  });
+
+  it('submitWatches checks for watches', function () {
+    var alertText = "Must add a watch to save."
+    window.alert = jasmine.createSpy();
+    _user.loggedIn = jasmine.createSpy('loggedIn').andReturn(true);
+    _user.getInfo = jasmine.createSpy('getInfo').andReturn(
+      {'provider': 'password', 'id': 1, 'display_name': 'Test', 'gravatar': 'fakeurl'});
+    expect(window.alert).not.toHaveBeenCalled();
+    scope.submitWatches();
+    expect(window.alert).toHaveBeenCalledWith(alertText);
+  });
+
+  it('submitWatches saves watches for spot.', function () {
+    window.alert = jasmine.createSpy();
+    _user.loggedIn = jasmine.createSpy('loggedIn').andReturn(true);
+    _user.getInfo = jasmine.createSpy('getInfo').andReturn(
+      {'provider': 'password', 'id': 1, 'display_name': 'Test', 'gravatar': 'fakeurl'});
+    _setWatchScope(scope, 'Saturday');
+    _spot.addMultipleWatches =jasmine.createSpy('addMultipleWatches')
+    scope.addWatch();
+    expect(_spot.addMultipleWatches).not.toHaveBeenCalled();
+    scope.submitWatches();
+    expect(_spot.addMultipleWatches).toHaveBeenCalled();
   });
 
   function _setWatchScope(scope, day) {
