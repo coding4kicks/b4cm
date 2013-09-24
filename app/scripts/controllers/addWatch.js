@@ -13,8 +13,6 @@ angular.module('b4cmApp')
   .controller('AddWatchCtrl', function ($scope, $routeParams, $location, spot, user, util) {
 
     var watch = {},
-        //spotObj = {},
-        additionalInfo = {},
         currentDate = new Date(),
         futureDate = new Date(currentDate.getTime() + 60 * 60 * 1000),
         currentDay = currentDate.getDay(),
@@ -91,19 +89,18 @@ angular.module('b4cmApp')
      * @function
      *
      * @description Redirects to add-multiple-watches-page.
-     */ 
+     */
     $scope.addMultiple = function() {
       console.log('here');
       if (user.loggedIn()){
-        $location.path("/addMultipleWatches/" + $scope.spotObj.id);
+        $location.path('/addMultipleWatches/' + $scope.spotObj.id);
         util.safeApply($scope);
       }
       else {
-        alert("Must be logged in to add watches.");
-        $location.path("/signin/");
+        alert('Must be logged in to add watches.');
+        $location.path('/signin/');
         util.safeApply($scope);
       }
     };
-
 
   });

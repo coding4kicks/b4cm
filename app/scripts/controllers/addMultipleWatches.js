@@ -13,7 +13,6 @@ angular.module('b4cmApp')
   .controller('AddMultipleWatchesCtrl', function ($scope, $routeParams, $location, spot, user, util) {
 
     var watch = {},
-        additionalInfo = {},
         currentDate = new Date(),
         futureDate = new Date(currentDate.getTime() + 60 * 60 * 1000),
         currentDay = currentDate.getDay(),
