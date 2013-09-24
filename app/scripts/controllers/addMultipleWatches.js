@@ -22,7 +22,7 @@ angular.module('b4cmApp')
         futureHour = futureDate.getHours() % 12,
         currentMeridiem = (currentDate.getHours() < 12) ? '0' : '1',
         futureMeridiem = (futureDate.getHours() < 12) ? '0' : '1';
-   
+
     $scope.spot = {}; // May need to clone since changing spot data and may not save.
     $scope.watchHours = [];
     $scope.WEEKDAYS = [{'label': 'Sunday'}, {'label': 'Monday'}, {'label': 'Tuesday'},
@@ -52,7 +52,7 @@ angular.module('b4cmApp')
       $scope.blocks = util.constructCrowdFactor($scope.spot.crowdfactor.blocks,
                                             $scope.spot.crowdfactor.day);
     });
-
+    /* jshint camelcase: false */
     /**
      * @name addWatch
      * @function
@@ -70,7 +70,7 @@ angular.module('b4cmApp')
                   };
       if (user.loggedIn()){
         if (typeof watch.cf_status !== 'undefined') {
-          if ($scope.startDay.label === 'Weekdays' || 
+          if ($scope.startDay.label === 'Weekdays' ||
               $scope.startDay.label === 'Weekends' ||
               $scope.startDay.label === 'All Week') {
             var dayList = [];
@@ -98,9 +98,9 @@ angular.module('b4cmApp')
               stop.day = util.dayToNum(stop.day);
               newWatch.time = _calculateWatchTimes(start, stop, $scope.spot);
               newWatch.time.forEach(function(time) {
-                 var score = util.statusToScore(newWatch.cf_status);
-                 $scope.spot.crowdfactor.day[time.day][time.hour].count = time.count + 1;
-                 $scope.spot.crowdfactor.day[time.day][time.hour].score = time.score + score;
+                var score = util.statusToScore(newWatch.cf_status);
+                $scope.spot.crowdfactor.day[time.day][time.hour].count = time.count + 1;
+                $scope.spot.crowdfactor.day[time.day][time.hour].score = time.score + score;
               });
               $scope.watchHours.push(newWatch);
             });
@@ -108,14 +108,14 @@ angular.module('b4cmApp')
           else {
             var start = util.clone(watch.start),
                 stop = util.clone(watch.stop),
-                nextDay = $scope.WEEKDAYS[_incrementDay($scope.startDay.label, util)];;
+                nextDay = $scope.WEEKDAYS[_incrementDay($scope.startDay.label, util)];
             start.day = util.dayToNum(start.day);
             stop.day = util.dayToNum(stop.day);
             watch.time = _calculateWatchTimes(start, stop, $scope.spot);
             watch.time.forEach(function(time) {
-               var score = util.statusToScore(watch.cf_status);
-               $scope.spot.crowdfactor.day[time.day][time.hour].count = time.count + 1;
-               $scope.spot.crowdfactor.day[time.day][time.hour].score = time.score + score;
+              var score = util.statusToScore(watch.cf_status);
+              $scope.spot.crowdfactor.day[time.day][time.hour].count = time.count + 1;
+              $scope.spot.crowdfactor.day[time.day][time.hour].score = time.score + score;
             });
             $scope.watchHours.push(watch);
             // Increment days to next day for convenience
@@ -135,7 +135,7 @@ angular.module('b4cmApp')
         $location.path('/signin');
         util.safeApply($scope);
       }
-    }
+    };
 
     /**
      * @name deleteHours
@@ -151,7 +151,7 @@ angular.module('b4cmApp')
       watch.stop.day = util.dayToNum(watch.stop.day);
       watch.time = _calculateWatchTimes(watch.start, watch.stop, $scope.spot);
       watch.time.forEach(function(time) {
-      var score = util.statusToScore(watch.cf_status);
+        var score = util.statusToScore(watch.cf_status);
         $scope.spot.crowdfactor.day[time.day][time.hour].count = time.count - 1;
         $scope.spot.crowdfactor.day[time.day][time.hour].score = time.score - score;
       });
@@ -160,7 +160,6 @@ angular.module('b4cmApp')
       $scope.blocks = util.constructCrowdFactor($scope.spot.crowdfactor.blocks,
                                                 $scope.spot.crowdfactor.day);
     };
-
 
     /**
      * @name submitWatches
@@ -249,4 +248,5 @@ function _calculateWatchTimes(start, stop, spot) {
   return times;
 }
 
+/* jshint camelcase: true */
 
