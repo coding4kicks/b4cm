@@ -61,18 +61,25 @@ describe('Controller: AddMultipleWatchesCtrl', function () {
     expect(window.alert).toHaveBeenCalledWith(alertText);
   });
 
-  xit('addWatch period must be less than 24 hours', function () {
-    var alertText = 'Watches must be for less than a 24 hour period.';
+  it('addWatch should add a single watch', function () {
+    var watchHours = [{ start: { day:'Saturday', hour: 9, meridiem: 'pm' },
+                        stop: { day: 'Saturday', hour: 10, meridiem: 'pm' },
+                        cf_status: 'Empty',
+                        time: [{ day: 'saturday', hour: '9pm', count: 1, score: 3} ]}]
     window.alert = jasmine.createSpy();
     _user.loggedIn = jasmine.createSpy('loggedIn').andReturn(true);
-    _user.getInfo = jasmine.createSpy('getInfo').andReturn(
-      {'provider': 'password', 'id': 1, 'display_name': 'Test', 'gravatar': 'fakeurl'});
-    scope.spotObj = {'crowdfactor': _fullCrowdGraph()};
-    scope.cf_status = 'empty';
-    _setInvalidScope(scope);
+    scope.startDay.label = 'Saturday';
+    scope.startHour.label = 9;
+    scope.startMeridiem.label = 'pm';
+    scope.stopDay.label = 'Saturday';
+    scope.stopHour.label = 10;
+    scope.stopMeridiem.label = 'pm';
+    scope.cf_status = 'Empty';
+    scope.spot = {'crowdfactor': _fullCrowdGraph()};
     expect(window.alert).not.toHaveBeenCalled();
     scope.addWatch();
-    expect(window.alert).toHaveBeenCalledWith(alertText);
+    expect(scope.watchHours).toEqual(watchHours);
+    expect(window.alert).not.toHaveBeenCalled();
   });
 
   xit('addWatch adds a watch', function () {
