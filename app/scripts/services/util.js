@@ -190,6 +190,29 @@ angular.module('b4cmApp')
       },
 
       /**
+       * @name handleFormErrors
+       * @procedure
+       *
+       * @description Notifies the user of errors upon form submission.
+       *              Recieves a scope and array of errors that are invalid.
+       *              For each error, the scope's validForm object is switched to
+       *              invalid, triggering the invalid css class for that elelment.
+       * @param {object} $scope The form's controlling scope.
+       * @param {array} errors An array of string names for each error type.
+       */
+      handleFormErrors: function($scope, errors) {
+        errors.forEach(function(error) {
+          $scope.validForm[error.toLowerCase()] = 'invalid';
+        });
+        if (errors.length === 1) {
+          alert(errors[0] + ' is a required field.');
+        }
+        else {
+          alert(errors.join(', ') + ' are required fields.');
+        }
+      },
+
+      /**
        * @name initializeGoogleMaps
        * @procedure
        *

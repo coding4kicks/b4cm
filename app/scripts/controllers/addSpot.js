@@ -93,7 +93,7 @@ angular.module('b4cmApp')
           typeof $scope.social === 'undefined') {errors.push('Type');}
       if ($scope.business_hours.length === 0) {errors.push('Hours');}
       /* jshint -W003 */
-      if (errors.length > 0) {_handleFormErrors($scope, errors);}
+      if (errors.length > 0) {util.handleFormErrors($scope, errors);}
 
       // Add the spot
       else if (user.loggedIn()){
@@ -157,33 +157,3 @@ angular.module('b4cmApp')
     };
 
   });
-
-/*****************************
- * HELPER FUNCS
- *****************************/
-/* TODO: Move to utility */
-/* jshint -W098 */
-
-/**
- * @name _handleFormErrors
- * @procedure
- *
- * @description Notifies the user of errors upon form submission.
- *              Recieves a scope and array of errors that are invalid.
- *              For each error, the scope's validForm object is switched to
- *              invalid, triggering the invalid css class for that elelment.
- * @param {object} $scope The form's controlling scope.
- * @param {array} errors An array of string names for each error type.
- */
-function _handleFormErrors($scope, errors) {
-  errors.forEach(function(error) {
-    $scope.validForm[error.toLowerCase()] = 'invalid';
-  });
-  if (errors.length === 1) {
-    alert(errors[0] + ' is a required field.');
-  }
-  else {
-    alert(errors.join(', ') + ' are required fields.');
-  }
-}
-
