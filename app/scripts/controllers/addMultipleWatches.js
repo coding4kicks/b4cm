@@ -107,7 +107,7 @@ angular.module('b4cmApp')
           else {
             var start = util.clone(watch.start),
                 stop = util.clone(watch.stop),
-                nextDay = $scope.WEEKDAYS[_incrementDay($scope.startDay.label, util)];
+                nextDay = $scope.WEEKDAYS[util.incrementDay($scope.startDay.label)];
             start.day = util.dayToNum(start.day);
             stop.day = util.dayToNum(stop.day);
             watch.time = util.calculateWatchTimes(start, stop, $scope.spot);

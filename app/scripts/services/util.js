@@ -175,6 +175,21 @@ angular.module('b4cmApp')
       },
 
       /**
+       * @name incrementDay
+       * @function
+       *
+       * @description Advances the day of week by one
+       * @param {string} day The day to increment
+       * @this The utility service
+       * @return {int} The number representation of the next day.
+       */
+      incrementDay: function(day) {
+        var nextDay = this.dayToNum(day) + 1;
+        if (nextDay === 7) {nextDay = 0;}
+        return nextDay;
+      },
+
+      /**
        * @name initializeGoogleMaps
        * @procedure
        *
