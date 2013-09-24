@@ -88,15 +88,6 @@ describe('Controller: AddSpotCtrl', function () {
     expect(window.alert).toHaveBeenCalledWith(userText);
   });
 
-  it('addSpot checks for user', function () {
-    var userText = 'Must be signed in to add a spot';
-    window.alert = jasmine.createSpy();
-    _setValidScope(scope);
-    expect(window.alert).not.toHaveBeenCalled();
-    scope.addSpot();
-    expect(window.alert).toHaveBeenCalledWith(userText);
-  });
-
   it('addSpot creates spot if user logged in', inject(function($q) {
     // Doesn't validate call parameters since Date().getTime() changes.
     var deferred = $q.defer(),
