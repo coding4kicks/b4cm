@@ -20,22 +20,27 @@
             <div class="review-count">{{spot.review_count}} Reviews</div>
           </div>
         </div>
-        <div class="yelp-link">
-          <a ng-href="{{spot.yelpLink}}"><h4>Checkout Yelp reviews</h4></a>
-        </div>
-      </div>
-
-      <div class="details-right">
-        <div class="current-status">
-          <h4>Current Status: <span class="status {{current_cflabel | lowercase}}">{{current_cflabel}}</span></h4>
-          <h5>({{current_status}})</h5>
-          <p><span class="watch-comment-header">{{current_user}} says:</span> {{current_comment}}</p>
-        </div>
         <div class="spot-types">
           <div class="type" ng-repeat="type in types">
             <img class="b4cm-icon" ng-src="{{type[0]}}" style="height:{{type[2]}}px; width:{{type[2]}}px">
             <div style="font-size:{{type[3]}}px;">{{type[1]}}</div>
           </div>
+        </div>
+      </div>
+
+      <div class="details-right">
+        <div class="current-status">
+          <div class="current-status-header">
+            <h4>Current Status: </h4>
+            <h5>({{current_status}})</h5>
+          </div>
+          <div class="current-status-info">
+            <h2 class="status {{current_cflabel | lowercase}}">{{current_cflabel}}</h2>
+          </div>
+          <p><span class="watch-comment-header">{{current_user}} says:</span> {{current_comment}}</p>
+        </div>
+        <div class="yelp-link">
+          <a ng-href="{{spot.yelpLink}}"><h4>Checkout Yelp reviews</h4></a>
         </div>
       </div>
 
@@ -60,7 +65,7 @@
         fit="false"
         events="eventsProperty"
         refresh="!isMapElementHidden"
-        style="margin-top: 10px; height: 260px; width: 280px; border: 1px solid;">
+        style="margin-top: 10px; height: 280px; width: 280px; border: 1px solid;">
       </div>
       <a class="edit-spot" ng-click="editSpot()">Edit Spot</a>
     </div>
