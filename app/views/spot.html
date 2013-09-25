@@ -4,26 +4,30 @@
 
     <div class="main-col">
 
-      <h2>{{spot.name}}</h2>
+      <h3 class="spot-name">{{spot.name}}</h2>
 
       <div class="details-left">
-        <h4>{{spot.location.address}}</h4>
-        <h4 ng-show="spot.location.address2">{{spot.location.address2}}</h4>
-        <h4 ng-cloak>{{spot.location.city}}, {{spot.location.state_code}} {{spot.location.postal_code}}</h4>
-        <div class="rating">
-          <div class="stars">
-            <img ng-repeat="star in stars" ng-src="{{star}}">
+        <div class="details-top">
+          <div class="spot-address">
+            <h5>{{spot.location.address}}</h4>
+            <h5 ng-show="spot.location.address2">{{spot.location.address2}}</h4>
+            <h5 ng-cloak>{{spot.location.city}}, {{spot.location.state_code}} {{spot.location.postal_code}}</h4>
           </div>
-          <div class="review-count">{{spot.review_count}} Reviews</div>
+          <div class="rating">
+            <div class="stars">
+              <img ng-repeat="star in stars" ng-src="{{star}}">
+            </div>
+            <div class="review-count">{{spot.review_count}} Reviews</div>
+          </div>
         </div>
-        <div>
+        <div class="yelp-link">
           <a ng-href="{{spot.yelpLink}}"><h4>Checkout Yelp reviews</h4></a>
         </div>
       </div>
 
       <div class="details-right">
         <div class="current-status">
-          <h3>Current Status: <span class="status {{current_cflabel | lowercase}}">{{current_cflabel}}</span></h3>
+          <h4>Current Status: <span class="status {{current_cflabel | lowercase}}">{{current_cflabel}}</span></h4>
           <h5>({{current_status}})</h5>
           <p><span class="watch-comment-header">{{current_user}} says:</span> {{current_comment}}</p>
         </div>
@@ -56,7 +60,7 @@
         fit="false"
         events="eventsProperty"
         refresh="!isMapElementHidden"
-        style="height: 260px; width: 280px; border: 1px solid;">
+        style="margin-top: 10px; height: 260px; width: 280px; border: 1px solid;">
       </div>
       <a class="edit-spot" ng-click="editSpot()">Edit Spot</a>
     </div>
