@@ -30,7 +30,7 @@ angular.module('b4cmApp')
     $scope.openDay = $scope.WEEKDAYS[1];
     $scope.openHour = $scope.HOURS[12];
     $scope.openMeridiem = $scope.MERIDIEMS[0];
-    $scope.closeDay = $scope.WEEKDAYS[1];
+    $scope.closeDay = $scope.WEEKDAYS[1]; // TODO: remove
     $scope.closeHour = $scope.HOURS[14];
     $scope.closeMeridiem = $scope.MERIDIEMS[1];
 
@@ -48,10 +48,11 @@ angular.module('b4cmApp')
       var times = {'open_day': $scope.openDay,
                    'open_hour': $scope.openHour,
                    'open_meridiem': $scope.openMeridiem,
-                   'close_day': $scope.closeDay,
+                   'close_day': $scope.closeDay, // TODO: set to next day here?
                    'close_hour': $scope.closeHour,
                    'close_meridiem': $scope.closeMeridiem},
           nextDay = $scope.WEEKDAYS[util.incrementDay($scope.openDay.label)];
+      if (_nextDay(times)){times.close_day = util.incrementDay($scope.openDay.label);} 
       $scope.business_hours.push(times);
       // Increment days to next day for convenience
       $scope.openDay = nextDay;
@@ -70,7 +71,7 @@ angular.module('b4cmApp')
       /* jshint camelcase: false */
       $scope.business_hours.splice(index, 1);
       /* jshint camelcase: false */
-    };
+    }
 
     /**
      * @name addSpot
@@ -156,4 +157,12 @@ angular.module('b4cmApp')
       $scope.yelpHelpShow = !$scope.yelpHelpShow;
     };
 
+    function _nextDay(times) {
+      if(times.close_meridiem.label === 'am') {
+        if(times.open_meridiem.label === 'pm') {return true;}
+        else if(parseInt(times.open_hour.label) >= parseInt(times.close_hour.label)){return true;}
+        else {return false;}
+      }
+      else {return false;}
+    }
   });

@@ -42,7 +42,7 @@ describe('Controller: AddSpotCtrl', function () {
     scope.openHour = {'label': '8:00', 'hour': 8, 'minutes': 0}
     scope.openMeridiem = {'label': 'am'};
     scope.closeDay = {'label': 'Friday'};
-    scope.closeHour = {'label': '8:00', 'hour': 8, 'minutes': 0}
+    scope.closeHour = {'label': '9:00', 'hour': 9, 'minutes': 0}
     scope.closeMeridiem = {'label': 'am'};
     var oldOpen = scope.openDay,
         oldClose = scope.closeDay;
