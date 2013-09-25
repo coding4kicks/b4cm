@@ -133,10 +133,16 @@ angular.module('b4cmApp')
             base_url = 'https://crowd-data.firebaseio.com/spots/',
             spot_url = '',
             locationObj = {'address': newSpot.location.address,
+                           'address2': newSpot.location.address2,
                            'city': newSpot.location.city,
                            'postal_code': newSpot.location.postal_code, 
                            'state_code': newSpot.location.state_code },
             address = locationObj.address + ", " + locationObj.city + ", " + locationObj.state_code;
+
+        if(typeof locationObj.address2 !== 'undefined'){
+            address = locationObj.address + ", " + locationObj.address2 + ", " + 
+                      locationObj.city + ", " + locationObj.state_code;
+        }
 
         newSpot.id = _constructId(newSpot);
 
