@@ -170,49 +170,6 @@ function _calculateStatus(score) {
 }
 
 /**
- * @name _getStatus
- * @function
- *
- * @description Gets the current status label: closed, empty, few, average, crowded, herd.
- *              And determine if status is historical or withing the past hour.
- * @param {object} spot The spot to determine the status for.
- * @param {object} time The time object to use to determine the status.
- * @returns {object} cfStatus with label, time, and comment properties
- */
-function _getStatus(spot, time) {
-  /* jshint camelcase: false */
-  var cfStatus = {},
-      timeDelta = (time.getTime() - spot.crowdfactor.most_recent.time) / 60 / 1000,
-      CFLABELS = ['Empty', 'Few', 'Average', 'Crowded', 'Herd'];
-
-  if (timeDelta < 60) {
-
-    cfStatus.time = Math.round(timeDelta) + ' minutes ago';
-    cfStatus.label = CFLABELS[spot.crowdfactor.most_recent.score - 1];
-    cfStatus.comment = '"' + spot.crowdfactor.most_recent.comment + '"';
-    cfStatus.user = spot.crowdfactor.most_recent.user;
-    /* jshint camelcase: true */
-  }
-  else {
-    cfStatus.time = 'historical';
-    cfStatus.comment = 'N/A';
-    cfStatus.user = '';
-    var day = spot.crowdfactor.day[time.getDay().toLowerCase()],
-        count = day[time.getTimeLabel()].count,
-        score = day[time.getTimeLabel()].score;
-    if (count === -1){ cfStatus.label = 'Closed'; }
-    else if (count === 0){
-      cfStatus.label = '';
-      cfStatus.time = 'No watches yet: be the first';
-    }
-    else {
-      cfStatus.label = CFLABELS[Math.round(score/count) - 1];
-    }
-  }
-  return cfStatus;
-}
-
-/**
  * @name _timeInfo
  * @function
  *

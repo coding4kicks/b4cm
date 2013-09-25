@@ -73,7 +73,7 @@ angular.module('b4cmApp')
       $timeout(function(){_initializeGoogleMaps($scope, $scope.spot.location, [$scope.spot])},0);
       
       // Start updates of current time, marker, and crowdstatus.
-      _updateStatus($scope, $timeout);
+      _updateStatus($scope, $timeout, spot);
      });
 
     /**
@@ -209,10 +209,10 @@ function _initializeShowMarkerMatrix() {
  *              Calls itself recursively.
  * @returns {nothing} Procedure has side effects on scope.
  */ 
-var _updateStatus = function ($scope, $timeout) {
+var _updateStatus = function ($scope, $timeout, spot) {
   // Hack: should use GMT and Timezone, vice users machine time.
   var current_date = new Date(),
-      current_status = _getStatus($scope.spot, _timeInfo(current_date));;
+      current_status = spot.getStatus($scope.spot, _timeInfo(current_date));;
   _calculateCurrentTimeInfo($scope, current_date);
   $scope.current_status = current_status.time;
   $scope.current_cflabel = current_status.label || 'No Data';
