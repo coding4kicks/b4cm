@@ -730,11 +730,6 @@ input[type='text']:focus {
     padding: 10px 15px;
     height: 300px;
 
-    .watch-comment-header {
-      font-weight: bold;
-      margin-left: 18px;
-    }
-
     .spot-name {
       margin: 0;
     }
@@ -767,6 +762,12 @@ input[type='text']:focus {
       margin: 5px 0 50px 0;
     }
 
+    .spot-types {
+      height: 100px;
+      vertical-align: bottom;
+      display: table-cell;
+    }
+
     .details-right {
       display: inline-block;
       margin: -20px 0 0 20px;
@@ -796,15 +797,23 @@ input[type='text']:focus {
       margin: -5px 0 0 20px;
     }
 
+    .current-status-time {
+      color: $acc-dark;
+    }
+
     .status {
     }
 
-    .spot-types {
-      height: 100px;
-      vertical-align: bottom;
-      display: table-cell;
+    .watch-comment {
+      width: 360px;
+      max-height: 60px;
+      text-overflow: ellipsis;
+    }
 
-     // margin: 0 0 0 10px;
+    .watch-comment-user {
+      color: $comp1-dark;
+      font-weight: bold;
+      //margin-left: 18px;
     }
 
     .yelp-link {
@@ -836,6 +845,18 @@ input[type='text']:focus {
       }
     }
   }
+
+  .edit-spot {
+    color: $comp2-dark;
+    margin: 25px 0 0 0;
+    float: right;
+
+    &:hover {
+      cursor: pointer;
+      color: $comp1-dark; 
+    }    
+  }
+
 
   .type {
     display: inline-block;
@@ -922,18 +943,6 @@ input[type='text']:focus {
       width: 50px;
     }
   }
-
-  .edit-spot {
-    color: $comp2-dark;
-    margin: 15px 0 0 0;
-    float: right;
-
-    &:hover {
-      cursor: pointer;
-      color: $comp1-dark; 
-    }    
-  }
-
   .more {
 
     a { 
