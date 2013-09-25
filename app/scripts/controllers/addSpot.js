@@ -30,7 +30,7 @@ angular.module('b4cmApp')
     $scope.openDay = $scope.WEEKDAYS[1];
     $scope.openHour = $scope.HOURS[12];
     $scope.openMeridiem = $scope.MERIDIEMS[0];
-    $scope.closeDay = $scope.WEEKDAYS[1]; // TODO: remove
+    //$scope.closeDay = $scope.WEEKDAYS[1]; // TODO: remove
     $scope.closeHour = $scope.HOURS[14];
     $scope.closeMeridiem = $scope.MERIDIEMS[1];
 
@@ -48,16 +48,17 @@ angular.module('b4cmApp')
       var times = {'open_day': $scope.openDay,
                    'open_hour': $scope.openHour,
                    'open_meridiem': $scope.openMeridiem,
-                   'close_day': $scope.closeDay, // TODO: set to next day here?
+                   //'close_day': $scope.closeDay, // TODO: set to next day here?
+                   'close_day': $scope.openDay,
                    'close_hour': $scope.closeHour,
                    'close_meridiem': $scope.closeMeridiem},
           nextDay = $scope.WEEKDAYS[util.incrementDay($scope.openDay.label)];
       if (_nextDay(times)){times.close_day = $scope.WEEKDAYS[util.incrementDay($scope.openDay.label)];}
-      console.log($scope.closeDay);
+      console.log(times.close_day);
       $scope.business_hours.push(times);
       // Increment days to next day for convenience
       $scope.openDay = nextDay;
-      $scope.closeDay = nextDay;
+      //$scope.closeDay = nextDay; // TODO: comment out
     };
 
     /**
