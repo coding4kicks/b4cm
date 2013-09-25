@@ -54,7 +54,6 @@ angular.module('b4cmApp')
       if (util.shouldBeNextDay(times)){
         times.close_day = $scope.WEEKDAYS[util.incrementDay($scope.openDay.label)];
       }
-      console.log(times.close_day);
       $scope.business_hours.push(times);
       // Increment days to next day for convenience
       $scope.openDay = nextDay;
@@ -110,6 +109,7 @@ angular.module('b4cmApp')
         newSpot.yelp_id = $scope.yelp_id;
         newSpot.location = {};
         newSpot.location.address = $scope.address;
+        newSpot.location.address2 = $scope.address2;
         newSpot.location.city = $scope.city;
         newSpot.location.state_code = $scope.state_code;
         newSpot.location.postal_code = $scope.postal_code;
