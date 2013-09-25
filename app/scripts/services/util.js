@@ -104,6 +104,14 @@ angular.module('b4cmApp')
         return display_blocks;
       },
 
+      /**
+       * @name statusToScore
+       * @function
+       *
+       * @description Convert a crowd status label to a digital score.
+       * @param {string} cf_status The crowd status: empty, few, etc.
+       * @returns {int} Status score 1-5.
+       */ 
       statusToScore: function(cf_status) {
         switch (cf_status) {
           case 'empty':

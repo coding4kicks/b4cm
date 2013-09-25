@@ -36,7 +36,41 @@ describe('Controller: AddSpotCtrl', function () {
     });
   }));
 
-  it('addHours adds hours and incrments the day', function () { 
+  it('addHours correctly adds hours and incrments the day', function () { 
+    expect(scope.business_hours.length).toBe(0);
+    var fake_hours = _setHours(scope, 'Friday', 8, 'am', 9, 'am');
+    var oldOpen = scope.openDay,
+        oldClose = scope.closeDay;
+    scope.addHours();
+    expect(scope.business_hours.length).toBe(1);
+    expect(scope.business_hours[0]).toEqual(fake_hours);
+    expect(scope.openDay.label).toBe('Saturday');
+    expect(scope.closeDay.label).toBe('Saturday');
+  });
+
+  xit('addHours correctly adds hours past midnight with pm close', function () { 
+    expect(scope.business_hours.length).toBe(0);
+    scope.openDay = {'label': 'Friday'};
+    scope.openHour = {'label': '8:00', 'hour': 8, 'minutes': 0}
+    scope.openMeridiem = {'label': 'am'};
+    scope.closeDay = {'label': 'Friday'};
+    scope.closeHour = {'label': '9:00', 'hour': 9, 'minutes': 0}
+    scope.closeMeridiem = {'label': 'am'};
+    var oldOpen = scope.openDay,
+        oldClose = scope.closeDay;
+    scope.addHours();
+    expect(scope.business_hours.length).toBe(1);
+    expect(scope.business_hours[0].open_day).toBe(oldOpen);
+    expect(scope.business_hours[0].open_hour).toBe(scope.openHour);
+    expect(scope.business_hours[0].open_meridiem).toBe(scope.openMeridiem);
+    expect(scope.business_hours[0].close_day).toBe(oldClose);
+    expect(scope.business_hours[0].close_hour).toBe(scope.closeHour);
+    expect(scope.business_hours[0].close_meridiem).toBe(scope.closeMeridiem);
+    expect(scope.openDay.label).toBe('Saturday');
+    expect(scope.closeDay.label).toBe('Saturday');
+  });
+
+  xit('addHours correctly adds hours past midnight with pm close', function () { 
     expect(scope.business_hours.length).toBe(0);
     scope.openDay = {'label': 'Friday'};
     scope.openHour = {'label': '8:00', 'hour': 8, 'minutes': 0}
@@ -108,6 +142,23 @@ describe('Controller: AddSpotCtrl', function () {
     expect(window.alert).not.toHaveBeenCalled();
   }));
 
+  function _setHours(scope, day, openHr, openMm, closeHr, closeMm) {
+    var fake_hours = {}
+    fake_hours.open_day = {'label': day};
+    fake_hours.open_hour = {'label': openHr + ':00', 'hour': openHr, 'minutes': 0};
+    fake_hours.open_meridiem = {'label': openMm};
+    fake_hours.close_day = {'label': day};
+    fake_hours.close_hour = {'label': closeHr + ':00', 'hour': closeHr, 'minutes': 0};
+    fake_hours.close_meridiem = {'label': closeMm};
+    scope.openDay = fake_hours.open_day;
+    scope.openHour = fake_hours.open_hour;
+    scope.openMeridiem = fake_hours.open_meridiem;
+    scope.closeDay = fake_hours.close_day;
+    scope.closeHour = fake_hours.close_hour;
+    scope.closeMeridiem = fake_hours.close_meridiem;
+    return fake_hours;
+  };
+
   function _setValidScope(scope) {
     var time = {
       'open_day': {'label': 'Friday'},
@@ -129,7 +180,7 @@ describe('Controller: AddSpotCtrl', function () {
     scope.wifi = true;
     scope.business_hours = [];
     scope.business_hours.push(time);
-  }
+  };
 
 });
 
