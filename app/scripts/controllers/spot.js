@@ -215,7 +215,7 @@ var _updateStatus = function ($scope, $timeout) {
       current_status = _getStatus($scope.spot, _timeInfo(current_date));;
   _calculateCurrentTimeInfo($scope, current_date);
   $scope.current_status = current_status.time;
-  $scope.current_cflabel = current_status.label;
+  $scope.current_cflabel = current_status.label || 'No Data';
   $scope.current_comment = current_status.comment;
   $scope.current_user = current_status.user;
   _updateMarker($scope);
