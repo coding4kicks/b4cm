@@ -10,7 +10,7 @@ describe('Controller: EditSpotCtrl', function () {
       window,
       _user,
       _spot,
-      promise;
+      deferred;
 
   // Instantiate user and spot services
   beforeEach(module(function($provide) {
@@ -31,8 +31,8 @@ describe('Controller: EditSpotCtrl', function () {
     window = $window;
     _user = user;
     _spot = spot;
-    promise = $q.defer().promise;
-    _spot.get = jasmine.createSpy('get').andReturn(promise);
+    deferred = $q.defer();
+    _spot.get = jasmine.createSpy('get').andReturn(deferred.promise);
     scope = $rootScope.$new();
     EditSpotCtrl = $controller('EditSpotCtrl', {
       $scope: scope
@@ -78,69 +78,60 @@ describe('Controller: EditSpotCtrl', function () {
   it('editSpot checks required form elements', function () {
     var alertText = 'Name, Address, City, Zip, State, Hours are required fields.';
     scope.business_hours = [];
-    scope.openDay = {'label': 'Friday'};
-    scope.openHour = {'label': '8:00', 'hour': 8, 'minutes': 0}
-    scope.openMeridiem = {'label': 'am'};
-    scope.closeDay = {'label': 'Friday'};
-    scope.closeHour = {'label': '8:00', 'hour': 8, 'minutes': 0}
-    scope.closeMeridiem = {'label': 'am'};
-    //scope.addHours();
     window.alert = jasmine.createSpy();
     expect(window.alert).not.toHaveBeenCalled();
     scope.editSpot();
     expect(window.alert).toHaveBeenCalledWith(alertText);
   });
 
-  xit('addSpot checks for user', function () {
-    var userText = 'Must be signed in to add a spot';
+  it('editSpot checks for user', function () {
+    var userText = 'Must be signed in to edit a spot';
     window.alert = jasmine.createSpy();
-    _setValidScope(scope);
+    deferred.resolve(_fakeSpot());
+    scope.$apply();
     expect(window.alert).not.toHaveBeenCalled();
-    scope.addSpot();
+    scope.editSpot();
     expect(window.alert).toHaveBeenCalledWith(userText);
   });
 
-  xit('addSpot creates spot if user logged in', inject(function($q) {
-    // Doesn't validate call parameters since Date().getTime() changes.
-    var deferred = $q.defer(),
-        promise = deferred.promise;
-    window.alert = jasmine.createSpy();
+  it('editSpot saves a spot', inject(function($q) {
     _user.loggedIn = jasmine.createSpy('loggedIn').andReturn(true);
     _user.getInfo = jasmine.createSpy('getInfo').andReturn(
-      {'provider': 'password', 'id': 1, 'display_name': 'Test', 'gravatar': 'fakeurl'});  
-    _spot.create = jasmine.createSpy('create').andReturn(promise);
-    _setValidScope(scope);
-    expect(_user.loggedIn).not.toHaveBeenCalled();
-    expect(_user.getInfo).not.toHaveBeenCalled();
-    expect(_spot.create).not.toHaveBeenCalled();
-    scope.addSpot();
-    expect(_user.loggedIn).toHaveBeenCalled();
-    expect(_user.getInfo).toHaveBeenCalled();
-    expect(_spot.create).toHaveBeenCalled();
+      {'provider': 'password', 'id': 1, 'display_name': 'Test', 'gravatar': 'fakeurl'});
+    _spot.edit = jasmine.createSpy('edit').andReturn(deferred.promise);
+    deferred.resolve(_fakeSpot());
+    scope.$apply();
+    window.alert = jasmine.createSpy();
     expect(window.alert).not.toHaveBeenCalled();
+    expect(_spot.edit).not.toHaveBeenCalled();
+    scope.editSpot();
+    expect(window.alert).not.toHaveBeenCalled();
+    expect(_spot.edit).toHaveBeenCalled();
   }));
 
-  function _setValidScope(scope) {
-    var time = {
+  function _fakeSpot() {
+    var spotObj = {},
+        time = {
       'open_day': {'label': 'Friday'},
       'open_hour': {'label': '8:00', 'hour': 8, 'minutes': 0},
       'open_meridiem': {'label': 'am'},
       'close_day': {'label': 'Friday'},
       'close_hour': {'label': '8:00', 'hour': 8, 'minutes': 0},
       'close_meridiem': {'label': 'am'}};
-    scope.spotName = 'TestSpot';
-    scope.address = '221 Byron St';
-    scope.city = 'Palo Alto';
-    scope.postal_code = '94301';
-    scope.state_code = 'CA';
-    scope.food = undefined;
-    scope.study = true;
-    scope.social = true;
-    scope.image2 = {'resized': {}};
-    scope.image2.resized.dataURL = 'testPic';
-    scope.wifi = true;
-    scope.business_hours = [];
-    scope.business_hours.push(time);
+    spotObj.crowdfactor = {}
+    spotObj.location = {};
+    spotObj.name = 'Super Duper';
+    spotObj.yelp_id = 'fake_id';
+    spotObj.location.address = '333 Fake St';
+    spotObj.location.city = 'Palo Alto';
+    spotObj.location.postal_code = 94301;
+    spotObj.location.state_code = 'CA';
+    spotObj.wifi = true;
+    spotObj.image_url = 'fake-url';
+    spotObj.business_hours = [];
+    spotObj.business_hours.push(time);
+    spotObj.type = {'food': 1, 'social': 0, 'study': 1}
+    return spotObj;
   }
 
 });
