@@ -47,7 +47,6 @@ describe('Controller: EditSpotCtrl', function () {
     expect(scope.business_hours.length).toBe(1);
     expect(scope.business_hours[0]).toEqual(fake_hours);
     expect(scope.openDay.label).toBe('Saturday');
-    //expect(scope.closeDay.label).toBe('Saturday');
   });
 
   it('addHours correctly adds hours past midnight with pm open', function () {
