@@ -86,7 +86,7 @@
         <select class="hour-select" ng-model="openHour" ng-options="hour.label for hour in HOURS"></select>
         <select class="meridiem-select" ng-model="openMeridiem" ng-options="meridiem.label for meridiem in MERIDIEMS"></select>
         To
-        <select class="day-select" ng-model="closeDay" ng-options="day.label for day in WEEKDAYS"></select>
+        <!--<select class="day-select" ng-model="closeDay" ng-options="day.label for day in WEEKDAYS"></select>-->
         <select class="hour-select" ng-model="closeHour" ng-options="hour.label for hour in HOURS"></select>
         <select class="meridiem-select" ng-model="closeMeridiem" ng-options="meridiem.label for meridiem in MERIDIEMS"></select>
         <a class="clickable" ng-click="addHours()">Add Hours</a>
@@ -97,7 +97,7 @@
       <h5>
         {{time.open_day.label}} {{time.open_hour.label}} {{time.open_meridiem.label}} 
         <span class="to">To</span> 
-        {{time.close_day.label}} {{time.close_hour.label}} {{time.close_meridiem.label}}
+        <!--{{time.close_day.label}}--> {{time.close_hour.label}} {{time.close_meridiem.label}}
       </h5>
       <a class="clickable" ng-click="deleteHours($index)">delete</a>
     </div>

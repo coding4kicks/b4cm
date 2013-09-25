@@ -62,6 +62,39 @@ describe('Controller: EditSpotCtrl', function () {
     expect(scope.closeDay.label).toBe('Saturday');
   });
 
+  it('addHours correctly adds hours and incrments the day', function () {
+    scope.business_hours = [];
+    expect(scope.business_hours.length).toBe(0);
+    var fake_hours = _setHours(scope, 'Friday', 8, 'am', 9, 'am');
+    scope.addHours();
+    expect(scope.business_hours.length).toBe(1);
+    expect(scope.business_hours[0]).toEqual(fake_hours);
+    expect(scope.openDay.label).toBe('Saturday');
+    //expect(scope.closeDay.label).toBe('Saturday');
+  });
+
+  it('addHours correctly adds hours past midnight with pm open', function () {
+    scope.business_hours = [];
+    expect(scope.business_hours.length).toBe(0);
+    var fake_hours = _setHours(scope, 'Friday', 8, 'pm', 2, 'am');
+    fake_hours.close_day = {'label': 'Saturday'};
+    scope.addHours();
+    expect(scope.business_hours.length).toBe(1);
+    expect(scope.business_hours[0]).toEqual(fake_hours);
+    expect(scope.business_hours[0].close_day).toEqual(fake_hours.close_day);
+  });
+
+  it('addHours correctly adds hours past midnight with am open', function () {
+    scope.business_hours = [];
+    expect(scope.business_hours.length).toBe(0);
+    var fake_hours = _setHours(scope, 'Friday', 8, 'am', 2, 'am');
+    fake_hours.close_day = {'label': 'Saturday'};
+    scope.addHours();
+    expect(scope.business_hours.length).toBe(1);
+    expect(scope.business_hours[0]).toEqual(fake_hours);
+    expect(scope.business_hours[0].close_day).toEqual(fake_hours.close_day);
+  });
+
   it('deleteHours removes a time', function () { 
     scope.business_hours = ['dummyData'];
     expect(scope.business_hours.length).toBe(1);
@@ -108,6 +141,23 @@ describe('Controller: EditSpotCtrl', function () {
     expect(window.alert).not.toHaveBeenCalled();
     expect(_spot.edit).toHaveBeenCalled();
   }));
+
+  function _setHours(scope, day, openHr, openMm, closeHr, closeMm) {
+    var fake_hours = {}
+    fake_hours.open_day = {'label': day};
+    fake_hours.open_hour = {'label': openHr + ':00', 'hour': openHr, 'minutes': 0};
+    fake_hours.open_meridiem = {'label': openMm};
+    fake_hours.close_day = {'label': day};
+    fake_hours.close_hour = {'label': closeHr + ':00', 'hour': closeHr, 'minutes': 0};
+    fake_hours.close_meridiem = {'label': closeMm};
+    scope.openDay = fake_hours.open_day;
+    scope.openHour = fake_hours.open_hour;
+    scope.openMeridiem = fake_hours.open_meridiem;
+    scope.closeDay = fake_hours.close_day;
+    scope.closeHour = fake_hours.close_hour;
+    scope.closeMeridiem = fake_hours.close_meridiem;
+    return fake_hours;
+  };
 
   function _fakeSpot() {
     var spotObj = {},
