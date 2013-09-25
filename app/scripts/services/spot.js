@@ -332,7 +332,7 @@ angular.module('b4cmApp')
           if (count === -1){ cfStatus.label = 'Closed'; }
           else if (count === 0){
             cfStatus.label = '';
-            cfStatus.time = 'No watches yet: be the first';
+            cfStatus.time = 'No watches: be the first';
           }
           else {
             cfStatus.label = CFLABELS[Math.round(score/count) - 1];

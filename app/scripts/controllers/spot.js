@@ -219,7 +219,7 @@ var _updateStatus = function ($scope, $timeout, spot) {
   $scope.current_comment = current_status.comment;
   $scope.current_user = current_status.user;
   _updateMarker($scope);
-  $timeout(function(){_updateStatus($scope, $timeout);}, 60000);
+  $timeout(function(){_updateStatus($scope, $timeout, spot);}, 60000);
 }
 
 /**
