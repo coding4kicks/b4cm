@@ -53,7 +53,9 @@ angular.module('b4cmApp')
                    'close_hour': $scope.closeHour,
                    'close_meridiem': $scope.closeMeridiem},
           nextDay = $scope.WEEKDAYS[util.incrementDay($scope.openDay.label)];
-      if (_nextDay(times)){times.close_day = $scope.WEEKDAYS[util.incrementDay($scope.openDay.label)];}
+      if (util.shouldBeNextDay(times)){
+        times.close_day = $scope.WEEKDAYS[util.incrementDay($scope.openDay.label)];
+      }
       console.log(times.close_day);
       $scope.business_hours.push(times);
       // Increment days to next day for convenience
@@ -159,12 +161,4 @@ angular.module('b4cmApp')
       $scope.yelpHelpShow = !$scope.yelpHelpShow;
     };
 
-    function _nextDay(times) {
-      if(times.close_meridiem.label === 'am') {
-        if(times.open_meridiem.label === 'pm') {return true;}
-        else if(parseInt(times.open_hour.label) >= parseInt(times.close_hour.label)){return true;}
-        else {return false;}
-      }
-      else {return false;}
-    }
   });
