@@ -38,7 +38,7 @@ angular.module('b4cmApp')
       }
       $scope.stars = _calculateStars(ratingScore);
       var reviewsDisplayedCount = 0;
-      if (typeof $scope.spot.reviews !== 'undefined' && $scope.spot.reviews.length > 0) {
+      if (typeof $scope.spot.reviews !== 'undefined') {
         for (var review in $scope.spot.reviews) {
           // Set defualt pic
           if (typeof $scope.spot.reviews[review].author !== 'undefined' &&
