@@ -52,7 +52,7 @@ angular.module('b4cmApp')
                    'close_hour': $scope.closeHour,
                    'close_meridiem': $scope.closeMeridiem},
           nextDay = $scope.WEEKDAYS[util.incrementDay($scope.openDay.label)];
-      //if (_nextDay(times)){times.close_day = util.incrementDay($scope.openDay.label);}
+      if (_nextDay(times)){times.close_day = $scope.WEEKDAYS[util.incrementDay($scope.openDay.label)];}
       console.log($scope.closeDay);
       $scope.business_hours.push(times);
       // Increment days to next day for convenience

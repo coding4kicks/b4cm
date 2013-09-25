@@ -39,8 +39,6 @@ describe('Controller: AddSpotCtrl', function () {
   it('addHours correctly adds hours and incrments the day', function () { 
     expect(scope.business_hours.length).toBe(0);
     var fake_hours = _setHours(scope, 'Friday', 8, 'am', 9, 'am');
-    var oldOpen = scope.openDay,
-        oldClose = scope.closeDay;
     scope.addHours();
     expect(scope.business_hours.length).toBe(1);
     expect(scope.business_hours[0]).toEqual(fake_hours);
@@ -48,48 +46,24 @@ describe('Controller: AddSpotCtrl', function () {
     expect(scope.closeDay.label).toBe('Saturday');
   });
 
-  xit('addHours correctly adds hours past midnight with pm close', function () { 
+  it('addHours correctly adds hours past midnight with pm open', function () { 
     expect(scope.business_hours.length).toBe(0);
-    scope.openDay = {'label': 'Friday'};
-    scope.openHour = {'label': '8:00', 'hour': 8, 'minutes': 0}
-    scope.openMeridiem = {'label': 'am'};
-    scope.closeDay = {'label': 'Friday'};
-    scope.closeHour = {'label': '9:00', 'hour': 9, 'minutes': 0}
-    scope.closeMeridiem = {'label': 'am'};
-    var oldOpen = scope.openDay,
-        oldClose = scope.closeDay;
+    var fake_hours = _setHours(scope, 'Friday', 8, 'pm', 2, 'am');
+    fake_hours.close_day = {'label': 'Saturday'};
     scope.addHours();
     expect(scope.business_hours.length).toBe(1);
-    expect(scope.business_hours[0].open_day).toBe(oldOpen);
-    expect(scope.business_hours[0].open_hour).toBe(scope.openHour);
-    expect(scope.business_hours[0].open_meridiem).toBe(scope.openMeridiem);
-    expect(scope.business_hours[0].close_day).toBe(oldClose);
-    expect(scope.business_hours[0].close_hour).toBe(scope.closeHour);
-    expect(scope.business_hours[0].close_meridiem).toBe(scope.closeMeridiem);
-    expect(scope.openDay.label).toBe('Saturday');
-    expect(scope.closeDay.label).toBe('Saturday');
+    expect(scope.business_hours[0]).toEqual(fake_hours);
+    expect(scope.business_hours[0].close_day).toEqual(fake_hours.close_day);
   });
 
-  xit('addHours correctly adds hours past midnight with pm close', function () { 
+  it('addHours correctly adds hours past midnight with am open', function () { 
     expect(scope.business_hours.length).toBe(0);
-    scope.openDay = {'label': 'Friday'};
-    scope.openHour = {'label': '8:00', 'hour': 8, 'minutes': 0}
-    scope.openMeridiem = {'label': 'am'};
-    scope.closeDay = {'label': 'Friday'};
-    scope.closeHour = {'label': '9:00', 'hour': 9, 'minutes': 0}
-    scope.closeMeridiem = {'label': 'am'};
-    var oldOpen = scope.openDay,
-        oldClose = scope.closeDay;
+    var fake_hours = _setHours(scope, 'Friday', 8, 'am', 2, 'am');
+    fake_hours.close_day = {'label': 'Saturday'};
     scope.addHours();
     expect(scope.business_hours.length).toBe(1);
-    expect(scope.business_hours[0].open_day).toBe(oldOpen);
-    expect(scope.business_hours[0].open_hour).toBe(scope.openHour);
-    expect(scope.business_hours[0].open_meridiem).toBe(scope.openMeridiem);
-    expect(scope.business_hours[0].close_day).toBe(oldClose);
-    expect(scope.business_hours[0].close_hour).toBe(scope.closeHour);
-    expect(scope.business_hours[0].close_meridiem).toBe(scope.closeMeridiem);
-    expect(scope.openDay.label).toBe('Saturday');
-    expect(scope.closeDay.label).toBe('Saturday');
+    expect(scope.business_hours[0]).toEqual(fake_hours);
+    expect(scope.business_hours[0].close_day).toEqual(fake_hours.close_day);
   });
 
   it('deleteHours removes a time', function () { 
