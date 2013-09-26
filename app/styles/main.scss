@@ -32,7 +32,10 @@ $cf-closed: #111111;
 $text-dark: #373737;
 $text-light: #fafafa;
 
+// Backgrounds:
+$page-color: #ffffff;
 
+$page-radius: 10px;
 /******************
 *** MIXINS
 *******************/
@@ -41,6 +44,18 @@ $text-light: #fafafa;
 @mixin page-container {
   margin: 0 auto;
   width: 940px;
+}
+
+@mixin page-element($pad-vert: 10px, $pad-horz: 0, $allignment: center, $location: null) {
+  background-color: $page-color;
+  padding: $pad-vert $pad-horz;
+  text-align: $allignment;
+  @if $location == top {
+    border-radius: 0 0 $page-radius $page-radius;
+  }
+  @else {
+    border-radius: $page-radius;
+  }
 }
 
 /******************
@@ -360,7 +375,6 @@ input[type='text']:focus {
 *** HEADER
 *******************/
 .header {
-  @include page-container;
   background-color: $acc-light;
   border-radius: 0 0 10px 10px;
   padding: 5px 0;
@@ -429,10 +443,11 @@ input[type='text']:focus {
 *******************/
 .footer {
   @include page-container;
-  background-color: $acc-light;
-  border-radius: 10px;
-  padding: 11px 0 4px 0;
-  text-align: center;
+  //background-color: $acc-light;
+  //border-radius: 10px;
+  //padding: 11px 0 4px 0;
+  //text-align: center;
+  @include page-element;
 
   li {
     display: inline;
@@ -464,10 +479,10 @@ input[type='text']:focus {
   }
 
   .spot-types {
-    @include page-container;
-    background-color: $acc-light;
-    border-radius: 10px;
-    padding: 10px 0;
+    //background-color: $acc-light;
+    //border-radius: 10px;
+    //padding: 10px 0;
+    @include page-element;
 
     .spots {
       padding: 0 0 0 10px;
@@ -517,17 +532,17 @@ input[type='text']:focus {
   }
 
   .nearby {
-    @include page-container;
-    background-color: $acc-light;
-    border-radius: 10px;
-    padding: 25px 0;
+    //background-color: $acc-light;
+    //border-radius: 10px;
+    //padding: 25px 0;
+    @include page-element;
   }
 
   .visualize {
-    @include page-container;
-    background-color: $acc-light;
-    border-radius: 10px;
-    padding: 20px 0;
+    //background-color: $acc-light;
+    //border-radius: 10px;
+    //padding: 20px 0;
+    @include page-element;
 
     .visualize-tagline {
       text-align: left;
@@ -552,9 +567,11 @@ input[type='text']:focus {
 #listings-page {
 
   .title-bar {
-    background-color: $acc-light;
-    border-radius: 10px;
-    padding: 10px 15px;
+    @include page-element(10px, 10px, center, top);
+    border-left-radius
+    //background-color: $acc-light;
+    //border-radius: 10px;
+    //padding: 10px 15px;
 
     .main-col {
       text-align: center;
@@ -599,10 +616,11 @@ input[type='text']:focus {
     }
   }
 
- .page {
-    background-color: $acc-light;
-    border-radius: 10px;
-    padding: 20px 10px;
+  .page {
+   @include page-element(10px, 10px, left);
+    //background-color: $acc-light;
+    //border-radius: 10px;
+    //padding: 20px 10px;
     min-height: 300px;
   }
   
@@ -725,9 +743,10 @@ input[type='text']:focus {
 #spot-page {
 
   .title-bar {
-    background-color: $acc-light;
-    border-radius: 10px;
-    padding: 10px 15px;
+    @include page-element(10px, 10px, left, top);
+    //background-color: $acc-light;
+    //border-radius: 10px;
+    //padding: 10px 15px;
     height: 300px;
 
     .spot-name {
@@ -866,17 +885,18 @@ input[type='text']:focus {
   }
 
   .visualize {
-    @include page-container;
-    background-color: $acc-light;
-    border-radius: 10px;
-    padding: 20px 0;
+    //background-color: $acc-light;
+    //border-radius: 10px;
+    //padding: 20px 0;
+    @include page-element
   }
 
   .reviews {
-    background-color: $acc-light;
-    border-radius: 10px;
+    @include page-element(10px, 10px, left);
+    //background-color: $acc-light;
+    //border-radius: 10px;
     min-height: 400px;
-    padding: 20px 15px;
+    //padding: 20px 15px;
 
     hr {
       margin-top: 5px 0;
@@ -960,10 +980,10 @@ input[type='text']:focus {
 *** Sign Up Page 
 *******************/
 #sign-up, #sign-in {
-  @include page-container;
-  background-color: $acc-light;
-  border-radius: 10px 10px 10px 10px;
-  padding: 40px 0;
+  //background-color: $acc-light;
+  //border-radius: 10px 10px 10px 10px;
+  //padding: 40px 0;
+  @include page-element;
 
 
   .login-method {
@@ -1041,9 +1061,10 @@ input[type='text']:focus {
 *** Welcome Page 
 *******************/
 #welcome-page {
-  background-color: $acc-light;
-  border-radius: 10px;
-  padding: 40px;
+  //background-color: $acc-light;
+  //border-radius: 10px;
+  //padding: 40px;
+  @include page-element(10px, 10px, left);
 
   .sign-in-notification {
     color: $comp2-dark;
@@ -1065,9 +1086,10 @@ input[type='text']:focus {
 #add-multiple-page,
 #add-spot-page,
 #edit-spot-page {
-  background-color: $acc-light;
-  border-radius: 10px;
-  padding: 10px 0 10px 20px;
+  //background-color: $acc-light;
+  //border-radius: 10px;
+  //padding: 10px 0 10px 20px;
+  @include page-element;
 
   h3 {
     margin: 0;
@@ -1241,9 +1263,10 @@ input[type='text']:focus {
 #faq-page,
 #advertise-page,
 #contact-page{
-  background-color: $acc-light;
-  border-radius: 10px;
-  padding: 20px;
+  //background-color: $acc-light;
+  //border-radius: 10px;
+  //padding: 20px;
+  @include page-element(10px, 10px, left);
   min-height: 400px;
 
   .sign-in-notification {
