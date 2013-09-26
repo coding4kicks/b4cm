@@ -38,7 +38,7 @@ angular.module('b4cmApp')
       }
       $scope.stars = _calculateStars(ratingScore);
       var reviewsDisplayedCount = 0;
-      if (typeof $scope.spot.reviews !== 'undefined') {
+      if (typeof $scope.spot.reviews !== 'undefined' && $scope.spot.reviews.length !== 0) {
         for (var review in $scope.spot.reviews) {
           // Set defualt pic
           if (typeof $scope.spot.reviews[review].author !== 'undefined' &&
@@ -62,7 +62,7 @@ angular.module('b4cmApp')
 
       // Calculate block structure for display of crowdfactor visualization.
       $scope.blocks = util.constructCrowdFactor($scope.spot.crowdfactor.blocks,
-                                            $scope.spot.crowdfactor.day);
+                                                $scope.spot.crowdfactor.day);
 
       // Set up crowdfactor current time marker information.
       $scope.show_marker = _initializeShowMarkerMatrix();
