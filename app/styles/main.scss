@@ -66,6 +66,17 @@ $hr-width: $page-width - $page-radius;
   }
 }
 
+@mixin ad-element {
+  background: $acc-med;
+  border-radius: 10px;
+  a {
+    color: $text-light;
+    &:hover {
+      color: $comp1-dark;
+    }
+  }
+}
+
 /******************
 *** Global 
 *******************/
@@ -130,12 +141,6 @@ a {
   margin: 0 !important;
 }
 
-//.logo {
-//  height: 60px;
-//  padding: 0 8px 0 10px;
-//  width: 60px;
-//}
-
 .b4cm-icon {
   height: 75px;
   width: 75px;
@@ -157,36 +162,15 @@ a {
   width: 60px;
 }
 
-//.map {
-//  background: black;
-//  height: 200px;
-//  width: 250px;
-//  text-align: center;
-//  padding-top: 50px;
-//}
-
 .ad-book {
-  background: $acc-med;
-  border: 1px solid;
-  border-radius: 10px;
+  @include ad-element;
   height: 125px;
   padding: 5px;
   margin-left: 40px;
   text-align: center;
   width: 220px;
 
-  a {
-    text-decoration: none;
-  }
-
-  &:hover {
-    h6 {
-      color: $comp1-dark;
-    }
-  }
-
   h6 {
-    color: $text-light;
     display: inline-block;
     float: left;
     line-height: 15px;
@@ -826,16 +810,11 @@ input[type='text']:focus {
       vertical-align: bottom;
     }
 
-    .text-ad {
-      background-color: $acc-med;
-      //margin-top: -20px;
+    .ad-text {
+      @include ad-element;
       width: 100%;
       height: 60px;
       min-width: 468px;
-      
-      a {
-        color: $text-light;
-      }
 
       h6 {
         float: right;
