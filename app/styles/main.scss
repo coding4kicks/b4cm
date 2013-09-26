@@ -702,6 +702,7 @@ input[type='text']:focus {
 
     a { 
       color: $text-dark;
+      width: 100px;
 
       &:hover {
         color: $comp1-dark;
@@ -878,6 +879,8 @@ input[type='text']:focus {
   }
 
   .review-nums {
+    width: 200px;
+    display: inline-block;
   }
 
   .review {
@@ -897,7 +900,7 @@ input[type='text']:focus {
 
   .add-review {
     float: right;
-    margin-top: -40px;
+    margin-top: 0;
   }
 
   .find-nearby {

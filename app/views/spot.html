@@ -142,10 +142,10 @@
 
   <div class="reviews">
     <div class="main-col">
-      <h6 class="review-nums">1-{{reviewsDisplayedCount}} of {{spot.review_count}}</h6>
+      <h6 class="review-nums" ng-hide="noReviews">{{startIndex}}-{{reviewsDisplayedCount}} of {{spot.review_count}}</h6>
       <button class="btn add-review" ng-click="addReview(spot.id)">Add Review</button>
 
-      <hr>
+      <hr ng-hide="noReviews">
 
       <div class="review-list">
         <h2 ng-show="noReviews">No Reviews - Be the first!</h2>
@@ -165,8 +165,8 @@
           <hr>
         </div>
 
-        <div class="more">
-          <a>More Reviews</a>
+        <div class="more" ng-hide="noReviews">
+          <a ng-show="displayMore" ng-click="moreReviews()">More Results</a><span ng-show="displayMore && displayPrevious"> || </span><a ng-show="displayPrevious" ng-click="previousReviews()">Previous Results</a>
         </div>
 
       </div>

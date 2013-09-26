@@ -10,6 +10,9 @@ angular.module('b4cmApp')
    */ 
   .controller('SpotCtrl', function ($scope, $location, $timeout, $routeParams, angularFire, spot, user, util) {
 
+    $scope.startIndex = 1;
+    $scope.noReviews = false;
+    $scope.displayMore = true;
     // Google map defaults
     $scope.isMapElementHidden = true;
     $scope.centerProperty = {
