@@ -75,12 +75,12 @@
 
   <div class="visualize">
     <div class="crowd-factor">
-      <h3>Current Time: <span class="current-time {{current_cflabel | lowercase}}">{{current_day}}, {{current_hour}}:{{current_minutes}} {{current_meridiem}}</span></h3>
-      <h4>{{watch_count}} Watches</h4>
+      <h4 class="current-time">Current Time: <span class="time {{current_cflabel | lowercase}}">{{current_day}}, {{current_hour}}:{{current_minutes}} {{current_meridiem}}</span></h4>
+      <h5 class="watch-count">{{watch_count}} Watches</h5>
       <button type="button" class="btn" ng-click="addWatch()">Add Crowd Watch</button>
       <div class="crowd-visuals">
         <div class="timeslot" ng-repeat="block in blocks">
-          <h5>{{block.name}}</h5>
+          <h5 class="block-day">{{block.name}}</h5>
           <table class="{{block.name}}-table">
             <tr>
               <th></th>
