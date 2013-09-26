@@ -1301,9 +1301,10 @@ input[type='text']:focus {
   }
 
   .labels {
-    margin: 0 0 0 18%;
+    margin: 0 auto;
     padding: 10px 0;
     width: 600px;
+    text-align: center;
 
     .none-square {
       box-shadow: 0px 0px 3px 3px $cf-average inset;
@@ -1311,6 +1312,7 @@ input[type='text']:focus {
 
     h5 {
       display: inline-block;
+      width: 120px;
     }
 
     .average > h5 {
@@ -1318,11 +1320,12 @@ input[type='text']:focus {
     }
 
     .row1, .row2 {
-      text-align: left;
+      text-align: center;
 
       &>div {
         width: 140px;
         display: inline-block;
+        text-align: center;
       }
     }
 
@@ -1331,13 +1334,12 @@ input[type='text']:focus {
       border-radius: 5px;
       display: inline-block;
       height: 15px;
-      margin-bottom: -3px;
+      margin:0 auto -3px 0;
       width: 15px;
     }
 
     .row2 {
-      margin-top: -20px;
-      padding-left: 15%;
+      margin-top: -40px;
     }
   }
 
