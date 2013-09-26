@@ -396,7 +396,6 @@ input[type='text']:focus {
 
   .addthis_toolbox {
     float: right;
-    //margin: -65px 10px 0 0;
     vertical-align: top;
   }
 
@@ -413,7 +412,7 @@ input[type='text']:focus {
   }
 
   .spot-types {
-    @include page-element;
+    @include page-element(10px, 0, center, top);
 
     .spots {
       padding: 0 0 0 10px;
