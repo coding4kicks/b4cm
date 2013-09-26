@@ -366,73 +366,6 @@ input[type='text']:focus {
 }
 
 /******************
-*** HEADER
-*******************/
-.header {
-  background-color: $acc-light;
-  border-radius: 0 0 10px 10px;
-  padding: 5px 0;
-  text-align: left;
-
-  .logo {
-    height: 35px;
-    width: 280px;
-  }
-
-  .before {
-    color: $comp1-dark;
-    margin: 0;
-  }
-
-  .criticalmass {
-    color: $comp2-dark;
-    margin: -10px 0 4px 0;
-  }
-
-  a {
-    text-decoration: none;
-  }
-
-  .title {
-    vertical-align: top;
-    color: $comp2-dark;
-   }
-
-  .about {
-    color: $comp1-dark;
-   }
-
-  .tag-line {
-    text-align: left;
-    vertical-align: top;
-    padding-left: 100px;
-  }
-
-  .find {
-    margin-bottom: -20px;
-  }
-
-  .dodge {
-    margin-left: 50px;
-  }
-
-  .choice {
-    margin-left: 100px;
-  }
-
-  div {
-    display: inline-block;
-  }
-
-  .addthis_toolbox {
-    float: right;
-    //margin: -65px 10px 0 0;
-    vertical-align: top;
-  }
-}
-
-
-/******************
 *** FOOTER
 *******************/
 .footer {
@@ -461,11 +394,22 @@ input[type='text']:focus {
 #main-page {
   text-align: center;
 
+  .addthis_toolbox {
+    float: right;
+    //margin: -65px 10px 0 0;
+    vertical-align: top;
+  }
+
   // Hacky
   .crowd-factor {
     .timeslot {
       margin-left: -32px;
     }
+  }
+
+  .spots-tagline {
+    margin: 0 0 0 200px;
+    width: 500px;
   }
 
   .spot-types {
