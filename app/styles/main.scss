@@ -443,10 +443,6 @@ input[type='text']:focus {
 *******************/
 .footer {
   @include page-container;
-  //background-color: $acc-light;
-  //border-radius: 10px;
-  //padding: 11px 0 4px 0;
-  //text-align: center;
   @include page-element;
 
   li {
@@ -479,9 +475,6 @@ input[type='text']:focus {
   }
 
   .spot-types {
-    //background-color: $acc-light;
-    //border-radius: 10px;
-    //padding: 10px 0;
     @include page-element;
 
     .spots {
@@ -532,16 +525,10 @@ input[type='text']:focus {
   }
 
   .nearby {
-    //background-color: $acc-light;
-    //border-radius: 10px;
-    //padding: 25px 0;
     @include page-element;
   }
 
   .visualize {
-    //background-color: $acc-light;
-    //border-radius: 10px;
-    //padding: 20px 0;
     @include page-element;
 
     .visualize-tagline {
@@ -568,10 +555,6 @@ input[type='text']:focus {
 
   .title-bar {
     @include page-element(10px, 10px, center, top);
-    border-left-radius
-    //background-color: $acc-light;
-    //border-radius: 10px;
-    //padding: 10px 15px;
 
     .main-col {
       text-align: center;
@@ -617,10 +600,7 @@ input[type='text']:focus {
   }
 
   .page {
-   @include page-element(10px, 10px, left);
-    //background-color: $acc-light;
-    //border-radius: 10px;
-    //padding: 20px 10px;
+    @include page-element(10px, 10px, left);
     min-height: 300px;
   }
   
@@ -744,9 +724,6 @@ input[type='text']:focus {
 
   .title-bar {
     @include page-element(10px, 10px, left, top);
-    //background-color: $acc-light;
-    //border-radius: 10px;
-    //padding: 10px 15px;
     height: 300px;
 
     .spot-name {
@@ -885,18 +862,12 @@ input[type='text']:focus {
   }
 
   .visualize {
-    //background-color: $acc-light;
-    //border-radius: 10px;
-    //padding: 20px 0;
     @include page-element
   }
 
   .reviews {
     @include page-element(10px, 10px, left);
-    //background-color: $acc-light;
-    //border-radius: 10px;
     min-height: 400px;
-    //padding: 20px 15px;
 
     hr {
       margin-top: 5px 0;
@@ -980,9 +951,6 @@ input[type='text']:focus {
 *** Sign Up Page 
 *******************/
 #sign-up, #sign-in {
-  //background-color: $acc-light;
-  //border-radius: 10px 10px 10px 10px;
-  //padding: 40px 0;
   @include page-element;
 
 
@@ -1061,9 +1029,6 @@ input[type='text']:focus {
 *** Welcome Page 
 *******************/
 #welcome-page {
-  //background-color: $acc-light;
-  //border-radius: 10px;
-  //padding: 40px;
   @include page-element(10px, 10px, left);
 
   .sign-in-notification {
@@ -1086,9 +1051,6 @@ input[type='text']:focus {
 #add-multiple-page,
 #add-spot-page,
 #edit-spot-page {
-  //background-color: $acc-light;
-  //border-radius: 10px;
-  //padding: 10px 0 10px 20px;
   @include page-element;
 
   h3 {
@@ -1263,9 +1225,6 @@ input[type='text']:focus {
 #faq-page,
 #advertise-page,
 #contact-page{
-  //background-color: $acc-light;
-  //border-radius: 10px;
-  //padding: 20px;
   @include page-element(10px, 10px, left);
   min-height: 400px;
 
