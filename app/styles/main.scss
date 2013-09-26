@@ -554,6 +554,10 @@ input[type='text']:focus {
       padding-top: 20px;
     }
 
+    .top {
+      height: 95px;
+    }
+
     .b4cm-icon {
       margin-top: -5px;
     }
@@ -592,6 +596,18 @@ input[type='text']:focus {
     button {
       margin: -10px 0 0 10px;
     }
+
+    .listing-nums {
+      display: inline-block;
+      margin: 5px 0 -5px 0;
+      width: 300px;
+    }
+
+    .add-spot-btn {
+      float: right;
+      margin: -9px 0 0 0;
+    }
+
   }
 
   .page {
@@ -600,15 +616,6 @@ input[type='text']:focus {
   }
   
   .listings {
-    
-    h6 {
-      margin-top: -40px;
-    }
-
-    .add-spot-btn {
-      margin: -75px 0 0 500px;
-    }
-
   }
 
   .listing {
@@ -1048,7 +1055,7 @@ input[type='text']:focus {
 #add-multiple-page,
 #add-spot-page,
 #edit-spot-page {
-  @include page-element;
+  @include page-element(10px, 10px, left);
 
   h3 {
     margin: 0;
