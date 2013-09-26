@@ -141,10 +141,9 @@ angular.module('b4cmApp')
      * @param {string} type The type of listings to find
      */ 
     $scope.findNearby = function(spotType) {
-      //if (typeof searchLocation === 'undefined') {searchLocation = 'Palo Alto, CA';}
       var searchLocation = $scope.spot.location.address + ', ' + 
                            $scope.spot.location.city + ', ' + 
-                           $scope.spot.location.state;
+                           $scope.spot.location.state_code;
       $location.path('/listings/' + spotType.toLowerCase() + '/' + encodeURIComponent(searchLocation));
       util.safeApply($scope);
     };
