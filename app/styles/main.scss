@@ -35,7 +35,15 @@ $text-light: #fafafa;
 // Backgrounds:
 $page-color: #ffffff;
 
+/******************
+*** OTHER VARIABLES
+*******************/
+$page-width: 940px;
+// Border radius for page elements
 $page-radius: 10px;
+$hr-width: $page-width - $page-radius;
+
+
 /******************
 *** MIXINS
 *******************/
@@ -43,7 +51,7 @@ $page-radius: 10px;
 // page width/centering 
 @mixin page-container {
   margin: 0 auto;
-  width: 940px;
+  width: $page-width;
 }
 
 @mixin page-element($pad-vert: 10px, $pad-horz: 0, $allignment: center, $location: null) {
@@ -71,7 +79,7 @@ body {
 hr {
   border: 1px solid $acc-dark;
   margin: 0 auto;
-  width: 930px;
+  width: $hr-width;
 }
 
 button, .btn {
@@ -122,19 +130,21 @@ a {
   margin: 0 !important;
 }
 
-.logo {
-  height: 60px;
-  padding: 0 8px 0 10px;
-  width: 60px;
-}
+//.logo {
+//  height: 60px;
+//  padding: 0 8px 0 10px;
+//  width: 60px;
+//}
 
 .b4cm-icon {
   height: 75px;
   width: 75px;
 }
 
+
 .google-map {
   img {
+    // Need so icons show
     max-width: none;
   }
 }
@@ -147,13 +157,13 @@ a {
   width: 60px;
 }
 
-.map {
-  background: black;
-  height: 200px;
-  width: 250px;
-  text-align: center;
-  padding-top: 50px;
-}
+//.map {
+//  background: black;
+//  height: 200px;
+//  width: 250px;
+//  text-align: center;
+//  padding-top: 50px;
+//}
 
 .ad-book {
   background: $acc-med;
