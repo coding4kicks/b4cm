@@ -911,6 +911,10 @@ input[type='text']:focus {
       display: inline-block;
       margin: 0;
     }
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .nearby-type {
