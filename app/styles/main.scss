@@ -548,10 +548,9 @@ input[type='text']:focus {
 #listings-page {
 
   .title-bar {
-    @include page-element(10px, 10px, center, top);
+    @include page-element(10px, 10px, left, top);
 
     .main-col {
-      text-align: center;
       padding-top: 20px;
     }
 
@@ -559,14 +558,16 @@ input[type='text']:focus {
       margin-top: -5px;
     }
 
-    h2 {
+    .listing-type {
       display: inline-block;
       padding: 0 0 0 20px;
     }
 
-    h3 {
+    .listing-location {
       display: inline-block;
       margin-left: 50px;
+      text-overflow: ellipsis;
+      width: 350px;
     }
 
     form {
@@ -604,8 +605,8 @@ input[type='text']:focus {
       margin-top: -40px;
     }
 
-    .add-spot {
-      margin: -110px 0 0 500px;
+    .add-spot-btn {
+      margin: -75px 0 0 500px;
     }
 
   }
