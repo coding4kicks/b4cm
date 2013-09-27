@@ -747,6 +747,19 @@ input[type='text']:focus {
   }
 }
 
+@media screen and (max-width: $break-small){
+  #listings-page {
+    .main-col {
+      display: block;
+    }
+    .title-bar {
+      .side-col {
+        display: none;
+      }
+    }
+  }
+}
+
 /******************
 *** Spot Page
 *******************/
