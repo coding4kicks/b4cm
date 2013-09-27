@@ -404,6 +404,16 @@ input[type='text']:focus {
     .timeslot {
       margin-left: -32px;
     }
+
+    .location {
+      color: $text-dark;
+      text-align: left;
+      margin: 0 0 -5px 20px;
+    }
+
+    .crowd-visuals {
+      margin-top: -5px;
+    }
   }
 
   .spots-tagline {
@@ -473,11 +483,12 @@ input[type='text']:focus {
       margin: 0 auto;
     }
 
-    h2 {
-      margin: 0 0 0 160px;
+    h3 {
+      text-align: center;
+      //margin: 0 0 0 160px;
     }
 
-    h2:nth-child(2) {
+    h3:nth-child(2) {
       margin: 0 0 0 26%;
     }
 
