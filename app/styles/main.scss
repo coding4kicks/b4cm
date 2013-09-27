@@ -671,6 +671,8 @@ input[type='text']:focus {
 
     .spot-pic {
       display: inline-block;
+      width: 85px;
+      height: 85px;
       padding: 0 5px;
       margin-top: -95px;
     }
@@ -689,15 +691,23 @@ input[type='text']:focus {
       margin: 5px 0 0 0;
     }
 
+    .stars {
+      img {
+        height: 25px;
+        width: 25px;
+      }
+    }
+
     .box {
-      height: 30px;
-      width: 30px;
+      height: 25px;
+      width: 25px;
 
       h6 {
+        color: $acc-light;
         display: inline;
         float: left;
         font-size: 10px;
-        margin: 15px 0 0 2px;
+        margin: 8px 0 0 2px;
       }
     }
 
@@ -749,12 +759,48 @@ input[type='text']:focus {
 
 @media screen and (max-width: $break-small){
   #listings-page {
+
     .main-col {
       display: block;
+      width: 100%
     }
+
     .title-bar {
+      text-align: center;
+
+      .top {
+        height: 120px;
+      }
+
+      .listing-location {
+        margin-left: 0 !important;
+      }
+      
+      .listing-nums {
+        width: 100px;
+        float: left;
+        margin-top: 20px;
+      }
+
+      .add-spot-btn {
+        margin-top: 5px;
+      }
+
       .side-col {
         display: none;
+      }
+    }
+
+    .listing {
+      .spot-pic {
+        height: 50px;
+        width: 50px;
+        margin-top: 0;
+        display: inline-block;
+      }
+
+      .current-status {
+        display: block;
       }
     }
   }
