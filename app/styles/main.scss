@@ -552,13 +552,19 @@ input[type='text']:focus {
     .spots-tagline {
       display: none;
     }
+
     .visualize-tagline {
       margin: 10px !important;
     }
-   .addthis_toolbox {
+
+    .addthis_toolbox {
       float: none;
       width: 200px;
-      margin: 0 auto;
+      margin: 5px auto;
+    }
+
+    .nearby {
+      display: none;
     }
   }
 }
@@ -1390,6 +1396,30 @@ input[type='text']:focus {
 
   .saturday-row {
     border-top: 2px solid $high-bright;
+  }
+}
+
+@media screen and (max-width: $break-small){
+  .crowd-factor {
+    .crowd-visuals {
+      text-align: center;
+    }
+    .timeslot {
+      display: block;
+      margin: 0 auto !important;
+      text-align: center;
+
+      table {
+        margin: 0 auto;
+      }
+    }
+    .labels {
+      width: 100%;
+      .row2 {
+        margin-top: -10px;
+      }
+
+    }
   }
 }
 
