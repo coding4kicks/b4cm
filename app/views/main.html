@@ -48,17 +48,6 @@
 
   <hr>
 
-  <div class="nearby">
-    <form class="form-horizontal find-spot">
-      <h3>Find a place near you:</h3>
-      <select class="type" ng-model="spotType" ng-options="type.name for type in spotTypes"></select>
-      <input type="text" class="form-control" ng-model="searchLocation" placeholder="City or Zip">
-      <button class="btn" ng-click="searchListings(spotType.name, searchLocation)">Search</button>
-    </form>
-  </div>
-
-  <hr>
-
   <div class="visualize">
     <div class="visualize-tagline">
       <h2><span class="emphasize">"Visualize</span> the crowd and learn the best</h2>
@@ -66,89 +55,89 @@
     </div>
 
     <div class="crowd-factor">
-      <h3>Current Time: <span class="current-time empty">Tuesday, 11am</span></h3>
-      <h4>73 Watchers</h4>
+      <h4 class="current-time">Current Time: <span class="time">Tuesday, 11am</span></h4>
+      <h5 class="watch-count">73 Watchers</h5>
       <button type="button" class="btn">Add Herd Watch</button>
       <div class="crowd-visuals">
         <div class="timeslot">
-          <h5>morning</h5>
+          <h5 class="block-day">afternoon</h5>
           <table class="morning-table">
             <tr>
               <th></th>
-              <th>5</th>
-              <th>6</th>
-              <th>7</th>
-              <th>8</th>
-              <th>9</th>
-              <th>10</th>
+              <th>11</th>
+              <th>12</th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
             </tr>
             <tr class="monday-row">
               <td>M</td>
               <td class="closed-square"></td>
               <td class="empty-square"></td>
-              <td class="few-square"></td>
+              <td class="empty-square"></td>
               <td class="herd-square"></td>
-              <td class="average-square"></td>
-              <td class="average-square"></td>
+              <td class="herd-square"></td>
+              <td class="herd-square"></td>
             </tr>
             <tr class="tuesday-row">
               <td>Tu</td>
               <td class="closed-square"></td>
               <td class="empty-square"></td>
-              <td class="few-square"></td>
+              <td class="empty-square"></td>
               <td class="herd-square"></td>
-              <td class="average-square"></td>
-              <td class="average-square"></td>
+              <td class="herd-square"></td>
+              <td class="herd-square"></td>
             </tr>
             <tr class="wednesday-row">
               <td>W</td>
               <td class="closed-square"></td>
               <td class="empty-square"></td>
-              <td class="few-square"></td>
+              <td class="empty-square"></td>
               <td class="herd-square"></td>
-              <td class="few-square"></td>
-              <td class="average-square"></td>
+              <td class="herd-square"></td>
+              <td class="herd-square"></td>
             </tr>
             <tr class="thursday-row">
               <td>Th</td>
               <td class="closed-square"></td>
               <td class="empty-square"></td>
-              <td class="average-square"></td>
+              <td class="empty-square"></td>
               <td class="herd-square"></td>
-              <td class="crowded-square"></td>
-              <td class="average-square"></td>
+              <td class="herd-square"></td>
+              <td class="herd-square"></td>
             </tr>
             <tr class="friday-row">
               <td>F</td>
               <td class="closed-square"></td>
               <td class="empty-square"></td>
-              <td class="average-square"></td>
-              <td class="crowded-square"></td>
+              <td class="empty-square"></td>
               <td class="herd-square"></td>
-              <td class="crowded-square"></td>
+              <td class="herd-square"></td>
+              <td class="herd-square"></td>
             </tr>
             <tr class="saturday-row">
               <td>Sa</td>
-              <td class="closed-square"></td>
-              <td class="empty-square"></td>
-              <td class="empty-square"></td>
-              <td class="average-square"></td>
+              <td class="ave-square"></td>
               <td class="crowded-square"></td>
+              <td class="crowded-square"></td>
+              <td class="herd-square"></td>
+              <td class="herd-square"></td>
               <td class="herd-square"></td>
             </tr>
             <tr class="sunday-row">
               <td>Su</td>
-              <td class="closed-square"></td>
-              <td class="empty-square"></td>
-              <td class="empty-square"></td>
-              <td class="few-square"></td>
-              <td class="few-square"></td>
-              <td class="average-square"></td>
+              <td class="ave-square"></td>
+              <td class="crowded-square"></td>
+              <td class="crowded-square"></td>
+              <td class="herd-square"></td>
+              <td class="herd-square"></td>
+              <td class="herd-square"></td>
             </tr>
           </table>
         </div>
         <div class="timeslot">
-          <h5>afternoon</h5>
+          <h5 class="block-day">afternoon</h5>
           <table class="afternoon-table">
             <tr>
               <th></th>
@@ -225,7 +214,7 @@
           </table>
         </div>
         <div class="timeslot">
-          <h5>evening</h5>
+          <h5 class="block-day">evening</h5>
           <table class="evening-table">
             <tr>
               <th></th>
@@ -347,6 +336,17 @@
       </div>
     </div>
   </div> 
+
+  <hr>
+
+  <div class="nearby">
+    <form class="form-horizontal find-spot">
+      <h3>Find a place near you:</h3>
+      <select class="type" ng-model="spotType" ng-options="type.name for type in spotTypes"></select>
+      <input type="text" class="form-control" ng-model="searchLocation" placeholder="City or Zip">
+      <button class="btn" ng-click="searchListings(spotType.name, searchLocation)">Search</button>
+    </form>
+  </div>
   
 </div>
 
