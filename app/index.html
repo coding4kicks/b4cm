@@ -35,7 +35,8 @@
           <form class="form-horizontal find-spot">
             <select class="type" ng-model="spotType" ng-options="type.name for type in spotTypes"></select>
             <input type="text" class="form-control" ng-model="searchLocation" placeholder="City or Zip">
-            <button class="btn" ng-click="searchListings(spotType.name, searchLocation)">Search</button>
+            <button class="btn search-btn" ng-click="searchListings(spotType.name, searchLocation)">Search</button>
+            <img class="search-icon" ng-click="searchListings(spotType.name, searchLocation)" src="../images/search-icon.png">
           </form>
           <div class="nav-collapse collapse login" ng-cloak>
             <ul class="nav pull-right" ng-show="name">
