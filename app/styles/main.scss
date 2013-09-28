@@ -792,6 +792,8 @@ input[type='text']:focus {
     }
 
     .listing {
+      height: 200px;
+
       .spot-pic {
         height: 50px;
         width: 50px;
@@ -799,8 +801,45 @@ input[type='text']:focus {
         display: inline-block;
       }
 
+      .spot-pic {
+        vertical-align: top;
+        margin-top: 2px;
+      }
+
+      .title {
+        font-size: 14px;
+        margin-top: -3px;
+      }
+
+      .address {
+        font-size: 11px;
+        margin: -3px 0;
+      }
+
+      .rating {
+        display: none;
+      }
+
+      .box {
+        height: 20px;
+        width: 20px;
+
+        h6 {
+          font-size: 8px;
+          margin-top: 5px;
+        }
+      }
+
+      .watchers {
+        font-size: 10px;
+      }
+
       .current-status {
         display: block;
+      }
+
+      hr {
+        width: 95%;
       }
     }
   }
