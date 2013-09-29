@@ -3,16 +3,16 @@
 
   <form class="form-horizontal">
     <div class="control-group">
-      <label class="control-label" for="spotName">Name</label>
+      <label class="control-label" for="spotName">Name:</label>
       <div class="controls">
         <input class="{{validForm.name}}" type="text" id="spotName" ng-model="spotName" placeholder="Spot Name">
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="inputYelpId">Yelp ID</label>
+      <label class="control-label" for="inputYelpId">Yelp ID:</label>
       <div class="controls">
         <input type="text" id="inputYelpId" ng-model="yelp_id" placeholder="Yelp ID">
-        <a class="clickable" ng-click="yelpIdHelp()">How to find a Yelp ID?</a>
+        <a class="clickable yelp-id-help" ng-click="yelpIdHelp()">How to find a Yelp ID?</a>
       </div>
     </div>
 
@@ -22,32 +22,32 @@
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="spotAddress">Address</label>
+      <label class="control-label" for="spotAddress">Address:</label>
       <div class="controls">
         <input class="{{validForm.address}}" type="text" id="spotAddress" ng-model="address" placeholder="Address">
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="spotCity">City</label>
+      <label class="control-label" for="spotCity">City:</label>
       <div class="controls">
         <input class="{{validForm.city}}" type="text" id="spotCity" ng-model="city" placeholder="City">
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="spotZip">Zip</label>
+      <label class="control-label" for="spotZip">Zip:</label>
       <div class="controls">
         <input class="{{validForm.zip}}" type="text" id="spotZip" ng-model="postal_code" placeholder="Zip">
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="spotState">State</label>
+      <label class="control-label" for="spotState">State:</label>
       <div class="controls">
         <input class="{{validForm.state}}" type="text" id="spotState" ng-model="state_code" placeholder="State">
       </div>
     </div>
 
     <div class="control-group">
-      <label class="control-label">Wifi</label>
+      <label class="control-label">Wifi:</label>
       <div class="controls">
         <label class="checkbox inline">
           <input type="checkbox" id="revTypeFood" ng-model="wifi" value="food">
@@ -56,7 +56,7 @@
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="imageLoader">Upload Picture</label><br/>
+      <label class="control-label" for="imageLoader">Upload Picture:</label><br/>
       <div class="controls image-load-control">
         <input type="file" id="imageLoader" accept="image/*" image="image2" resize-max-height="100" resize-max-width="100" resize-quality="0.7" />
         <img ng-show="image2" ng-src="{{image2.resized.dataURL}}"/>
@@ -65,7 +65,7 @@
     </div>
 
     <div class="control-group">
-      <label class="control-label">Type of Spot</label>
+      <label class="control-label">Type of Spot:</label>
       <div class="controls">
         <label class="checkbox inline">
           <input type="checkbox" id="revTypeFood" ng-model="food" value="food"><span class="{{validForm.type}}">Food</span>
@@ -85,7 +85,7 @@
         <select class="day-select" ng-model="openDay" ng-options="day.label for day in WEEKDAYS"></select>
         <select class="hour-select" ng-model="openHour" ng-options="hour.label for hour in HOURS"></select>
         <select class="meridiem-select" ng-model="openMeridiem" ng-options="meridiem.label for meridiem in MERIDIEMS"></select>
-        To
+        <span class="to-label">To</span>
         <select class="hour-select" ng-model="closeHour" ng-options="hour.label for hour in HOURS"></select>
         <select class="meridiem-select" ng-model="closeMeridiem" ng-options="meridiem.label for meridiem in MERIDIEMS"></select>
         <a class="clickable" ng-click="addHours()">Add Hours</a>

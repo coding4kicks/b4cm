@@ -1559,7 +1559,10 @@ input[type='text']:focus {
 
 @media screen and (max-width: $break-small){
   #add-watch-page,
-  #add-review-page {
+  #add-review-page,
+  #edit-spot-page,
+  #add-spot-page,
+  #add-multiple-page {
     text-align: left;
 
     .control-label {
@@ -1580,6 +1583,27 @@ input[type='text']:focus {
       margin: 0
     }
 
+    .yelp-id-help {
+      display: block;
+    }
+
+    .yelp-id-info {
+      float: none;
+      margin: 0;
+      width: 96%;
+    }
+
+    .image-load-control {
+      img {
+        display: block;
+        float: none;
+        margin: 5px 0 0 0;
+      }
+    }
+
+    .business-hours {
+      margin-left: 0;
+    }
   }
 }
 
