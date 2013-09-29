@@ -1180,6 +1180,13 @@ input[type='text']:focus {
     hr {
       width: 100% !important;
     }
+
+    // TODO: global conflict with listings .info class.
+    .info {
+      float: none !important;
+      width: 220px !important;
+      margin-left: 10px;
+    }
   }
 }
 /******************
