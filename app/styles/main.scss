@@ -81,6 +81,12 @@ $break-small: 500px;
   }
 }
 
+@mixin text-overflow($type: ellipsis) {
+  overflow: hidden;
+  text-overflow: $type;
+  white-space: nowrap;
+}
+
 /******************
 *** Global 
 *******************/
@@ -792,7 +798,7 @@ input[type='text']:focus {
     }
 
     .listing {
-      height: 200px;
+      height: 100px;
 
       .spot-pic {
         height: 50px;
@@ -806,14 +812,21 @@ input[type='text']:focus {
         margin-top: 2px;
       }
 
+      .info {
+      }
+
       .title {
+        @include text-overflow();
         font-size: 14px;
         margin-top: -3px;
+        max-width: 180px;
       }
 
       .address {
+        @include text-overflow();
         font-size: 11px;
         margin: -3px 0;
+        max-width: 180px;
       }
 
       .rating {
@@ -836,6 +849,23 @@ input[type='text']:focus {
 
       .current-status {
         display: block;
+        margin: 0 0 0 20px;
+        width: 100%;
+
+        .status {
+          display: inline-block;
+          font-size: 14px;
+          float: left;
+          margin: -40px 0 0 120px;
+        }
+
+        h4 {
+          font-size: 12px;
+        }
+        h5 {
+          font-size: 9px;
+          margin-top: -5px;
+        }
       }
 
       hr {
