@@ -1435,6 +1435,7 @@ input[type='text']:focus {
 
   button {
     margin-top: 0px;
+    margin-left: 79px;
   }
 }
 
@@ -1457,7 +1458,7 @@ input[type='text']:focus {
   }
 
   .add-multiple, .add-watch-btn {
-    margin: 0 0 0 40px;
+    margin: 0 0 0 99px;
 
     &:hover {
       cursor: pointer;
@@ -1551,6 +1552,32 @@ input[type='text']:focus {
     margin-top: 10px;
   }
 }
+
+@media screen and (max-width: $break-small){
+  #add-watch-page {
+    text-align: left;
+
+    .control-label {
+      display: block;
+      float: none;
+      text-align: left;
+    }
+
+    .controls {
+      margin-left: 0;
+    }
+
+    .to-label {
+      display: block;
+    }
+
+    button, .add-multiple {
+      margin: 0
+    }
+
+  }
+}
+
 
 /******************
 *** About Page 

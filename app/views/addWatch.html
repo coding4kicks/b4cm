@@ -7,7 +7,7 @@
   <form class="form-horizontal">
     
     <div class="control-group">
-      <label class="control-label">Crowd Factor: </label>
+      <label class="control-label">Crowd Status: </label>
       <div class="controls">
         <label class="radio inline empty">
           <input type="radio" name="cf_status" ng-model="cf_status" value="empty">Empty
@@ -22,7 +22,7 @@
           <input type="radio" name="cf_status" ng-model="cf_status" value="crowded">Crowded
         </label>
         <label class="radio inline herd">
-          <input type="radio" name="cf_status" ng-model="cf_status" value="herd">Herd
+          <input type="radio" name="cf_status" ng-model="cf_status" value="herd">Packed
         </label>
       </div>
     </div>
@@ -33,7 +33,7 @@
         <select class="day-select" ng-model="startDay" ng-options="day.label for day in WEEKDAYS"></select>
         <select class="hour-select" ng-model="startHour" ng-options="hour.label for hour in HOURS"></select>
         <select class="meridiem-select" ng-model="startMeridiem" ng-options="meridiem.label for meridiem in MERIDIEMS"></select>
-        To
+        <span class="to-label">To</span>
         <select class="day-select" ng-model="stopDay" ng-options="day.label for day in WEEKDAYS"></select>
         <select class="hour-select" ng-model="stopHour" ng-options="hour.label for hour in HOURS"></select>
         <select class="meridiem-select" ng-model="stopMeridiem" ng-options="meridiem.label for meridiem in MERIDIEMS"></select>
@@ -54,6 +54,6 @@
     </div>
   </form>
   <br>
-  <a class="add-multiple" ng-click="addMultiple()">Add Multiple Spots</a>
+  <a class="add-multiple" ng-click="addMultiple()">Add Multiple Watches</a>
 </div>
 
