@@ -1509,6 +1509,12 @@ input[type='text']:focus {
   width: 80%;
   color: $acc-dark;
 
+  .current-time-marker {
+    width: 20px;
+    height: 20px;
+    margin-top: -5px;
+  }
+
   .current-time {
     display: inline-block;
     padding-right: 10px;
