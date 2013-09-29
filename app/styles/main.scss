@@ -1181,11 +1181,19 @@ input[type='text']:focus {
       width: 100% !important;
     }
 
+    .current-status {
+      height: auto !important;
+    }
+
     // TODO: global conflict with listings .info class.
     .info {
       float: none !important;
       width: 220px !important;
       margin-left: 10px;
+    }
+
+    .review-nums {
+      width: 150px;
     }
   }
 }
