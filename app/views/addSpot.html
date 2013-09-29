@@ -12,7 +12,7 @@
       <label class="control-label" for="inputYelpId">Yelp ID</label>
       <div class="controls">
         <input type="text" id="inputYelpId" ng-model="yelp_id" placeholder="Yelp ID">
-        <a class="clickable" ng-click="yelpIdHelp()">How to find a Yelp ID?</a>
+        <a class="clickable yelp-id-help" ng-click="yelpIdHelp()">How to find a Yelp ID?</a>
       </div>
     </div>
 
@@ -90,7 +90,7 @@
         <select class="day-select" ng-model="openDay" ng-options="day.label for day in WEEKDAYS"></select>
         <select class="hour-select" ng-model="openHour" ng-options="hour.label for hour in HOURS"></select>
         <select class="meridiem-select" ng-model="openMeridiem" ng-options="meridiem.label for meridiem in MERIDIEMS"></select>
-        To
+        <span class="to-label">To</span> 
         <select class="hour-select" ng-model="closeHour" ng-options="hour.label for hour in HOURS"></select>
         <select class="meridiem-select" ng-model="closeMeridiem" ng-options="meridiem.label for meridiem in MERIDIEMS"></select>
         <a class="clickable" ng-click="addHours()">Add Hours</a>

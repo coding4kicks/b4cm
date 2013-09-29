@@ -95,7 +95,7 @@
     <div class="business-hours" ng-repeat="time in business_hours">
       <h5>
         {{time.open_day.label}} {{time.open_hour.label}} {{time.open_meridiem.label}} 
-        <span class="to">To</span> 
+        <span class="to-label">To</span> 
         {{time.close_hour.label}} {{time.close_meridiem.label}}
       </h5>
       <a class="clickable" ng-click="deleteHours($index)">delete</a>
