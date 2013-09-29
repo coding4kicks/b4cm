@@ -1190,6 +1190,10 @@ input[type='text']:focus {
       float: none !important;
       width: 220px !important;
       margin-left: 10px;
+
+      p {
+        margin-top: 0 !important;
+      }
     }
 
     .review-nums {
@@ -1274,6 +1278,22 @@ input[type='text']:focus {
     display: inline-block;
   }
 }
+
+@media screen and (max-width: $break-small){
+  #sign-in {
+    .control-label {
+      width: 80px !important;
+    }
+
+    .controls, 
+    input[type="text"],
+    input[type="password"]{
+      text-align: left;
+      width: 180px;
+    }
+  }
+}
+
 
 /******************
 *** Welcome Page 
@@ -1626,9 +1646,11 @@ input[type='text']:focus {
 
 @media screen and (max-width: $break-small){
   .crowd-factor {
+
     .crowd-visuals {
       text-align: center;
     }
+
     .timeslot {
       display: block;
       margin: 0 auto !important;
@@ -1638,6 +1660,7 @@ input[type='text']:focus {
         margin: 0 auto;
       }
     }
+
     .labels {
       width: 100%;
       .row2 {
