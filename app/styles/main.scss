@@ -872,6 +872,12 @@ input[type='text']:focus {
         width: 95%;
       }
     }
+
+    .side-col {
+      float: none;
+      margin: 10px 0 0 10px;
+      position: relative;
+    }
   }
 }
 
