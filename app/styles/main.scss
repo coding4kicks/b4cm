@@ -1277,6 +1277,14 @@ input[type='text']:focus {
   .login-method {
     display: inline-block;
   }
+
+  .sign-in-btn {
+    text-align: left;
+
+    .btn {
+      margin: 0px 0 0 25px;
+    }
+  }
 }
 
 @media screen and (max-width: $break-small){
@@ -1301,6 +1309,13 @@ input[type='text']:focus {
       text-align: left;
       width: 180px;
     }
+
+    .sign-in-btn {
+      .btn {
+        margin: 0;
+      }
+    }
+
   }
 }
 
