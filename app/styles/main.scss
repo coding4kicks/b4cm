@@ -1111,6 +1111,77 @@ input[type='text']:focus {
   }
 }
 
+@media screen and (max-width: $break-small){
+  #spot-page {
+
+    // TODO: parent spot page selectors are too nested
+
+    .title-bar {
+      height: auto !important;
+    }
+
+    .main-col, .side-col {
+      display: block;
+      width: 100%;
+      float: none !important;
+    }
+
+    .spot-name {
+      @include text-overflow();
+      font-size: 16px;
+      margin-bottom: -5px !important;
+      width: 100%;
+    }
+
+    .details-left {
+      //height: 100px !important;
+      display: block !important;
+      float: none !important;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    .spot-address {
+      font-size: 12px;
+      
+      h5 {
+        line-height: 15px;
+      }
+    }
+
+    .stars {
+      img {
+        height: 20px;
+        width: 20px;
+      }
+
+      .review-count {
+        font-size: 10px;
+      }
+    }
+
+    .spot-types {
+      display: block !important;
+      width: 100% !important;
+    }
+
+    .details-right {
+      display: block !important;
+      height: 100px !important;
+      width: 100% !important;
+      margin: -20px 0 0 0 !important;
+    }
+
+    .ad-text {
+      width: 100% !important;
+      min-width: 0px !important;
+    }
+
+    hr {
+      width: 100% !important;
+    }
+  }
+}
 /******************
 *** Sign Up Page 
 *******************/
