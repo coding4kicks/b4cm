@@ -1281,6 +1281,16 @@ input[type='text']:focus {
 
 @media screen and (max-width: $break-small){
   #sign-in {
+
+    .b4cm-signin, .third-party-signup {
+      width: 100%;
+      padding: 0px;
+
+      h4 {
+        margin-left: 50px;
+        text-align: left;
+      }
+    }
     .control-label {
       width: 80px !important;
     }
