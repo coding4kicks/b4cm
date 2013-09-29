@@ -52,7 +52,7 @@
           <input type="radio" name="cf_status" ng-model="cf_status" value="crowded">Crowded
         </label>
         <label class="radio inline herd">
-          <input type="radio" name="cf_status" ng-model="cf_status" value="herd">Herd
+          <input type="radio" name="cf_status" ng-model="cf_status" value="herd">Packed
         </label>
       </div>
     </div>
@@ -63,7 +63,7 @@
         <select class="day-select" ng-model="startDay" ng-options="day.label for day in WEEKDAYS"></select>
         <select class="hour-select" ng-model="startHour" ng-options="hour.label for hour in HOURS"></select>
         <select class="meridiem-select" ng-model="startMeridiem" ng-options="meridiem.label for meridiem in MERIDIEMS"></select>
-        To
+        <span class="to-label">To</span>
         <select class="day-select" ng-model="stopDay" ng-options="day.label for day in WEEKDAYS"></select>
         <select class="hour-select" ng-model="stopHour" ng-options="hour.label for hour in HOURS"></select>
         <select class="meridiem-select" ng-model="stopMeridiem" ng-options="meridiem.label for meridiem in MERIDIEMS"></select>
