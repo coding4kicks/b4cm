@@ -1254,6 +1254,14 @@ input[type='text']:focus {
     }
   }
 
+  .sign-up-btn {
+    text-align: left;
+
+    .btn {
+      margin: 0px 0 0 25px;
+    }
+  }
+
   .third-party-signup {
     display: inline-block;
     width: 40%;
@@ -1266,6 +1274,38 @@ input[type='text']:focus {
     .login-method:hover {
       cursor: pointer;
     }
+  }
+}
+
+@media screen and (max-width: $break-small){
+  #sign-up {
+
+    .b4cm-signup, .third-party-signup {
+      width: 100%;
+      padding: 0px;
+
+      h4 {
+        margin-left: 50px;
+        text-align: left;
+      }
+    }
+    .control-label {
+      width: 90px !important;
+    }
+
+    .controls, 
+    input[type="text"],
+    input[type="password"]{
+      text-align: left;
+      width: 180px;
+    }
+
+    .sign-up-btn {
+      .btn {
+        margin: 0;
+      }
+    }
+
   }
 }
 
