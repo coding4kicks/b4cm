@@ -41,12 +41,8 @@ angular.module('b4cmApp')
       }
       $scope.stars = _calculateStars(ratingScore);
       var reviewsDisplayedCount = 0;
-      console.log($scope.spot.reviews);
-      // TODO: fix the stupid length property.
       if (typeof $scope.spot.reviews !== 'undefined' && $scope.spot.review_count !== 0) {
-        console.log('heeereee');
         for (var review in $scope.spot.reviews) {
-          console.log('made it');
           // Set defualt pic
           if (typeof $scope.spot.reviews[review].author !== 'undefined' &&
               !$scope.spot.reviews[review].author.pic) {
