@@ -7,9 +7,8 @@ angular.module('b4cmApp')
    * @controller
    *
    * @description Retrieves and calculates display information for a requested listing.
-   */ 
-  .controller('ListingsCtrl', function ($scope, $log, $location, $routeParams, $timeout, $window, 
-                                        listings, spot, user, util) {
+   */
+  .controller('ListingsCtrl', function ($scope, $log, $location, $routeParams, $timeout, $window, listings, spot, user, util) {
 
     var spotType = $routeParams.spotType,
         searchLocation = decodeURIComponent($routeParams.searchLocation),
@@ -165,7 +164,7 @@ angular.module('b4cmApp')
     $scope.previousSpots = function() {
       var newList = prevList.splice(prevList.length - SPOTS_PER_PAGE, SPOTS_PER_PAGE),
           zoom = 12;
-      $scope.displayMore = true
+      $scope.displayMore = true;
       $scope.startIndex = $scope.startIndex - SPOTS_PER_PAGE;
       moreList = $scope.spots.concat(moreList);
       $scope.spots = newList;
