@@ -45,19 +45,19 @@
           </div>
           <div class="crowd-rank">
             <div class="crowd-bar">
-              <div class="box {{spot.cf_status_boxes[0]}}-square"><h6>{{current_time}}</h6></div>
-              <div class="box {{spot.cf_status_boxes[1]}}-square"></div>
-              <div class="box {{spot.cf_status_boxes[2]}}-square"><h6>{{plus2_time}}</h6></div>
-              <div class="box {{spot.cf_status_boxes[3]}}-square"></div>
-              <div class="box {{spot.cf_status_boxes[4]}}-square"><h6>{{plus4_time}}</h6></div>
+              <div class="box {{spot.crowdStatusBoxes[0]}}-square"><h6>{{currentTime}}</h6></div>
+              <div class="box {{spot.crowdStatusBoxes[1]}}-square"></div>
+              <div class="box {{spot.crowdStatusBoxes[2]}}-square"><h6>{{plus2Time}}</h6></div>
+              <div class="box {{spot.crowdStatusBoxes[3]}}-square"></div>
+              <div class="box {{spot.crowdStatusBoxes[4]}}-square"><h6>{{plus4Time}}</h6></div>
             </div>
             <div class="watchers">{{spot.crowdfactor.watch_count}} Watches</div>
           </div>
         </div>
         <div class="current-status">
           <h4>Current Status:</h4>
-          <h5>({{spot.cf_status_time}})</h5>
-          <h3 class="status {{spot.cf_status_label | lowercase}}">{{spot.cf_status_label}}</h3>
+          <h5>({{spot.crowdStatusTime}})</h5>
+          <h3 class="status {{spot.crowdStatusLabel | lowercase}}">{{spot.crowdStatusLabel}}</h3>
         </div>
         <hr>
       </div>

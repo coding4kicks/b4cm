@@ -18,23 +18,23 @@ angular.module('b4cmApp')
         SPOTS_PER_PAGE = 10,
         HOUR = 60 * 60 * 1000,
         // Create a timeinfo object for each of the five crowdwatch boxes
-        current_date = new Date(),
-        current_time = _timeInfo(current_date),
-        plus1_time = _timeInfo(new Date(current_date.getTime() + 1 * HOUR)),
-        plus2_time = _timeInfo(new Date(current_date.getTime() + 2 * HOUR)),
-        plus3_time = _timeInfo(new Date(current_date.getTime() + 3 * HOUR)),
-        plus4_time = _timeInfo(new Date(current_date.getTime() + 4 * HOUR)),
-        times = [current_time, plus1_time, plus2_time, plus3_time, plus4_time];
+        currentDate = new Date(),
+        currentTime = _timeInfo(currentDate),
+        plus1Time = _timeInfo(new Date(currentDate.getTime() + 1 * HOUR)),
+        plus2Time = _timeInfo(new Date(currentDate.getTime() + 2 * HOUR)),
+        plus3Time = _timeInfo(new Date(currentDate.getTime() + 3 * HOUR)),
+        plus4Time = _timeInfo(new Date(currentDate.getTime() + 4 * HOUR)),
+        times = [currentTime, plus1Time, plus2Time, plus3Time, plus4Time];
 
     $scope.spots = [];
     $scope.noSpots = false;
     $scope.startIndex = 1;
-    $scope.listings = {}
+    $scope.listings = {};
     $scope.listings.type = $routeParams.spotType;
     $scope.listings.displayAddress = searchLocation;
-    $scope.current_time = current_time.getTimeLabel();
-    $scope.plus2_time = plus2_time.getTimeLabel();
-    $scope.plus4_time = plus4_time.getTimeLabel();
+    $scope.currentTime = currentTime.getTimeLabel();
+    $scope.plus2Time = plus2Time.getTimeLabel();
+    $scope.plus4Time = plus4Time.getTimeLabel();
 
 
     // Google map defaults - Otherwise 3rd party plugin breaks
@@ -54,9 +54,9 @@ angular.module('b4cmApp')
     // Retrieve the listings for the specified search location, 
     listings.get(searchLocation, spotType).then(function(listingInfo) {
       var idList = listingInfo.idList;
-      $scope.listings.location = {}
+      $scope.listings.location = {};
       $scope.listings.location.latitude = listingInfo.location.latitude;
-      $scope.listings.location.longitude = listingInfo.location.longitude; 
+      $scope.listings.location.longitude = listingInfo.location.longitude;
       $scope.numReturns = idList.length;
       if (idList.length === 0) {$scope.noSpots = true; $scope.startIndex = 0;}
       else {
@@ -69,22 +69,25 @@ angular.module('b4cmApp')
         for (var i = 0; i < idList.length; i++) {
           //if (i === idList.length) {break;} // Break if not a full set of results
           var spotId = idList[i];
+          /* jshint -W083 */
           spot.get(spotId).then(function(spotObj) {
             totalSpots = totalSpots + 1;
             // Basic filtering: filter if no recommendations of this type.
             // Later should filter based on a percentage
             // Also, total is all returned spots for the area, not of this type.
             if (spotObj !== null && spotObj.type[spotType] > 0) {
-              var current_status = spot.getStatus(spotObj, current_time),
+              var currentStatus = spot.getStatus(spotObj, currentTime),
                   score = 0;
               typeSpots = typeSpots + 1;
+              /* jshint camelcase: false */
               if (spotObj.review_count !== 0) {
                 score = spotObj.rating_count / spotObj.review_count;
               }
+              /* jshint camelcase: true */
               spotObj.stars = _calculateStars(score);
-              spotObj.cf_status_label = current_status.label;
-              spotObj.cf_status_time = current_status.time;
-              spotObj.cf_status_boxes = _calculateBoxLabels(spotObj, times)
+              spotObj.crowdStatusLabel = currentStatus.label;
+              spotObj.crowdStatusTime = currentStatus.time;
+              spotObj.crowdStatusBoxes = _calculateBoxLabels(spotObj, times);
               if ($scope.spots.length < SPOTS_PER_PAGE) {
                 $scope.spots.push(spotObj);
               }
@@ -112,9 +115,9 @@ angular.module('b4cmApp')
      * @function
      *
      * @description Redirects to spot-page passing spot id.
-     */ 
-    $scope.getSpot = function(spot_id) {
-      $location.path("/spot/" + spot_id);
+     */
+    $scope.getSpot = function(spotId) {
+      $location.path('/spot/' + spotId);
       util.safeApply($scope);
     };
 
@@ -123,7 +126,7 @@ angular.module('b4cmApp')
      * @function
      *
      * @description Redirects to add-spot-page if user logged in.
-     */ 
+     */
     $scope.addSpot = function() {
       if (user.loggedIn()) {
         $location.path('/addSpot');
@@ -134,31 +137,31 @@ angular.module('b4cmApp')
         $location.path('/signin');
         util.safeApply($scope);
       }
-    };   
+    };
 
     /**
      * @name moreSpots
      * @function
      *
      * @description Displays the next set of results.
-     */ 
+     */
     $scope.moreSpots = function() {
       var newList = moreList.splice(0, SPOTS_PER_PAGE),
           zoom = 12;
-      $scope.displayPrevious = true
+      $scope.displayPrevious = true;
       $scope.startIndex = $scope.startIndex + SPOTS_PER_PAGE;
       prevList = prevList.concat($scope.spots);
       $scope.spots = newList;
-      if (moreList.length < 1) {$scope.displayMore = false}
+      if (moreList.length < 1) {$scope.displayMore = false;}
       util.initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots, zoom, $scope.startIndex);
-    }; 
+    };
 
     /**
      * @name previousSpots
      * @function
      *
      * @description Displays the previous set of results.
-     */ 
+     */
     $scope.previousSpots = function() {
       var newList = prevList.splice(prevList.length - SPOTS_PER_PAGE, SPOTS_PER_PAGE),
           zoom = 12;
@@ -166,15 +169,18 @@ angular.module('b4cmApp')
       $scope.startIndex = $scope.startIndex - SPOTS_PER_PAGE;
       moreList = $scope.spots.concat(moreList);
       $scope.spots = newList;
-      if (prevList.length < 1) {$scope.displayPrevious = false}
+      if (prevList.length < 1) {$scope.displayPrevious = false;}
       util.initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots, zoom, $scope.startIndex);
-    }; 
+    };
 
   });
 
 /***************
  * HELPER FUNCS
  ***************/
+
+/* TODO: move to utility */
+/* jshint -W003 */
 
 /**
  * @name _calculateBoxLabels
@@ -184,19 +190,19 @@ angular.module('b4cmApp')
  * @param {object} spot Spot to determine crowdfactor info from.
  * @param {array} times Array of times to determine status for.
  * @returns {array} An array of crowdfactor statuses.
- */ 
+ */
 function _calculateBoxLabels(spot, times) {
-  var cf_labels = [];
+  var crowdStatusLabels = [];
   times.forEach(function(time) {
     var day = spot.crowdfactor.day[time.getDay().toLowerCase()],
         count = day[time.getTimeLabel()].count,
         score = day[time.getTimeLabel()].score,
-        cf_score = 0;
-    if (count !== 0) {cf_score = score / count;}
-    if (score === -1){cf_score = -1};
-    cf_labels.push(_calculateStatus(cf_score));
+        crowdStatusScore = 0;
+    if (count !== 0) {crowdStatusScore = score / count;}
+    if (score === -1){crowdStatusScore = -1;}
+    crowdStatusLabels.push(_calculateStatus(crowdStatusScore));
   });
-  return cf_labels;
+  return crowdStatusLabels;
 }
 
 
