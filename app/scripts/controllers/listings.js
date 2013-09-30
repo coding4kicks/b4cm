@@ -19,11 +19,11 @@ angular.module('b4cmApp')
         HOUR = 60 * 60 * 1000,
         // Create a timeinfo object for each of the five crowdwatch boxes
         currentDate = new Date(),
-        currentTime = _timeInfo(currentDate),
-        plus1Time = _timeInfo(new Date(currentDate.getTime() + 1 * HOUR)),
-        plus2Time = _timeInfo(new Date(currentDate.getTime() + 2 * HOUR)),
-        plus3Time = _timeInfo(new Date(currentDate.getTime() + 3 * HOUR)),
-        plus4Time = _timeInfo(new Date(currentDate.getTime() + 4 * HOUR)),
+        currentTime = util.timeInfo(currentDate),
+        plus1Time = util.timeInfo(new Date(currentDate.getTime() + 1 * HOUR)),
+        plus2Time = util.timeInfo(new Date(currentDate.getTime() + 2 * HOUR)),
+        plus3Time = util.timeInfo(new Date(currentDate.getTime() + 3 * HOUR)),
+        plus4Time = util.timeInfo(new Date(currentDate.getTime() + 4 * HOUR)),
         times = [currentTime, plus1Time, plus2Time, plus3Time, plus4Time];
 
     $scope.spots = [];

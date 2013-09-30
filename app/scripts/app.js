@@ -170,35 +170,6 @@ function _calculateStatus(score) {
 }
 
 /**
- * @name _timeInfo
- * @function
- *
- * @description Closure that maintains time label and day of week info about a given date.
- *              Both can be used as keys to access a spots crowdfactor info.
- * @param {ojbect} date Date to calculate day and label for.
- * @returns {object} getTime() - Returns the getTime() result for the date object.
- *                   getTimeLabel() - Returns the time label.
- *                   getDay() - Returns the day of weeek
- */
-function _timeInfo(date) {
-  var WEEKDAY = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      day = WEEKDAY[date.getDay()],
-      hour24 = date.getHours(),
-      hour = hour24 % 12,
-      meridiem = (hour24 < 12) ? 'am' : 'pm',
-      timeLabel = '';
-  if (hour === 0) {hour = 12;}
-  timeLabel = hour + meridiem;
-
-  return {
-    getTime: function() {return date.getTime();},
-    getTimeLabel: function() {return timeLabel;},
-    getDay: function() {return day;}
-  };
-}
-
-
-/**
  * @name _dayToNum
  * @function
  *
