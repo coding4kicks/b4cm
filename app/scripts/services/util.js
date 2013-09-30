@@ -71,7 +71,8 @@ angular.module('b4cmApp')
                            'latenight': ['11pm', '12am', '1am', '2am', '3am', '4am']
                           },
             DAYS = {'monday': 'M', 'tuesday': 'T', 'wednesday': 'W', 'thursday': 'Th',
-                    'friday': 'F', 'saturday': 'Sa', 'sunday': 'Su'};
+                    'friday': 'F', 'saturday': 'Sa', 'sunday': 'Su'},
+            util = this;
         //for (var block_name in cf_blocks) {
         ['morning', 'afternoon', 'evening', 'latenight'].forEach(function(block_name){
           if(cf_blocks[block_name]) {
@@ -90,6 +91,10 @@ angular.module('b4cmApp')
                 var hour = {},
                     spot_info = cf_day[day_name][hour_label],
                     cf_score = 0;
+                // Handle case of after midnight
+                if (block_name === 'latenight' && hour_label !== '11pm') {
+                  spot_info = cf_day[util.WEEKDAYS()[util.incrementDay(day_name)].toLowerCase()][hour_label];
+                }
                 if (spot_info.count !== 0) {cf_score = spot_info.score / spot_info.count;}
                 if (spot_info.score === -1){cf_score = -1}
                 hour.cf_status = _calculateStatus(cf_score);
