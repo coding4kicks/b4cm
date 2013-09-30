@@ -2,6 +2,8 @@
 
 /* global alert */
 
+// TODO: probably blowup on weekend/weekday/all entries past midnight;
+
 angular.module('b4cmApp')
 
   /**
@@ -20,7 +22,10 @@ angular.module('b4cmApp')
         currentHour = currentDate.getHours() % 12,
         futureHour = futureDate.getHours() % 12,
         currentMeridiem = (currentDate.getHours() < 12) ? '0' : '1',
-        futureMeridiem = (futureDate.getHours() < 12) ? '0' : '1';
+        futureMeridiem = (futureDate.getHours() < 12) ? '0' : '1',
+        WEEKDAY_LIST = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        WEEKEND_LIST = ['Saturday', 'Sunday'],
+        ALL_LIST = WEEKDAY_LIST.concat(WEEKEND_LIST);
 
     $scope.spot = {}; // May need to clone since changing spot data and may not save.
     $scope.watchHours = [];
@@ -82,6 +87,7 @@ angular.module('b4cmApp')
             else {
               dayList = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
             }
+            $scope.watchHours.push(watch); // push weekday/weekend/all
             dayList.forEach(function(day) {
               var newWatch = {'start': {'day': day,
                                         'hour': parseInt($scope.startHour.label, 10),
@@ -101,7 +107,7 @@ angular.module('b4cmApp')
                 $scope.spot.crowdfactor.day[time.day][time.hour].count = time.count + 1;
                 $scope.spot.crowdfactor.day[time.day][time.hour].score = time.score + score;
               });
-              $scope.watchHours.push(newWatch);
+              //$scope.watchHours.push(newWatch); // Don't add individual for now
             });
           }
           else {
@@ -145,16 +151,37 @@ angular.module('b4cmApp')
      * @param {int} index The index for the business hours to delete.
      */
     $scope.deleteHours = function(index) {
-      var watch = $scope.watchHours[index];
-      watch.start.day = util.dayToNum(watch.start.day);
-      watch.stop.day = util.dayToNum(watch.stop.day);
-      watch.time = util.calculateWatchTimes(watch.start, watch.stop, $scope.spot);
-      watch.time.forEach(function(time) {
-        var score = util.statusToScore(watch.cf_status);
-        $scope.spot.crowdfactor.day[time.day][time.hour].count = time.count - 1;
-        $scope.spot.crowdfactor.day[time.day][time.hour].score = time.score - score;
-      });
-      $scope.watchHours.splice(index, 1);
+      var watch = $scope.watchHours[index],
+          dayList = [];
+      if (watch.start.day === 'Weekdays' ||
+          watch.start.day === 'Weekends' ||
+          watch.start.day === 'All') {
+        if (watch.start.day === 'Weekdays') {dayList = WEEKDAY_LIST;}
+        else if ($scope.startDay.label === 'Weekends') {dayList = WEEKEND_LIST;}
+        else {dayList = ALL_LIST;}
+        dayList.forEach(function(day) {
+          watch.start.day = util.dayToNum(day);
+          watch.stop.day = util.dayToNum(day);
+          watch.time = util.calculateWatchTimes(watch.start, watch.stop, $scope.spot);
+          watch.time.forEach(function(time) {
+            var score = util.statusToScore(watch.cf_status);
+            $scope.spot.crowdfactor.day[time.day][time.hour].count = time.count - 1;
+            $scope.spot.crowdfactor.day[time.day][time.hour].score = time.score - score;
+          });
+        });
+        $scope.watchHours.splice(index, 1);      
+      }
+      else {
+        watch.start.day = util.dayToNum(watch.start.day);
+        watch.stop.day = util.dayToNum(watch.stop.day);
+        watch.time = util.calculateWatchTimes(watch.start, watch.stop, $scope.spot);
+        watch.time.forEach(function(time) {
+          var score = util.statusToScore(watch.cf_status);
+          $scope.spot.crowdfactor.day[time.day][time.hour].count = time.count - 1;
+          $scope.spot.crowdfactor.day[time.day][time.hour].score = time.score - score;
+        });
+        $scope.watchHours.splice(index, 1);
+      }
       // Recalculate block structure for display of crowdfactor visualization.
       $scope.blocks = util.constructCrowdFactor($scope.spot.crowdfactor.blocks,
                                                 $scope.spot.crowdfactor.day);
@@ -185,7 +212,6 @@ angular.module('b4cmApp')
         util.safeApply($scope);
       }
     };
-
 
   });
 /* jshint camelcase: true */
