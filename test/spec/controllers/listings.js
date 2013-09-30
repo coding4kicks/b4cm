@@ -42,6 +42,7 @@ describe('Controller: ListingsCtrl', function () {
     deferred = $q.defer();
     deferred2 = $q.defer();
     _spot.get = jasmine.createSpy('get').andReturn(deferred.promise);
+    _spot.getStatus = jasmine.createSpy('getStaus').andReturn(_fakeStatus());;
     _listings.get = jasmine.createSpy('get').andReturn(deferred2.promise);
     scope = $rootScope.$new();
     ListingsCtrl = $controller('ListingsCtrl', {
@@ -49,21 +50,34 @@ describe('Controller: ListingsCtrl', function () {
     });
   }));
 
-  it('editSpot checks for user', function () {
-    var userText = 'Must be signed in to edit a spot';
-    window.alert = jasmine.createSpy();
-    deferred2.resolve(_fakeSpot());
+  it('listings.get retrieves and handles the data.', function () {
+    deferred2.resolve(_fakeListing());
+    expect(_spot.get).not.toHaveBeenCalled();
     scope.$apply();
-    expect(window.alert).not.toHaveBeenCalled();
-    //scope.editSpot();
-    expect(window.alert).toHaveBeenCalledWith('');
+    expect(_spot.get).toHaveBeenCalledWith(123);
   });
 
-  it('addHours correctly adds hours and incrments the day', function () {
+  it('listings.get retrieves the spots and their status', function () {
+    deferred2.resolve(_fakeListing());
+    deferred.resolve(_fakeSpot());
+    expect(_spot.getStatus).not.toHaveBeenCalled();
+    scope.$apply();
+    expect(_spot.getStatus).toHaveBeenCalled();
   });
 
   it('expect nothing', function () {
   });
+
+  function _fakeListing() {
+    var listingsObj = {};
+    listingsObj.id = 123;
+    listingsObj.hash = 'RUCRAZY123';
+    listingsObj.location = {};
+    listingsObj.location.latitude = 73.223322;
+    listingsObj.location.longitude = -123.123456;
+    listingsObj.idList = [123];
+    return listingsObj;
+  }
 
   function _fakeSpot() {
     var spotObj = {},
@@ -74,7 +88,7 @@ describe('Controller: ListingsCtrl', function () {
       'close_day': {'label': 'Friday'},
       'close_hour': {'label': '8:00', 'hour': 8, 'minutes': 0},
       'close_meridiem': {'label': 'am'}};
-    spotObj.crowdfactor = {}
+    spotObj.crowdfactor = _fullCrowdGraph();
     spotObj.location = {};
     spotObj.name = 'Super Duper';
     spotObj.yelp_id = 'fake_id';
@@ -86,8 +100,41 @@ describe('Controller: ListingsCtrl', function () {
     spotObj.image_url = 'fake-url';
     spotObj.business_hours = [];
     spotObj.business_hours.push(time);
-    spotObj.type = {'food': 1, 'social': 0, 'study': 1}
+    spotObj.type = {'food': 1, 'social': 0, 'study': 1, 'undefined': 1}
     return spotObj;
+  }
+
+  function _fakeStatus() {
+    var statusObj = {};
+    return statusObj;
+  }
+
+
+  function _fullCrowdGraph() {
+    var crowdgraph = {},
+        WEEKDAYS = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
+        BLOCK_HOURS = {'morning': ['5am', '6am', '7am', '8am', '9am', '10am'],
+                       'afternoon': ['11am', '12pm', '1pm', '2pm', '3pm', '4pm'],
+                       'evening': ['5pm', '6pm', '7pm', '8pm', '9pm', '10pm'],
+                       'latenight': ['11pm', '12am', '1am', '2am', '3am', '4am']
+                      };
+    crowdgraph.watch_count = 0;
+    crowdgraph.most_recent = {'time': 0, 'score': 0};
+    crowdgraph.blocks = {};
+    crowdgraph.day = {};
+    
+    // Construct crowdgraph with all closed
+    WEEKDAYS.forEach(function(day) {
+      crowdgraph.day[day] = {};
+      for (var i = 1; i <= 12; i++) {
+        var statusAm = {'count': 1, 'score': 3},
+            statusPm = {'count': 1, 'score': 3};
+        crowdgraph.day[day][i + 'am'] = statusAm;
+        crowdgraph.day[day][i + 'pm'] = statusPm;
+      }
+    });
+
+    return crowdgraph
   }
 
 });

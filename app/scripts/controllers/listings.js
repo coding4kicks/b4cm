@@ -36,8 +36,6 @@ angular.module('b4cmApp')
     $scope.plus2_time = plus2_time.getTimeLabel();
     $scope.plus4_time = plus4_time.getTimeLabel();
 
-    //console.log('heeer');
-    //console.log($scope.scroll);
 
     // Google map defaults - Otherwise 3rd party plugin breaks
     $scope.isMapElementHidden = true;
@@ -63,7 +61,7 @@ angular.module('b4cmApp')
       if (idList.length === 0) {$scope.noSpots = true; $scope.startIndex = 0;}
       else {
         // Must retrieve all spots returned in search
-        // Need to fix this if have a lot of spots (at least return after 10 good ones returned)
+        // TODO: Need to fix this if have a lot of spots (at least return after 10 good ones returned)
         // and save others for later
         var typeSpots = 0,
             totalSpots = 0,
