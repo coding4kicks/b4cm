@@ -1493,6 +1493,10 @@ input[type='text']:focus {
     color: $acc-med;
     margin: 0 0 0 10px;
   }
+
+  .watch-time {
+    display: inline-block;
+  }
 }
 
 #add-spot-page,
