@@ -601,9 +601,9 @@ input[type='text']:focus {
     }
 
     .listing-location {
+      @include text-overflow();
       display: inline-block;
-      margin-left: 50px;
-      text-overflow: ellipsis;
+      margin: 0 0 -10px 30px;
       width: 350px;
     }
 

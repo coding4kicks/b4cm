@@ -78,15 +78,9 @@ angular.module('b4cmApp')
               $scope.startDay.label === 'Weekends' ||
               $scope.startDay.label === 'All Week') {
             var dayList = [];
-            if ($scope.startDay.label === 'Weekdays') {
-              dayList = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-            }
-            else if ($scope.startDay.label === 'Weekends') {
-              dayList = ['Saturday', 'Sunday'];
-            }
-            else {
-              dayList = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-            }
+            if (watch.start.day === 'Weekdays') {dayList = WEEKDAY_LIST;}
+            else if ($scope.startDay.label === 'Weekends') {dayList = WEEKEND_LIST;}
+            else {dayList = ALL_LIST;}
             $scope.watchHours.push(watch); // push weekday/weekend/all
             dayList.forEach(function(day) {
               var newWatch = {'start': {'day': day,
