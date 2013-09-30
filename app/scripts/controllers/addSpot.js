@@ -70,8 +70,8 @@ angular.module('b4cmApp')
     $scope.deleteHours = function(index) {
       /* jshint camelcase: false */
       $scope.business_hours.splice(index, 1);
-      /* jshint camelcase: false */
-    }
+      /* jshint camelcase: true */
+    };
 
     /**
      * @name addSpot

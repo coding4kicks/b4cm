@@ -1,4 +1,5 @@
 'use strict';
+/* global alert */
 
 angular.module('b4cmApp')
 
@@ -7,12 +8,13 @@ angular.module('b4cmApp')
    * @controller
    *
    * @description Edits a spot already in the database.
-   */ 
+   */
   .controller('EditSpotCtrl', function ($scope, $routeParams, $location, spot, util, user) {
 
     var editedSpot = {},
         oldData = {};
 
+    /* jshint camelcase: false */
     // Retreive the spot to edit.
     spot.get($routeParams.spotId).then(function(spot_data) {
       oldData.crowdfactor = util.clone(spot_data.crowdfactor);
@@ -27,7 +29,8 @@ angular.module('b4cmApp')
       $scope.image_url = spot_data.image_url;
       $scope.business_hours = spot_data.business_hours;
     });
-    
+    /* jshint camelcase: true */
+
     $scope.HOURS = [];
     for (var i = 1; i <= 12; i++) {
       var time = {'label': i + ':00', 'hour': i, 'minutes': 0},
@@ -35,8 +38,8 @@ angular.module('b4cmApp')
       $scope.HOURS.push(time);
       $scope.HOURS.push(timeHalf);
     }
-    $scope.WEEKDAYS = [{'label': 'Sunday'}, {'label': 'Monday'}, {'label': 'Tuesday'}, 
-                       {'label': 'Wednesday'}, {'label': 'Thursday'}, {'label': 'Friday'}, 
+    $scope.WEEKDAYS = [{'label': 'Sunday'}, {'label': 'Monday'}, {'label': 'Tuesday'},
+                       {'label': 'Wednesday'}, {'label': 'Thursday'}, {'label': 'Friday'},
                        {'label': 'Saturday'}];
     $scope.MERIDIEMS = [{'label': 'am'}, {'label': 'pm'}];
     $scope.openDay = $scope.WEEKDAYS[1];
@@ -48,19 +51,20 @@ angular.module('b4cmApp')
     // Form Validation
     $scope.validForm = {};
 
-  /**
-   * @name addHours
-   * @procedure
-   *
-   * @description Adds hours to a business's hours of operations.
-   *              Requires editSpot controllers $scope
-   */ 
+    /* jshint camelcase: false */
+    /**
+     * @name addHours
+     * @procedure
+     *
+     * @description Adds hours to a business's hours of operations.
+     *              Requires editSpot controllers $scope
+     */
     $scope.addHours = function() {
-      var times = {'open_day': $scope.openDay, 
-                   'open_hour': $scope.openHour, 
+      var times = {'open_day': $scope.openDay,
+                   'open_hour': $scope.openHour,
                    'open_meridiem': $scope.openMeridiem,
                    'close_day': $scope.openDay,
-                   'close_hour': $scope.closeHour, 
+                   'close_hour': $scope.closeHour,
                    'close_meridiem': $scope.closeMeridiem},
           nextDay = $scope.WEEKDAYS[util.incrementDay($scope.openDay.label)];
       if (util.shouldBeNextDay(times)){
@@ -78,10 +82,10 @@ angular.module('b4cmApp')
    * @description Deletes hours from a business's hours of operations.
    *              Requires editSpot controllers $scope
    * @param {int} index The index for the business hours to delete.
-   */ 
+   */
     $scope.deleteHours = function(index) {
       $scope.business_hours.splice(index, 1);
-    }
+    };
 
   /**
    * @name editSpot
@@ -89,7 +93,7 @@ angular.module('b4cmApp')
    *
    * @description Calls the spot service to add a new spot to the database.
    *              Requires the editSpot controller's $scope
-   */ 
+   */
     $scope.editSpot = function() {
 
       // Validate the form
@@ -101,7 +105,7 @@ angular.module('b4cmApp')
       if (typeof $scope.state_code === 'undefined') {errors.push('State');}
       if ($scope.business_hours.length === 0) {errors.push('Hours');}
       if (errors.length > 0) {util.handleFormErrors($scope, errors);}
-     
+
       // Save the spot
       else if (user.loggedIn()){
         var curUser = user.getInfo(),
@@ -129,9 +133,9 @@ angular.module('b4cmApp')
           editedSpot.image_url = $scope.image2.resized.dataURL;
         }
         //editedSpot.type = {'food': 0, 'study': 0, 'social': 0}
-        if ($scope.food) {editedSpot.type.food = editedSpot.type.food + 1};
-        if ($scope.study) {editedSpot.type.study = editedSpot.type.food + 1};
-        if ($scope.social) {editedSpot.type.social = editedSpot.type.food + 1};
+        if ($scope.food) {editedSpot.type.food = editedSpot.type.food + 1;}
+        if ($scope.study) {editedSpot.type.study = editedSpot.type.food + 1;}
+        if ($scope.social) {editedSpot.type.social = editedSpot.type.food + 1;}
 
         // Hack to remove $$haskey property which blows up Firebase
         editedSpot.business_hours = [];
@@ -147,13 +151,13 @@ angular.module('b4cmApp')
           // Handle success or error
           user.incrementSpotCount();
           // Redirect to added spot
-          $location.path("/spot/" + editedSpot.id);
+          $location.path('/spot/' + editedSpot.id);
           util.safeApply($scope);
         });
       }
       else {
         alert('Must be signed in to edit a spot');
-        $location.path("/signin");
+        $location.path('/signin');
         util.safeApply($scope);
       }
     };
@@ -164,9 +168,10 @@ angular.module('b4cmApp')
    *
    * @description Toggles the visibility of the yelp id help section.
    *              Requires editSpot controllers $scope
-   */ 
+   */
     $scope.yelpIdHelp = function() {
       $scope.yelpHelpShow = !$scope.yelpHelpShow;
     };
 
   });
+/* jshint camelcase: false */
