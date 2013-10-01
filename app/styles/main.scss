@@ -586,6 +586,8 @@ input[type='text']:focus {
 /******************
 *** Listings Page / Home Page
 *******************/
+// TODO: refactor listing info separate from listings page
+//       so listings page and home page are separate
 #listings-page,
 #home-page {
 
@@ -891,6 +893,13 @@ input[type='text']:focus {
       position: relative;
     }
   }
+}
+
+/******************
+*** Home Page
+*******************/
+#home-page {
+
 }
 
 /******************

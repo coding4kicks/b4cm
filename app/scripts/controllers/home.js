@@ -10,9 +10,7 @@ angular.module('b4cmApp')
    */
   .controller('HomeCtrl', function ($scope, $log, $location, $routeParams, $timeout, $window, listings, spot, user, util) {
 
-    var spotType = $routeParams.spotType,
-        searchLocation = decodeURIComponent($routeParams.searchLocation),
-        spotList = [],
+    var spotList = [],
         moreList = [],
         prevList = [],
         SPOTS_PER_PAGE = 10,
@@ -30,8 +28,6 @@ angular.module('b4cmApp')
     $scope.noSpots = false;
     $scope.startIndex = 1;
     $scope.listings = {};
-    $scope.listings.type = $routeParams.spotType;
-    $scope.listings.displayAddress = searchLocation;
     $scope.currentTime = currentTime.getTimeLabel();
     $scope.plus2Time = plus2Time.getTimeLabel();
     $scope.plus4Time = plus4Time.getTimeLabel();
@@ -51,55 +47,49 @@ angular.module('b4cmApp')
     };
     $scope.zoomProperty = 12;
 
-    // Retrieve the listings for the specified search location, 
-    listings.get(searchLocation, spotType).then(function(listingInfo) {
-      var idList = listingInfo.idList;
-      $scope.listings.location = {};
-      $scope.listings.location.latitude = listingInfo.location.latitude;
-      $scope.listings.location.longitude = listingInfo.location.longitude;
-      $scope.numReturns = idList.length;
-      if (idList.length === 0) {$scope.noSpots = true; $scope.startIndex = 0;}
-      else {
-        // Must retrieve all spots returned in search
-        // TODO: Need to fix this if have a lot of spots (at least return after 10 good ones returned)
-        // and save others for later
-        var typeSpots = 0,
-            totalSpots = 0,
-            initialized = false;
-        for (var i = 0; i < idList.length; i++) {
-          //if (i === idList.length) {break;} // Break if not a full set of results
-          var spotId = idList[i];
-          /* jshint -W083 */
-          spot.get(spotId).then(function(spotObj) {
-            totalSpots = totalSpots + 1;
-            // Basic filtering: filter if no recommendations of this type.
-            // Later should filter based on a percentage
-            // Also, total is all returned spots for the area, not of this type.
-            if (spotObj !== null && spotObj.type[spotType] > 0) {
-              var currentStatus = spot.getStatus(spotObj, currentTime),
-                  score = 0;
-              typeSpots = typeSpots + 1;
-              /* jshint camelcase: false */
-              if (spotObj.review_count !== 0) {
-                score = spotObj.rating_count / spotObj.review_count;
-              }
-              /* jshint camelcase: true */
-              spotObj.stars = _calculateStars(score);
-              spotObj.crowdStatusLabel = currentStatus.label;
-              spotObj.crowdStatusTime = currentStatus.time;
-              spotObj.crowdStatusBoxes = _calculateBoxLabels(spotObj, times);
-              if ($scope.spots.length < SPOTS_PER_PAGE) {
-                $scope.spots.push(spotObj);
-              }
-              else {
-                moreList.push(spotObj);
-                $scope.displayMore = true;
-              }
+    var idList = ['calafia-caf%C3%A9-and-market-a-go-go-palo-alto-2'];
+    $scope.numReturns = idList.length;
+    if (idList.length === 0) {$scope.noSpots = true; $scope.startIndex = 0;}
+    else {
+      // Must retrieve all spots returned in search
+      // TODO: Need to fix this if have a lot of spots (at least return after 10 good ones returned)
+      // and save others for later
+      var typeSpots = 0,
+          totalSpots = 0,
+          initialized = false;
+      for (var i = 0; i < idList.length; i++) {
+        //if (i === idList.length) {break;} // Break if not a full set of results
+        var spotId = idList[i];
+        /* jshint -W083 */
+        spot.get(spotId).then(function(spotObj) {
+          totalSpots = totalSpots + 1;
+          // Basic filtering: filter if no recommendations of this type.
+          // Later should filter based on a percentage
+          // Also, total is all returned spots for the area, not of this type.
+          if (spotObj !== null) {
+            var currentStatus = spot.getStatus(spotObj, currentTime),
+                score = 0;
+            typeSpots = typeSpots + 1;
+            /* jshint camelcase: false */
+            if (spotObj.review_count !== 0) {
+              score = spotObj.rating_count / spotObj.review_count;
             }
-          });
-        }
+            /* jshint camelcase: true */
+            spotObj.stars = _calculateStars(score);
+            spotObj.crowdStatusLabel = currentStatus.label;
+            spotObj.crowdStatusTime = currentStatus.time;
+            spotObj.crowdStatusBoxes = _calculateBoxLabels(spotObj, times);
+            if ($scope.spots.length < SPOTS_PER_PAGE) {
+              $scope.spots.push(spotObj);
+            }
+            else {
+              moreList.push(spotObj);
+              $scope.displayMore = true;
+            }
+          }
+        });
       }
-    });
+    }
 
     /**
      * @name getSpot
