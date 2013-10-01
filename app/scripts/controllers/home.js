@@ -88,24 +88,6 @@ angular.module('b4cmApp')
     };
 
     /**
-     * @name addSpot
-     * @function
-     *
-     * @description Redirects to add-spot-page if user logged in.
-     */
-    $scope.addSpot = function() {
-      if (user.loggedIn()) {
-        $location.path('/addSpot');
-        util.safeApply($scope);
-      }
-      else {
-        alert('Must be signed in to add a spot.');
-        $location.path('/signin');
-        util.safeApply($scope);
-      }
-    };
-
-    /**
      * @name moreSpots
      * @function
      *
