@@ -71,8 +71,8 @@ angular.module('b4cmApp')
         else if (watch.time.length > 24) {alert('Watches must be for less than a 24 hour period.');}
         else {
           spot.addWatch(watch, $routeParams.spotId, $scope.spotObj.crowdfactor.watch_count);
-          /* jshint camelcase: true */
           user.incrementWatchCount();
+          /* jshint camelcase: true */
           alert('Crowd watch added.');
           $location.path('/spot/' + $scope.spotObj.id);
           util.safeApply($scope);

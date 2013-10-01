@@ -83,19 +83,22 @@ angular.module('b4cmApp')
       addWatch: function (newWatch, spotId, currentCount) {
         var dayRef = new Firebase(fbUrl + 'spots/' + spotId + '/crowdfactor/day/'),
             crowdFactorRef = new Firebase(fbUrl + 'spots/' + spotId + '/crowdfactor/'),
-            score = util.statusToScore(newWatch.cf_status);
+            score = util.statusToScore(newWatch.cf_status),
+            currentHour = (new Date()).getHours() % 12,
+            lastWatchHour = parseInt(newWatch.time[newWatch.time.length - 1].hour.slice(0,-2));
 
         crowdFactorRef.child('watch_count').set(currentCount + 1);
-
         if (typeof newWatch.comment === 'undefined') {newWatch.comment = 'No Comment';}
-
         newWatch.time.forEach(function(time) {
           dayRef.child(time.day).child(time.hour).child('count').set(time.count + 1);
           dayRef.child(time.day).child(time.hour).child('score').set(time.score + score);
-          crowdFactorRef.child('most_recent').child('score').set(score);
-          crowdFactorRef.child('most_recent').child('time').set((new Date()).getTime());
-          crowdFactorRef.child('most_recent').child('comment').set(newWatch.comment);
-          crowdFactorRef.child('most_recent').child('user').set(newWatch.user);
+          // Set most recent if close to current time
+          if(Math.abs(currentHour - lastWatchHour) < 2) {
+            crowdFactorRef.child('most_recent').child('score').set(score);
+            crowdFactorRef.child('most_recent').child('time').set((new Date()).getTime());
+            crowdFactorRef.child('most_recent').child('comment').set(newWatch.comment);
+            crowdFactorRef.child('most_recent').child('user').set(newWatch.user);
+          }
 
         });
         return false;
