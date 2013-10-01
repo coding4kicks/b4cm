@@ -90,7 +90,6 @@ $break-small: 500px;
 /******************
 *** Global 
 *******************/
-body, html { overflow-x:hidden; }
 
 body {
   background-image:url('../images/wavegrid.png');
@@ -103,9 +102,8 @@ body {
   body {
     background-image: none !important;
   }
+  body, html { overflow-x:hidden; }
 }
-
-
 
 hr {
   border: 1px solid $acc-dark;
@@ -801,6 +799,10 @@ input[type='text']:focus {
         margin-top: 5px;
       }
 
+      .main-col {
+        padding: 0;
+      }
+
       .side-col {
         display: none;
       }
@@ -1128,6 +1130,18 @@ input[type='text']:focus {
 
     .title-bar {
       height: auto !important;
+
+      .rating {
+        margin: 0;
+      }
+
+      .spot-types {
+        height: auto;
+      }
+
+      .details-top {
+        height: auto;
+      }
     }
 
     .main-col, .side-col {
@@ -1149,6 +1163,7 @@ input[type='text']:focus {
       float: none !important;
       width: 100% !important;
       max-width: 100% !important;
+      height: auto !important;
     }
 
     .spot-address {
