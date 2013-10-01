@@ -225,9 +225,7 @@ angular.module('b4cmApp')
      *                  if the stop time was after midnight.
      */
     function _checkStopDay(start, stop) {
-      console.log(start.day.label);
       if (start.day === stop.day) {
-        console.log('here');
         if ((start.meridiem === 'pm' && stop.meridiem === 'am') ||
             (start.meridiem === 'am' && stop.meridiem === 'am' && stop.hour <= start.hour)){
           stop.day = (stop.day + 1) % 7
