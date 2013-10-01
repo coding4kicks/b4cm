@@ -155,7 +155,10 @@ angular.module('b4cmApp')
      * @param {string} type The type of listings to find
      */ 
     $scope.addToFavs = function() {
-      alert('here');
+      if(user.loggedIn()) {
+        alert('here');
+      }
+      else{alert('Must be logged in to fav a spot.');}
     };
 
   });
