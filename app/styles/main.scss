@@ -1129,7 +1129,7 @@ input[type='text']:focus {
     // TODO: parent spot page selectors are too nested
 
     .title-bar {
-      height: auto !important;
+      height: auto;
 
       .rating {
         margin: 0;
@@ -1137,33 +1137,51 @@ input[type='text']:focus {
 
       .spot-types {
         height: auto;
+        display: block;
+        width: 100%;
       }
 
       .details-top {
         height: auto;
       }
+
+      .spot-name {
+        @include text-overflow();
+        font-size: 16px;
+        margin-bottom: -5px;
+        width: 100%;
+      }
+
+      .details-left {
+        display: block;
+        float: none;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+      }
+
+      .details-right {
+        display: block;
+        height: auto;
+        width: 100%;
+        margin: -20px 0 0 0;
+      }
+
+      .current-status {
+        height: auto;
+      }
+
+      .ad-text {
+        width: 100%;
+        min-width: 0px;
+      }
+
     }
 
     .main-col, .side-col {
       display: block;
       width: 100%;
-      float: none !important;
-    }
-
-    .spot-name {
-      @include text-overflow();
-      font-size: 16px;
-      margin-bottom: -5px !important;
-      width: 100%;
-    }
-
-    .details-left {
-      //height: 100px !important;
-      display: block !important;
-      float: none !important;
-      width: 100% !important;
-      max-width: 100% !important;
-      height: auto !important;
+      float: none;
     }
 
     .spot-address {
@@ -1185,39 +1203,20 @@ input[type='text']:focus {
       }
     }
 
-    .spot-types {
-      display: block !important;
-      width: 100% !important;
-    }
-
-    .details-right {
-      display: block !important;
-      height: auto !important;
-      width: 100% !important;
-      margin: -20px 0 0 0 !important;
-    }
-
-    .ad-text {
-      width: 100% !important;
-      min-width: 0px !important;
-    }
-
     hr {
-      width: 100% !important;
-    }
-
-    .current-status {
-      height: auto !important;
+      width: 100%;
     }
 
     // TODO: global conflict with listings .info class.
-    .info {
-      float: none !important;
-      width: 220px !important;
-      margin-left: 10px;
+    .review {
+      .info {
+        float: none;
+        width: 220px;
+        margin-left: 10px;
 
-      p {
-        margin-top: 0 !important;
+        p {
+          margin-top: 0;
+        }
       }
     }
 
