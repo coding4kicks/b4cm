@@ -32,21 +32,6 @@ angular.module('b4cmApp')
     $scope.plus2Time = plus2Time.getTimeLabel();
     $scope.plus4Time = plus4Time.getTimeLabel();
 
-
-    // Google map defaults - Otherwise 3rd party plugin breaks
-    $scope.isMapElementHidden = true;
-    $scope.centerProperty = {
-      'latitude': 37.7833,
-      'longitude': 122.4167
-    };
-    $scope.position = {
-      'coords': {
-        'latitude': 37.7833,
-        'longitude': 122.4167
-      }
-    };
-    $scope.zoomProperty = 12;
-
     var idList = ['calafia-caf%C3%A9-and-market-a-go-go-palo-alto-2'];
     $scope.numReturns = idList.length;
     if (idList.length === 0) {$scope.noSpots = true; $scope.startIndex = 0;}
