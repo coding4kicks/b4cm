@@ -90,12 +90,22 @@ $break-small: 500px;
 /******************
 *** Global 
 *******************/
+body, html { overflow-x:hidden; }
 
 body {
   background-image:url('../images/wavegrid.png');
   background-repeat:repeat;
   color: #373737;
 }
+
+// Responsive
+@media screen and (max-width: $break-small){
+  body {
+    background-image: none !important;
+  }
+}
+
+
 
 hr {
   border: 1px solid $acc-dark;
