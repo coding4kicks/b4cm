@@ -900,6 +900,17 @@ input[type='text']:focus {
 *******************/
 #home-page {
 
+  .favorites-title {
+
+  }
+
+  .title-bar {
+    padding-bottom: 0px;
+
+    .listing-nums {
+      width: 250px;
+    }
+  }
 }
 
 /******************

@@ -8,7 +8,7 @@ angular.module('b4cmApp')
    *
    * @description Retrieves and calculates display information for a requested listing.
    */
-  .controller('HomeCtrl', function ($scope, $log, $location, $routeParams, $timeout, $window, listings, spot, user, util) {
+  .controller('HomeCtrl', function ($scope, $log, $location, $routeParams, $rootScope, $timeout, $window, listings, spot, user, util) {
 
     var spotList = [],
         moreList = [],
@@ -24,6 +24,7 @@ angular.module('b4cmApp')
         plus4Time = util.timeInfo(new Date(currentDate.getTime() + 4 * HOUR)),
         times = [currentTime, plus1Time, plus2Time, plus3Time, plus4Time];
 
+    $scope.userName = '';
     $scope.spots = [];
     $scope.noSpots = false;
     $scope.startIndex = 1;
@@ -31,6 +32,12 @@ angular.module('b4cmApp')
     $scope.currentTime = currentTime.getTimeLabel();
     $scope.plus2Time = plus2Time.getTimeLabel();
     $scope.plus4Time = plus4Time.getTimeLabel();
+
+    $rootScope.$on('login', function(event, name) {
+      $scope.userName = name;
+      util.safeApply($scope);
+    });
+
 
     var idList = ['calafia-caf%C3%A9-and-market-a-go-go-palo-alto-2'];
     $scope.numReturns = idList.length;
