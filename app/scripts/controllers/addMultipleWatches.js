@@ -95,6 +95,8 @@ angular.module('b4cmApp')
                   stop = util.clone(newWatch.stop);
               start.day = util.dayToNum(start.day);
               stop.day = util.dayToNum(stop.day);
+              // Handle after midnight case where need to increment stop day
+              _checkStopDay(start, stop);
               newWatch.time = util.calculateWatchTimes(start, stop, $scope.spot);
               newWatch.time.forEach(function(time) {
                 var score = util.statusToScore(newWatch.cf_status);
@@ -110,6 +112,7 @@ angular.module('b4cmApp')
                 nextDay = $scope.WEEKDAYS[util.incrementDay($scope.startDay.label)];
             start.day = util.dayToNum(start.day);
             stop.day = util.dayToNum(stop.day);
+            _checkStopDay(start, stop);
             watch.time = util.calculateWatchTimes(start, stop, $scope.spot);
             watch.time.forEach(function(time) {
               var score = util.statusToScore(watch.cf_status);
@@ -156,6 +159,7 @@ angular.module('b4cmApp')
         dayList.forEach(function(day) {
           watch.start.day = util.dayToNum(day);
           watch.stop.day = util.dayToNum(day);
+          _checkStopDay(watch.start, watch.stop);
           watch.time = util.calculateWatchTimes(watch.start, watch.stop, $scope.spot);
           watch.time.forEach(function(time) {
             var score = util.statusToScore(watch.cf_status);
@@ -168,6 +172,7 @@ angular.module('b4cmApp')
       else {
         watch.start.day = util.dayToNum(watch.start.day);
         watch.stop.day = util.dayToNum(watch.stop.day);
+        _checkStopDay(watch.start, watch.stop);
         watch.time = util.calculateWatchTimes(watch.start, watch.stop, $scope.spot);
         watch.time.forEach(function(time) {
           var score = util.statusToScore(watch.cf_status);
@@ -205,6 +210,29 @@ angular.module('b4cmApp')
         $location.path('/signin');
         util.safeApply($scope);
       }
+    };
+
+
+    /**
+     * @name _checkStopDay
+     * @function
+     *
+     * @description Deals with case of stop day after midnight
+     * @param {object} start The start watch info (prop day is an int)
+     * @param {object} stop The stop watch info (prop day is an int)
+     * @return {string} The stop day, either current day, or 1 day in the future
+     *                  if the stop time was after midnight.
+     */
+    function _checkStopDay(start, stop) {
+      console.log(start.day.label);
+      if (start.day === stop.day) {
+        console.log('here');
+        if ((start.meridiem === 'pm' && stop.meridiem === 'am') ||
+            (start.meridiem === 'am' && stop.meridiem === 'am' && stop.hour <= start.hour)){
+          stop.day = (stop.day + 1) % 7
+        }
+      }
+      //return day
     };
 
   });
