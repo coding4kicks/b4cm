@@ -62,6 +62,7 @@ angular.module('b4cmApp')
                     'meridiem': $scope.stopMeridiem.label};
         /* jshint camelcase: false */
         watch.cf_status = $scope.cf_status;
+        _checkStopDay(start, stop);
         watch.time = util.calculateWatchTimes(start, stop, $scope.spotObj);
         watch.comment = $scope.watchComment;
         watch.user = user.getInfo().display_name;
@@ -101,6 +102,26 @@ angular.module('b4cmApp')
         $location.path('/signin/');
         util.safeApply($scope);
       }
+    };
+
+    /**
+     * @name _checkStopDay
+     * @function
+     *
+     * @description Deals with case of stop day after midnight
+     * @param {object} start The start watch info (prop day is an int)
+     * @param {object} stop The stop watch info (prop day is an int)
+     * @return {string} The stop day, either current day, or 1 day in the future
+     *                  if the stop time was after midnight.
+     */
+    function _checkStopDay(start, stop) {
+      if (start.day === stop.day) {
+        if ((start.meridiem === 'pm' && stop.meridiem === 'am') ||
+            (start.meridiem === 'am' && stop.meridiem === 'am' && stop.hour <= start.hour)){
+          stop.day = (stop.day + 1) % 7
+        }
+      }
+      //return day
     };
 
   });
