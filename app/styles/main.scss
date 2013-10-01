@@ -1009,7 +1009,8 @@ input[type='text']:focus {
     }
 
     .yelp-link {
-      vertical-align: bottom;
+      display: inline-block;
+      margin-top: 22px;
     }
 
     .ad-text {
@@ -1031,6 +1032,11 @@ input[type='text']:focus {
         margin: -30px 0 0 40px;
       }
     }
+  }
+  
+  .fav {
+    display: inline-block;
+    margin: 0 0 8px 0;
   }
 
   .edit-spot {

@@ -147,6 +147,17 @@ angular.module('b4cmApp')
       util.safeApply($scope);
     };
 
+    /**
+     * @name addToFavs
+     * @procedure
+     *
+     * @description Adds a spot to the users favorites list.
+     * @param {string} type The type of listings to find
+     */ 
+    $scope.addToFavs = function() {
+      alert('here');
+    };
+
   });
 
 /***************

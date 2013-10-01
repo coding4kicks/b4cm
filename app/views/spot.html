@@ -40,8 +40,9 @@
           <p class="watch-comment" ng-show="current_user"><span class="watch-comment-user">{{current_user}}</span> says: {{current_comment}}</p>
         </div>
         <div class="yelp-link">
-          <a ng-href="{{spot.yelpLink}}"><h4>Checkout Yelp reviews</h4></a>
+          <a ng-href="{{spot.yelpLink}}"><h4>Yelp Reviews</h4></a>
         </div>
+        <button type="button" class="btn fav" ng-click="addToFavs()">FAV :)</button>
       </div>
 
       <div class="ad-text">
