@@ -1,1 +1,86 @@
-<p>This is the home view.</p>
+<div id="listings-page">
+  <div class="title-bar clearfix">
+    <div class="main-col">
+      <div class="top">
+        <img class="b4cm-icon" ng-src="../images/b4cm-icon-{{listings.type | lowercase}}.png">
+        <h2 class="listing-type">{{listings.type | uppercase}}</h2>
+        <h3 class="listing-location">{{listings.displayAddress}}</h3>
+      </div>
+      <div class="bottom">
+        <h6 class="listing-nums" ng-hide="noSpots">{{startIndex}}-{{startIndex + spots.length - 1}} of {{numReturns}}</h6>
+        <a  ng-click="addSpot()">
+          <button class="btn add-spot-btn">Add Spot</button>
+        </a>
+      </div>
+    </div>
+    <div class="side-col">
+      <div class="ad-book">
+        <a ng-href="http://www.amazon.com/gp/product/0140437649/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0140437649&linkCode=as2&tag=coding4kicks-20">
+          <h6>The History of the Decline and Fall of the Roman Empire</h6>
+          <img src="../images/books/historyofdeclineandfall.jpg">  
+        </a>    
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="page">
+
+    <div class="listings main-col">
+      <h2 ng-show="noSpots">No spots of this type for your search area.  Help us out and add a spot!</h2>
+      <div class="listing" ng-click="getSpot(spot.id)" ng-repeat="spot in spots">
+        <div class="rank">
+          <h4>{{startIndex + $index}}.</h4>
+        </div>
+        <img class="spot-pic" ng-src="{{spot.image_url}}">
+        <div class="info"> 
+          <h4 class="title">{{spot.name}}</h4>
+          <h5 class="address">{{spot.location.address}}, {{spot.location.city}}</h5>
+          <div class="rating">
+            <div class="stars">
+              <img ng-repeat="star in spot.stars" ng-src="{{star}}">
+            </div>
+            <div class="review-count">{{spot.review_count}} Reviews</div>
+          </div>
+          <div class="crowd-rank">
+            <div class="crowd-bar">
+              <div class="box {{spot.crowdStatusBoxes[0]}}-square"><h6>{{currentTime}}</h6></div>
+              <div class="box {{spot.crowdStatusBoxes[1]}}-square"></div>
+              <div class="box {{spot.crowdStatusBoxes[2]}}-square"><h6>{{plus2Time}}</h6></div>
+              <div class="box {{spot.crowdStatusBoxes[3]}}-square"></div>
+              <div class="box {{spot.crowdStatusBoxes[4]}}-square"><h6>{{plus4Time}}</h6></div>
+            </div>
+            <div class="watchers">{{spot.crowdfactor.watch_count}} Watches</div>
+          </div>
+        </div>
+        <div class="current-status">
+          <h4>Current Status:</h4>
+          <h5>({{spot.crowdStatusTime}})</h5>
+          <h3 class="status {{spot.crowdStatusLabel | lowercase}}">{{spot.crowdStatusLabel}}</h3>
+        </div>
+        <hr>
+      </div>
+
+      <div class="more" ng-hide="noSpots">
+        <a ng-show="displayMore" ng-click="moreSpots()">More Results</a><span ng-show="displayMore && displayPrevious"> || </span><a ng-show="displayPrevious" ng-click="previousSpots()">Previous Results</a>
+      </div>
+    </div>
+
+    <div scroll-position="scroll" class="side-col" ng-class="{fixed: scroll > 220, relative: scroll <= 220}">
+	    <div class="google-map"
+        center="position.coords"
+        zoom="zoomProperty"
+        markers="markersProperty"
+        latitude="clickedLatitudeProperty"
+        longitude="clickedLongitudeProperty"
+        mark-click="true"
+        draggable="true"
+        fit="false"
+        events="eventsProperty"
+        refresh="!isMapElementHidden"
+        style="height: 300px; width: 280px; border: 1px solid;">
+      </div> 
+    </div>
+  </div>
+</div>
