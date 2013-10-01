@@ -25,6 +25,7 @@ angular.module('b4cmApp')
         times = [currentTime, plus1Time, plus2Time, plus3Time, plus4Time];
 
     $scope.userName = '';
+    $scope.favorites = ''
     $scope.spots = [];
     $scope.noSpots = false;
     $scope.startIndex = 1;
@@ -36,6 +37,7 @@ angular.module('b4cmApp')
     $rootScope.$on('login', function(event, name) {
       $scope.userName = name;
       util.safeApply($scope);
+      $scope.favorites = user.getInfo().favorites;
     });
 
 
