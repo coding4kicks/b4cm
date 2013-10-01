@@ -584,9 +584,10 @@ input[type='text']:focus {
 }
 
 /******************
-*** Listings Page 
+*** Listings Page / Home Page
 *******************/
-#listings-page {
+#listings-page,
+#home-page {
 
   .title-bar {
     @include page-element(10px, 10px, left, top);

@@ -96,15 +96,6 @@ angular.module('b4cmApp')
                 $scope.displayMore = true;
               }
             }
-            // Initialize google maps parameters for listings page when all data is ready
-            if ((typeSpots === SPOTS_PER_PAGE ||
-                totalSpots === idList.length) &&
-                !initialized) {
-              var zoom = 12,
-                  index = 1;
-              initialized = true;
-              util.initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots, zoom, index);
-            }
           });
         }
       }

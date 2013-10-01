@@ -1,4 +1,4 @@
-<div id="listings-page">
+<div id="home-page">
   <div class="title-bar clearfix">
     <div class="main-col">
       <div class="top">
@@ -68,19 +68,6 @@
     </div>
 
     <div scroll-position="scroll" class="side-col" ng-class="{fixed: scroll > 220, relative: scroll <= 220}">
-	    <div class="google-map"
-        center="position.coords"
-        zoom="zoomProperty"
-        markers="markersProperty"
-        latitude="clickedLatitudeProperty"
-        longitude="clickedLongitudeProperty"
-        mark-click="true"
-        draggable="true"
-        fit="false"
-        events="eventsProperty"
-        refresh="!isMapElementHidden"
-        style="height: 300px; width: 280px; border: 1px solid;">
-      </div> 
     </div>
   </div>
 </div>
