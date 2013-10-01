@@ -221,7 +221,19 @@ angular.module('b4cmApp')
        */ 
       getInfo: function () {
         return userObj;
+      },
+
+      /**
+       * @name addToFavs
+       * @function
+       *
+       * @description Adds a spot id to the users favorites list.
+       * @param {string} spotId The spot id to add to the favorites list. 
+       */ 
+      addToFavs: function (spotId) {
+        alert(spotId);
       }
+
     };
   });
 

@@ -156,7 +156,7 @@ angular.module('b4cmApp')
      */ 
     $scope.addToFavs = function() {
       if(user.loggedIn()) {
-        alert('here');
+        user.addToFavs($scope.spot.id);
       }
       else{alert('Must be logged in to fav a spot.');}
     };
