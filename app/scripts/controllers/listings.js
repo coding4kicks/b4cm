@@ -36,21 +36,6 @@ angular.module('b4cmApp')
     $scope.plus2Time = plus2Time.getTimeLabel();
     $scope.plus4Time = plus4Time.getTimeLabel();
 
-
-    // Google map defaults - Otherwise 3rd party plugin breaks
-    $scope.isMapElementHidden = true;
-    $scope.centerProperty = {
-      'latitude': 37.7833,
-      'longitude': 122.4167
-    };
-    $scope.position = {
-      'coords': {
-        'latitude': 37.7833,
-        'longitude': 122.4167
-      }
-    };
-    $scope.zoomProperty = 12;
-
     // Retrieve the listings for the specified search location, 
     listings.get(searchLocation, spotType).then(function(listingInfo) {
       var idList = listingInfo.idList;
@@ -95,15 +80,6 @@ angular.module('b4cmApp')
                 moreList.push(spotObj);
                 $scope.displayMore = true;
               }
-            }
-            // Initialize google maps parameters for listings page when all data is ready
-            if ((typeSpots === SPOTS_PER_PAGE ||
-                totalSpots === idList.length) &&
-                !initialized) {
-              var zoom = 12,
-                  index = 1;
-              initialized = true;
-              util.initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots, zoom, index);
             }
           });
         }
