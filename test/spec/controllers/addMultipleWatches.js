@@ -73,14 +73,10 @@ describe('Controller: AddMultipleWatchesCtrl', function () {
   });
 
   it('addWatch should add a weekend', function () {
-    var watchHours = [{ start: { day:'Saturday', hour: 9, meridiem: 'pm' },
-                        stop: { day: 'Saturday', hour: 10, meridiem: 'pm' },
+    var watchHours = [{ start: { day:'Weekends', hour: 9, meridiem: 'pm' },
+                        stop: { day: 'Weekends', hour: 10, meridiem: 'pm' },
                         cf_status: 'Empty',
-                        time: [{ day: 'saturday', hour: '9pm', count: 1, score: 3} ]},
-                      { start: { day:'Sunday', hour: 9, meridiem: 'pm' },
-                        stop: { day: 'Sunday', hour: 10, meridiem: 'pm' },
-                        cf_status: 'Empty',
-                        time: [{ day: 'sunday', hour: '9pm', count: 1, score: 3} ]}];
+                      }];
     window.alert = jasmine.createSpy();
     _user.loggedIn = jasmine.createSpy('loggedIn').andReturn(true);
     _setWatchScope(scope, 'Weekends');
