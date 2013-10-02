@@ -17,6 +17,7 @@ angular.module('b4cmApp')
     /* jshint camelcase: false */
     // Retreive the spot to edit.
     spot.get($routeParams.spotId).then(function(spot_data) {
+      editedSpot = util.clone(spot_data); // start off with a copy
       oldData.crowdfactor = util.clone(spot_data.crowdfactor);
       oldData.location = util.clone(spot_data.location);
       $scope.spotName = spot_data.name;
@@ -135,9 +136,12 @@ angular.module('b4cmApp')
           editedSpot.image_url = $scope.image2.resized.dataURL;
         }
         //editedSpot.type = {'food': 0, 'study': 0, 'social': 0}
+        if(typeof editedSpot.type === 'undefined'){
+          editedSpot.type = {'food': 0, 'study': 0, 'social':0}
+        };
         if ($scope.food) {editedSpot.type.food = editedSpot.type.food + 1;}
-        if ($scope.study) {editedSpot.type.study = editedSpot.type.food + 1;}
-        if ($scope.social) {editedSpot.type.social = editedSpot.type.food + 1;}
+        if ($scope.study) {editedSpot.type.study = editedSpot.type.study + 1;}
+        if ($scope.social) {editedSpot.type.social = editedSpot.type.social + 1;}
 
         // Hack to remove $$haskey property which blows up Firebase
         editedSpot.business_hours = [];
