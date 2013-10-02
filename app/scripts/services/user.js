@@ -233,14 +233,18 @@ angular.module('b4cmApp')
       addToFavs: function (spotId) {
         // Make sure id is not already in favs so don't duplicate
         // IE8 incompatable use of indexOf for arrays]]
-        if(typeof userObj.favorites === 'undefined'){
+        if(typeof userObj.favorites !== 'undefined'){
           for(var favorite in userObj.favorites) {
-            if (spotId === userObj.favorites[favorite]){return false}
+            if (spotId === userObj.favorites[favorite]){
+              alert('Already a Fav'); 
+              return false
+            }
           }
         }
         var userId = userObj.provider + '/' + userObj.id,
             userRef = new Firebase(fbUrl + 'users/' + userId);
-        userRef.child('favorites').push().set(spotId); 
+        userRef.child('favorites').push().set(spotId);
+        alert('Fav Added'); 
         return true;
       }
     };
