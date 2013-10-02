@@ -22,6 +22,7 @@ angular.module('b4cmApp')
       $scope.spotName = spot_data.name;
       $scope.yelp_id = spot_data.yelp_id;
       $scope.address = spot_data.location.address;
+      $scope.address2 = spot_data.location.address2;
       $scope.city = spot_data.location.city;
       $scope.postal_code = spot_data.location.postal_code;
       $scope.state_code = spot_data.location.state_code;
@@ -122,6 +123,7 @@ angular.module('b4cmApp')
         editedSpot.yelp_id = $scope.yelp_id;
         editedSpot.location = {};
         editedSpot.location.address = $scope.address;
+        editedSpot.location.address2 = $scope.address2;
         editedSpot.location.city = $scope.city;
         editedSpot.location.state_code = $scope.state_code;
         editedSpot.location.postal_code = $scope.postal_code;
