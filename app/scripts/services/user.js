@@ -229,20 +229,19 @@ angular.module('b4cmApp')
        *
        * @description Adds a spot id to the users favorites list.
        * @param {string} spotId The spot id to add to the favorites list. 
-       */ 
+       */
       addToFavs: function (spotId) {
         // Make sure id is not already in favs so don't duplicate
-        // IE8 incompatable use of indexOf for arrays
-        if(typeof userObj.favorites !== 'undefined' && userObj.favorites.indexOf(spotId) !== -1){
-          alert('Spot is already in your Favs.');
+        // IE8 incompatable use of indexOf for arrays]]
+        if(typeof userObj.favorites === 'undefined'){return false}
+        for(var favorite in userObj.favorites) {
+          if (spotId === userObj.favorites[favorite]){return false}
         }
-        else {
-          var userId = userObj.provider + '/' + userObj.id,
-              userRef = new Firebase(fbUrl + 'users/' + userId);
-          userRef.child('favorites').push().set(spotId);
-        }
+        var userId = userObj.provider + '/' + userObj.id,
+            userRef = new Firebase(fbUrl + 'users/' + userId);
+        userRef.child('favorites').push().set(spotId); 
+        return true;
       }
-
     };
   });
 
