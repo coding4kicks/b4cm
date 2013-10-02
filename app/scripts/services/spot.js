@@ -153,6 +153,7 @@ angular.module('b4cmApp')
         if (typeof newSpot.yelp_id === 'undefined') {newSpot.yelp_id = null};
         if (typeof newSpot.image_url === 'undefined') {newSpot.image_url = null};
         if (typeof newSpot.wifi === 'undefined') {newSpot.wifi = false};
+        if (typeof newSpot.address2 === 'undefined') {newSpot.wifi = null};
         newSpot.review_count = 0;
         newSpot.rating_count = 0;
         newSpot.reviews = [];
