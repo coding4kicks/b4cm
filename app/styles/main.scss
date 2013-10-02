@@ -775,7 +775,8 @@ input[type='text']:focus {
 }
 
 @media screen and (max-width: $break-small){
-  #listings-page {
+  #listings-page,
+  #home-page {
 
     .main-col {
       display: block;
@@ -914,6 +915,25 @@ input[type='text']:focus {
 
   .side-col {
     margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: $break-small){
+  #home-page {
+    .title-bar {
+      .listing-nums {
+        margin: 2px 0 0 0;
+        width: 120px;
+      }
+
+      .favorites-title {
+        margin: 0;
+      }
+
+      .top {
+        height: auto;
+      }
+    }
   }
 }
 
