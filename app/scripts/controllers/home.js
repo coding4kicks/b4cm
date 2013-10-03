@@ -38,13 +38,14 @@ angular.module('b4cmApp')
       $scope.displayFavorites(user.getInfo().favorites);
       util.safeApply($scope);
     });
-    //var idList = ['calafia-caf%C3%A9-and-market-a-go-go-palo-alto-2'];
     
     $scope.displayFavorites = function(idList) { 
       $scope.numReturns = 0;
-      if (typeof idList === 'undefined') {$scope.noSpots = true; $scope.startIndex = 0;}
+      if (typeof idList === 'undefined') {
+        $scope.noSpots = true; 
+        $scope.startIndex = 0;
+      }
       else {
-        console.log('inside');
         // Must retrieve all spots returned in search
         // TODO: Need to fix this if have a lot of spots (at least return after 10 good ones returned)
         // and save others for later
@@ -57,6 +58,11 @@ angular.module('b4cmApp')
             // Basic filtering: filter if no recommendations of this type.
             // Later should filter based on a percentage
             // Also, total is all returned spots for the area, not of this type.
+            if ($scope.numReturns === 1){
+              $scope.doneInitializing = true;
+              $scope.initClass = '';
+            }
+
             if (spotObj !== null) {
               var currentStatus = spot.getStatus(spotObj, currentTime),
                   score = 0;

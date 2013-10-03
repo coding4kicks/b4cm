@@ -21,7 +21,20 @@
 
   <hr>
 
-  <div class="page">
+  <div class="loading" ng-hide="doneInitializing">    
+    <div id="floatingBarsG">
+      <div class="blockG" id="rotateG_01"></div>
+      <div class="blockG" id="rotateG_02"></div>
+      <div class="blockG" id="rotateG_03"></div>
+      <div class="blockG" id="rotateG_04"></div>
+      <div class="blockG" id="rotateG_05"></div>
+      <div class="blockG" id="rotateG_06"></div>
+      <div class="blockG" id="rotateG_07"></div>
+      <div class="blockG" id="rotateG_08"></div>
+    </div>
+  </div>
+
+  <div class="page" ng-show="doneInitializing">
 
     <div class="listings main-col">
       <h3 ng-show="noSpots">You have no favorites.</h3>
