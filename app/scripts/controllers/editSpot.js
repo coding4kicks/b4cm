@@ -125,7 +125,6 @@ angular.module('b4cmApp')
 
         editedSpot.name = $scope.spotName;
         editedSpot.yelp_id = $scope.yelp_id;
-        editedSpot.location = {};
         editedSpot.location.address = $scope.address;
         editedSpot.location.address2 = $scope.address2;
         editedSpot.location.city = $scope.city;
@@ -135,6 +134,9 @@ angular.module('b4cmApp')
         //if (typeof $scope.image2 === 'undefined') {
         //  $scope.image2 = {'resized': {'dateURL': null}};
         //}
+        if(typeof editedSpot.location.address2 === 'undefined') {
+          editedSpot.location.address2 = null;
+        }
         if (typeof $scope.image2 !== 'undefined') {
           editedSpot.image_url = $scope.image2.resized.dataURL;
         }
@@ -158,8 +160,8 @@ angular.module('b4cmApp')
         // Create the spot - Asynch send to firebase
         spot.edit(editedSpot, oldData).then(function (editedSpot) {
           // Handle success or error
-          user.incrementSpotCount();
           // Redirect to added spot
+          alert('Spot Updated.');
           $location.path('/spot/' + editedSpot.id);
           util.safeApply($scope);
         });

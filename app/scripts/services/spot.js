@@ -205,10 +205,34 @@ angular.module('b4cmApp')
                            'city': editedSpot.location.city,
                            'postal_code': editedSpot.location.postal_code, 
                            'state_code': editedSpot.location.state_code },
-            address = locationObj.address + ", " + locationObj.city + ", " + locationObj.state_code,
+            address = locationObj.address + ", " + 
+                      locationObj.city + ", " + 
+                      locationObj.state_code,
             oldAddress = oldData.location.address + ", " + 
                          oldData.location.city + ", " + 
                          oldData.location.state_code;
+
+        if(typeof locationObj.address2 !== 'undefined' && 
+           locationObj.address2 !== null &&
+           locationObj.address2 !== ''){
+          console.log('here1');
+          console.log(locationObj.address2);
+          address = locationObj.address + ", " + 
+                    locationObj.address2 + ", " + 
+                    locationObj.city + ", " + 
+                    locationObj.state_code;
+        }
+
+        if(typeof oldData.location.address2 !== 'undefined' &&
+           oldData.location.address2 !== null &&
+           oldData.location.address2 !== ''){
+          console.log('here2');
+          console.log(oldData.location.address2);
+          oldAddress = oldData.location.address + ", " + 
+                       oldData.location.address2 + ", " +
+                       oldData.location.city + ", " + 
+                       oldData.location.state_code;
+        }
 
         // Set Defaults - Must guard against undefined to protect from Firebase error.
         if (typeof editedSpot.yelp_id === 'undefined') {editedSpot.yelp_id = null};
@@ -221,6 +245,8 @@ angular.module('b4cmApp')
 
         // Asynch call to get lat and long.
         // only do geolocation and add to listing if new address (must delete old from listing)
+        console.log(address);
+        console.log(oldAddress);
         if (address !== oldAddress || 
             typeof oldData.location.latitude === 'undefined' ||
             typeof oldData.location.longitude === 'undefined') {
@@ -228,9 +254,15 @@ angular.module('b4cmApp')
             editedSpot.location.latitude = locationObject.latitude;
             editedSpot.location.longitude = locationObject.longitude;
 
+            console.log(editedSpot.location.latitude);
+            console.log(oldData.location.latitude);
+            console.log(editedSpot.location.longitude);
+            console.log(oldData.location.longitude);
+
             // double check new lat long different for update
             if (editedSpot.location.latitude !== oldData.location.latitude ||
                 editedSpot.location.longitude !== oldData.location.longitude) {
+              console.log('updating geohash');
               listings.remove(oldData.location.geohash);
               // Add to listings & add geohash TODO: return geohash
               // Need listing delete of old
@@ -241,6 +273,7 @@ angular.module('b4cmApp')
 
             // Add the new spot in Firebase
             var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + editedSpot.id);
+            console.log('setting spot with new address');
             spotRef.set(editedSpot);
 
             deferred.resolve(editedSpot);
@@ -256,6 +289,7 @@ angular.module('b4cmApp')
           // Add the new spot in Firebase
           var spotRef = new Firebase('https://crowd-data.firebaseIO.com/spots/' + editedSpot.id);
           spotRef.set(editedSpot);
+          console.log('setting spot with old address');
           deferred.resolve(editedSpot);
         }
 
