@@ -1,4 +1,4 @@
-<div id="listings-page">
+<div id="listings-page" ng-class="initClass">
   <div class="title-bar clearfix">
     <div class="main-col">
       <div class="top">
@@ -7,7 +7,7 @@
         <h3 class="listing-location">{{listings.displayAddress}}</h3>
       </div>
       <div class="bottom">
-        <h6 class="listing-nums" ng-hide="noSpots">{{startIndex}}-{{startIndex + spots.length - 1}} of {{typeSpots}}</h6>
+        <h6 class="listing-nums" ng-hide="noSpots" ng-show="doneInitializing">{{startIndex}}-{{startIndex + spots.length - 1}} of {{typeSpots}}</h6>
         <a  ng-click="addSpot()">
           <button class="btn add-spot-btn">Add Spot</button>
         </a>
@@ -25,7 +25,21 @@
 
   <hr>
 
-  <div class="page">
+  <div class="loading" ng-hide="doneInitializing">    
+    <div id="floatingBarsG">
+      <div class="blockG" id="rotateG_01"></div>
+      <div class="blockG" id="rotateG_02"></div>
+      <div class="blockG" id="rotateG_03"></div>
+      <div class="blockG" id="rotateG_04"></div>
+      <div class="blockG" id="rotateG_05"></div>
+      <div class="blockG" id="rotateG_06"></div>
+      <div class="blockG" id="rotateG_07"></div>
+      <div class="blockG" id="rotateG_08"></div>
+    </div>
+  </div>
+
+
+  <div class="page" ng-show="doneInitializing">
 
     <div class="listings main-col">
       <h2 ng-show="noSpots">No spots of this type for your search area.  Help us out and add a spot!</h2>

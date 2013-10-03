@@ -26,6 +26,8 @@ angular.module('b4cmApp')
         plus4Time = util.timeInfo(new Date(currentDate.getTime() + 4 * HOUR)),
         times = [currentTime, plus1Time, plus2Time, plus3Time, plus4Time];
 
+    $scope.doneInitializing = false;
+    $scope.initClass = 'page-element';
     $scope.spots = [];
     $scope.noSpots = false;
     $scope.startIndex = 1;
@@ -97,6 +99,10 @@ angular.module('b4cmApp')
                 $scope.displayMore = true;
               }
             }
+            if ($scope.typeSpots === 3){
+              $scope.doneInitializing = true;
+              $scope.initClass = '';
+            }
             // Initialize google maps parameters for listings page when all data is ready
             if (($scope.typeSpots === SPOTS_PER_PAGE ||
                 totalSpots === idList.length) &&
@@ -105,6 +111,8 @@ angular.module('b4cmApp')
                   index = 1;
               initialized = true;
               util.initializeGoogleMaps($scope,  $scope.listings.location, $scope.spots, zoom, index);
+              $scope.doneInitializing = true;
+              $scope.initClass = '';
             }
           });
         }
