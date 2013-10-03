@@ -234,6 +234,9 @@ angular.module('b4cmApp')
         if (typeof editedSpot.yelp_id === 'undefined') {editedSpot.yelp_id = null};
         if (typeof editedSpot.image_url === 'undefined') {editedSpot.image_url = null};
         if (typeof editedSpot.wifi === 'undefined') {editedSpot.wifi = false};
+        if (typeof editedSpot.location.address2 === 'undefined') {
+            editedSpot.location.address2 = null
+        };
 
         // How to deal with watches that already exist: need update
         editedSpot.crowdfactor = _initCrowdSeer(editedSpot);
