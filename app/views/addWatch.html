@@ -1,8 +1,21 @@
 <div id="add-watch-page">
   <h3>Add a Crowd Watch:</h3>
 
-  <h4>{{name}}<h4>
-  <h5>{{address}}, {{city}}</h5>
+  <div class="loading" ng-hide="doneInitializing">    
+    <div id="floatingBarsG">
+      <div class="blockG" id="rotateG_01"></div>
+      <div class="blockG" id="rotateG_02"></div>
+      <div class="blockG" id="rotateG_03"></div>
+      <div class="blockG" id="rotateG_04"></div>
+      <div class="blockG" id="rotateG_05"></div>
+      <div class="blockG" id="rotateG_06"></div>
+      <div class="blockG" id="rotateG_07"></div>
+      <div class="blockG" id="rotateG_08"></div>
+    </div>
+  </div>
+
+  <h4 ng-show="doneInitializing">{{name}}<h4>
+  <h5 ng-show="doneInitializing">{{address}}, {{city}}</h5>
 
   <form class="form-horizontal">
     

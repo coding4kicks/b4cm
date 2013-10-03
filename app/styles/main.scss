@@ -1917,6 +1917,15 @@ input[type='text']:focus {
   padding-top: 100px;
 }
 
+#add-watch-page {
+  .loading {
+    text-align: left;
+    width: 55px;
+    height: 55px;
+    padding-top: 0;
+  }
+}
+
 .page-element {
   background-color: $page-color;
   padding: 10px;

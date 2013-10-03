@@ -22,6 +22,7 @@ angular.module('b4cmApp')
         currentMeridiem = (currentDate.getHours() < 12) ? '0' : '1',
         futureMeridiem = (futureDate.getHours() < 12) ? '0' : '1';
 
+    $scope.doneInitializing = false;
     $scope.spotObj = {}; // Scope reference only used for testing.
     $scope.WEEKDAYS = [{'label': 'Sunday'}, {'label': 'Monday'}, {'label': 'Tuesday'},
                        {'label': 'Wednesday'}, {'label': 'Thursday'}, {'label': 'Friday'},
@@ -44,6 +45,7 @@ angular.module('b4cmApp')
       $scope.name = spotData.name;
       $scope.address = spotData.location.address;
       $scope.city = spotData.location.city;
+      $scope.doneInitializing = true;
     });
 
     /**
