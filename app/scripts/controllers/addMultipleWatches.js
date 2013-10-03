@@ -25,14 +25,16 @@ angular.module('b4cmApp')
         futureMeridiem = (futureDate.getHours() < 12) ? '0' : '1',
         WEEKDAY_LIST = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
         WEEKEND_LIST = ['Saturday', 'Sunday'],
-        ALL_LIST = WEEKDAY_LIST.concat(WEEKEND_LIST);
+        ALL_LIST = WEEKDAY_LIST.concat(WEEKEND_LIST),
+        MON_THUR = ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+        FRI_SAT = ['Friday', 'Saturday'];
 
     $scope.spot = {}; // May need to clone since changing spot data and may not save.
     $scope.watchHours = [];
-    $scope.WEEKDAYS = [{'label': 'Sunday'}, {'label': 'Monday'}, {'label': 'Tuesday'},
-                       {'label': 'Wednesday'}, {'label': 'Thursday'}, {'label': 'Friday'},
-                       {'label': 'Saturday'}, {'label': 'Weekdays'}, {'label': 'Weekends'},
-                       {'label': 'All Week'}],
+    $scope.WEEKDAYS = [{'label': 'Monday'}, {'label': 'Tuesday'}, {'label': 'Wednesday'}, 
+                       {'label': 'Thursday'}, {'label': 'Friday'}, {'label': 'Saturday'}, 
+                       {'label': 'Sunday'}, {'label': 'Weekdays'}, {'label': 'Weekends'},
+                       {'label': 'Mon - Thur'}, {'label': 'Fri & Sat'}, {'label': 'All Week'}],
     $scope.HOURS = [{'label': '12'}, {'label': '1'}, {'label': '2'}, {'label': '3'},
                     {'label': '4'}, {'label': '5'}, {'label': '6'}, {'label': '7'},
                     {'label': '8'}, {'label': '9'}, {'label': '10'}, {'label': '11'}],
@@ -76,12 +78,16 @@ angular.module('b4cmApp')
         if (typeof watch.cf_status !== 'undefined') {
           if ($scope.startDay.label === 'Weekdays' ||
               $scope.startDay.label === 'Weekends' ||
-              $scope.startDay.label === 'All Week') {
+              $scope.startDay.label === 'All Week' ||
+              $scope.startDay.label === 'Mon - Thur' ||
+              $scope.startDay.label === 'Fri & Sat') {
             var dayList = [];
             $scope.stopDay.label = $scope.startDay.label;
             $scope.stopDay.label = $scope.startDay.label;
             if (watch.start.day === 'Weekdays') {dayList = WEEKDAY_LIST;}
             else if ($scope.startDay.label === 'Weekends') {dayList = WEEKEND_LIST;}
+            else if ($scope.startDay.label === 'Mon - Thur') {dayList = MON_THUR;}
+            else if ($scope.startDay.label === 'Fri & Sat') {dayList = FRI_SAT;}
             else {dayList = ALL_LIST;}
             $scope.watchHours.push(watch); // push weekday/weekend/all
             dayList.forEach(function(day) {
@@ -154,9 +160,13 @@ angular.module('b4cmApp')
           dayList = [];
       if (watch.start.day === 'Weekdays' ||
           watch.start.day === 'Weekends' ||
-          watch.start.day === 'All') {
+          watch.start.day === 'Mon - Thur'  ||
+           watch.start.day === 'Fri & Sat'  ||
+            watch.start.day === 'All Week') {
         if (watch.start.day === 'Weekdays') {dayList = WEEKDAY_LIST;}
         else if ($scope.startDay.label === 'Weekends') {dayList = WEEKEND_LIST;}
+        else if ($scope.startDay.label === 'Mon - Thur') {dayList = MON_THUR;}
+        else if ($scope.startDay.label === 'Fri & Sat') {dayList = FRI_SAT;}
         else {dayList = ALL_LIST;}
         dayList.forEach(function(day) {
           watch.start.day = util.dayToNum(day);
