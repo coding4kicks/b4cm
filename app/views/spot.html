@@ -1,6 +1,19 @@
 <div id="spot-page">
 
-  <div class="title-bar clearfix">
+  <div ng-hide="doneInitializing">    
+    <div id="floatingBarsG">
+      <div class="blockG" id="rotateG_01"></div>
+      <div class="blockG" id="rotateG_02"></div>
+      <div class="blockG" id="rotateG_03"></div>
+      <div class="blockG" id="rotateG_04"></div>
+      <div class="blockG" id="rotateG_05"></div>
+      <div class="blockG" id="rotateG_06"></div>
+      <div class="blockG" id="rotateG_07"></div>
+      <div class="blockG" id="rotateG_08"></div>
+    </div>
+  </div>
+
+  <div class="title-bar clearfix" ng-show="doneInitializing">
 
     <div class="main-col">
 
@@ -72,9 +85,9 @@
     </div>
   </div>
 
-  <hr>
+  <hr ng-show="doneInitializing">
 
-  <div class="visualize">
+  <div class="visualize" ng-show="doneInitializing">
     <div class="crowd-factor">
       <img class="current-time-marker" src="../images/star-icon.png">
       <h4 class="current-time">Current Time: <span class="time {{current_cflabel | lowercase}}">{{current_day}}, {{current_hour}}:{{current_minutes}} {{current_meridiem}}</span></h4>
@@ -140,9 +153,9 @@
     </div>
   </div> 
 
-  <hr>
+  <hr ng-show="doneInitializing">
 
-  <div class="reviews">
+  <div class="reviews" ng-show="doneInitializing">
     <div class="main-col">
       <h6 class="review-nums" ng-hide="noReviews">{{startIndex}}-{{reviewsDisplayedCount}} of {{spot.review_count}}</h6>
       <button class="btn add-review" ng-click="addReview(spot.id)">Add Review</button>
