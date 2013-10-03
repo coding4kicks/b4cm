@@ -110,6 +110,9 @@ angular.module('b4cmApp')
         newSpot.location = {};
         newSpot.location.address = $scope.address;
         newSpot.location.address2 = $scope.address2;
+        if(typeof newSpot.location.address2 === 'undefined'){
+          newSpot.location.address2 = null;
+        }
         newSpot.location.city = $scope.city;
         newSpot.location.state_code = $scope.state_code;
         newSpot.location.postal_code = $scope.postal_code;
