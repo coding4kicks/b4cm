@@ -17,6 +17,7 @@ angular.module('b4cmApp')
         review = {},
         additionalInfo = {};
 
+    $scope.doneInitializing = false;
     $scope.RATINGS = [{'label': 1}, {'label': 2}, {'label': 3}, {'label': 4}, {'label': 5}];
     $scope.rating = $scope.RATINGS[2];
     review.type = {'food': 0, 'study': 0, 'social': 0};
@@ -30,6 +31,7 @@ angular.module('b4cmApp')
       additionalInfo.rating_count = spotData.rating_count;
       /* jshint camelcase: true */
       additionalInfo.type = spotData.type;
+      $scope.doneInitializing = true;
     });
 
     /**

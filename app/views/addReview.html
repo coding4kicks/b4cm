@@ -1,10 +1,23 @@
 <div id="add-review-page">
   <h3>Add a Review for:</h3>
 
-  <h4>{{spot.name}}</h4>
-    <h5>{{spot.location.address}}, {{spot.location.city}}</h5>
-  <form class="form-horizontal">
+  <div class="loading" ng-hide="doneInitializing">    
+    <div id="floatingBarsG">
+      <div class="blockG" id="rotateG_01"></div>
+      <div class="blockG" id="rotateG_02"></div>
+      <div class="blockG" id="rotateG_03"></div>
+      <div class="blockG" id="rotateG_04"></div>
+      <div class="blockG" id="rotateG_05"></div>
+      <div class="blockG" id="rotateG_06"></div>
+      <div class="blockG" id="rotateG_07"></div>
+      <div class="blockG" id="rotateG_08"></div>
+    </div>
+  </div>
 
+  <h4 ng-show="doneInitializing">{{spot.name}}</h4>
+  <h5 ng-show="doneInitializing">{{spot.location.address}}, {{spot.location.city}}</h5>
+
+  <form class="form-horizontal">
     <div class="control-group">
       <label class="control-label">Type of Spot:</label>
       <div class="controls">
