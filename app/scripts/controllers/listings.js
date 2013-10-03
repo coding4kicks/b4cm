@@ -63,9 +63,9 @@ angular.module('b4cmApp')
         // Must retrieve all spots returned in search
         // TODO: Need to fix this if have a lot of spots (at least return after 10 good ones returned)
         // and save others for later
-        var typeSpots = 0,
-            totalSpots = 0,
+        var totalSpots = 0,   
             initialized = false;
+        $scope.typeSpots = 0
         for (var i = 0; i < idList.length; i++) {
           //if (i === idList.length) {break;} // Break if not a full set of results
           var spotId = idList[i];
@@ -79,7 +79,7 @@ angular.module('b4cmApp')
                 (spotObj.type[spotType] > 0 || spotType === 'all')) {
               var currentStatus = spot.getStatus(spotObj, currentTime),
                   score = 0;
-              typeSpots = typeSpots + 1;
+              $scope.typeSpots = $scope.typeSpots + 1;
               /* jshint camelcase: false */
               if (spotObj.review_count !== 0) {
                 score = spotObj.rating_count / spotObj.review_count;
@@ -98,7 +98,7 @@ angular.module('b4cmApp')
               }
             }
             // Initialize google maps parameters for listings page when all data is ready
-            if ((typeSpots === SPOTS_PER_PAGE ||
+            if (($scope.typeSpots === SPOTS_PER_PAGE ||
                 totalSpots === idList.length) &&
                 !initialized) {
               var zoom = 12,
