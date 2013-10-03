@@ -158,7 +158,7 @@ angular.module('b4cmApp')
        * @param {object} stop The stop time. Props: day (int), hour (int), meridiem (string)
        * @return {array} An array of watch time lables i.e {'day': 'monday', 'hour': '11pm'}
        */
-            calculateWatchTimes: function(start, stop, spot) {
+      calculateWatchTimes: function(start, stop, spot) {
         var times = [],
             day = spot.crowdfactor.day,
             current = {'day': start.day, 'hour': start.hour, 'meridiem': start.meridiem},
