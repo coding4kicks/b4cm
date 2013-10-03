@@ -98,8 +98,6 @@ angular.module('b4cmApp')
        * Should possibly be moved inside FirebaseGeo
        */
       remove: function (spotHash) {
-        console.log('removing hash');
-        console.log(spotHash);
         var spotRef = new Firebase(util.getFbUrl() + 'geo/' + spotHash);
         spotRef.remove();
         return false;
