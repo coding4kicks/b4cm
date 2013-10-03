@@ -140,7 +140,7 @@ angular.module('b4cmApp')
           case 'crowded':
             return 4;
             break;
-          case 'herd':
+          case 'packed':
             return 5;
             break;
         }

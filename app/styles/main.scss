@@ -25,7 +25,7 @@ $cf-empty: #6edcdc;
 $cf-few: #6ea5a5;
 $cf-average: #a5a5a5;
 $cf-crowded: #a56e6e;
-$cf-herd: #dc6e6e;
+$cf-packed: #dc6e6e;
 $cf-closed: #111111;
 
 // Text
@@ -288,12 +288,12 @@ input[type='text']:focus {
   background-color: $cf-crowded;
 }
 
-.herd {
-  color: $cf-herd;
+.packed {
+  color: $cf-packed;
 }
 
-.herd-square {
-  background-color: $cf-herd;
+.packed-square {
+  background-color: $cf-packed;
 
 }
 
@@ -306,7 +306,7 @@ input[type='text']:focus {
 }
 
 .empty-square, .few-square, .average-square,
-.crowded-square, .herd-square, .closed-square, .none-square {
+.crowded-square, .packed-square, .closed-square, .none-square {
   border: 1px solid black;
 }
 

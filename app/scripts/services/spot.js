@@ -325,7 +325,7 @@ angular.module('b4cmApp')
        * @name getStatus
        * @function
        *
-       * @description Gets the current status label: closed, empty, few, average, crowded, herd.
+       * @description Gets the current status label: closed, empty, few, average, crowded, packed.
        *              And determine if status is historical or withing the past hour.
        * @param {object} spot The spot to determine the status for.
        * @param {object} time The time object to use to determine the status.
