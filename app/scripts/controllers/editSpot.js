@@ -14,6 +14,8 @@ angular.module('b4cmApp')
     var editedSpot = {},
         oldData = {};
 
+    $scope.doneInitializing = false;
+
     /* jshint camelcase: false */
     // Retreive the spot to edit.
     spot.get($routeParams.spotId).then(function(spot_data) {
@@ -30,6 +32,7 @@ angular.module('b4cmApp')
       $scope.wifi = spot_data.wifi;
       $scope.image_url = spot_data.image_url;
       $scope.business_hours = spot_data.business_hours;
+      $scope.doneInitializing = true;
     });
     /* jshint camelcase: true */
 

@@ -1478,7 +1478,7 @@ input[type='text']:focus {
 #add-multiple-page,
 #add-spot-page,
 #edit-spot-page {
-  @include page-element(10px, 10px, left);
+  @include page-element(10px, 10px, left, top);
   min-height: 400px;
 
   h3 {
