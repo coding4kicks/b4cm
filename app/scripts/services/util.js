@@ -113,6 +113,7 @@ angular.module('b4cmApp')
         if(times.close_meridiem.label === 'am') {
           if(times.open_meridiem.label === 'pm') {return true;}
           else if(parseInt(times.open_hour.label) >= parseInt(times.close_hour.label)){return true;}
+          else if(parseInt(times.close_hour.label) === 12){return true;}
           else {return false;}
         }
         else {return false;}
