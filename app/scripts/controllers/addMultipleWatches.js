@@ -29,6 +29,7 @@ angular.module('b4cmApp')
         MON_THUR = ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
         FRI_SAT = ['Friday', 'Saturday'];
 
+    $scope.doneInitializing = false;
     $scope.spot = {}; // May need to clone since changing spot data and may not save.
     $scope.watchHours = [];
     $scope.WEEKDAYS = [{'label': 'Monday'}, {'label': 'Tuesday'}, {'label': 'Wednesday'}, 
@@ -57,6 +58,7 @@ angular.module('b4cmApp')
       // Calculate block structure for display of crowdfactor visualization.
       $scope.blocks = util.constructCrowdFactor($scope.spot.crowdfactor.blocks,
                                             $scope.spot.crowdfactor.day);
+      $scope.doneInitializing = true;
     });
     /* jshint camelcase: false */
     /**
