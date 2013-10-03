@@ -454,6 +454,7 @@ input[type='text']:focus {
 *** MAIN PAGE 
 *******************/
 #main-page {
+  min-height: 400px;
   text-align: center;
 
   .addthis_toolbox {
@@ -590,6 +591,7 @@ input[type='text']:focus {
 //       so listings page and home page are separate
 #listings-page,
 #home-page {
+  min-height: 400px;
 
   .title-bar {
     @include page-element(10px, 10px, left, top);
@@ -900,6 +902,7 @@ input[type='text']:focus {
 *** Home Page
 *******************/
 #home-page {
+  min-height: 400px;
 
   .favorites-title {
 
@@ -941,6 +944,7 @@ input[type='text']:focus {
 *** Spot Page
 *******************/
 #spot-page {
+  min-height: 400px;
 
   .title-bar {
     @include page-element(10px, 10px, left, top);
@@ -1285,6 +1289,7 @@ input[type='text']:focus {
 *******************/
 #sign-up, #sign-in {
   @include page-element;
+  min-height: 400px;
 
 
   .login-method {
@@ -1394,6 +1399,7 @@ input[type='text']:focus {
 // TODO: merge this with sign-up
 // since already overlap and so similar
 #sign-in {
+  min-height: 400px;
   
   .login-method {
     display: inline-block;
@@ -1446,6 +1452,7 @@ input[type='text']:focus {
 *******************/
 #welcome-page {
   @include page-element(10px, 10px, left);
+  min-height: 400px;
 
   .sign-in-notification {
     color: $comp2-dark;
@@ -1468,6 +1475,7 @@ input[type='text']:focus {
 #add-spot-page,
 #edit-spot-page {
   @include page-element(10px, 10px, left);
+  min-height: 400px;
 
   h3 {
     margin: 0;
