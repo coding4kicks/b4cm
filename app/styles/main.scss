@@ -316,6 +316,10 @@ input[type='text']:focus {
   color: red !important;
 }
 
+.container {
+  min-height: 400px;
+}
+
 // Responsive
 @media screen and (max-width: $break-small){
   .container {
@@ -1909,6 +1913,17 @@ input[type='text']:focus {
 /******************
 *** Spinner : http://cssload.net/
 *******************/
+.loading {
+  padding-top: 100px;
+}
+
+.page-element {
+  background-color: $page-color;
+  padding: 10px;
+  text-align: center;
+  border-radius: 0 0 10px 10px;
+}
+
 #floatingBarsG{
 position:relative;
 width:62px;

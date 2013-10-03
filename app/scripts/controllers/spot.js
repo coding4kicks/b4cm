@@ -9,7 +9,8 @@ angular.module('b4cmApp')
    * @description Retrieves and calculates display information for a requested spot (aka. business).
    */ 
   .controller('SpotCtrl', function ($scope, $location, $timeout, $routeParams, angularFire, spot, user, util) {
-    $scope.initializing = true;
+    $scope.doneInitializing = false;
+    $scope.initClass = 'page-element';
     $scope.startIndex = 1;
     $scope.noReviews = false;
     $scope.displayMore = true;
@@ -76,7 +77,8 @@ angular.module('b4cmApp')
       
       // Start updates of current time, marker, and crowdstatus.
       _updateStatus($scope, $timeout, spot, util);
-      $scope.initializing = false;
+      $scope.doneInitializing = true;
+      $scope.initClass = '';
      });
 
     /**
