@@ -338,7 +338,7 @@ angular.module('b4cmApp')
         /* jshint camelcase: false */
         var cfStatus = {},
             timeDelta = (time.getTime() - spot.crowdfactor.most_recent.time) / 60 / 1000,
-            CFLABELS = ['Empty', 'Few', 'Average', 'Crowded', 'Herd'];
+            CFLABELS = ['Empty', 'Few', 'Average', 'Crowded', 'Packed'];
       
         if (timeDelta < 60) {
       
