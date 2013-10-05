@@ -267,7 +267,15 @@ module.exports = function (grunt) {
         },
         expand: true,
         cwd: '<%= yeoman.dist %>',
-        src: ['styles/*'],
+        src: [
+          'styles/*',
+          'scripts/*',
+          'views/*',
+          'components/angular-google-maps.js',
+          'components/modal.js',
+          'components/FirebaseGeo.js',
+          'components/imageupload.js'
+        ],
         dest: '<%= yeoman.dist %>'
       }
     }
@@ -294,23 +302,23 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
-    //'clean:dist',
-    //'jshint',
-    //'test',
-    //'coffee',
-    //'compass:dist',
-    //'useminPrepare',
-    //'imagemin',
-    //'cssmin',
-    //'htmlmin',
-    //'concat',
-    //'copy',
-    //'cdnify',
-    //'ngmin',
-    //'uglify',
-    //'rev',
-    //'usemin',
-    'compress'
+    'clean:dist',
+    'jshint',
+    'test',
+    'coffee',
+    'compass:dist',
+    'useminPrepare',
+    'imagemin',
+    'cssmin',
+    'htmlmin',
+    'concat',
+    'copy',
+    'cdnify',
+    'ngmin',
+    'uglify',
+    'rev',
+    'usemin',
+    //'compress'
   ]);
 
   grunt.registerTask('default', ['build']);
