@@ -8,6 +8,8 @@ module.exports = function (grunt) {
   // load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
+  grunt.loadNpmTasks('grunt-contrib-compress');
+
   // configurable paths
   var yeomanConfig = {
     app: 'app',
@@ -257,6 +259,17 @@ module.exports = function (grunt) {
           ]
         }]
       }
+    },
+    compress: {
+      main: {
+        options: {
+          mode: 'gzip'
+        },
+        expand: true,
+        cwd: '<%= yeoman.dist %>',
+        src: ['styles/*'],
+        dest: '<%= yeoman.dist %>'
+      }
     }
   });
 
@@ -281,22 +294,23 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'clean:dist',
-    'jshint',
-    'test',
-    'coffee',
-    'compass:dist',
-    'useminPrepare',
-    'imagemin',
-    'cssmin',
-    'htmlmin',
-    'concat',
-    'copy',
-    'cdnify',
-    'ngmin',
-    'uglify',
-    'rev',
-    'usemin'
+    //'clean:dist',
+    //'jshint',
+    //'test',
+    //'coffee',
+    //'compass:dist',
+    //'useminPrepare',
+    //'imagemin',
+    //'cssmin',
+    //'htmlmin',
+    //'concat',
+    //'copy',
+    //'cdnify',
+    //'ngmin',
+    //'uglify',
+    //'rev',
+    //'usemin',
+    'compress'
   ]);
 
   grunt.registerTask('default', ['build']);
