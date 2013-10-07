@@ -66,6 +66,7 @@ angular.module('b4cmApp')
           user.addReview(review, $routeParams.spotId);
           // Redirect back to spot
           $location.path('/spot/' + $routeParams.spotId);
+          $location.replace();
           util.safeApply($scope);
         }
         else {alert('Must enter at least 1 type and a writeup.');}

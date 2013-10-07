@@ -55,6 +55,7 @@ angular.module('b4cmApp')
           if (redirectLocation) {
             console.log('redirecting');
             $location.path("/" + redirectLocation);
+            $location.replace();
             util.safeApply($rootScope);
             redirectLocation = null;
           }

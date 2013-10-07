@@ -77,6 +77,7 @@ angular.module('b4cmApp')
           /* jshint camelcase: true */
           alert('Crowd watch added.');
           $location.path('/spot/' + $scope.spotObj.id);
+          $location.replace();
           util.safeApply($scope);
         }
       }

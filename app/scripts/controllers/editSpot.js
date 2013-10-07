@@ -163,6 +163,7 @@ angular.module('b4cmApp')
           // Redirect to added spot
           alert('Spot Updated.');
           $location.path('/spot/' + editedSpot.id);
+          $location.replace();
           util.safeApply($scope);
         });
       }

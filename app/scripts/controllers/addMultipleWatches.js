@@ -32,9 +32,9 @@ angular.module('b4cmApp')
     $scope.doneInitializing = false;
     $scope.spot = {}; // May need to clone since changing spot data and may not save.
     $scope.watchHours = [];
-    $scope.WEEKDAYS = [{'label': 'Monday'}, {'label': 'Tuesday'}, {'label': 'Wednesday'}, 
-                       {'label': 'Thursday'}, {'label': 'Friday'}, {'label': 'Saturday'}, 
-                       {'label': 'Sunday'}, {'label': 'Weekdays'}, {'label': 'Weekends'},
+    $scope.WEEKDAYS = [{'label': 'Sunday'}, {'label': 'Monday'}, {'label': 'Tuesday'}, 
+                       {'label': 'Wednesday'}, {'label': 'Thursday'}, {'label': 'Friday'}, 
+                       {'label': 'Saturday'}, {'label': 'Weekdays'}, {'label': 'Weekends'}, 
                        {'label': 'Mon - Thur'}, {'label': 'Fri & Sat'}, {'label': 'All Week'}],
     $scope.HOURS = [{'label': '12'}, {'label': '1'}, {'label': '2'}, {'label': '3'},
                     {'label': '4'}, {'label': '5'}, {'label': '6'}, {'label': '7'},
@@ -216,6 +216,7 @@ angular.module('b4cmApp')
           spot.addMultipleWatches($scope.spot.crowdfactor, $scope.spot.id);
           alert('Crowd watches added.');
           $location.path('/spot/' + $scope.spot.id);
+          $location.replace();
           util.safeApply($scope);
         }
       }
