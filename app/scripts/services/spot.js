@@ -154,6 +154,12 @@ angular.module('b4cmApp')
         if (typeof newSpot.image_url === 'undefined') {newSpot.image_url = null};
         if (typeof newSpot.wifi === 'undefined') {newSpot.wifi = false};
         if (typeof newSpot.address2 === 'undefined') {newSpot.wifi = null};
+        if (typeof newSpot.opentable === 'undefined') {newSpot.opentable = null};
+        if (typeof newSpot.doordash === 'undefined') {newSpot.doordash = false};
+        if (typeof newSpot.orderahead === 'undefined') {newSpot.orderahead = false};
+        if (typeof newSpot.phone === 'undefined') {newSpot.phone = null};
+        if (typeof newSpot.email === 'undefined') {newSpot.email = null};
+        if (typeof newSpot.website === 'undefined') {newSpot.website = null};
         newSpot.review_count = 0;
         newSpot.rating_count = 0;
         newSpot.reviews = [];
