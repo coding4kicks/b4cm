@@ -243,6 +243,13 @@ angular.module('b4cmApp')
         if (typeof editedSpot.location.address2 === 'undefined') {
             editedSpot.location.address2 = null
         };
+        if (typeof editedspot.opentable === 'undefined') {editedSpot.opentable = null};
+        if (typeof editedspot.doordash === 'undefined') {editedSpot.doordash = false};
+        if (typeof editedspot.orderahead === 'undefined') {editedSpot.orderahead = false};
+        if (typeof editedspot.phone === 'undefined') {editedSpot.phone = null};
+        if (typeof editedspot.email === 'undefined') {editedSpot.email = null};
+        if (typeof editedspot.website === 'undefined') {editedSpot.website = null};
+
 
         // How to deal with watches that already exist: need update
         editedSpot.crowdfactor = _initCrowdSeer(editedSpot);
