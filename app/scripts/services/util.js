@@ -42,13 +42,13 @@ angular.module('b4cmApp')
         var dayNum = -1;
         /* jshint -W015 */
         switch(dayOfWeek.toLowerCase()) {
-        case 'sunday':    dayNum = 0; break;
-        case 'monday':    dayNum = 1; break;
-        case 'tuesday':   dayNum = 2; break;
-        case 'wednesday': dayNum = 3; break;
-        case 'thursday':  dayNum = 4; break;
-        case 'friday':    dayNum = 5; break;
-        case 'saturday':  dayNum = 6; break;
+        case 'sunday':    dayNum = 6; break;
+        case 'monday':    dayNum = 0; break;
+        case 'tuesday':   dayNum = 1; break;
+        case 'wednesday': dayNum = 2; break;
+        case 'thursday':  dayNum = 3; break;
+        case 'friday':    dayNum = 4; break;
+        case 'saturday':  dayNum = 5; break;
         }
         return dayNum;
       },
