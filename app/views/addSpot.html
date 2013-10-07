@@ -6,6 +6,7 @@
       <label class="control-label" for="spotName">Name</label>
       <div class="controls">
         <input class="{{validForm.name}}" type="text" id="spotName" ng-model="spotName" placeholder="Spot Name">
+        <span class="required">*</span>
       </div>
     </div>
     <div class="control-group">
@@ -25,6 +26,7 @@
       <label class="control-label" for="spotAddress">Address</label>
       <div class="controls">
         <input class="{{validForm.address}}" type="text" id="spotAddress" ng-model="address" placeholder="Address">
+        <span class="required">*</span>
       </div>
     </div>
     <div class="control-group">
@@ -37,18 +39,21 @@
       <label class="control-label" for="spotCity">City</label>
       <div class="controls">
         <input class="{{validForm.city}}" type="text" id="spotCity" ng-model="city" placeholder="City">
+        <span class="required">*</span>
       </div>
     </div>
     <div class="control-group">
       <label class="control-label" for="spotZip">Zip</label>
       <div class="controls">
         <input class="{{validForm.zip}}" type="text" id="spotZip" ng-model="postal_code" placeholder="Zip">
+        <span class="required">*</span>
       </div>
     </div>
     <div class="control-group">
       <label class="control-label" for="spotState">State</label>
       <div class="controls">
         <input class="{{validForm.state}}" type="text" id="spotState" ng-model="state_code" placeholder="State">
+        <span class="required">*</span>
       </div>
     </div>
 
@@ -81,6 +86,7 @@
         <label class="checkbox inline">
           <input type="checkbox" id="revTypeSocial" ng-model="social" value="social"><span class="{{validForm.type}}">Social</span>
         </label>
+        <span class="required">*</span>
       </div>
     </div>
 
@@ -93,6 +99,7 @@
         <span class="to-label">To</span> 
         <select class="hour-select" ng-model="closeHour" ng-options="hour.label for hour in HOURS"></select>
         <select class="meridiem-select" ng-model="closeMeridiem" ng-options="meridiem.label for meridiem in MERIDIEMS"></select>
+        <span class="required">*</span>
         <a class="clickable" ng-click="addHours()">Add Hours</a>
       </div>
     </div>
@@ -112,4 +119,6 @@
       </div>
     </div>
   </form>
+  <br>
+  <p><span class="required">*</span> Required</p>
 </div>
