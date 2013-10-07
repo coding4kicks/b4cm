@@ -442,7 +442,6 @@ function _initCrowdSeer(newSpot) {
   });
 
   // Add open hours
-  console.log(newSpot.business_hours);
   newSpot.business_hours.forEach(function(time) {
     var current = {'hour': time.open_hour.hour, 'meridiem': time.open_meridiem.label, 
                    'day': _dayToNum(time.open_day.label)},
