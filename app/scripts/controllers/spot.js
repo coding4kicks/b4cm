@@ -8,7 +8,7 @@ angular.module('b4cmApp')
    *
    * @description Retrieves and calculates display information for a requested spot (aka. business).
    */ 
-  .controller('SpotCtrl', function ($scope, $location, $timeout, $routeParams, angularFire, spot, user, util) {
+  .controller('SpotCtrl', function ($scope, $location, $timeout, $routeParams, spot, user, util) {
     $scope.doneInitializing = false;
     $scope.initClass = 'page-element';
     $scope.startIndex = 1;

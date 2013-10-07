@@ -2,7 +2,7 @@
 
 /* global google, $log */
 
-angular.module('b4cmApp', ['firebase', 'google-maps', 'imageupload', 'ui.bootstrap.modal'])
+angular.module('b4cmApp', ['google-maps', 'imageupload', 'ui.bootstrap.modal'])
 
   .config(function ($routeProvider) {
 
