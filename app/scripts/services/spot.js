@@ -243,12 +243,12 @@ angular.module('b4cmApp')
         if (typeof editedSpot.location.address2 === 'undefined') {
             editedSpot.location.address2 = null
         };
-        if (typeof editedspot.opentable_id === 'undefined') {editedSpot.opentable_id = null};
-        if (typeof editedspot.doordash === 'undefined') {editedSpot.doordash = false};
-        if (typeof editedspot.orderahead === 'undefined') {editedSpot.orderahead = false};
-        if (typeof editedspot.phone === 'undefined') {editedSpot.phone = null};
-        if (typeof editedspot.email === 'undefined') {editedSpot.email = null};
-        if (typeof editedspot.website === 'undefined') {editedSpot.website = null};
+        if (typeof editedSpot.opentable_id === 'undefined') {editedSpot.opentable_id = null};
+        if (typeof editedSpot.doordash === 'undefined') {editedSpot.doordash = false};
+        if (typeof editedSpot.orderahead === 'undefined') {editedSpot.orderahead = false};
+        if (typeof editedSpot.phone === 'undefined') {editedSpot.phone = null};
+        if (typeof editedSpot.email === 'undefined') {editedSpot.email = null};
+        if (typeof editedSpot.website === 'undefined') {editedSpot.website = null};
 
 
         // How to deal with watches that already exist: need update
