@@ -154,7 +154,7 @@ angular.module('b4cmApp')
         if (typeof newSpot.image_url === 'undefined') {newSpot.image_url = null};
         if (typeof newSpot.wifi === 'undefined') {newSpot.wifi = false};
         if (typeof newSpot.address2 === 'undefined') {newSpot.wifi = null};
-        if (typeof newSpot.opentable === 'undefined') {newSpot.opentable = null};
+        if (typeof newSpot.opentable_id === 'undefined') {newSpot.opentable_id = null};
         if (typeof newSpot.doordash === 'undefined') {newSpot.doordash = false};
         if (typeof newSpot.orderahead === 'undefined') {newSpot.orderahead = false};
         if (typeof newSpot.phone === 'undefined') {newSpot.phone = null};
@@ -243,7 +243,7 @@ angular.module('b4cmApp')
         if (typeof editedSpot.location.address2 === 'undefined') {
             editedSpot.location.address2 = null
         };
-        if (typeof editedspot.opentable === 'undefined') {editedSpot.opentable = null};
+        if (typeof editedspot.opentable_id === 'undefined') {editedSpot.opentable_id = null};
         if (typeof editedspot.doordash === 'undefined') {editedSpot.doordash = false};
         if (typeof editedspot.orderahead === 'undefined') {editedSpot.orderahead = false};
         if (typeof editedspot.phone === 'undefined') {editedSpot.phone = null};
