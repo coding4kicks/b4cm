@@ -107,6 +107,12 @@ angular.module('b4cmApp')
         newSpot.date_added = new Date().getTime();
         newSpot.name = $scope.spotName;
         newSpot.yelp_id = $scope.yelp_id;
+        newSpot.opentable_id = $scope.opentable_id;
+        newSpot.doordash =  $scope.doordash;
+        newSpot.orderahead = $scope.orderahead;
+        newSpot.phone = $scope.phone;
+        newSpot.email = $scope.email;
+        newSpot.website = $scope.website;
         newSpot.location = {};
         newSpot.location.address = $scope.address;
         newSpot.location.address2 = $scope.address2;

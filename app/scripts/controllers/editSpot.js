@@ -23,7 +23,6 @@ angular.module('b4cmApp')
       oldData.crowdfactor = util.clone(spot_data.crowdfactor);
       oldData.location = util.clone(spot_data.location);
       $scope.spotName = spot_data.name;
-      $scope.yelp_id = spot_data.yelp_id;
       $scope.address = spot_data.location.address;
       $scope.address2 = spot_data.location.address2;
       $scope.city = spot_data.location.city;
@@ -32,6 +31,13 @@ angular.module('b4cmApp')
       $scope.wifi = spot_data.wifi;
       $scope.image_url = spot_data.image_url;
       $scope.business_hours = spot_data.business_hours;
+      $scope.yelp_id = spot_data.yelp_id;
+      $scope.opentable_id = spot_data.opentable_id;
+      $scope.doordash = spot_data.doordash;
+      $scope.orderahead = spot_data.orderahead;
+      $scope.phone = spot_data.phone;
+      $scope.email = spot_data.email;
+      $scope.website = spot_data.website;
       $scope.doneInitializing = true;
     });
     /* jshint camelcase: true */
@@ -125,6 +131,13 @@ angular.module('b4cmApp')
 
         editedSpot.name = $scope.spotName;
         editedSpot.yelp_id = $scope.yelp_id;
+        editedSpot.opentable_id = $scope.opentable_id;
+        editedSpot.doordash = $scope.doordash;
+        editedSpot.orderahead = $scope.orderahead;
+        editedSpot.phone = $scope.phone;
+        editedSpot.email = $scope.email;
+        editedSpot.website = $scope.website; 
+
         editedSpot.location.address = $scope.address;
         editedSpot.location.address2 = $scope.address2;
         editedSpot.location.city = $scope.city;
