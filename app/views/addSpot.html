@@ -9,17 +9,21 @@
         <span class="required">*</span>
       </div>
     </div>
-    <div class="control-group">
-      <label class="control-label" for="inputYelpId">Yelp ID</label>
-      <div class="controls">
-        <input type="text" id="inputYelpId" ng-model="yelp_id" placeholder="Yelp ID">
-        <a class="clickable yelp-id-help" ng-click="yelpIdHelp()">How to find a Yelp ID?</a>
-      </div>
-    </div>
 
-    <div class="yelp-id-info" ng-show="yelpHelpShow">
-      <p>If you go to a business's Yelp page, the id is the part of the url with the business name and location.</p>
-      <p>So if you search for Philz coffee in Palo Alto and go to the first listing, the URL is:<br><span class="url">http://www.yelp.com/biz/philz-coffee-palo-alto-2</span> <br>and the Yelp business ID is:<br><span class="url">philz-coffee-palo-alto-2</span>.  <p>There may be a query term after the ID such as <span class="query">#query:coffe</span> if you had found the listing after search for coffee in Palo Alto.  Ignore this hash '<span class="query">#</span>' and anything after it.</p>
+    <div class="control-group">
+      <label class="control-label">Type of Spot</label>
+      <div class="controls">
+        <label class="checkbox inline">
+          <input type="checkbox" id="revTypeFood" ng-model="food" value="food"><span class="{{validForm.type}}">Food</span>
+        </label>
+        <label class="checkbox inline">
+          <input type="checkbox" id="revTypeStudy" ng-model="study" value="study"><span class="{{validForm.type}}">Study</span>
+        </label>
+        <label class="checkbox inline">
+          <input type="checkbox" id="revTypeSocial" ng-model="social" value="social"><span class="{{validForm.type}}">Social</span>
+        </label>
+        <span class="required">*</span>
+      </div>
     </div>
 
     <div class="control-group">
@@ -58,39 +62,6 @@
     </div>
 
     <div class="control-group">
-      <label class="control-label">Wifi</label>
-      <div class="controls">
-        <label class="checkbox inline">
-          <input type="checkbox" id="revTypeFood" ng-model="wifi" value="food">
-        </label>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <label class="control-label" for="imageLoader">Upload Picture</label><br/>
-      <div class="controls image-load-control">
-        <input type="file" id="imageLoader" accept="image/*" image="image2" resize-max-height="100" resize-max-width="100" resize-quality="0.7" />
-        <img ng-show="image2" ng-src="{{image2.resized.dataURL}}"/>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <label class="control-label">Type of Spot</label>
-      <div class="controls">
-        <label class="checkbox inline">
-          <input type="checkbox" id="revTypeFood" ng-model="food" value="food"><span class="{{validForm.type}}">Food</span>
-        </label>
-        <label class="checkbox inline">
-          <input type="checkbox" id="revTypeStudy" ng-model="study" value="study"><span class="{{validForm.type}}">Study</span>
-        </label>
-        <label class="checkbox inline">
-          <input type="checkbox" id="revTypeSocial" ng-model="social" value="social"><span class="{{validForm.type}}">Social</span>
-        </label>
-        <span class="required">*</span>
-      </div>
-    </div>
-
-    <div class="control-group">
       <label class="control-label" for="inputHours">Hours: </label>
       <div class="controls class="{{validForm.hours}}"">
         <select class="day-select" ng-model="openDay" ng-options="day.label for day in WEEKDAYS"></select>
@@ -111,6 +82,36 @@
         {{time.close_hour.label}} {{time.close_meridiem.label}}
       </h5>
       <a class="clickable" ng-click="deleteHours($index)">delete</a>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label">Wifi</label>
+      <div class="controls">
+        <label class="checkbox inline">
+          <input type="checkbox" id="revTypeFood" ng-model="wifi" value="food">
+        </label>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="imageLoader">Upload Picture</label><br/>
+      <div class="controls image-load-control">
+        <input type="file" id="imageLoader" accept="image/*" image="image2" resize-max-height="100" resize-max-width="100" resize-quality="0.7" />
+        <img ng-show="image2" ng-src="{{image2.resized.dataURL}}"/>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="inputYelpId">Yelp ID</label>
+      <div class="controls">
+        <input type="text" id="inputYelpId" ng-model="yelp_id" placeholder="Yelp ID">
+        <a class="clickable yelp-id-help" ng-click="yelpIdHelp()">How to find a Yelp ID?</a>
+      </div>
+    </div>
+
+    <div class="yelp-id-info" ng-show="yelpHelpShow">
+      <p>If you go to a business's Yelp page, the id is the part of the url with the business name and location.</p>
+      <p>So if you search for Philz coffee in Palo Alto and go to the first listing, the URL is:<br><span class="url">http://www.yelp.com/biz/philz-coffee-palo-alto-2</span> <br>and the Yelp business ID is:<br><span class="url">philz-coffee-palo-alto-2</span>.  <p>There may be a query term after the ID such as <span class="query">#query:coffe</span> if you had found the listing after search for coffee in Palo Alto.  Ignore this hash '<span class="query">#</span>' and anything after it.</p>
     </div>
 
     <div class="control-group">
