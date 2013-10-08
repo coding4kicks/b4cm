@@ -73,8 +73,21 @@ angular.module('b4cmApp')
         $scope.externalServices.push(serviceInfo);
       }
       if($scope.spot.opentable_id){
+        // TODO: handle time and date
+        var serviceInfo = {};
+        serviceInfo.name = 'OpenTable';
+        serviceInfo.logo = '../images/opentable-logo.jpeg';
+        serviceInfo.link = 'http://www.opentable.com/opentables.aspx?t=rest&r=' +
+                            $scope.spot.opentable_id + 
+                            '&m=4&p=2&d=10/11/2013%207:00:00%20PM&scpref=10'
+        $scope.externalServices.push(serviceInfo);
       }
       if($scope.spot.doordash){
+        var serviceInfo = {};
+        serviceInfo.name = 'DoorDash';
+        serviceInfo.logo = '../images/doordash-logo.jpeg';
+        serviceInfo.link = 'https://www.doordash.com/palo_alto'
+        $scope.externalServices.push(serviceInfo);
 
       }
       if($scope.spot.orderahead){
