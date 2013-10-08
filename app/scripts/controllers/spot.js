@@ -14,6 +14,7 @@ angular.module('b4cmApp')
     $scope.startIndex = 1;
     $scope.noReviews = false;
     $scope.displayMore = true;
+    $scope.externalServices = [];
     // Google map defaults
     $scope.isMapElementHidden = true;
     $scope.centerProperty = {
@@ -32,7 +33,7 @@ angular.module('b4cmApp')
     spot.get($routeParams.spotId).then(function(spot_data) {
       $scope.spot = spot_data;
       $scope.watch_count = $scope.spot.crowdfactor.watch_count;
-      $scope.spot.yelpLink = "http://www.yelp.com/biz/" + $scope.spot.yelp_id;
+      //$scope.spot.yelpLink = "http://www.yelp.com/biz/" + $scope.spot.yelp_id;
 
       // Calculate stars overall, stars for each review,
       // and the total number of reviews being displayed and reviews returned.
@@ -63,6 +64,24 @@ angular.module('b4cmApp')
                                   $scope.spot.type.study,
                                   $scope.spot.type.social);
 
+      // Determine external services
+      var serviceInfo = {};
+      if($scope.spot.yelp_id){
+        console.log('here buddy');
+        serviceInfo.name = 'Yelp';
+        serviceInfo.logo = '../images/yelp-logo.jpg';
+        serviceInfo.link = 'http://www.yelp.com/biz/' + $scope.spot.yelp_id;
+        $scope.externalServices.push(serviceInfo);
+      }
+      if($scope.spot.opentable_id){
+      }
+      if($scope.spot.doordash){
+
+      }
+      if($scope.spot.orderahead){
+      }
+      console.log($scope.externalServices);
+        
       // Calculate block structure for display of crowdfactor visualization.
       $scope.blocks = util.constructCrowdFactor($scope.spot.crowdfactor.blocks,
                                                 $scope.spot.crowdfactor.day);

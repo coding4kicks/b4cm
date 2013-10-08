@@ -1002,13 +1002,13 @@ input[type='text']:focus {
         margin-bottom: 0;
       }
 
-      h5 {
+      .current-status-time {
         margin: -10px 0 0 20px;
       }
     }
 
     .current-status {
-      height: 173px;
+      height: 160px;
     }
      
     .current-status-header{
@@ -1038,6 +1038,24 @@ input[type='text']:focus {
       color: $comp1-dark;
       font-weight: bold;
       //margin-left: 18px;
+    }
+
+    .service {
+      display: inline-block;
+      text-align: center;
+    }
+
+    .service-image {
+
+    }
+
+    .service-link {
+
+    }
+
+    .service-name {
+      margin: 0 0 0 0;
+      color: $comp1-dark;
     }
 
     .yelp-link {
