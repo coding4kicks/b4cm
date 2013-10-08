@@ -65,9 +65,8 @@ angular.module('b4cmApp')
                                   $scope.spot.type.social);
 
       // Determine external services
-      var serviceInfo = {};
       if($scope.spot.yelp_id){
-        console.log('here buddy');
+        var serviceInfo = {};
         serviceInfo.name = 'Yelp';
         serviceInfo.logo = '../images/yelp-logo.jpg';
         serviceInfo.link = 'http://www.yelp.com/biz/' + $scope.spot.yelp_id;
@@ -79,6 +78,14 @@ angular.module('b4cmApp')
 
       }
       if($scope.spot.orderahead){
+        var serviceInfo = {};
+        serviceInfo.name = 'OrderAhead';
+        serviceInfo.logo = '../images/orderahead-logo.jpeg';
+        serviceInfo.link = 'https://www.orderaheadapp.com/search?q=' + 
+                           encodeURIComponent($scope.spot.name) + 
+                           "&loc=" + 
+                           encodeURIComponent($scope.spot.location.city);
+        $scope.externalServices.push(serviceInfo);
       }
       console.log($scope.externalServices);
         
