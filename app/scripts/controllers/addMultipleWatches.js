@@ -163,8 +163,8 @@ angular.module('b4cmApp')
       if (watch.start.day === 'Weekdays' ||
           watch.start.day === 'Weekends' ||
           watch.start.day === 'Mon - Thur'  ||
-           watch.start.day === 'Fri & Sat'  ||
-            watch.start.day === 'All Week') {
+          watch.start.day === 'Fri & Sat'  ||
+          watch.start.day === 'All Week') {
         if (watch.start.day === 'Weekdays') {dayList = WEEKDAY_LIST;}
         else if ($scope.startDay.label === 'Weekends') {dayList = WEEKEND_LIST;}
         else if ($scope.startDay.label === 'Mon - Thur') {dayList = MON_THUR;}
