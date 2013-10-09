@@ -98,6 +98,7 @@ angular.module('b4cmApp')
       console.log('here');
       if (user.loggedIn()){
         $location.path('/addMultipleWatches/' + $scope.spotObj.id);
+        $location.replace();
         util.safeApply($scope);
       }
       else {
