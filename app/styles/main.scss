@@ -87,6 +87,18 @@ $break-small: 500px;
   white-space: nowrap;
 }
 
+@mixin image-load-control {
+  .image-load-control {
+    margin-top: -10px;
+  
+    img {
+      border: 1px solid $acc-dark;
+      float: right;
+      margin: -40px 450px -50px 0;
+    }
+  }
+}
+
 /******************
 *** Global 
 *******************/
@@ -1497,6 +1509,7 @@ input[type='text']:focus {
 #add-spot-page,
 #edit-spot-page {
   @include page-element(10px, 10px, left, top);
+  @include image-load-control;
   min-height: 400px;
 
   h3 {
@@ -1504,7 +1517,7 @@ input[type='text']:focus {
   }
 
   .controls {
-    margin: 0 0 0 20px;
+    margin-left: 20px;
   }
 
   .control-label {
@@ -1642,15 +1655,15 @@ input[type='text']:focus {
     width: 60px;
   }
 
-  .image-load-control {
-    margin-top: -10px;
-
-    img {
-      border: 1px solid $acc-dark;
-      float: right;
-      margin: -40px 450px -50px 0;
-    }
-  }
+//  .image-load-control {
+//    margin-top: -10px;
+//
+//    img {
+//      border: 1px solid $acc-dark;
+//      float: right;
+//      margin: -40px 450px -50px 0;
+//    }
+//  }
 
   .business-hours {
     margin-left: 100px;
