@@ -94,10 +94,14 @@ angular.module('b4cmApp')
           dayRef.child(time.day).child(time.hour).child('score').set(time.score + score);
           // Set most recent if close to current time
           if(Math.abs(currentHour - lastWatchHour) < 2) {
-            crowdFactorRef.child('most_recent').child('score').set(score);
-            crowdFactorRef.child('most_recent').child('time').set((new Date()).getTime());
-            crowdFactorRef.child('most_recent').child('comment').set(newWatch.comment);
-            crowdFactorRef.child('most_recent').child('user').set(newWatch.user);
+            var mostRecent = {'score': score, 'time': (new Date()).getTime(),
+                              'comment': newWatch.comment, 'user': newWatch.user,
+                              'image_url': newWatch.image_url};
+            crowdFactorRef.child('most_recent').set(mostRecent);
+            //crowdFactorRef.child('most_recent').child('score').set(score);
+            //crowdFactorRef.child('most_recent').child('time').set((new Date()).getTime());
+            //crowdFactorRef.child('most_recent').child('comment').set(newWatch.comment);
+            //crowdFactorRef.child('most_recent').child('user').set(newWatch.user);
           }
 
         });
@@ -359,6 +363,7 @@ angular.module('b4cmApp')
           cfStatus.label = CFLABELS[spot.crowdfactor.most_recent.score - 1];
           cfStatus.comment = '"' + spot.crowdfactor.most_recent.comment + '"';
           cfStatus.user = spot.crowdfactor.most_recent.user;
+          cfStatus.image_url = spot.crowdfactor.most_recent.image_url;
           /* jshint camelcase: true */
         }
         else {
