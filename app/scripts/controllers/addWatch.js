@@ -68,6 +68,10 @@ angular.module('b4cmApp')
         watch.time = util.calculateWatchTimes(start, stop, $scope.spotObj);
         watch.comment = $scope.watchComment;
         watch.user = user.getInfo().display_name;
+        if (typeof $scope.image2 === 'undefined') {
+          $scope.image2 = {'resized': {'dateURL': null}};
+        }
+        watch.image_url = $scope.image2.resized.dataURL;
 
         if (typeof watch.cf_status === 'undefined') {alert('Please choose a crowd status.');}
         else if (watch.time.length > 24) {alert('Watches must be for less than a 24 hour period.');}
