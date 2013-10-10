@@ -61,6 +61,14 @@
     </div>
 
     <div class="control-group">
+      <label class="control-label" for="imageLoader2">Upload Picture</label><br/>
+      <div class="controls image-load-control">
+        <input type="file" id="imageLoader2" accept="image/*" image="image2" resize-max-height="100" resize-max-width="100" resize-quality="0.7" />
+        <img ng-show="image2" ng-src="{{image2.resized.dataURL}}"/>
+      </div>
+    </div>
+
+    <div class="control-group">
       <div class="controls">
         <button type="submit" class="btn" ng-click="addWatch()">Add Crowd Watch</button>
       </div>
