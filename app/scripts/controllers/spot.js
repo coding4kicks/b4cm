@@ -293,6 +293,7 @@ var _updateStatus = function ($scope, $timeout, spot, util) {
   $scope.current_cflabel = current_status.label || 'No Data';
   $scope.current_comment = current_status.comment;
   $scope.current_user = current_status.user;
+  $scope.current_image_url = current_status.image_url;
   _updateMarker($scope);
   $timeout(function(){_updateStatus($scope, $timeout, spot, util);}, 60000);
 }
