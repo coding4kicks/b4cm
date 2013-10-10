@@ -50,7 +50,10 @@
           <div class="current-status-info">
             <h2 class="status {{current_cflabel | lowercase}}">{{current_cflabel}}</h2>
           </div>
-          <p class="watch-comment" ng-show="current_user"><span class="watch-comment-user">{{current_user}}</span> says: {{current_comment}}</p>
+          <div class="watch-status">
+            <img class="watch-image" ng-src="{{current_image_url}}">
+            <p class="watch-comment" ng-show="current_user"><span class="watch-comment-user">{{current_user}}</span><br>{{current_comment}}</p>
+          </div>
         </div>
         <!--<div class="yelp-link">
           <a ng-href="{{spot.yelpLink}}"><h4>Yelp Reviews</h4></a>

@@ -1037,7 +1037,8 @@ input[type='text']:focus {
       color: $acc-dark;
     }
 
-    .status {
+    .watch-status {
+      width: 360px;
     }
 
     .watch-comment {
@@ -1050,6 +1051,13 @@ input[type='text']:focus {
       color: $comp1-dark;
       font-weight: bold;
       //margin-left: 18px;
+    }
+
+    .watch-image {
+      float: left;
+      height: 50px;
+      margin: 0 10px 10px 0;
+      width: 50px;
     }
 
     .service {
