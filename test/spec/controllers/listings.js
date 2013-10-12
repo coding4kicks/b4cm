@@ -65,7 +65,48 @@ describe('Controller: ListingsCtrl', function () {
     expect(_spot.getStatus).toHaveBeenCalled();
   });
 
-  it('expect nothing', function () {
+  it('spots are added to spot list', function () {
+    deferred2.resolve(_fakeListing());
+    deferred.resolve(_fakeSpot());
+    expect(scope.spots.length).toBe(0);
+    scope.$apply();
+    expect(scope.spots.length).toBe(1);
+  });
+
+  it('spots are added to spot list up to 10', function () {
+    var bigListing = _fakeListing();
+    bigListing.idList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+    deferred2.resolve(bigListing);
+    deferred.resolve(_fakeSpot());
+    expect(scope.spots.length).toBe(0);
+    scope.$apply();
+    expect(scope.spots.length).toBe(10);
+  });
+
+  it('more option is not diplayed when less than 10 spots', function () {
+    deferred2.resolve(_fakeListing());
+    deferred.resolve(_fakeSpot());
+    scope.$apply();
+    expect(scope.displayMore).toBe(undefined);
+  });
+
+  it('more option is diplayed when over 10 spots', function () {
+    var bigListing = _fakeListing();
+    bigListing.idList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+    deferred2.resolve(bigListing);
+    deferred.resolve(_fakeSpot());
+    scope.$apply();
+    expect(scope.displayMore).toBe(true);
+  });
+
+  it('spots are not added to any list if wrong type.', function () {
+    var _fakeSpotWrongType = _fakeSpot();
+    _fakeSpotWrongType.type.undefined = 0;
+    deferred2.resolve(_fakeListing());
+    deferred.resolve(_fakeSpotWrongType);
+    expect(scope.spots.length).toBe(0);
+    scope.$apply();
+    expect(scope.spots.length).toBe(0);
   });
 
   function _fakeListing() {
