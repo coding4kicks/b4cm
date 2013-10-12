@@ -136,7 +136,7 @@ angular.module('b4cmApp')
         editedSpot.orderahead = $scope.orderahead;
         editedSpot.phone = $scope.phone;
         editedSpot.email = $scope.email;
-        editedSpot.website = $scope.website; 
+        editedSpot.website = $scope.website;
 
         editedSpot.location.address = $scope.address;
         editedSpot.location.address2 = $scope.address2;
@@ -155,8 +155,8 @@ angular.module('b4cmApp')
         }
         //editedSpot.type = {'food': 0, 'study': 0, 'social': 0}
         if(typeof editedSpot.type === 'undefined'){
-          editedSpot.type = {'food': 0, 'study': 0, 'social':0}
-        };
+          editedSpot.type = {'food': 0, 'study': 0, 'social':0};
+        }
         if ($scope.food) {editedSpot.type.food = editedSpot.type.food + 1;}
         if ($scope.study) {editedSpot.type.study = editedSpot.type.study + 1;}
         if ($scope.social) {editedSpot.type.social = editedSpot.type.social + 1;}

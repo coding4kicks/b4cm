@@ -10,8 +10,7 @@ angular.module('b4cmApp')
    */
   .controller('HomeCtrl', function ($scope, $log, $location, $routeParams, $rootScope, $timeout, $window, listings, spot, user, util) {
 
-    var spotList = [],
-        moreList = [],
+    var moreList = [],
         prevList = [],
         SPOTS_PER_PAGE = 10,
         HOUR = 60 * 60 * 1000,

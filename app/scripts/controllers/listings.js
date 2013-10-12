@@ -1,5 +1,7 @@
 'use strict';
 
+/* global alert */
+
 angular.module('b4cmApp')
 
   /**
@@ -65,9 +67,9 @@ angular.module('b4cmApp')
         // Must retrieve all spots returned in search
         // TODO: Need to fix this if have a lot of spots (at least return after 10 good ones returned)
         // and save others for later
-        var totalSpots = 0,   
+        var totalSpots = 0,
             initialized = false;
-        $scope.typeSpots = 0
+        $scope.typeSpots = 0;
         for (var i = 0; i < idList.length; i++) {
           //if (i === idList.length) {break;} // Break if not a full set of results
           var spotId = idList[i];
@@ -77,7 +79,7 @@ angular.module('b4cmApp')
             // Basic filtering: filter if no recommendations of this type.
             // Later should filter based on a percentage
             // Also, total is all returned spots for the area, not of this type.
-            if (spotObj !== null && 
+            if (spotObj !== null &&
                 (spotObj.type[spotType] > 0 || spotType === 'all')) {
               var currentStatus = spot.getStatus(spotObj, currentTime),
                   score = 0;
