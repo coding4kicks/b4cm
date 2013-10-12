@@ -10,7 +10,7 @@ angular.module('b4cmApp')
    *
    * @description Adds a Crowd Watch report to a Spot's crowdfactor.
    */
-  .controller('AddWatchCtrl', function ($scope, $routeParams, $location, spot, user, util) {
+  .controller('AddWatchCtrl', function ($scope, $routeParams, $location, $window, spot, user, util) {
 
     var watch = {},
         currentDate = new Date(),
@@ -76,13 +76,25 @@ angular.module('b4cmApp')
         if (typeof watch.cf_status === 'undefined') {alert('Please choose a crowd status.');}
         else if (watch.time.length > 24) {alert('Watches must be for less than a 24 hour period.');}
         else {
-          spot.addWatch(watch, $routeParams.spotId, $scope.spotObj.crowdfactor.watch_count);
-          user.incrementWatchCount();
+          //spot.addWatch(watch, $routeParams.spotId, $scope.spotObj.crowdfactor.watch_count);
+          //user.incrementWatchCount();
           /* jshint camelcase: true */
           alert('Crowd watch added.');
-          $location.path('/spot/' + $scope.spotObj.id);
-          $location.replace();
-          util.safeApply($scope);
+          var intent_url = 'https://twitter.com/intent/tweet?',
+              text = 'text=' + 'thisplaceisoffthehook',
+              hashtags = 'hashtags=' + 'philzcoffee,crowded',
+              url = 'url=' + 'http%3A%2F%2Fwww.crowdabout.co%2Fspots%2F' + 'philzpaloalto',
+              via = 'via=aCrowdabout',
+              related = 'related=aCrowdabout,sfstation,sfweekly',
+              original_referer = 'original_referer=http://www.crowdabout.co/',
+              twitter_url = intent_url + text + '&' + hashtags + '&' + url + '&' + via +
+                            '&' + related + '&' + original_referer;
+          $window.open(twitter_url);
+          //$location.path(url);
+          //util.safeApply($scope);
+          //$location.path('/spot/' + $scope.spotObj.id);
+          //$location.replace();
+          //util.safeApply($scope);
         }
       }
       else {

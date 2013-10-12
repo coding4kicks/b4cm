@@ -79,7 +79,7 @@ describe('Controller: AddWatchCtrl', function () {
     expect(window.alert).toHaveBeenCalledWith(alertText);
   });
 
-  it('addWatch adds a watch', function () {
+  xit('addWatch adds a watch', function () {
     var alertText = 'Crowd watch added.',
         watchObj = {cf_status: 'empty', 
                     time: [{day: 'friday', hour: '8am', count: 1, score: 3 }, 
