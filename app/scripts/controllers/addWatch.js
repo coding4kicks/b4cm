@@ -78,7 +78,6 @@ angular.module('b4cmApp')
         else {
           spot.addWatch(watch, $routeParams.spotId, $scope.spotObj.crowdfactor.watch_count);
           user.incrementWatchCount();
-          /* jshint camelcase: true */
           // TODO: *** CHECK SECURITY OF COMMENT (no XSS)
           if($scope.tweet) {
             //alert('Crowd watch added.');
@@ -87,7 +86,7 @@ angular.module('b4cmApp')
                 twitterUrl = 'https://twitter.com/intent/tweet?',
                 text = 'text=',
                 tags = [ 'crowdstatus',
-                         watch.cf_status,                          
+                         watch.cf_status,
                          $scope.spotObj.name.split(/[\s'&]+/).join(''),
                          $scope.spotObj.location.city.split(' ').join('')],
                 tags2Add = [],
@@ -100,13 +99,13 @@ angular.module('b4cmApp')
               urlParameters.push(text += encodeURIComponent(watch.comment));
               totalString += watch.comment;
             }
-            if((totalString + url[4,url.length]).length < 140){
+            if((totalString + url.slice(4,url.length)).length < 140){
               urlParameters.push(url);
-              totalString += url[4, url.length];
+              totalString += url.slice(4, url.length);
             }
-            if((totalString + via[4,url.length]).length < 140){
+            if((totalString + via.slice(4,url.length)).length < 140){
               urlParameters.push(via);
-              totalString += via[4, url.length];
+              totalString += via.slice(4, url.length);
             }
             for(var i = 0; i < tags.length; i++){
               if((totalString + tags[i]).length < 140){
@@ -118,7 +117,7 @@ angular.module('b4cmApp')
               urlParameters.push(hashtags + tags2Add.join(','));
             }
             urlParameters.push(related);
-            urlParameters.push(original_referer);            
+            urlParameters.push(original_referer);
             twitterUrl += urlParameters.join('&');
             $window.open(twitterUrl);
           }
@@ -134,6 +133,7 @@ angular.module('b4cmApp')
         util.safeApply($scope);
       }
     };
+    /* jshint camelcase: true */
 
     /**
      * @name addMultiple
@@ -169,10 +169,10 @@ angular.module('b4cmApp')
       if (start.day === stop.day) {
         if ((start.meridiem === 'pm' && stop.meridiem === 'am') ||
             (start.meridiem === 'am' && stop.meridiem === 'am' && stop.hour <= start.hour)){
-          stop.day = (stop.day + 1) % 7
+          stop.day = (stop.day + 1) % 7;
         }
       }
       //return day
-    };
+    }
 
   });

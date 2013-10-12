@@ -32,9 +32,9 @@ angular.module('b4cmApp')
     $scope.doneInitializing = false;
     $scope.spot = {}; // May need to clone since changing spot data and may not save.
     $scope.watchHours = [];
-    $scope.WEEKDAYS = [{'label': 'Sunday'}, {'label': 'Monday'}, {'label': 'Tuesday'}, 
-                       {'label': 'Wednesday'}, {'label': 'Thursday'}, {'label': 'Friday'}, 
-                       {'label': 'Saturday'}, {'label': 'Weekdays'}, {'label': 'Weekends'}, 
+    $scope.WEEKDAYS = [{'label': 'Sunday'}, {'label': 'Monday'}, {'label': 'Tuesday'},
+                       {'label': 'Wednesday'}, {'label': 'Thursday'}, {'label': 'Friday'},
+                       {'label': 'Saturday'}, {'label': 'Weekdays'}, {'label': 'Weekends'},
                        {'label': 'Mon - Thur'}, {'label': 'Fri & Sat'}, {'label': 'All Week'}],
     $scope.HOURS = [{'label': '12'}, {'label': '1'}, {'label': '2'}, {'label': '3'},
                     {'label': '4'}, {'label': '5'}, {'label': '6'}, {'label': '7'},
@@ -181,7 +181,7 @@ angular.module('b4cmApp')
             $scope.spot.crowdfactor.day[time.day][time.hour].score = time.score - score;
           });
         });
-        $scope.watchHours.splice(index, 1);      
+        $scope.watchHours.splice(index, 1);
       }
       else {
         watch.start.day = util.dayToNum(watch.start.day);
@@ -242,11 +242,11 @@ angular.module('b4cmApp')
       if (start.day === stop.day) {
         if ((start.meridiem === 'pm' && stop.meridiem === 'am') ||
             (start.meridiem === 'am' && stop.meridiem === 'am' && stop.hour <= start.hour)){
-          stop.day = (stop.day + 1) % 7
+          stop.day = (stop.day + 1) % 7;
         }
       }
       //return day
-    };
+    }
 
   });
 /* jshint camelcase: true */
