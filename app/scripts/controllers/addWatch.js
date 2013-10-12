@@ -79,35 +79,54 @@ angular.module('b4cmApp')
           //spot.addWatch(watch, $routeParams.spotId, $scope.spotObj.crowdfactor.watch_count);
           //user.incrementWatchCount();
           /* jshint camelcase: true */
-          // TODO: add twitter select in html, only redirect if selected,
-          // add text if it exists (cut to 140 & encode), add url (if < 140), 
-          // add via (if < 140), 
-          // add hastags [spot, status, city] (if < 140 & encodespecial-nospaces),
-          //  add related, add original_referer
+          // TODO:
+          //  
           //  *** CHECK SECURITY OF COMMENT (no XSS)
           if($scope.tweet) {
             //alert('Crowd watch added.');
             var urlParameters = [],
+                totalString = '',
                 twitterUrl = 'https://twitter.com/intent/tweet?',
-                text = 'text=' + encodeURIComponent(watch.comment),
-                hashtags = 'hashtags=' + 'philzcoffee,crowded',
+                text = 'text=',
+                tags = [ 'crowdstatus',
+                         watch.cf_status,                          
+                         $scope.spotObj.name.split(/[\s'&]+/).join(''),
+                         $scope.spotObj.location.city.split(' ').join('')],
+                tags2Add = [],
+                hashtags = 'hashtags=',
                 url = 'url=' + 'http%3A%2F%2Fwww.crowdabout.co%2Fspots%2F' + $scope.spotObj.id,
                 via = 'via=aCrowdabout',
                 related = 'related=aCrowdabout,sfstation,sfweekly',
                 original_referer = 'original_referer=http://www.crowdabout.co/';
                 //twitter_url = intent_url + text + '&' + hashtags + '&' + url + '&' + via +
                 //              '&' + related + '&' + original_referer;
+            console.log(tags);
             if(typeof watch.comment !== 'undefined') {
               urlParameters.push(text += encodeURIComponent(watch.comment));
+              totalString += watch.comment;
             }
-            if( (watch.comment + url[4,url.length]).length < 140){
+            if((totalString + url[4,url.length]).length < 140){
               urlParameters.push(url);
-              //twitter_url += text + ulr;
+              totalString += url[4, url.length];
             }
-            console.log(twitterUrl)
+            if((totalString + via[4,url.length]).length < 140){
+              urlParameters.push(via);
+              totalString += via[4, url.length];
+            }
+            for(var i = 0; i < tags.length; i++){
+              if((totalString + tags[i]).length < 140){
+                tags2Add.push(tags[i]);
+                totalString += tags[i];
+              }
+            }
+            if (tags2Add.length > 0) {
+              urlParameters.push(hashtags + tags2Add.join(','));
+            }
+            urlParameters.push(related);
+            urlParameters.push(original_referer);            
             twitterUrl += urlParameters.join('&');
             console.log(twitterUrl);
-            //$window.open(twitter_url);
+            $window.open(twitterUrl);
           }
           else {alert('Crowd watch added.');}
           //$location.path(url);
