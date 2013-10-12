@@ -307,6 +307,29 @@ angular.module('b4cmApp')
       },
 
       /**
+       * @name calculateBoxLabels
+       * @function
+       *
+       * @description Determines the crowdfactor status for an array of times.
+       * @param {object} spot Spot to determine crowdfactor info from.
+       * @param {array} times Array of times to determine status for.
+       * @returns {array} An array of crowdfactor statuses.
+       */
+      calculateBoxLabels: function(spot, times, util) {
+        var crowdStatusLabels = [];
+        times.forEach(function(time) {
+          var day = spot.crowdfactor.day[time.getDay().toLowerCase()],
+              count = day[time.getTimeLabel()].count,
+              score = day[time.getTimeLabel()].score,
+              crowdStatusScore = 0;
+          if (count !== 0) {crowdStatusScore = score / count;}
+          if (score === -1){crowdStatusScore = -1;}
+          crowdStatusLabels.push(util.calculateStatus(crowdStatusScore));
+        });
+        return crowdStatusLabels;
+      },
+
+      /**
        * @name initializeGoogleMaps
        * @procedure
        *

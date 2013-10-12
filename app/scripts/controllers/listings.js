@@ -92,7 +92,7 @@ angular.module('b4cmApp')
               spotObj.stars = util.calculateStars(score);
               spotObj.crowdStatusLabel = currentStatus.label;
               spotObj.crowdStatusTime = currentStatus.time;
-              spotObj.crowdStatusBoxes = _calculateBoxLabels(spotObj, times, util);
+              spotObj.crowdStatusBoxes = util.calculateBoxLabels(spotObj, times, util);
               if ($scope.spots.length < SPOTS_PER_PAGE) {
                 $scope.spots.push(spotObj);
               }
@@ -185,35 +185,3 @@ angular.module('b4cmApp')
     };
 
   });
-
-/***************
- * HELPER FUNCS
- ***************/
-
-/* TODO: move to utility */
-/* jshint -W003 */
-
-/**
- * @name _calculateBoxLabels
- * @function
- *
- * @description Determines the crowdfactor status for an array of times.
- * @param {object} spot Spot to determine crowdfactor info from.
- * @param {array} times Array of times to determine status for.
- * @returns {array} An array of crowdfactor statuses.
- */
-function _calculateBoxLabels(spot, times, util) {
-  var crowdStatusLabels = [];
-  times.forEach(function(time) {
-    var day = spot.crowdfactor.day[time.getDay().toLowerCase()],
-        count = day[time.getTimeLabel()].count,
-        score = day[time.getTimeLabel()].score,
-        crowdStatusScore = 0;
-    if (count !== 0) {crowdStatusScore = score / count;}
-    if (score === -1){crowdStatusScore = -1;}
-    crowdStatusLabels.push(util.calculateStatus(crowdStatusScore));
-  });
-  return crowdStatusLabels;
-}
-
-
