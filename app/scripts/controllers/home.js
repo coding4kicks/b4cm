@@ -37,11 +37,11 @@ angular.module('b4cmApp')
       $scope.displayFavorites(user.getInfo().favorites);
       util.safeApply($scope);
     });
-    
-    $scope.displayFavorites = function(idList) { 
+
+    $scope.displayFavorites = function(idList) {
       $scope.numReturns = 0;
       if (typeof idList === 'undefined') {
-        $scope.noSpots = true; 
+        $scope.noSpots = true;
         $scope.startIndex = 0;
       }
       else {

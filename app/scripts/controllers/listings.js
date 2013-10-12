@@ -14,7 +14,6 @@ angular.module('b4cmApp')
 
     var spotType = $routeParams.spotType,
         searchLocation = decodeURIComponent($routeParams.searchLocation),
-        spotList = [],
         moreList = [],
         prevList = [],
         SPOTS_PER_PAGE = 10,
