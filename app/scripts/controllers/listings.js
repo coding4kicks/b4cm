@@ -89,7 +89,7 @@ angular.module('b4cmApp')
                 score = spotObj.rating_count / spotObj.review_count;
               }
               /* jshint camelcase: true */
-              spotObj.stars = _calculateStars(score);
+              spotObj.stars = util.calculateStars(score);
               spotObj.crowdStatusLabel = currentStatus.label;
               spotObj.crowdStatusTime = currentStatus.time;
               spotObj.crowdStatusBoxes = _calculateBoxLabels(spotObj, times);

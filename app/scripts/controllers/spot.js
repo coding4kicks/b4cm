@@ -41,7 +41,7 @@ angular.module('b4cmApp')
       if($scope.spot.review_count !== 0) {
         ratingScore = $scope.spot.rating_count / $scope.spot.review_count;
       }
-      $scope.stars = _calculateStars(ratingScore);
+      $scope.stars = util.calculateStars(ratingScore);
       var reviewsDisplayedCount = 0;
       if (typeof $scope.spot.reviews !== 'undefined' && $scope.spot.review_count !== 0) {
         for (var review in $scope.spot.reviews) {
@@ -50,7 +50,7 @@ angular.module('b4cmApp')
               !$scope.spot.reviews[review].author.pic) {
             $scope.spot.reviews[review].author.pic = '../images/default-author-pic.png';
           }
-          $scope.spot.reviews[review].stars = _calculateStars($scope.spot.reviews[review].rating.label);
+          $scope.spot.reviews[review].stars = util.calculateStars($scope.spot.reviews[review].rating.label);
           reviewsDisplayedCount = reviewsDisplayedCount + 1;
         }
       }
