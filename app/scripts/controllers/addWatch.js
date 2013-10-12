@@ -76,12 +76,10 @@ angular.module('b4cmApp')
         if (typeof watch.cf_status === 'undefined') {alert('Please choose a crowd status.');}
         else if (watch.time.length > 24) {alert('Watches must be for less than a 24 hour period.');}
         else {
-          //spot.addWatch(watch, $routeParams.spotId, $scope.spotObj.crowdfactor.watch_count);
-          //user.incrementWatchCount();
+          spot.addWatch(watch, $routeParams.spotId, $scope.spotObj.crowdfactor.watch_count);
+          user.incrementWatchCount();
           /* jshint camelcase: true */
-          // TODO:
-          //  
-          //  *** CHECK SECURITY OF COMMENT (no XSS)
+          // TODO: *** CHECK SECURITY OF COMMENT (no XSS)
           if($scope.tweet) {
             //alert('Crowd watch added.');
             var urlParameters = [],
@@ -98,9 +96,6 @@ angular.module('b4cmApp')
                 via = 'via=aCrowdabout',
                 related = 'related=aCrowdabout,sfstation,sfweekly',
                 original_referer = 'original_referer=http://www.crowdabout.co/';
-                //twitter_url = intent_url + text + '&' + hashtags + '&' + url + '&' + via +
-                //              '&' + related + '&' + original_referer;
-            console.log(tags);
             if(typeof watch.comment !== 'undefined') {
               urlParameters.push(text += encodeURIComponent(watch.comment));
               totalString += watch.comment;
@@ -125,15 +120,12 @@ angular.module('b4cmApp')
             urlParameters.push(related);
             urlParameters.push(original_referer);            
             twitterUrl += urlParameters.join('&');
-            console.log(twitterUrl);
             $window.open(twitterUrl);
           }
           else {alert('Crowd watch added.');}
-          //$location.path(url);
-          //util.safeApply($scope);
-          //$location.path('/spot/' + $scope.spotObj.id);
-          //$location.replace();
-          //util.safeApply($scope);
+          $location.path('/spot/' + $scope.spotObj.id);
+          $location.replace();
+          util.safeApply($scope);
         }
       }
       else {
