@@ -54,7 +54,7 @@ angular.module('b4cmApp')
       },
 
       /**
-       * @name _constructCrowdFactor
+       * @name constructCrowdFactor
        * @function
        *
        * @description Transform crowdfactor details into new structure better for display.
@@ -97,7 +97,7 @@ angular.module('b4cmApp')
                 }
                 if (spot_info.count !== 0) {cf_score = spot_info.score / spot_info.count;}
                 if (spot_info.score === -1){cf_score = -1}
-                hour.cf_status = _calculateStatus(cf_score);
+                hour.cf_status = util.calculateStatus(cf_score);
                 hour.label = hour_label;
                 day.hours.push(hour);
               });
@@ -283,6 +283,27 @@ angular.module('b4cmApp')
           else {stars.push('images/star-icon-empty.png');}
         }
         return stars;
+      },
+
+      /**
+       * @name calculateStatus
+       * @function
+       *
+       * @description Calculates crowdfactor status based upon crowd score.
+       * @param {float} score Crowd score from 1-5.
+       * @returns {string} Crowd status (closed, empty, few, average, crowded, or packed).
+       */
+      calculateStatus: function(score) {
+        var cfStatus = '';
+        if (score < 0) {cfStatus = 'closed';}
+        else if (score < 0.5) {cfStatus = 'none';}
+        else if (score < 1.5) {cfStatus = 'empty';}
+        else if (score < 2.5) {cfStatus = 'few';}
+        else if (score < 3.5) {cfStatus = 'average';}
+        else if (score < 4.5) {cfStatus = 'crowded';}
+        else if (score <= 5) {cfStatus = 'packed';}
+        else {console.log('Error in status update for score:' + score);}
+        return cfStatus;
       },
 
       /**

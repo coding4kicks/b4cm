@@ -92,7 +92,7 @@ angular.module('b4cmApp')
               spotObj.stars = util.calculateStars(score);
               spotObj.crowdStatusLabel = currentStatus.label;
               spotObj.crowdStatusTime = currentStatus.time;
-              spotObj.crowdStatusBoxes = _calculateBoxLabels(spotObj, times);
+              spotObj.crowdStatusBoxes = _calculateBoxLabels(spotObj, times, util);
               if ($scope.spots.length < SPOTS_PER_PAGE) {
                 $scope.spots.push(spotObj);
               }
@@ -202,7 +202,7 @@ angular.module('b4cmApp')
  * @param {array} times Array of times to determine status for.
  * @returns {array} An array of crowdfactor statuses.
  */
-function _calculateBoxLabels(spot, times) {
+function _calculateBoxLabels(spot, times, util) {
   var crowdStatusLabels = [];
   times.forEach(function(time) {
     var day = spot.crowdfactor.day[time.getDay().toLowerCase()],
@@ -211,7 +211,7 @@ function _calculateBoxLabels(spot, times) {
         crowdStatusScore = 0;
     if (count !== 0) {crowdStatusScore = score / count;}
     if (score === -1){crowdStatusScore = -1;}
-    crowdStatusLabels.push(_calculateStatus(crowdStatusScore));
+    crowdStatusLabels.push(util.calculateStatus(crowdStatusScore));
   });
   return crowdStatusLabels;
 }
