@@ -112,7 +112,7 @@ angular.module('b4cmApp')
       
       // Initialize google maps parameters for spot page
       console.log('initializing google maps');
-      $timeout(function(){_initializeGoogleMaps($scope, $scope.spot.location, [$scope.spot])},0);
+      $timeout(function(){util.initializeGoogleMaps($scope, $scope.spot.location, [$scope.spot], 12, 1)},0);
       
       // Start updates of current time, marker, and crowdstatus.
       _updateStatus($scope, $timeout, spot, util);
