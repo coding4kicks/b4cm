@@ -21,12 +21,18 @@ $high-bright: #fafa37;
 $high-pastel: #dcdc6e;
 
 // Crowd Factor (aqua, grey, red)
-$cf-empty: #6edcdc;
-$cf-few: #6ea5a5;
-$cf-average: #a5a5a5;
-$cf-crowded: #a56e6e;
-$cf-packed: #dc6e6e;
-$cf-closed: #111111;
+//$cf-empty: #6edcdc;
+//$cf-few: #6ea5a5;
+//$cf-average: #a5a5a5;
+//$cf-crowded: #a56e6e;
+//$cf-packed: #dc6e6e;
+//$cf-closed: #111111;
+$cf-empty: #b0e5f6;
+$cf-few: #7ec8e0;
+$cf-average: #4e9cb5;
+$cf-crowded: #b30000;
+$cf-packed: #ea2626;
+$cf-closed: #545454;
 
 // Text
 $text-dark: #373737;
