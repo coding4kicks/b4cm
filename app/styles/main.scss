@@ -433,16 +433,17 @@ input[type='text']:focus {
     text-align: left;
 
     .login {
-      display: block;
-      width: 100%;
+      display: none;
+      //display: block;
+      //width: 100%;
 
-      ul {
-        float: none !important;
-        //margin-top: 45px;
-        //margin-left: 27%;
-        width: 100%;
-        margin: 45px auto 0 auto !important;
-      }
+      //ul {
+      //  float: none !important;
+      //  //margin-top: 45px;
+      //  //margin-left: 27%;
+      //  width: 100%;
+      //  margin: 45px auto 0 auto !important;
+      //}
     }
     form {
       width: 100%
@@ -509,7 +510,7 @@ input[type='text']:focus {
   // Hacky
   .crowd-factor {
     .timeslot {
-      margin-left: -32px;
+      margin-left: -36px;
     }
 
     .location-name {
