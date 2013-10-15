@@ -49,6 +49,8 @@ $button-bottom: #bbbbcc;
 $button-background: #aaaabb;
 $button-transition: #9999aa;
 $button-text: $logo-red;
+$link: $blue-grey;
+$hover-link: $logo-red;
 
 /******************
 *** OTHER VARIABLES
@@ -163,11 +165,11 @@ button, .btn {
 
 a {
   text-decoration: none;
-  color: $comp1-dark;
+  color: $link;
   
   &:hover {
     text-decoration: none;
-    color: $comp1-light;
+    color: $hover-link;
   }
 }
 
@@ -1083,6 +1085,17 @@ input[type='text']:focus {
       height: 50px;
       margin: 0 10px 10px 0;
       width: 50px;
+    }
+
+    .favorite {
+      display: inline-block;
+      color: $link;
+      margin-right: 10px;
+
+      &:hover {
+        color: $hover-link;
+        cursor: pointer;
+      }
     }
 
     .service {
