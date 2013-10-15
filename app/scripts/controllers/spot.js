@@ -247,7 +247,7 @@ function _calculateTypeWeight(count, label, total) {
   var total_icon_size = 5625, // 75 x 75 max icon size
       total_font_size = 324, // 18 max font size
       url, size, font;
-  url = "../images/b4cm-icon-" + label.toLowerCase() + ".png";
+  url = "../images/" + label.toLowerCase() + "-icon.png";
   size = Math.sqrt(total_icon_size * (count/total));
   font = Math.sqrt(total_font_size * (count/total));
   return [url, label, size, font];
