@@ -367,7 +367,7 @@ angular.module('b4cmApp')
         for (var i = 0; i < spots.length; i++) {
           var marker = {},
               spot = spots[i],
-              url = '../images/marker-icon' + (index + i) + '.png';
+              url = '../images/map-icon-' + (index + i) + '.png';
           marker.latitude = spot.location.latitude;
           marker.longitude = spot.location.longitude;
           marker.infoWindow = spot.name;
