@@ -340,7 +340,9 @@ input[type='text']:focus {
 
 .empty-square, .few-square, .average-square,
 .crowded-square, .packed-square, .closed-square, .none-square {
-  border: 1px solid black;
+  border-left: 1px solid #eae8e8;
+  border-right: 1px solid #eae8e8;
+  border-bottom: 2px solid #eae8e8;
 }
 
 // FORMS
@@ -1835,7 +1837,7 @@ input[type='text']:focus {
 
   .timeslot {
     display: inline-block;
-    margin-left: -27px;
+    margin-left: -32px;
     position: relative;
     text-align: left;
     
@@ -1863,9 +1865,9 @@ input[type='text']:focus {
   }
 
   td {
-    height: 20px;
+    height: 29px;
     text-align: center;
-    width: 20px;
+    width: 29px;
   }
 
   .labels {
@@ -1921,7 +1923,7 @@ input[type='text']:focus {
   }
 
   .saturday-row {
-    border-top: 2px solid $high-bright;
+    border-top: 3px solid $blue-grey !important;
   }
 }
 
