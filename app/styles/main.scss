@@ -35,6 +35,15 @@ $text-light: #fafafa;
 // Backgrounds:
 $page-color: #ffffff;
 
+// NEW
+$blue-grey: #111144;
+$logo-red: #b30000;
+$button-top: #ddddee;
+$button-bottom: #bbbbcc;
+$button-background: #aaaabb;
+$button-transition: #9999aa;
+$button-text: $logo-red;
+
 /******************
 *** OTHER VARIABLES
 *******************/
@@ -124,20 +133,26 @@ hr {
 }
 
 button, .btn {
-  background-color: $comp1-dark !important;
-  background-image: linear-gradient(to bottom, $comp1-light, $comp1-dark) !important;
-  color: $high-bright !important;
+  background-color: $button-background !important;
+  //background-image: linear-gradient(to bottom, $comp1-light, $comp1-dark) !important;
+  //color: $high-bright !important;
   margin: -10px 0 0 10px;
+  text-shadow: none;
 
-  background-image: -webkit-linear-gradient(top, $comp1-light, $comp1-dark) !important;
-  background-image: -o-linear-gradient(top,$comp1-light, $comp1-dark) !important;
+  //background-image: -webkit-linear-gradient(top, $comp1-light, $comp1-dark) !important;
+  //background-image: -o-linear-gradient(top,$comp1-light, $comp1-dark) !important;
   // looks cool
-  // background-image: -webkit-linear-gradient(top, black, #e6e6e6) !important;
+  color: $button-text !important;
+  background-image: linear-gradient(to top, $button-bottom, $button-top) !important;
+  background-image: -webkit-linear-gradient(top, $button-bottom, $button-top) !important;
+  background-image: -o-linear-gradient(top, $button-bottom, $button-top) !important;
 
-  //&:hover {
-    //background-image: -webkit-linear-gradient(top, $comp1-light, $comp1-dark) !important;
-    //background-image: -o-linear-gradient(top,$comp1-light, $comp1-dark) !important;
-  //}
+  &:hover {
+    background-image: linear-gradient(to top, $button-bottom, $button-transition) !important;
+    background-image: -webkit-linear-gradient(top, $button-bottom, $button-transition) !important;
+    background-image: -o-linear-gradient(top, $button-bottom, $button-transition) !important;
+  }
+
 }
 
 a {
@@ -243,9 +258,9 @@ a {
   }
 
   input, select {
-    background-color: $acc-dark;
-    border: 1px solid $comp1-dark;
-    color: $text-light;
+    background-color: $acc-light;
+    border: 1px solid $logo-red;
+    color: $blue-grey;
     margin: -10px 0 0 10px;
     text-align: center;
     //width: 150px;
@@ -343,20 +358,21 @@ input[type='text']:focus {
 *** NAVBAR
 *******************/
 .navbar {
-  background-color: $acc-dark;
+  //background-color: $acc-dark;
 }
 .navbar-inner {
   @include page-container;
-  background-color: $acc-dark !important;
-  background-image: linear-gradient(to bottom, $acc-dark, #7e7e7e) !important;
+  //background-color: $acc-dark !important;
+  //background-image: linear-gradient(to bottom, $acc-dark, #7e7e7e) !important;
+  background-color: #ffffff !important;
+  background-image: linear-gradient(to bottom, #ffffff, #eeeeee) !important;
   background-repeat: repeat-x;
   border-color: #252525;
   color: $text-dark;
   padding: 0;
 
   .brand {
-    margin-left: -8px;
-    margin-top: -15px;
+    margin: -25px 38px 0 -8px;
   }
 
   .login > ul{
@@ -364,7 +380,8 @@ input[type='text']:focus {
   }
 
   .nav > li > a {
-    color: $text-light;
+    //color: $text-dark;
+    color: $blue-grey;
   }
 
   .nav > li > a:hover {
@@ -376,8 +393,8 @@ input[type='text']:focus {
   }
 
   form {
-    margin: 15px 0 -45px 0;
-    width: 70%;
+    margin: 25px 0 -44px 0;
+    //width: 70%;
 
     .btn {
       margin-top: -10px;
