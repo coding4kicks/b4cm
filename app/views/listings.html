@@ -3,8 +3,8 @@
     <div class="main-col">
       <div class="top">
         <img class="b4cm-icon" ng-src="../images/{{listings.type | lowercase}}-icon.png">
-        <h2 class="listing-type">{{listings.type | uppercase}}</h2>
-        <h3 class="listing-location">{{listings.displayAddress}}</h3>
+        <h3 class="listing-type">{{listings.type | uppercase}}</h3>
+        <h4 class="listing-location">{{listings.displayAddress}}</h4>
       </div>
       <div class="bottom">
         <h6 class="listing-nums" ng-hide="noSpots" ng-show="doneInitializing">{{startIndex}}-{{startIndex + spots.length - 1}} of {{typeSpots}}</h6>
@@ -15,8 +15,9 @@
     </div>
     <div class="side-col">
       <div class="ad-book">
+        <h6 class="ad-label">Ad</h6>
         <a ng-href="http://www.amazon.com/gp/product/0140437649/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0140437649&linkCode=as2&tag=coding4kicks-20">
-          <h6>The History of the Decline and Fall of the Roman Empire</h6>
+          <h6 class="description">The History of the Decline and Fall of the Roman Empire</h6>
           <img src="../images/books/historyofdeclineandfall.jpg">  
         </a>    
       </div>

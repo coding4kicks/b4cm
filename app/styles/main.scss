@@ -51,6 +51,9 @@ $button-transition: #9999aa;
 $button-text: $logo-red;
 $link: $blue-grey;
 $hover-link: $logo-red;
+$ad-background: #ddd;
+$ad-text: #555;
+$ad-hover: $logo-red;
 
 /******************
 *** OTHER VARIABLES
@@ -88,12 +91,12 @@ $break-small: 500px;
 }
 
 @mixin ad-element {
-  background: $acc-med;
+  background: $ad-background;
   border-radius: 10px;
   a {
-    color: $text-light;
+    color: $ad-text;
     &:hover {
-      color: $comp1-dark;
+      color: $ad-hover;
     }
   }
 }
@@ -217,23 +220,28 @@ a {
 
 .ad-book {
   @include ad-element;
-  height: 125px;
+  height: 110px;
   padding: 5px;
   margin-left: 40px;
   text-align: center;
   width: 220px;
 
-  h6 {
+  .ad-label {
+    float: right;
+    margin-top: 0
+  }
+
+  .description {
     display: inline-block;
     float: left;
     line-height: 15px;
-    margin: 25px 0 0 15px;
+    margin: 10px 0 0 15px;
     width: 80px;
   }
 
   img {
     display: inline-block;
-    width: 80px;
+    width: 70px;
   }
 }
 
@@ -354,7 +362,7 @@ input[type='text']:focus {
 }
 
 .container {
-  min-height: 30px;
+  //min-height: 30px;
 }
 
 // Responsive
@@ -496,6 +504,8 @@ input[type='text']:focus {
 .header {
   @include page-container;
   @include page-element(10px, 0, center, top);
+  height: 40px;
+
   form {
     margin-bottom: -40px;
     padding-top: 20px;
@@ -719,7 +729,10 @@ input[type='text']:focus {
     }
 
     .top {
-      height: 95px;
+      height: 80px;
+      //margin-right: 60px;
+      text-align: center;
+      margin-right: 40px;
     }
 
     .b4cm-icon {
@@ -733,9 +746,12 @@ input[type='text']:focus {
 
     .listing-location {
       @include text-overflow();
-      display: inline-block;
-      margin: 0 0 -10px 30px;
-      width: 350px;
+      color: $acc-dark;
+      //display: inline-block;
+      display: block;
+      margin-top: 20px;
+      //margin: 0 0 0 30px;
+      //width: 350px;
     }
 
     form {
