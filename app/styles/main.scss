@@ -568,21 +568,33 @@ input[type='text']:focus {
   min-height: 400px;
   text-align: center;
 
+  .location-info {
+    //margin-left: 85px;
+    //text-align: left;    
+  }
+
+  .location-image {
+    border-radius: 5px;
+  }
+
+  .location-name {
+    color: $text-dark;
+    display: inline-block;
+    text-align: left;
+    margin: 0 0 -5px 5px;
+  }
+
+  .location-place {
+    color: $acc-dark;
+    display: inline-block;
+  }
+
   // Hacky
   .crowd-factor {
+    margin: 10px auto !important;
+
     .timeslot {
       margin-left: -36px;
-    }
-
-    .location-name {
-      color: $text-dark;
-      display: inline-block;
-      text-align: left;
-      margin: 0 0 -5px 5px;
-    }
-
-    .location-place {
-      display: inline-block;
     }
 
     .crowd-visuals {
@@ -658,10 +670,11 @@ input[type='text']:focus {
 
     h3 {
       text-align: center;
+      margin-bottom: 20px;
     }
 
     h3:nth-child(2) {
-      margin: 0 0 0 26%;
+      //margin: 0 0 0 26%;
     }
   }
 }
