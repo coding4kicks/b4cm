@@ -135,13 +135,13 @@ body {
 }
 
 hr {
-  border: 1px solid $acc-dark;
+  border: 1px solid $acc-light;
   margin: 0 auto;
   width: $hr-width;
 }
 
 button, .btn {
-  background-color: $button-background !important;
+  //background-color: $button-background !important;
   //background-image: linear-gradient(to bottom, $comp1-light, $comp1-dark) !important;
   //color: $high-bright !important;
   margin: -10px 0 0 10px;
@@ -150,16 +150,16 @@ button, .btn {
   //background-image: -webkit-linear-gradient(top, $comp1-light, $comp1-dark) !important;
   //background-image: -o-linear-gradient(top,$comp1-light, $comp1-dark) !important;
   // looks cool
-  color: $button-text !important;
-  background-image: linear-gradient(to top, $button-bottom, $button-top) !important;
-  background-image: -webkit-linear-gradient(top, $button-bottom, $button-top) !important;
-  background-image: -o-linear-gradient(top, $button-bottom, $button-top) !important;
+  //color: $button-text !important;
+  //background-image: linear-gradient(to top, $button-bottom, $button-top) !important;
+  //background-image: -webkit-linear-gradient(top, $button-bottom, $button-top) !important;
+  //background-image: -o-linear-gradient(top, $button-bottom, $button-top) !important;
 
-  &:hover {
-    background-image: linear-gradient(to top, $button-bottom, $button-transition) !important;
-    background-image: -webkit-linear-gradient(top, $button-bottom, $button-transition) !important;
-    background-image: -o-linear-gradient(top, $button-bottom, $button-transition) !important;
-  }
+  //&:hover {
+  //  background-image: linear-gradient(to top, $button-bottom, $button-transition) !important;
+  //  background-image: -webkit-linear-gradient(top, $button-bottom, $button-transition) !important;
+  //  background-image: -o-linear-gradient(top, $button-bottom, $button-transition) !important;
+  //}
 
 }
 
@@ -266,8 +266,8 @@ a {
   }
 
   input, select {
-    background-color: $acc-light;
-    border: 1px solid $logo-red;
+    //background-color: $acc-light;
+    //border: 1px solid $logo-red;
     color: $blue-grey;
     margin: -10px 0 0 10px;
     text-align: center;
@@ -378,7 +378,7 @@ input[type='text']:focus {
   background-color: #ffffff !important;
   background-image: linear-gradient(to bottom, #ffffff, #f9f9f9) !important;
   background-repeat: repeat-x;
-  border-color: #c9c9c9;
+  border-bottom: 2px solid $acc-light !important;
   color: $text-dark;
   padding: 0;
   min-height: 68px;
@@ -501,7 +501,6 @@ input[type='text']:focus {
     padding-top: 20px;
     padding-bottom: 10px;
     background-color: $page-color;
-    //width: 70%;
 
     .btn {
       margin-top: -10px;
