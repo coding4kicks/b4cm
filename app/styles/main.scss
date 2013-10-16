@@ -58,7 +58,7 @@ $ad-hover: $logo-red;
 /******************
 *** OTHER VARIABLES
 *******************/
-$page-width: 940px;
+$page-width: 1040px;
 // Border radius for page elements
 $page-radius: 10px;
 $hr-width: $page-width - $page-radius;
@@ -184,7 +184,8 @@ a {
 .side-col {
   display: inline-block;
   float: right;
-  padding: 0 5px;
+  margin: 10px auto;
+  //padding: 0 5px;
   width: 31%;
 }
 
@@ -362,7 +363,7 @@ input[type='text']:focus {
 }
 
 .container {
-  //min-height: 30px;
+  width: $page-width;
 }
 
 // Responsive
@@ -887,8 +888,8 @@ input[type='text']:focus {
 
   .fixed {
     position: fixed;
-    margin-top: -220px;
-    margin-left: 8px;
+    margin-top: -210px;
+    margin-left: 21px;
   }
 
   .relative {
