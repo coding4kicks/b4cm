@@ -381,6 +381,7 @@ input[type='text']:focus {
   border-color: #c9c9c9;
   color: $text-dark;
   padding: 0;
+  min-height: 68px;
 
   .logo-icon {
     padding-right: 10px;
@@ -392,8 +393,8 @@ input[type='text']:focus {
   }
 
   .brand {
-   // margin: -25px 25px 0 -8px;
    margin: 0 auto -20px auto;
+   padding: 10px 0;
    width: 100%
   }
 
@@ -417,34 +418,6 @@ input[type='text']:focus {
 
   form {
     margin: 25px 0 -44px 0;
-    //width: 70%;
-
-    .btn {
-      margin-top: -10px;
-    }
-  }
-
-  .signout:hover {
-    cursor: pointer;
-  }
-
-  .search-icon {
-    display: none;
-    height: 25px;
-    width: 25px;
-    margin: -5px 0 0 5px;
-    &:hover {
-      cursor: pointer;
-    }
-  }
-}
-
-// TEMP - try new style
-#main-page {
-  form {
-    margin-bottom: -40px;
-    padding-top: 20px;
-    background-color: $page-color;
     //width: 70%;
 
     .btn {
@@ -526,6 +499,46 @@ input[type='text']:focus {
 }
 
 /******************
+*** HEADER
+*******************/
+
+// TEMP - try new style
+.header {
+  @include page-container;
+  @include page-element;
+  form {
+    margin-bottom: -40px;
+    padding-top: 20px;
+    background-color: $page-color;
+    //width: 70%;
+
+    .btn {
+      margin-top: -10px;
+    }
+  }
+
+  .signout:hover {
+    cursor: pointer;
+  }
+
+  .search-icon {
+    display: none;
+    height: 25px;
+    width: 25px;
+    margin: -5px 0 0 5px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .addthis_toolbox {
+    float: right;
+    vertical-align: top;
+    width: 200px;
+  }
+}
+
+/******************
 *** FOOTER
 *******************/
 .footer {
@@ -563,12 +576,6 @@ input[type='text']:focus {
 #main-page {
   min-height: 400px;
   text-align: center;
-
-  .addthis_toolbox {
-    float: right;
-    vertical-align: top;
-    width: 200px;
-  }
 
   // Hacky
   .crowd-factor {

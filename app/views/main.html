@@ -1,21 +1,5 @@
 <div id="main-page">
-          <form class="form-horizontal find-spot">
-            <select class="type" ng-model="spotType" ng-options="type.name for type in spotTypes"></select>
-            <input type="text" class="form-control" ng-model="searchLocation" placeholder="City or Zip">
-            <button class="btn search-btn" ng-click="searchListings(spotType.name, searchLocation)">Search</button>
-            <img class="search-icon" ng-click="searchListings(spotType.name, searchLocation)" src="../images/search-icon.png">
-          </form>
-
-
   <div class="spot-types">
-    <!-- AddThis Button BEGIN -->
-    <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-      <a class="addthis_button_preferred_1"></a>
-      <a class="addthis_button_preferred_2"></a>
-      <a class="addthis_button_compact"></a>
-      <a class="addthis_counter addthis_bubble_style"></a>
-    </div>
-    <!-- AddThis Button END -->
     <br><br>
     <div class="spots">
       <div class="spot food" ng-click="searchListings('Food')">

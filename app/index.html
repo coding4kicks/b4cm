@@ -31,7 +31,7 @@
     <div class="navbar navbar-inverse navbar-static-top">
       <div class="navbar-inner">
         <div class="">
-          <a class="brand" href="/"><img class="logo-icon" height="37px" width="37px" src="../images/c-icon.png"><img class="logo-text" height="25px" width="175px" src="../images/text.png"></a>
+          <a class="brand" href="/"><img class="logo-icon" height="45px" width="45px" src="../images/c-icon.png"><img class="logo-text" height="35px" width="200px" src="../images/text.png"></a>
           <div class="nav-collapse collapse login" ng-cloak>
             <ul class="nav pull-right" ng-show="name">
               <li class="">
@@ -59,6 +59,22 @@
         </div>
       </div>
     </div>
+    <div class="header">
+      <form class="form-horizontal find-spot">
+        <select class="type" ng-model="spotType" ng-options="type.name for type in spotTypes"></select>
+        <input type="text" class="form-control" ng-model="searchLocation" placeholder="City or Zip">
+        <button class="btn search-btn" ng-click="searchListings(spotType.name, searchLocation)">Search</button>
+        <img class="search-icon" ng-click="searchListings(spotType.name, searchLocation)" src="../images/search-icon.png">
+      </form>
+      <!-- AddThis Button BEGIN -->
+      <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+        <a class="addthis_button_preferred_1"></a>
+        <a class="addthis_button_preferred_2"></a>
+        <a class="addthis_button_compact"></a>
+        <a class="addthis_counter addthis_bubble_style"></a>
+      </div>
+      <!-- AddThis Button END -->
+    </div>
     <div class="container" ng-view></div>
 
     <!--[if lt IE 8]>
@@ -67,7 +83,7 @@
     <!-- Footer
     ================================================== -->
     <hr>
-    <div class="footer">
+    <div class="footer" ng-hide="loadStart">
       <ul>
         <li><a ng-href="#/about">About</a></li>
         <li><a ng-href="#/privacy">Privacy</a></li>
