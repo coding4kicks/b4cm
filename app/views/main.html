@@ -1,4 +1,11 @@
 <div id="main-page">
+          <form class="form-horizontal find-spot">
+            <select class="type" ng-model="spotType" ng-options="type.name for type in spotTypes"></select>
+            <input type="text" class="form-control" ng-model="searchLocation" placeholder="City or Zip">
+            <button class="btn search-btn" ng-click="searchListings(spotType.name, searchLocation)">Search</button>
+            <img class="search-icon" ng-click="searchListings(spotType.name, searchLocation)" src="../images/search-icon.png">
+          </form>
+
 
   <div class="spot-types">
     <!-- AddThis Button BEGIN -->
@@ -9,15 +16,7 @@
       <a class="addthis_counter addthis_bubble_style"></a>
     </div>
     <!-- AddThis Button END -->
-
-    <div class="spots-tagline">
-      <img class="arrow-side" src="../images/arrow-left.png">
-      <div class="center">
-        <h2>Three Types of <span class="emphasize">Spots</span></h2>
-        <img class="arrow-center" src="../images/arrow-center.png">
-      </div>
-      <img class="arrow-side" src="../images/arrow-right.png">
-    </div>
+    <br><br>
     <div class="spots">
       <div class="spot food" ng-click="searchListings('Food')">
         <img class="b4cm-icon" src="../images/food-icon.png">
@@ -50,7 +49,7 @@
 
   <div class="visualize">
     <div class="visualize-tagline">
-      <h3><span class="emphasize">"Visualize</span> the crowd and learn the best times to go to your favorite places."</h3>
+      <h3>It's like a <span class="emphasize"></span> weather app for crowds.</h3>
     </div>
 
     <div class="crowd-factor">
@@ -336,17 +335,6 @@
       </div>
     </div>
   </div> 
-
-  <hr>
-
-  <div class="nearby">
-    <form class="form-horizontal find-spot">
-      <h3>Find a place near you:</h3>
-      <select class="type" ng-model="spotType" ng-options="type.name for type in spotTypes"></select>
-      <input type="text" class="form-control" ng-model="searchLocation" placeholder="City or Zip">
-      <button class="btn" ng-click="searchListings(spotType.name, searchLocation)">Search</button>
-    </form>
-  </div>
   
 </div>
 

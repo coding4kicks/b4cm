@@ -32,12 +32,6 @@
       <div class="navbar-inner">
         <div class="">
           <a class="brand" href="/"><img class="logo-icon" height="37px" width="37px" src="../images/c-icon.png"><img class="logo-text" height="25px" width="175px" src="../images/text.png"></a>
-          <form class="form-horizontal find-spot">
-            <select class="type" ng-model="spotType" ng-options="type.name for type in spotTypes"></select>
-            <input type="text" class="form-control" ng-model="searchLocation" placeholder="City or Zip">
-            <button class="btn search-btn" ng-click="searchListings(spotType.name, searchLocation)">Search</button>
-            <img class="search-icon" ng-click="searchListings(spotType.name, searchLocation)" src="../images/search-icon.png">
-          </form>
           <div class="nav-collapse collapse login" ng-cloak>
             <ul class="nav pull-right" ng-show="name">
               <li class="">
@@ -65,7 +59,6 @@
         </div>
       </div>
     </div>
-
     <div class="container" ng-view></div>
 
     <!--[if lt IE 8]>

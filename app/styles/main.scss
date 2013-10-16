@@ -369,6 +369,7 @@ input[type='text']:focus {
 *******************/
 .navbar {
   //background-color: $acc-dark;
+  text-align: center;
 }
 .navbar-inner {
   @include page-container;
@@ -391,11 +392,14 @@ input[type='text']:focus {
   }
 
   .brand {
-    margin: -25px 25px 0 -8px;
+   // margin: -25px 25px 0 -8px;
+   margin: 0 auto -20px auto;
+   width: 100%
   }
 
   .login > ul{
-    margin-top: -15px;
+    //margin-top: -15px;
+    margin: -30px 0 10px 0;
   }
 
   .nav > li > a {
@@ -413,6 +417,34 @@ input[type='text']:focus {
 
   form {
     margin: 25px 0 -44px 0;
+    //width: 70%;
+
+    .btn {
+      margin-top: -10px;
+    }
+  }
+
+  .signout:hover {
+    cursor: pointer;
+  }
+
+  .search-icon {
+    display: none;
+    height: 25px;
+    width: 25px;
+    margin: -5px 0 0 5px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+// TEMP - try new style
+#main-page {
+  form {
+    margin-bottom: -40px;
+    padding-top: 20px;
+    background-color: $page-color;
     //width: 70%;
 
     .btn {
