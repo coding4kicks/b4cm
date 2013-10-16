@@ -354,7 +354,7 @@ input[type='text']:focus {
 }
 
 .container {
-  min-height: 400px;
+  min-height: 30px;
 }
 
 // Responsive
@@ -495,10 +495,11 @@ input[type='text']:focus {
 // TEMP - try new style
 .header {
   @include page-container;
-  @include page-element;
+  @include page-element(10px, 0, center, top);
   form {
     margin-bottom: -40px;
     padding-top: 20px;
+    padding-bottom: 10px;
     background-color: $page-color;
     //width: 70%;
 
@@ -523,6 +524,7 @@ input[type='text']:focus {
 
   .addthis_toolbox {
     float: right;
+    padding-top: -2px;
     vertical-align: top;
     width: 200px;
   }
