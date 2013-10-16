@@ -386,6 +386,8 @@ input[type='text']:focus {
   //background-image: linear-gradient(to bottom, $acc-dark, #7e7e7e) !important;
   background-color: #ffffff !important;
   background-image: linear-gradient(to bottom, #ffffff, #f9f9f9) !important;
+  background-image: -webkit-linear-gradient(top, #ffffff, #f9f9f9) !important;
+  background-image: -o-linear-gradient(top, #ffffff, #f9f9f9) !important;
   background-repeat: repeat-x;
   border-bottom: 2px solid $acc-light !important;
   color: $text-dark;
