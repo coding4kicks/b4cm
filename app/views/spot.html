@@ -51,7 +51,7 @@
             <h2 class="status {{current_cflabel | lowercase}}">{{current_cflabel}}</h2>
           </div>
           <div class="watch-status">
-            <img class="watch-image" ng-src="{{current_image_url}}">
+            <img class="watch-image" ng-src="{{current_image_url}}" ng-show="current_image_url">
             <p class="watch-comment" ng-show="current_user"><span class="watch-comment-user">{{current_user}}</span><br>{{current_comment}}</p>
           </div>
         </div>
@@ -90,13 +90,13 @@
         refresh="!isMapElementHidden"
         style="margin-top: 10px; height: 280px; width: 280px; border: 1px solid;">
       </div>
-      <a class="edit-spot" ng-click="editSpot()">Edit Spot</a>
     </div>
   </div>
 
   <hr ng-show="doneInitializing">
 
   <div class="visualize" ng-show="doneInitializing">
+    <a class="edit-spot" ng-click="editSpot()">Edit Spot</a>
     <div class="crowd-factor">
       <img class="current-time-marker" src="../images/star-icon.png">
       <h4 class="current-time">Current Time: <span class="time {{current_cflabel | lowercase}}">{{current_day}}, {{current_hour}}:{{current_minutes}} {{current_meridiem}}</span></h4>

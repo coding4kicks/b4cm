@@ -1256,6 +1256,10 @@ input[type='text']:focus {
       }
     }
   }
+
+  .side-col {
+    margin: 0px auto;
+  }
   
   .fav {
     display: inline-block;
@@ -1264,7 +1268,7 @@ input[type='text']:focus {
 
   .edit-spot {
     color: $comp2-dark;
-    margin: 25px 0 0 0;
+    margin: 5px 10px 0 0;
     float: right;
 
     &:hover {
