@@ -82,12 +82,12 @@ $break-small: 500px;
   background-color: $page-color;
   padding: $pad-vert $pad-horz;
   text-align: $allignment;
-  @if $location == top {
-    border-radius: 0 0 $page-radius $page-radius;
-  }
-  @else {
-    border-radius: $page-radius;
-  }
+  //@if $location == top {
+  //  border-radius: 0 0 $page-radius $page-radius;
+  //}
+  //@else {
+  //  border-radius: $page-radius;
+  //}
 }
 
 @mixin ad-element {
@@ -140,7 +140,8 @@ body {
 hr {
   border: 1px solid $acc-light;
   margin: 0 auto;
-  width: $hr-width;
+  //width: $hr-width;
+  width: $page-width;
 }
 
 button, .btn {
@@ -1968,6 +1969,7 @@ input[type='text']:focus {
 
   .block-day {
     margin: 10px 0 0 0;
+    padding-left: 35px;
     width: 165px;
   }
 

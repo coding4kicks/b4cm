@@ -74,25 +74,25 @@ angular.module('b4cmApp')
                     'friday': 'F', 'saturday': 'Sa', 'sunday': 'Su'},
             util = this;
         //for (var block_name in cf_blocks) {
-        ['morning', 'afternoon', 'evening', 'latenight'].forEach(function(block_name){
-          if(cf_blocks[block_name]) {
+        ['Morning', 'Afternoon', 'Evening', 'Latenight'].forEach(function(block_name){
+          if(cf_blocks[block_name.toLowerCase()]) {
             var block = {};
             block.name = block_name;
             block.hours = [];
             block.days = [];
-            BLOCK_HOURS[block_name].forEach(function(hour_label) {
+            BLOCK_HOURS[block_name.toLowerCase()].forEach(function(hour_label) {
               block.hours.push(hour_label.slice(0,-2));});
             for (var day_name in DAYS) {
               var day = {};
               day.name = day_name;
               day.label = DAYS[day_name];
               day.hours = [];
-              BLOCK_HOURS[block_name].forEach(function(hour_label) {
+              BLOCK_HOURS[block_name.toLowerCase()].forEach(function(hour_label) {
                 var hour = {},
                     spot_info = cf_day[day_name][hour_label],
                     cf_score = 0;
                 // Handle case of after midnight
-                if (block_name === 'latenight' && hour_label !== '11pm') {
+                if (block_name.toLowerCase() === 'latenight' && hour_label !== '11pm') {
                   spot_info = cf_day[util.WEEKDAYS()[util.incrementDay(day_name)].toLowerCase()][hour_label];
                 }
                 if (spot_info.count !== 0) {cf_score = spot_info.score / spot_info.count;}
