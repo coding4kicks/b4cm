@@ -358,9 +358,9 @@ input[type='text']:focus {
 
 .empty-square, .few-square, .average-square,
 .crowded-square, .packed-square, .closed-square, .none-square {
-  border-left: 1px solid #eae8e8;
-  border-right: 1px solid #eae8e8;
-  border-bottom: 2px solid #eae8e8;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 2px solid #ccc;
 }
 
 // FORMS
