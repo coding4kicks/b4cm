@@ -382,74 +382,76 @@ input[type='text']:focus {
 .navbar {
   //background-color: $acc-dark;
   text-align: center;
-}
-.navbar-inner {
-  @include page-container;
-  //background-color: $acc-dark !important;
-  //background-image: linear-gradient(to bottom, $acc-dark, #7e7e7e) !important;
-  background-color: #ffffff !important;
-  background-image: linear-gradient(to bottom, #ffffff, #f9f9f9) !important;
-  background-image: -webkit-linear-gradient(top, #ffffff, #f9f9f9) !important;
-  background-image: -o-linear-gradient(top, #ffffff, #f9f9f9) !important;
-  background-repeat: repeat-x;
-  border-bottom: 2px solid $acc-light !important;
-  color: $text-dark;
-  padding: 0;
-  min-height: 78px;
 
-  .logo-icon {
-    padding-right: 10px;
-    margin-top: 3px;
-  }
-
-  .logo-text {
-
-  }
-
-  .brand {
-   margin: 0 auto -20px auto;
-   padding: 10px 0;
-   width: 100%
-  }
-
-  .login > ul{
-    //margin-top: -15px;
-    margin: -30px 0 10px 0;
-  }
-
-  .nav > li > a {
-    //color: $text-dark;
-    color: $blue-grey;
-  }
-
-  .nav > li > a:hover {
-    color: $cf-few;
-  }
-
-  .or {
-    margin-top: 9px;
-  }
-
-  form {
-    margin: 25px 0 -44px 0;
-    //width: 70%;
-
-    .btn {
-      margin-top: -10px;
+  .navbar-inner,
+  .navbar-inverse {
+    @include page-container;
+    //background-color: $acc-dark !important;
+    //background-image: linear-gradient(to bottom, $acc-dark, #7e7e7e) !important;
+    background-color: #ffffff;
+    background-image: linear-gradient(to bottom, #ffffff, #f9f9f9);
+    background-image: -webkit-linear-gradient(top, #ffffff, #f9f9f9);
+    background-image: -o-linear-gradient(top, #ffffff, #f9f9f9);
+    background-repeat: repeat-x;
+    border-bottom: 2px solid $acc-light;
+    color: $text-dark;
+    padding: 0;
+    min-height: 78px;
+  
+    .logo-icon {
+      padding-right: 10px;
+      margin-top: 3px;
     }
-  }
-
-  .signout:hover {
-    cursor: pointer;
-  }
-
-  .search-icon {
-    display: none;
-    height: 25px;
-    width: 25px;
-    margin: -5px 0 0 5px;
-    &:hover {
+  
+    .logo-text {
+  
+    }
+  
+    .brand {
+     margin: 0 auto -20px auto;
+     padding: 10px 0;
+     width: 100%
+    }
+  
+    .login > ul{
+      //margin-top: -15px;
+      margin: -30px 0 10px 0;
+    }
+  
+    .nav > li > a {
+      //color: $text-dark;
+      color: $blue-grey;
+    }
+  
+    .nav > li > a:hover {
+      color: $cf-few;
+    }
+  
+    .or {
+      margin-top: 9px;
+    }
+  
+    form {
+      margin: 25px 0 -44px 0;
+      //width: 70%;
+  
+      .btn {
+        margin-top: -10px;
+      }
+    }
+  
+    .signout:hover {
       cursor: pointer;
+    }
+  
+    .search-icon {
+      display: none;
+      height: 25px;
+      width: 25px;
+      margin: -5px 0 0 5px;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }
