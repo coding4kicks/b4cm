@@ -9,7 +9,7 @@
 $comp1-light: #37a5a5;
 $comp1-dark: #376e6e;
 $comp2-light: #dc3737;
-$comp2-dark: #a53737;
+//$comp2-dark: #a53737;
 
 // Accents (grey)
 $acc-light: #dcdcdc;
@@ -195,7 +195,7 @@ a {
 }
 
 .emphasize {
-  color: $comp2-dark;
+  color: $logo-red;
 }
 
 // Overide span margin left 20px;
@@ -301,8 +301,8 @@ input[type='text']:focus {
 }
 
 .none-square {
-  background-color: $text-dark;
-  box-shadow: 2px 2px 5px 5px $cf-average inset;
+  background-color: #fff;
+  box-shadow: 1px 1px 5px 1px #CCCCCC inset;
 }
 
 .empty {
@@ -322,8 +322,8 @@ input[type='text']:focus {
 }
 
 .average {
-  //color: $cf-average;
-  color: $text-dark;
+  color: $cf-average;
+  //color: $text-dark;
 }
 
 .average-square {
@@ -693,6 +693,7 @@ input[type='text']:focus {
 
     .type-blurb {
       text-align: left;
+      color: $blue-grey;
 
       h4:nth-child(2) {
         margin: -10px 0 0 30px;
@@ -1282,7 +1283,7 @@ input[type='text']:focus {
   }
 
   .edit-spot {
-    color: $comp2-dark;
+    color: $logo-red;
     margin: 5px 10px 0 0;
     float: right;
 
@@ -1669,7 +1670,7 @@ input[type='text']:focus {
   min-height: 400px;
 
   .sign-in-notification {
-    color: $comp2-dark;
+    color: $logo-red;
   }
 
   .help-item {
@@ -1726,7 +1727,7 @@ input[type='text']:focus {
   }
 
   .clickable {
-    color: $comp2-dark;
+    color: $logo-red;
     padding-left: 5px;
 
     &:hover {
@@ -1929,7 +1930,7 @@ input[type='text']:focus {
   min-height: 400px;
 
   .sign-in-notification {
-    color: $comp2-dark;
+    color: $logo-red;
   }
 
   .help-item {
@@ -2025,7 +2026,7 @@ input[type='text']:focus {
     text-align: center;
 
     .none-square {
-      box-shadow: 0px 0px 3px 3px $cf-average inset;
+      //box-shadow: 0px 0px 3px 3px $cf-average inset;
     }
 
     h5 {
@@ -2033,9 +2034,9 @@ input[type='text']:focus {
       width: 120px;
     }
 
-    .average > h5 {
-      color: 	$text-dark;
-    }
+    //.average > h5 {
+    //  color: 	$text-dark;
+    //}
 
     .row1, .row2 {
       text-align: center;
@@ -2071,7 +2072,7 @@ input[type='text']:focus {
   }
 
   .saturday-row {
-    border-top: 3px solid $blue-grey !important;
+    border-top: 3px solid #aaa !important;
   }
 }
 
