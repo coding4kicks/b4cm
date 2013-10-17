@@ -84,7 +84,7 @@ describe('Controller: AddWatchCtrl', function () {
         watchObj = {cf_status: 'empty', 
                     time: [{day: 'friday', hour: '8am', count: 1, score: 3 }, 
                            {day: 'friday', hour: '9am', count: 1, score: 3}], 
-                    comment: undefined, user: 'Test'};
+                    comment: undefined, user: 'Test', image_url : null};
     
     window.alert = jasmine.createSpy();
     _user.loggedIn = jasmine.createSpy('loggedIn').andReturn(true);
