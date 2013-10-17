@@ -23,6 +23,8 @@ angular.module('b4cmApp')
         plus4Time = util.timeInfo(new Date(currentDate.getTime() + 4 * HOUR)),
         times = [currentTime, plus1Time, plus2Time, plus3Time, plus4Time];
 
+    $scope.doneInitializing = false;
+    $scope.initClass = 'page-element';
     $scope.userName = '';
     $scope.spots = [];
     $scope.noSpots = false;

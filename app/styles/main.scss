@@ -206,6 +206,8 @@ a {
 
 
 .google-map {
+
+  margin: 0 auto;
   img {
     // Need so icons show
     max-width: none;
@@ -393,7 +395,7 @@ input[type='text']:focus {
   border-bottom: 2px solid $acc-light !important;
   color: $text-dark;
   padding: 0;
-  min-height: 68px;
+  min-height: 78px;
 
   .logo-icon {
     padding-right: 10px;
@@ -635,6 +637,7 @@ input[type='text']:focus {
 
   .spot-types {
     @include page-element(10px, 5px, center, top);
+    margin-top: -5px;
 
     .spots {
       padding: 0 0 0 10px;
@@ -739,6 +742,7 @@ input[type='text']:focus {
 
   .title-bar {
     @include page-element(10px, 10px, left, top);
+    padding-bottom: 0;
 
     .main-col {
       padding-top: 20px;
@@ -749,6 +753,10 @@ input[type='text']:focus {
       //margin-right: 60px;
       text-align: center;
       margin-right: 40px;
+    }
+
+    .bottom {
+      margin-top: 8px;
     }
 
     .b4cm-icon {
@@ -765,7 +773,7 @@ input[type='text']:focus {
       color: $acc-dark;
       //display: inline-block;
       display: block;
-      margin-top: 20px;
+      margin-top: 30px;
       //margin: 0 0 0 30px;
       //width: 350px;
     }
@@ -904,7 +912,7 @@ input[type='text']:focus {
   .fixed {
     position: fixed;
     margin-top: -210px;
-    margin-left: 21px;
+    margin-left: -33px;
   }
 
   .relative {
@@ -1054,8 +1062,8 @@ input[type='text']:focus {
 #home-page {
   min-height: 400px;
 
-  .favorites-title {
-
+  .favit-text {
+    color: $acc-dark;
   }
 
   .title-bar {
