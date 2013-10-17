@@ -478,7 +478,7 @@ input[type='text']:focus {
     }
 
     .logo-text {
-      display: none;
+      //display: none;
     }
 
     .find-spot {
@@ -545,6 +545,15 @@ input[type='text']:focus {
   }
 }
 
+@media screen and (max-width: $break-small){
+  .header {
+    width: 100%
+  }
+
+  .addthis_toolbox {
+    display: none;
+  }
+}
 /******************
 *** FOOTER
 *******************/
