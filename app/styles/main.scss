@@ -539,7 +539,7 @@ input[type='text']:focus {
     float: right;
     padding-top: -2px;
     vertical-align: top;
-    width: 200px;
+    width: 187px;
   }
 }
 
@@ -613,6 +613,18 @@ input[type='text']:focus {
 
     .crowd-visuals {
       margin-top: -5px;
+    }
+
+    .btn {
+      &:hover {
+        background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
+        background-image: -webkit-linear-gradient(top,  #FFFFFF, #E6E6E6);
+        background-image: -o-linear-gradient(top,  #FFFFFF, #E6E6E6);
+        background-position: 0;
+        background-color: #F5F5F5;
+        transition: none;
+        cursor: default;
+      }
     }
   }
 
