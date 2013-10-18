@@ -698,6 +698,10 @@ input[type='text']:focus {
       margin: 0 10px;
     }
 
+    .favits {
+      display: none;
+    }
+
     .b4cm-icon {
       margin-top: -10px;
     }
@@ -744,6 +748,38 @@ input[type='text']:focus {
 
 @media screen and (max-width: $break-small){
   #main-page {
+
+    .spot-types {
+      .spot {
+        padding: 5px;
+        margin: 0px;
+        min-width: 130px;
+      }
+
+      .b4cm-icon {
+        height: 35px;
+        width: 35px;
+      }
+
+      h3 {
+        font-size: 18px;
+        padding-bottom: 0;
+        margin-bottom: 0;
+      }
+
+      h4 {
+        margin-top: 0;
+        font-size: 12px;
+      }
+
+      .type-blurb h4:nth-child(2) {
+        margin: -10px 0 0 10px;
+      }
+
+      .favits {
+        display: inline-block;
+      }
+    }
 
     .spots-tagline {
       display: none;
