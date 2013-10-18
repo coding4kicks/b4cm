@@ -204,8 +204,8 @@ a {
 }
 
 .b4cm-icon {
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
 }
 
 
@@ -278,7 +278,7 @@ a {
   }
 
   input {
-    width: 150px;
+    width: 280px;
   }
 
   input, select {
@@ -758,6 +758,7 @@ input[type='text']:focus {
   .title-bar {
     @include page-element(10px, 10px, left, top);
     padding-bottom: 0;
+    padding-top: 0;
 
     .main-col {
       padding-top: 20px;
@@ -766,7 +767,7 @@ input[type='text']:focus {
     .top {
       height: 80px;
       //margin-right: 60px;
-      text-align: center;
+      //text-align: center;
       margin-right: 40px;
     }
 
@@ -776,19 +777,23 @@ input[type='text']:focus {
 
     .b4cm-icon {
       margin-top: -5px;
+      vertical-align: bottom;
+      margin-left: 10px;
     }
 
     .listing-type {
       display: inline-block;
       padding: 0 0 0 20px;
+      vertical-align: bottom;
     }
 
     .listing-location {
       @include text-overflow();
       color: $acc-dark;
-      //display: inline-block;
-      display: block;
+      display: inline-block;
+      //display: block;
       margin-top: 30px;
+      width: 350px;
       //margin: 0 0 0 30px;
       //width: 350px;
     }
@@ -822,9 +827,10 @@ input[type='text']:focus {
       width: 300px;
     }
 
-    .add-spot-btn {
+    .add-spot {
+      color: $logo-red;
       float: right;
-      margin: -9px 0 0 0;
+      margin: 5px -58px 0 0;
     }
 
   }
@@ -1354,8 +1360,8 @@ input[type='text']:focus {
   }
 
   .find-nearby {
-    padding: 0 0 0 70px;
-    margin: 0 0 10px 0;
+    margin: 0 44px 20px 0;
+    text-align: right;
 
     h3 {
       display: inline-block;

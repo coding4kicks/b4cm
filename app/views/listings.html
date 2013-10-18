@@ -2,15 +2,13 @@
   <div class="title-bar clearfix">
     <div class="main-col">
       <div class="top">
+        <h4 class="listing-location">{{listings.displayAddress}}</h4>
         <img class="b4cm-icon" ng-src="../images/{{listings.type | lowercase}}-icon.png">
         <h3 class="listing-type">{{listings.type | uppercase}}</h3>
-        <h4 class="listing-location">{{listings.displayAddress}}</h4>
       </div>
       <div class="bottom">
         <h6 class="listing-nums" ng-hide="noSpots" ng-show="doneInitializing">{{startIndex}}-{{startIndex + spots.length - 1}} of {{typeSpots}}</h6>
-        <a  ng-click="addSpot()">
-          <button class="btn add-spot-btn">Add Spot</button>
-        </a>
+        <a class="add-spot" ng-click="addSpot()">Add Spot</a>
       </div>
     </div>
     <div class="side-col">
