@@ -351,29 +351,38 @@ angular.module('b4cmApp')
        * @param {object} time The time object to use to determine the status.
        * @returns {object} cfStatus with label, time, and comment properties
        */
+      // Refactor so status updates last longer than an hour so not so empty with few users.
       getStatus: function(spot, time) {
         /* jshint camelcase: false */
         var cfStatus = {},
             timeDelta = (time.getTime() - spot.crowdfactor.most_recent.time) / 60 / 1000,
             CFLABELS = ['Empty', 'Few', 'Average', 'Crowded', 'Packed'];
-      
+
+        cfStatus.comment = '"' + spot.crowdfactor.most_recent.comment + '"';
+        cfStatus.user = spot.crowdfactor.most_recent.user;
+        cfStatus.image_url = spot.crowdfactor.most_recent.image_url;
+
         if (timeDelta < 60) {
-      
+          cfStatus.oldDate = null;
           cfStatus.time = Math.round(timeDelta) + ' minutes ago';
           cfStatus.label = CFLABELS[spot.crowdfactor.most_recent.score - 1];
-          cfStatus.comment = '"' + spot.crowdfactor.most_recent.comment + '"';
-          cfStatus.user = spot.crowdfactor.most_recent.user;
-          cfStatus.image_url = spot.crowdfactor.most_recent.image_url;
+          //cfStatus.comment = '"' + spot.crowdfactor.most_recent.comment + '"';
+          //cfStatus.user = spot.crowdfactor.most_recent.user;
+          //cfStatus.image_url = spot.crowdfactor.most_recent.image_url;
           /* jshint camelcase: true */
         }
         else {
           cfStatus.time = 'historical';
-          cfStatus.comment = 'N/A';
-          cfStatus.user = '';
+          var watchDate = new Date(spot.crowdfactor.most_recent.time);
+          //console.log(watchDate.getDate());
+          //console.log(watchDate.getMonth());
+          cfStatus.oldDate = watchDate.getMonth() + '/' + watchDate.getDate();
+          //cfStatus.comment = 'N/A';
+          //cfStatus.user = '';
           var day = spot.crowdfactor.day[time.getDay().toLowerCase()],
               count = day[time.getTimeLabel()].count,
               score = day[time.getTimeLabel()].score;
-          if (count === -1){ cfStatus.label = 'Closed'; }
+          if (count === -1){cfStatus.label = 'Closed';}
           else if (count === 0){
             cfStatus.label = '';
             cfStatus.time = 'No watches';

@@ -52,7 +52,7 @@
           </div>
           <div class="watch-status">
             <img class="watch-image" ng-src="{{current_image_url}}" ng-show="current_image_url">
-            <p class="watch-comment" ng-show="current_user"><span class="watch-comment-user">{{current_user}}</span><br>{{current_comment}}</p>
+            <p class="watch-comment" ng-show="current_user"><span class="watch-comment-user">{{current_user}}</span><span class="old-date" ng-show="oldDate"> ({{oldDate}})</span><br>{{current_comment}}</p>
           </div>
         </div>
         <div class="favorite" ng-click="addToFavs()">

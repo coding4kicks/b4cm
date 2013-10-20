@@ -294,6 +294,7 @@ var _updateStatus = function ($scope, $timeout, spot, util) {
   $scope.current_comment = current_status.comment;
   $scope.current_user = current_status.user;
   $scope.current_image_url = current_status.image_url;
+  $scope.oldDate = current_status.oldDate;
   _updateMarker($scope);
   $timeout(function(){_updateStatus($scope, $timeout, spot, util);}, 60000);
 }
